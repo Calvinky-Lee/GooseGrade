@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Geist, Geist_Mono, Lora } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
+import { SiteHeader } from "@/components/site-header"
 
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
   description: "Track your assignments and calculate your grades for University of Waterloo courses.",
   icons: {
     icon: [
-      { url: "/logo.png", href: "/logo.png" },
+      { url: "/goosegrade.png", href: "/goosegrade.png" },
     ],
   },
 }
@@ -26,7 +27,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="font-serif antialiased" style={{ fontFamily: "var(--font-lora)" }}>
-        {children}
+        <SiteHeader />
+        <div>{children}</div>
         <Analytics />
       </body>
     </html>

@@ -2,8 +2,7 @@
 
 import { useState, useEffect, use } from 'react';
 import { supabase } from '@/lib/supabase/client';
-import { ArrowLeft, Calculator, GraduationCap, Save } from 'lucide-react';
-import Link from 'next/link';
+import { Calculator, GraduationCap, Save } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
 // Types
@@ -12,6 +11,7 @@ interface Assessment {
   name: string;
   weight: number;
   grade?: number; // User input
+  inputValue?: string;
 }
 
 interface Course {
@@ -29,6 +29,7 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
   const [loading, setLoading] = useState(true);
   const [assessments, setAssessments] = useState<Assessment[]>([]);
   const [targetGrade, setTargetGrade] = useState<number | ''>('');
+  const [invalidGrades, setInvalidGrades] = useState<Record<string, boolean>>({});
 
   // Fetch Data
   useEffect(() => {
@@ -58,7 +59,12 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
         .order('order_index', { ascending: true });
 
       setCourse(courseData);
-      setAssessments(assessmentData || []);
+      setAssessments(
+        (assessmentData || []).map((assessment) => ({
+          ...assessment,
+          inputValue: typeof assessment.grade === 'number' ? assessment.grade.toString() : '',
+        }))
+      );
       setLoading(false);
     };
 
@@ -117,20 +123,41 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
 
   const handleGradeChange = (id: string, val: string) => {
     const num = parseFloat(val);
-    setAssessments(prev => prev.map(a => 
-      a.id === id ? { ...a, grade: isNaN(num) ? undefined : num } : a
-    ));
+    const withinRange = !isNaN(num) && num >= 0 && num <= 100;
+    const isInvalid = val !== '' && !withinRange;
+
+    setAssessments(prev =>
+      prev.map(a =>
+        a.id === id
+          ? {
+              ...a,
+              inputValue: val,
+              grade: val === ''
+                ? undefined
+                : withinRange
+                  ? num
+                  : undefined,
+            }
+          : a
+      )
+    );
+
+    setInvalidGrades(prev => {
+      const next = { ...prev };
+      if (isInvalid) {
+        next[id] = true;
+      } else {
+        delete next[id];
+      }
+      return next;
+    });
   };
 
   if (loading) return <div className="p-10 text-center">Loading course data...</div>;
-  if (!course) return <div className="p-10 text-center">Course not found. <Link href="/" className="text-primary underline">Go Home</Link></div>;
+  if (!course) return <div className="p-10 text-center">Course not found. <a href="/" className="text-primary underline">Go Home</a></div>;
 
   return (
-    <div className="max-w-4xl mx-auto pb-20">
-      <Link href="/" className="inline-flex items-center text-muted-foreground hover:text-foreground mb-6">
-        <ArrowLeft className="w-4 h-4 mr-2" /> Back to Search
-      </Link>
-
+    <div className="max-w-4xl mx-auto pb-20 pt-12 sm:pt-16">
       <header className="mb-8">
         <h1 className="text-3xl font-bold">{course.code}</h1>
         <h2 className="text-xl text-muted-foreground">{course.name}</h2>
@@ -142,36 +169,48 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
       <div className="grid md:grid-cols-3 gap-8">
         {/* Main Assessment List */}
         <div className="md:col-span-2 space-y-6">
-          <div className="bg-card border rounded-xl shadow-sm overflow-hidden">
-            <div className="bg-muted/30 px-6 py-4 border-b flex justify-between items-center">
-              <h3 className="font-semibold flex items-center">
-                <Calculator className="w-4 h-4 mr-2" /> Assessments
-              </h3>
-              <span className="text-sm text-muted-foreground">Weight: 100%</span>
+            <div className="bg-card border rounded-xl shadow-sm overflow-hidden">
+              <div className="bg-muted/30 px-6 py-4 border-b flex justify-between items-center">
+                <h3 className="font-semibold flex items-center">
+                  <Calculator className="w-4 h-4 mr-2" /> Assessments
+                </h3>
+              </div>
+
+              <div className="divide-y">
+                {assessments.map((assessment) => {
+                  const isInvalid = !!invalidGrades[assessment.id];
+                  return (
+                    <div
+                      key={assessment.id}
+                      className="px-6 py-4 flex items-center gap-4 hover:bg-accent/5 transition-colors"
+                    >
+                      <div className="flex-1">
+                        <div className="font-medium">{assessment.name}</div>
+                        <div className="text-sm text-muted-foreground">{assessment.weight}% weight</div>
+                      </div>
+                      <div className="w-28">
+                        <input
+                          type="number"
+                          placeholder="Grade %"
+                          className={`w-full rounded-md border px-3 py-2 text-sm text-right outline-none transition focus:ring-2 ${
+                            isInvalid
+                              ? "border-red-500 focus:ring-red-400 focus:border-red-400"
+                              : "border-gray-300 focus:border-primary focus:ring-primary/40"
+                          }`}
+                          min="0"
+                          max="100"
+                          value={assessment.inputValue ?? ""}
+                          onChange={(e) => handleGradeChange(assessment.id, e.target.value)}
+                        />
+                        {isInvalid && (
+                          <p className="mt-1 text-xs text-red-600">Enter a value between 0 and 100.</p>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-            
-            <div className="divide-y">
-              {assessments.map((assessment) => (
-                <div key={assessment.id} className="px-6 py-4 flex items-center gap-4 hover:bg-accent/5 transition-colors">
-                  <div className="flex-1">
-                    <div className="font-medium">{assessment.name}</div>
-                    <div className="text-sm text-muted-foreground">{assessment.weight}% weight</div>
-                  </div>
-                  <div className="w-24">
-                    <input
-                      type="number"
-                      placeholder="Grade %"
-                      className="w-full px-3 py-2 rounded-md border text-right focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
-                      min="0"
-                      max="100"
-                      value={assessment.grade ?? ''}
-                      onChange={(e) => handleGradeChange(assessment.id, e.target.value)}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
 
         {/* Stats Sidebar */}
@@ -201,16 +240,18 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
               <GraduationCap className="w-4 h-4 mr-2" /> Target Calculator
             </h3>
             
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-sm">I want a</span>
+            <div className="flex flex-wrap items-center gap-3 mb-4 text-sm">
+              <span className="text-sm">I want a final grade of</span>
               <input 
                 type="number" 
-                className="w-20 px-2 py-1 border rounded text-center font-bold"
+                className="w-24 px-3 py-1.5 border rounded text-center font-semibold"
                 placeholder="85"
                 value={targetGrade}
                 onChange={(e) => setTargetGrade(e.target.value ? parseFloat(e.target.value) : '')}
+                min="0"
+                max="100"
               />
-              <span className="text-sm">% final.</span>
+              <span className="text-sm font-medium">%</span>
             </div>
 
             {requiredGrade !== null && (
