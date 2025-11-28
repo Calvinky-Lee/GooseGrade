@@ -1,94 +1,141 @@
-'use client';
+"use client"
 
-import { useState, useEffect } from 'react';
-import { Search } from 'lucide-react';
-import { supabase } from '@/lib/supabase/client';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
+import Image from "next/image"
+import { ArrowRight, Search } from "lucide-react"
+import { useRouter } from "next/navigation"
+import { useEffect, useState } from "react"
 
-export default function Home() {
-  const [query, setQuery] = useState('');
-  const [results, setResults] = useState<any[]>([]);
-  const router = useRouter();
+import { supabase } from "@/lib/supabase/client"
+
+type CourseResult = {
+  code: string
+  name: string
+  term: string
+}
+
+export default function Page() {
+  const [query, setQuery] = useState("")
+  const [results, setResults] = useState<CourseResult[]>([])
+  const [focused, setFocused] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
-    const search = async () => {
-      if (query.length < 2) {
-        setResults([]);
-        return;
+    const controller = new AbortController()
+
+    async function searchCourses() {
+      if (query.trim().length < 2) {
+        setResults([])
+        return
       }
 
       const { data } = await supabase
-        .from('courses')
-        .select('code, name, term')
-        .ilike('code', `%${query}%`)
-        .limit(5);
+        .from("courses")
+        .select("code, name, term")
+        .ilike("code", `%${query.trim()}%`)
+        .order("term_date", { ascending: false })
+        .limit(5)
 
-      setResults(data || []);
-    };
+      if (!controller.signal.aborted) {
+        setResults(data ?? [])
+      }
+    }
 
-    const timer = setTimeout(search, 300);
-    return () => clearTimeout(timer);
-  }, [query]);
+    const timeout = setTimeout(searchCourses, 200)
+    return () => {
+      controller.abort()
+      clearTimeout(timeout)
+    }
+  }, [query])
+
+  const handleSubmit = () => {
+    if (results[0]) {
+      router.push(`/course/${results[0].code}`)
+    }
+  }
 
   return (
-    <div className="flex flex-col items-center justify-center py-12 md:py-20">
-      
-      {/* Logo Section */}
-      <div className="mb-8 relative w-40 h-40 md:w-52 md:h-52">
-        <Image 
-          src="/logo.png" 
-          alt="GooseGrade Logo" 
-          fill
-          className="object-contain"
-          priority
+    <div className="min-h-screen bg-[#f8f8f8] font-sans text-black">
+      <header className="flex items-center justify-between border-b border-gray-300 px-8 py-4">
+        <div className="flex items-center space-x-3">
+          <Image src="/goosegrade.png" alt="GooseGrade" width={56} height={56} priority />
+          <a
+            href="#"
+            className="border-b border-black text-base font-medium transition-colors hover:text-gray-700 hover:border-gray-700"
+          >
+            New Calculator
+          </a>
+        </div>
+      </header>
+
+      <main className="relative px-6 pb-24 pt-12 sm:px-12">
+        <div
+          className="pointer-events-none absolute right-12 top-10 h-[420px] w-[420px] rounded-full bg-gradient-to-br from-yellow-300 via-yellow-400 to-amber-400 blur-3xl opacity-70"
+          style={{ animation: "glow-fade 4s ease-in-out infinite" }}
+          aria-hidden="true"
         />
-      </div>
 
-      <h1 className="text-4xl md:text-6xl font-bold text-center mb-6">
-        <span className="text-primary">GooseGrade</span>
-      </h1>
-      
-      <p className="text-muted-foreground text-lg mb-10 text-center max-w-2xl px-4">
-        The smartest grade calculator for UWaterloo students. <br/>
-        Find your course, track your marks, and pass with confidence.
-      </p>
+        <div className="relative z-10 max-w-[720px]">
+          <h1 className="font-light leading-none tracking-tight text-[6rem] sm:text-[8rem]">
+            <span className="block text-[6.75rem] font-semibold sm:text-[8.75rem]">
+              Calculate
+            </span>
+            <span className="ml-2 block text-[2.1rem] font-medium sm:text-[2.6rem]">
+              Your UWaterloo Grade
+            </span>
+          </h1>
 
-      <div className="w-full max-w-md relative px-4">
-        <div className="relative group">
-          <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-primary/40 rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-          <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground h-5 w-5" />
-            <input
-              type="text"
-              className="w-full pl-12 pr-4 py-4 rounded-lg border bg-background shadow-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none text-lg placeholder:text-muted-foreground/70"
-              placeholder="Search course (e.g., CS 135)..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-            />
+          <p className="ml-2 mt-6 max-w-2xl text-base font-medium text-gray-700 sm:text-[1.25rem]">
+            Enter Your Course Code To Use An Assessment
+            <br />
+            Weighting Template Straight From Your Outline
+          </p>
+
+          <div className="mt-10 max-w-[760px]">
+            <div className="flex items-center space-x-4 rounded-2xl bg-[#d6dbe5] px-6 py-4 shadow-inner shadow-white/70">
+              <Search className="h-5 w-5 text-gray-700" />
+              <input
+                type="text"
+                placeholder="Enter In Your Course To Start"
+                className="flex-1 bg-transparent text-base text-gray-800 placeholder:text-gray-500 outline-none sm:text-lg"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                onFocus={() => setFocused(true)}
+                onBlur={() => setTimeout(() => setFocused(false), 200)}
+              />
+              <button
+                className="rounded-full bg-[#bcc3d0] p-2.5 text-gray-700 transition hover:bg-[#aab2c0]"
+                onClick={handleSubmit}
+                aria-label="Go to course"
+              >
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            </div>
+
+            {focused && results.length > 0 && (
+              <div className="mt-3 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg">
+                {results.map((course) => (
+                  <button
+                    key={course.code + course.term}
+                    className="flex w-full items-center justify-between px-4 py-3 text-left hover:bg-gray-50"
+                    onMouseDown={(event) => {
+                      event.preventDefault()
+                      router.push(`/course/${course.code}`)
+                    }}
+                  >
+                    <div>
+                      <p className="text-lg font-semibold text-gray-900">{course.code}</p>
+                      <p className="text-sm text-gray-600">{course.name}</p>
+                    </div>
+                    <span className="text-xs font-semibold uppercase tracking-[0.3em] text-gray-500">
+                      {course.term}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            )}
           </div>
         </div>
-
-        {results.length > 0 && (
-          <div className="absolute w-[calc(100%-2rem)] left-4 right-4 mt-2 bg-card border rounded-lg shadow-xl z-50 overflow-hidden ring-1 ring-black/5">
-            {results.map((course) => (
-              <button
-                key={`${course.code}-${course.term}`}
-                className="w-full text-left px-4 py-3 hover:bg-accent/50 transition-colors flex flex-col border-b last:border-0"
-                onClick={() => router.push(`/course/${course.code}`)}
-              >
-                <div className="flex justify-between items-baseline">
-                  <span className="font-bold text-foreground">{course.code}</span>
-                  <span className="text-xs text-primary font-medium bg-primary/10 px-2 py-0.5 rounded-full">
-                    {course.term}
-                  </span>
-                </div>
-                <span className="text-sm text-muted-foreground truncate mt-1">{course.name}</span>
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
+      </main>
     </div>
-  );
+  )
 }
