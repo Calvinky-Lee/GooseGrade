@@ -1,0 +1,36 @@
+{
+  "name": "goosegrade",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "scrape": "tsx scripts/scrape-course.ts",
+    "scrape-batch": "tsx scripts/scrape-batch.ts",
+    "fetch-courses": "tsx scripts/fetch-course-list.ts",
+    "db:setup": "tsx scripts/setup-database.ts"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "@tailwindcss/postcss": "^4.1.17",
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.3.1",
+    "lucide-react": "^0.555.0",
+    "next": "^16.0.5",
+    "node-fetch": "^3.3.2",
+    "openai": "^6.9.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/react": "19.2.7",
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.17",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  }
+}
