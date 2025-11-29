@@ -2,7 +2,7 @@
 
 import { useState, useEffect, use } from 'react';
 import { supabase } from '@/lib/supabase/client';
-import { ChevronDown, ChevronRight, Calculator, GraduationCap, RotateCcw } from 'lucide-react';
+import { ChevronDown, ChevronRight, Calculator, GraduationCap, RotateCcw, GripVertical } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 interface Assessment {
@@ -13,6 +13,7 @@ interface Assessment {
   grade?: number; // User input
   inputValue?: string;
   isGroup?: false;
+  order_index?: number;
 }
 
 interface Course {
@@ -64,6 +65,11 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
       totalProgress: number;
   }>({ currentGrade: 0, requiredGrade: null, totalProgress: 0 });
 
+  // Drag and Drop State
+  const [draggedItem, setDraggedItem] = useState<{ id: string; isGroup: boolean; groupId?: string } | null>(null);
+  const [dragOverItem, setDragOverItem] = useState<{ id: string; isGroup: boolean; groupId?: string; position?: 'before' | 'after' } | null>(null);
+  const [reorderedItems, setReorderedItems] = useState<DisplayItem[] | null>(null); // Optimistic UI state
+
   // Helper to group assessments
   const groupAssessments = (flatAssessments: Assessment[]): DisplayItem[] => {
     const groups: Record<string, Assessment[]> = {};
@@ -101,11 +107,19 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
         if (items.length > 1) {
             items.forEach(i => processedIds.add(i.id));
             const totalWeight = items.reduce((sum, i) => sum + i.weight, 0);
+            
+            // Sort children by their order in the original array
+            const sortedChildren = items.sort((a, b) => {
+                const idxA = flatAssessments.findIndex(ass => ass.id === a.id);
+                const idxB = flatAssessments.findIndex(ass => ass.id === b.id);
+                return idxA - idxB;
+            });
+            
             result.push({
                 id: baseName, 
                 name: pluralize(baseName), 
                 isGroup: true,
-                children: items,
+                children: sortedChildren,
                 totalWeight: totalWeight
             });
         }
@@ -119,11 +133,21 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
         }
     });
 
-    // Sort by order_index
+    // Preserve order from assessments array (don't sort by order_index)
+    // Sort by the index in the original flatAssessments array
     return result.sort((a, b) => {
-        const indexA = a.isGroup ? (a.children[0] as any).order_index : (a as any).order_index;
-        const indexB = b.isGroup ? (b.children[0] as any).order_index : (b as any).order_index;
-        return indexA - indexB;
+        const getFirstIndex = (item: DisplayItem): number => {
+            if (item.isGroup) {
+                // Return the minimum index of any child in the original array
+                const indices = item.children.map(child => 
+                    flatAssessments.findIndex(ass => ass.id === child.id)
+                ).filter(idx => idx !== -1);
+                return indices.length > 0 ? Math.min(...indices) : Infinity;
+            } else {
+                return flatAssessments.findIndex(ass => ass.id === item.id);
+            }
+        };
+        return getFirstIndex(a) - getFirstIndex(b);
     });
   };
 
@@ -224,6 +248,7 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
 
       processedAssessments = processedAssessments.filter(a => a.weight > 0);
 
+      // Default sort order (midterms and exams at bottom)
       processedAssessments.sort((a, b) => {
           const getScore = (name: string) => {
               const lower = name.toLowerCase();
@@ -245,6 +270,13 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
 
     fetchCourse();
   }, [code]);
+
+  // Sync reorderedItems with grouped assessments when assessments change (unless dragging)
+  useEffect(() => {
+    if (!draggedItem) {
+      setReorderedItems(null);
+    }
+  }, [assessments, draggedItem]);
 
   const handleSectionChange = async (sectionId: string) => {
       setLoading(true);
@@ -646,11 +678,163 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
     });
   };
 
+  // Drag and Drop Handlers
+  const handleDragStart = (e: React.DragEvent, item: DisplayItem, groupId?: string) => {
+    if (dropMode !== 'none') return; // Disable drag during drop mode
+    const isGroup = !!item.isGroup;
+    setDraggedItem({ id: item.id, isGroup, groupId });
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', ''); // Required for Firefox
+  };
+
+  const handleDragOver = (e: React.DragEvent, item: DisplayItem, groupId?: string) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = 'move';
+    if (dropMode !== 'none') return; // Disable drag during drop mode
+    
+    if (!draggedItem) return;
+    
+    // Prevent dropping on itself
+    if (draggedItem.id === item.id && draggedItem.groupId === groupId) return;
+    
+    // If dragging a child item, only allow dropping within the same group
+    if (draggedItem.groupId) {
+      if (groupId !== draggedItem.groupId) return;
+    }
+    
+    // If dragging a group or top-level item, prevent dropping into groups
+    if (!draggedItem.isGroup && !draggedItem.groupId && item.isGroup) {
+      return; // Don't allow dropping top-level items into groups
+    }
+    
+    // Determine insertion position based on mouse Y position
+    const rect = e.currentTarget.getBoundingClientRect();
+    const midpoint = rect.top + rect.height / 2;
+    const position = e.clientY < midpoint ? 'before' : 'after';
+    
+    // Only show drag over indicator, don't reorder until drop
+    setDragOverItem({ id: item.id, isGroup: !!item.isGroup, groupId, position });
+  };
+
+  const handleDragLeave = () => {
+    setDragOverItem(null);
+  };
+
+  const handleDrop = (e: React.DragEvent, targetItem: DisplayItem, targetGroupId?: string) => {
+    e.preventDefault();
+    
+    if (dropMode !== 'none') return; // Disable drag during drop mode
+    if (!draggedItem || !course || !dragOverItem) return;
+    
+    const currentItems = groupAssessments(assessments);
+    let itemsToReorder = [...currentItems];
+    
+    if (draggedItem.groupId) {
+      // Reordering within a group
+      const groupIndex = itemsToReorder.findIndex(g => g.isGroup && g.id === draggedItem.groupId);
+      if (groupIndex === -1) {
+        setDraggedItem(null);
+        setDragOverItem(null);
+        return;
+      }
+      
+      const group = itemsToReorder[groupIndex];
+      if (!group.isGroup) {
+        setDraggedItem(null);
+        setDragOverItem(null);
+        return;
+      }
+      
+      const sourceIndex = group.children.findIndex(c => c.id === draggedItem.id);
+      const targetIndex = group.children.findIndex(c => c.id === targetItem.id);
+      
+      if (sourceIndex === -1 || targetIndex === -1 || sourceIndex === targetIndex) {
+        setDraggedItem(null);
+        setDragOverItem(null);
+        return;
+      }
+      
+      const newChildren = [...group.children];
+      const [removed] = newChildren.splice(sourceIndex, 1);
+      const insertIndex = dragOverItem.position === 'before' ? targetIndex : targetIndex + 1;
+      newChildren.splice(insertIndex > sourceIndex ? insertIndex - 1 : insertIndex, 0, removed);
+      
+      itemsToReorder[groupIndex] = {
+        ...group,
+        children: newChildren
+      };
+    } else {
+      // Reordering groups or top-level items
+      const sourceIndex = itemsToReorder.findIndex(i => {
+        if (draggedItem.isGroup) {
+          return i.isGroup && i.id === draggedItem.id;
+        } else {
+          return !i.isGroup && i.id === draggedItem.id;
+        }
+      });
+      
+      const targetIndex = itemsToReorder.findIndex(i => {
+        if (targetItem.isGroup) {
+          return i.isGroup && i.id === targetItem.id;
+        } else {
+          return !i.isGroup && i.id === targetItem.id;
+        }
+      });
+      
+      if (sourceIndex === -1 || targetIndex === -1 || sourceIndex === targetIndex) {
+        setDraggedItem(null);
+        setDragOverItem(null);
+        return;
+      }
+      
+      const [removed] = itemsToReorder.splice(sourceIndex, 1);
+      const insertIndex = dragOverItem.position === 'before' ? targetIndex : targetIndex + 1;
+      itemsToReorder.splice(insertIndex > sourceIndex ? insertIndex - 1 : insertIndex, 0, removed);
+    }
+    
+    // Flatten the reordered items back into assessments array in the new order
+    const reorderedAssessments: Assessment[] = [];
+    
+    itemsToReorder.forEach((item) => {
+      if (item.isGroup) {
+        // Add all children from the group
+        item.children.forEach((child) => {
+          const existingAssessment = assessments.find(a => a.id === child.id);
+          if (existingAssessment) {
+            reorderedAssessments.push(existingAssessment);
+          }
+        });
+      } else {
+        // Add single item
+        const existingAssessment = assessments.find(a => a.id === item.id);
+        if (existingAssessment) {
+          reorderedAssessments.push(existingAssessment);
+        }
+      }
+    });
+    
+    // Update assessments state with new order (short-term only, not persisted)
+    setAssessments(reorderedAssessments);
+    
+    setDraggedItem(null);
+    setDragOverItem(null);
+  };
+
+  const handleDragEnd = () => {
+    // Only clear if drag was cancelled (not dropped)
+    if (draggedItem) {
+      setReorderedItems(null);
+    }
+    setDraggedItem(null);
+    setDragOverItem(null);
+  };
+
   if (loading) return <div className="p-10 text-center">Loading course data...</div>;
   if (!course) return <div className="p-10 text-center">Course not found. <a href="/" className="text-primary underline">Go Home</a></div>;
 
   return (
-    <div className="max-w-4xl mx-auto pb-20 pt-12 sm:pt-16">
+    <div className="relative min-h-screen overflow-hidden bg-white font-sans text-black">
+      <div className="max-w-4xl mx-auto pb-20 pt-12 sm:pt-16 px-6">
       <header className="mb-8">
         <h1 className="text-3xl font-bold">{course.code}</h1>
         {availableSections.length > 1 ? (
@@ -671,7 +855,7 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
         ) : (
             <h2 className="text-xl text-muted-foreground">{course.name}</h2>
         )}
-        <div className="inline-block bg-secondary px-3 py-1 rounded-full text-sm font-medium mt-2">
+        <div className="block bg-secondary px-3 py-1 rounded-full text-sm font-medium mt-2 w-fit">
           {course.term}
         </div>
       </header>
@@ -693,8 +877,8 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                 )}
               </div>
 
-              <div className="divide-y">
-                {groupAssessments(assessments).map((item) => {
+              <div className="divide-y relative">
+                {(reorderedItems || groupAssessments(assessments)).map((item, itemIndex) => {
                   const isDropped = !!droppedMap[item.id];
                   const isSource = dropSourceId === item.id;
                   const isTargetCandidate = dropMode === 'selectTarget' && !isDropped && !isSource;
@@ -703,7 +887,7 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                   
                   const handleClick = () => handleItemClick(item);
                   
-                  const rowClasses = `px-6 py-4 flex items-center gap-4 transition-all relative ${
+                  const rowClasses = `pl-3 pr-6 py-4 flex items-center gap-2 transition-all relative ${
                       isDropped ? 'opacity-50 bg-gray-50' :
                       isSource ? 'bg-red-50 border-l-4 border-red-500' :
                       isTargetCandidate ? 'hover:bg-green-50 cursor-pointer hover:border-l-4 hover:border-green-500' :
@@ -748,10 +932,23 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                       
                       const displayedTotalWeight = childrenSum; 
 
+                      const isDragging = draggedItem?.id === item.id && !draggedItem.groupId;
+                      const isDragOver = dragOverItem?.id === item.id && !dragOverItem.groupId;
+                      
                       return (
                           <div key={item.id} className="bg-white">
+                              {/* Insertion line indicator */}
+                              {isDragOver && dragOverItem?.position === 'before' && (
+                                  <div className="h-0.5 bg-blue-500 ml-3 mr-6" />
+                              )}
                               <div 
-                                  className={rowClasses}
+                                  className={`${rowClasses} ${isDragging ? 'opacity-50' : ''}`}
+                                  draggable={dropMode === 'none'}
+                                  onDragStart={(e) => handleDragStart(e, item)}
+                                  onDragOver={(e) => handleDragOver(e, item)}
+                                  onDragLeave={handleDragLeave}
+                                  onDrop={(e) => handleDrop(e, item)}
+                                  onDragEnd={handleDragEnd}
                                   onClick={(e) => {
                                       if (dropMode !== 'none') {
                                           e.stopPropagation();
@@ -771,6 +968,7 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                       </div>
                                   )}
 
+                                  <GripVertical className="w-4 h-4 text-gray-400 cursor-grab active:cursor-grabbing" />
                                   <button 
                                       onClick={(e) => {
                                           e.stopPropagation();
@@ -823,7 +1021,10 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                      </button>
                                   )}
                               </div>
-
+                              {/* Insertion line indicator after */}
+                              {isDragOver && dragOverItem?.position === 'after' && (
+                                  <div className="h-0.5 bg-blue-500 ml-3 mr-6" />
+                              )}
                               {isExpanded && (
                                   <div className="bg-gray-50/50 border-t border-gray-100 divide-y divide-gray-100/50">
                                       {item.children.map((child) => {
@@ -836,7 +1037,7 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                           const childAdjustment = weightAdjustments[child.id] || 0;
                                           const isChildInvalid = !!invalidGrades[child.id];
                                           
-                                          const childRowClasses = `px-6 py-3 flex items-center gap-4 pl-14 transition-all relative ${
+                                          const childRowClasses = `pl-14 pr-6 py-3 flex items-center gap-2 transition-all relative ${
                                               isChildDropped ? 'opacity-50 bg-gray-100' :
                                               isChildSource ? 'bg-red-50 border-l-4 border-red-500' :
                                               isChildTargetCandidate ? 'hover:bg-green-50 cursor-pointer hover:border-l-4 hover:border-green-500' :
@@ -846,11 +1047,25 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                           
                                           // Calculate distributed weight for display
                                           const distributedWeight = getDistributedChildWeight(child, item);
+                                          
+                                          const isChildDragging = draggedItem?.id === child.id && draggedItem.groupId === item.id;
+                                          const isChildDragOver = dragOverItem?.id === child.id && dragOverItem.groupId === item.id;
 
                                           return (
-                                              <div 
-                                                  key={child.id} 
-                                                  className={childRowClasses}
+                                              <div key={`child-wrapper-${child.id}`}>
+                                                  {/* Insertion line indicator before */}
+                                                  {isChildDragOver && dragOverItem?.position === 'before' && (
+                                                      <div className="h-0.5 bg-blue-500 ml-14 mr-6" />
+                                                  )}
+                                                  <div 
+                                                      key={child.id} 
+                                                      className={`${childRowClasses} ${isChildDragging ? 'opacity-50' : ''}`}
+                                                  draggable={dropMode === 'none'}
+                                                  onDragStart={(e) => handleDragStart(e, child, item.id)}
+                                                  onDragOver={(e) => handleDragOver(e, child, item.id)}
+                                                  onDragLeave={handleDragLeave}
+                                                  onDrop={(e) => handleDrop(e, child, item.id)}
+                                                  onDragEnd={handleDragEnd}
                                                   onClick={(e) => {
                                                       if (dropMode !== 'none') {
                                                           e.stopPropagation();
@@ -870,6 +1085,7 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                                       </div>
                                                   )}
 
+                                                  <GripVertical className="w-4 h-4 text-gray-400 cursor-grab active:cursor-grabbing" />
                                                   <div className="flex-1">
                                                       <div className={`text-sm font-medium text-gray-700 ${isChildDropped ? 'line-through' : ''}`}>
                                                           {child.name}
@@ -919,6 +1135,11 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                                      </button>
                                                   )}
                                               </div>
+                                              {/* Insertion line indicator after */}
+                                              {isChildDragOver && dragOverItem?.position === 'after' && (
+                                                  <div className="h-0.5 bg-blue-500 mx-6 ml-14" />
+                                              )}
+                                          </div>
                                           );
                                       })}
                                   </div>
@@ -930,12 +1151,26 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                       const isInvalid = !!invalidGrades[assessment.id];
                       const effectiveWeight = getEffectiveWeight(assessment);
                       
+                      const isDragging = draggedItem?.id === assessment.id && !draggedItem.groupId;
+                      const isDragOver = dragOverItem?.id === assessment.id && !dragOverItem.groupId;
+                      
                       return (
-                        <div
-                          key={assessment.id}
-                          className={rowClasses}
-                          onClick={() => handleItemClick(item)}
-                        >
+                        <div key={`single-wrapper-${assessment.id}`}>
+                          {/* Insertion line indicator before */}
+                          {isDragOver && dragOverItem?.position === 'before' && (
+                              <div className="h-0.5 bg-blue-500 ml-3 mr-6" />
+                          )}
+                          <div
+                            key={assessment.id}
+                            className={`${rowClasses} ${isDragging ? 'opacity-50' : ''}`}
+                            draggable={dropMode === 'none'}
+                            onDragStart={(e) => handleDragStart(e, assessment)}
+                            onDragOver={(e) => handleDragOver(e, assessment)}
+                            onDragLeave={handleDragLeave}
+                            onDrop={(e) => handleDrop(e, assessment)}
+                            onDragEnd={handleDragEnd}
+                            onClick={() => handleItemClick(item)}
+                          >
                           {isTargetCandidate && (
                               <div className="absolute inset-0 flex items-center justify-center bg-green-50/90 opacity-0 hover:opacity-100 font-bold text-green-700 z-10 transition-opacity rounded-lg">
                                   Transfer weight here
@@ -948,7 +1183,8 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                               </div>
                           )}
 
-                          <div className="flex-1">
+                          <GripVertical className="w-4 h-4 text-gray-400 cursor-grab active:cursor-grabbing" />
+                          <div className="flex-1 ml-6">
                             <div className={`font-medium ${isDropped ? 'line-through' : ''}`}>
                                 {assessment.name.replace(/^["“'”]+|["“'”]+$/g, '').trim()}
                                 {isDropped && <span className="ml-2 text-xs text-red-500 no-underline">(Dropped)</span>}
@@ -1001,9 +1237,90 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                              </button>
                           )}
                         </div>
+                        {/* Insertion line indicator after */}
+                        {isDragOver && dragOverItem?.position === 'after' && (
+                            <div className="h-0.5 bg-blue-500 ml-3 mr-6" />
+                        )}
+                      </div>
                       );
                   }
                 })}
+                
+                {/* Drop zone at the end for dragging below last element */}
+                {draggedItem && !draggedItem.groupId && (
+                  <div
+                    className="border-t-0"
+                    style={{ 
+                      height: dragOverItem?.id === 'END_ZONE' ? '8px' : '0px',
+                      minHeight: '0px',
+                      overflow: 'hidden',
+                      margin: '0',
+                      padding: '0',
+                      lineHeight: '0'
+                    }}
+                    onDragOver={(e) => {
+                      e.preventDefault();
+                      e.dataTransfer.dropEffect = 'move';
+                      if (dragOverItem?.id !== 'END_ZONE') {
+                        setDragOverItem({ id: 'END_ZONE', isGroup: false, position: 'after' });
+                      }
+                    }}
+                    onDragLeave={() => {
+                      if (dragOverItem?.id === 'END_ZONE') {
+                        setDragOverItem(null);
+                      }
+                    }}
+                    onDrop={(e) => {
+                      e.preventDefault();
+                      if (!draggedItem || draggedItem.groupId) return;
+                      
+                      const currentItems = groupAssessments(assessments);
+                      const sourceIndex = currentItems.findIndex(i => {
+                        if (draggedItem.isGroup) {
+                          return i.isGroup && i.id === draggedItem.id;
+                        } else {
+                          return !i.isGroup && i.id === draggedItem.id;
+                        }
+                      });
+                      
+                      if (sourceIndex === -1) {
+                        setDraggedItem(null);
+                        setDragOverItem(null);
+                        return;
+                      }
+                      
+                      const itemsToReorder = [...currentItems];
+                      const [removed] = itemsToReorder.splice(sourceIndex, 1);
+                      itemsToReorder.push(removed);
+                      
+                      // Flatten back to assessments
+                      const reorderedAssessments: Assessment[] = [];
+                      itemsToReorder.forEach((item) => {
+                        if (item.isGroup) {
+                          item.children.forEach((child) => {
+                            const existingAssessment = assessments.find(a => a.id === child.id);
+                            if (existingAssessment) {
+                              reorderedAssessments.push(existingAssessment);
+                            }
+                          });
+                        } else {
+                          const existingAssessment = assessments.find(a => a.id === item.id);
+                          if (existingAssessment) {
+                            reorderedAssessments.push(existingAssessment);
+                          }
+                        }
+                      });
+                      
+                      setAssessments(reorderedAssessments);
+                      setDraggedItem(null);
+                      setDragOverItem(null);
+                    }}
+                  >
+                    {dragOverItem?.id === 'END_ZONE' && (
+                      <div className="h-0.5 bg-blue-500 ml-3 mr-6" />
+                    )}
+                  </div>
+                )}
               </div>
 
               <div className="bg-gray-50 px-6 py-4 border-t flex justify-between items-center">
@@ -1089,6 +1406,7 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
             )}
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

@@ -48,7 +48,7 @@ export default function Page() {
   }, [query])
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-[#f8f8f8] font-sans text-black">
+    <div className="relative min-h-screen overflow-hidden bg-white font-sans text-black">
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
         <div
           className="absolute left-[calc(50%+10px)] bottom-[-10px] h-[360px] w-[360px] rounded-full bg-gradient-to-br from-[#b76e79] via-[#a85c68] to-[#8f3f4c] blur-3xl opacity-55"

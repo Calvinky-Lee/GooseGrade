@@ -239,7 +239,7 @@
     - Annual General Meeting Exercise: 2%
 
 [AFM 428] AFM 328/AFM 329/AFM 428/AFM 429  Investment Management - Junior Analyst Section 001 (Fall 2025)
-  Total Weight: 41.00%
+  Total Weight: 40.00%
     - Presentation II: 4.5%
     - Industry Overview Presentation: 4%
     - Current Holdings Presentation: 4%
@@ -255,7 +255,6 @@
     - Mentoring Junior Analyst 1: 1%
     - Attendance and Participation in Sessions (AFM 329): 1%
     - Faculty Evaluation (AFM 329): 1%
-    - Peer Evaluation (AFM 329): 1%
     - Attendance and Participation in Sessions (AFM 428 / 429): 1%
 
 [AMATH 342] Computational Methods for Differential Equations Section 001 (Fall 2025)
@@ -300,6 +299,22 @@
     - Assignments 1: 3.18%
     - Assignments 2: 3.18%
     - Assignments 3: 3.18%
+
+[PLAN 405] PLAN 405
+          Winter 2025
+          
+            
+            Integrated Planning Project
+            
+          
+          
+          
+            Section 001 (Winter 2025)
+  Total Weight: 80.00%
+    - Final Project Deliverables (group): 38%
+    - Project Proposal (group): 20%
+    - Mid-Project Presentation (group): 20%
+    - Peer Evaluation (individual): 2%
 
 [PLAN 452] PLAN 452
           Winter 2022
@@ -574,6 +589,21 @@
     - Individual Discussion Forum Post 2: 2%
     - Individual Discussion Forum Post 3: 2%
     - Individual Discussion Forum Post 4: 2%
+
+[ARBUS 302] /MGMT 244  Principles of Marketing Section 081 (Fall 2025)
+  Total Weight: 89.00%
+    - Group Marketing Plan Project-Part E: Final Report: 20%
+    - Quiz 1: 11%
+    - Quiz 2: 11%
+    - Quiz 3: 11%
+    - Group Marketing Plan Project-Part B: Situation Analysi 1: 11%
+    - Group Marketing Plan Project-Part C: Marketing Objective 1: 11%
+    - Podcast Discussion Dropbox Submissions (5 x 1.8%): 9%
+    - Podcast Discussion 1: 1%
+    - Podcast Discussion 2: 1%
+    - Podcast Discussion 3: 1%
+    - Podcast Discussion 4: 1%
+    - Podcast Discussion 5: 1%
 
 [ARBUS 302] /MGMT 244  Principles of Marketing Section 002 (Fall 2025)
   Total Weight: 103.00%
@@ -1148,6 +1178,24 @@
     - "Quiz 8: 1.25%
     - "Introduce Yourself: 0%
 
+[BIOL 475] Current Topics in Microbiology Section 001 (Winter 2025)
+  Total Weight: 96.00%
+    - Case study 1 presentation: 10%
+    - Case study 2 presentation: 10%
+    - Essay draft 2: 10%
+    - Your evaluation of draft 2 essays: 10%
+    - Final essay text: 10%
+    - Database and referencing quiz: 7%
+    - Figure draft: 7%
+    - Essay outline: 5%
+    - Essay draft 1: 5%
+    - Final essay figure: 5%
+    - Participation: 4%
+    - Peer evaluation (x2) of your draft: 4%
+    - Glyphosate activity: 3%
+    - Case study 1 homework: 3%
+    - Case study 2 homework: 3%
+
 [BIOL 485] Conservation Biology Section 001 (Winter 2025)
   Total Weight: 53.00%
     - "NSERC Proposal Assignment: 40%
@@ -1163,13 +1211,12 @@
     - Laboratories 2: 5%
 
 [BME 561] /CHE 561/NE 488  Biomaterials and Tissue Engineering Section 001 (Winter 2025)
-  Total Weight: 90.00%
+  Total Weight: 85.00%
     - Final exam: 25%
     - Design Project (Presentation or Report): 20%
     - Mid-term test: 15%
     - Design Project Outline: 10%
     - Design Project Peer Evaluation: 5%
-    - Design Project Self Evaluation: 5%
     - Online quiz 1: 2%
     - Online quiz 2: 2%
     - Online quiz 3: 2%
@@ -1602,13 +1649,12 @@
     - Assignment 4: 3.33%
 
 [CHE 561] BME 561/CHE 561/NE 488  Biomaterials and Tissue Engineering Section 001 (Winter 2025)
-  Total Weight: 90.00%
+  Total Weight: 85.00%
     - Final exam (in person): 25%
     - Design project Presentation OR Report: 20%
     - Mid-term test (in person): 15%
     - Design project Outline: 10%
     - Design project Peer Evaluation: 5%
-    - Design project Self Evaluation: 5%
     - Online quiz 1: 2%
     - Online quiz 2: 2%
     - Online quiz 3: 2%
@@ -2919,6 +2965,13 @@
     - Kernel: 7.5%
     - Final Exam: 7.5%
 
+[CS 454] /CS 654  Distributed Systems Section 001, 002 (Fall 2025)
+  Total Weight: 90.00%
+    - "Exam: 45%
+    - "Project Part II: 25%
+    - "Development Project Part I: 10%
+    - "Research Project: 10%
+
 [CS 494] SE 491/CS 494  Design Project 2 Section 001 (Winter 2025)
   Total Weight: 180.00%
     - Final Report Material 1: 80%
@@ -3015,10 +3068,9 @@
     - Quiz 2: 2.5%
 
 [ECE 204] Numerical Methods Section 001, 101, 201-204 (Fall 2025)
-  Total Weight: 91.69%
+  Total Weight: 90.02%
     - Final Exam: 50%
     - Midterm Exam: 30%
-    - Lab Test: 1.67%
     - Quizzes and Lab Test 1: 1.67%
     - Quiz 1: 1.67%
     - Quiz 2: 1.67%
@@ -3270,6 +3322,19 @@
     - Weekly Reading Response 11: 3.63%
     - Weekly Reading Response 12: 3.63%
 
+[ENGL 109] Introduction to Academic Writing Section 001, 002 (Fall 2025)
+  Total Weight: 89.99%
+    - Narrative Writing Final: 15%
+    - Expository Writing Final: 15%
+    - Argumentative Writing Final: 15%
+    - Peer Review 1: 8.33%
+    - Peer Review 2: 8.33%
+    - Peer Review 3: 8.33%
+    - Narrative Writing Proposal: 5%
+    - Narrative Writing Peer Reviewed Draft: 5%
+    - Expository Writing Proposal: 5%
+    - Argumentative Writing Proposal: 5%
+
 [ENGL 191] Communication in the Engineering Profession (AE, CIVE, ENVE, GEOE) Section 003 (Fall 2025)
   Total Weight: 90.00%
     - Participation: 25%
@@ -3362,6 +3427,19 @@
     - Major revision: 30%
     - Chapbook: 20%
     - Journal presentation: 10%
+
+[ENGL 378] Professional Communications in Statistics and Actuarial Science Section 001 (Fall 2025)
+  Total Weight: 90.00%
+    - Semi-specialist Report: 25%
+    - Participation: 15%
+    - Non-specialist Assignment Draft: 10%
+    - Written Team Project Proposal: 10%
+    - Short Assignment 1: 5%
+    - Short Assignment 2: 5%
+    - Short Assignment 3: 5%
+    - Short Assignment 4: 5%
+    - Project Pitch Presentation: 5%
+    - Reflection Assignment: 5%
 
 [ENVS 131] Communications for Environmental Professions Section 001 (Fall 2025)
   Total Weight: 155.00%
@@ -3538,7 +3616,7 @@
     - Reading 20: 0.68%
 
 [ENVS 210] Future Studies Section 081 (Spring 2025)
-  Total Weight: 139.98%
+  Total Weight: 129.98%
     - Project 4: Summative Report: 20%
     - Project 2: Scenarios: 15%
     - Project 1: Horizon Scan: 10%
@@ -3549,8 +3627,6 @@
     - Foresight Exercise: Three Horizon 1: 5%
     - Foresight Exercise: Strategic Objectives, Risks, and Opportunitie 1: 5%
     - Foresight Exercise: Creating Strategic Response 1: 5%
-    - Foresight Exercise: Wind-Tunnelling Strategic Response 1: 5%
-    - Foresight Exercise: Optimizing Strategic Response 1: 5%
     - Assignment 1: 3.18%
     - Assignment 2: 3.18%
     - Assignment 3: 3.18%
@@ -3701,7 +3777,7 @@
     - Project #1: 7%
 
 [FR 192B] French Language 1: Module 2 Section 001, 002, 101-104 (Fall 2025)
-  Total Weight: 72.49%
+  Total Weight: 70.82%
     - Test 1: 18.33%
     - Test 2: 18.33%
     - Test 3: 18.33%
@@ -3710,7 +3786,6 @@
     - Cours de conversation (présentation): 3.33%
     - Participation en classe: 3.33%
     - Cours de conversation (assiduité): 1.67%
-    - Cours de conversation (participation): 1.67%
 
 [FR 251] French Language 2: Module 1 Section 001 (Fall 2025)
   Total Weight: 80.00%
@@ -3746,18 +3821,12 @@
     - In-Class Activity 8: 1.5%
 
 [GBDA 201] Digital Media Project 1 Section 001, 002 (Fall 2025)
-  Total Weight: 90.00%
+  Total Weight: 50.00%
     - Project 1: Photography: 10%
     - Project 4: Group Documentary Treatment: 10%
-    - Project 4: Group Documentary Roughcut: 10%
-    - Project 4: Group Documentary Final: 10%
     - Attendance: 10%
     - Project 2: Video (silent) Treatment: 5%
-    - Project 2: Video (silent) Roughcut: 5%
-    - Project 2: Video (silent) Final: 5%
     - Project 3: Audio (no visual) Treatment: 5%
-    - Project 3: Audio (no visual) Roughcut: 5%
-    - Project 3: Audio (no visual) Final: 5%
     - Work Journal: 5%
     - Peer Evaluation: 5%
 
@@ -3780,6 +3849,16 @@
     - "Symposium Poster Presentation: 3.18%
     - "Final self & team member evaluation: 3.18%
 
+[GEOG 219] How Pandemics Change the World Section 081 (Fall 2025)
+  Total Weight: 95.00%
+    - Media Assignment: 30%
+    - Class Debates (Debate Week): 20%
+    - Weekly Discussion 1: 10%
+    - Critical Reflection 1: 10%
+    - Critical Reflection 2: 10%
+    - Critical Reflection 3: 10%
+    - Global Citizen Assignment (Initial): 5%
+
 [GEOG 307] Societal Adaptation to Climate Change Section 001 (Winter 2025)
   Total Weight: 171.00%
     - Final exam: 25%
@@ -3795,6 +3874,24 @@
     - Assignment 1: 10%
     - Tutorial attendance and participation: 10%
     - Group presentation: 10%
+
+[GEOG 225] Global Environment and Health Section 081 (Fall 2025)
+  Total Weight: 96.00%
+    - Media Assignment: 40%
+    - Photo Voice Essay (Final): 25%
+    - Global Citizen Activity (Initial): 5%
+    - Photo Voice Essay (Trial): 5%
+    - Weekly Discussion 1: 2%
+    - Weekly Discussion 2: 2%
+    - Weekly Discussion 3: 2%
+    - Weekly Discussion 4: 2%
+    - Weekly Discussion 5: 2%
+    - Weekly Discussion 6: 2%
+    - Weekly Discussion 7: 2%
+    - Weekly Discussion 8: 2%
+    - Weekly Discussion 9: 2%
+    - Weekly Discussion 10: 2%
+    - Module 5 Bonus Mark: 1%
 
 [GEOG 318] /GEOG 604/PLAN 353  Spatial Analysis Section 001 (Winter 2025)
   Total Weight: 94.95%
@@ -3888,7 +3985,7 @@
     - Class Engagement 10: 1.5%
 
 [GSJ 309] ENGL 309G/GSJ 309/HIST 309/SPCOM 434  The Discourse of Dissent Section 001 (Winter 2023)
-  Total Weight: 96.00%
+  Total Weight: 87.00%
     - Final Project: 20%
     - Essay #2: 12%
     - Essay #3: 12%
@@ -3917,15 +4014,6 @@
     - In-Class Contribution 21: 1%
     - In-Class Contribution 22: 1%
     - In-Class Contribution 23: 1%
-    - Pre-Class Contribution 1: 1%
-    - Pre-Class Contribution 2: 1%
-    - Pre-Class Contribution 3: 1%
-    - Pre-Class Contribution 4: 1%
-    - Pre-Class Contribution 5: 1%
-    - Pre-Class Contribution 6: 1%
-    - Pre-Class Contribution 7: 1%
-    - Pre-Class Contribution 8: 1%
-    - Pre-Class Contribution 9: 1%
 
 [HIST 252] CLAS 252/HIST 252  Roman History Section 001 (Winter 2023)
   Total Weight: 135.00%
@@ -4026,7 +4114,7 @@
     - BONUS: ORIGINS textbook chapter Quiz 1: 5%
 
 [HIST 309] ENGL 309G/GSJ 309/HIST 309/SPCOM 434  The Discourse of Dissent Section 001 (Winter 2023)
-  Total Weight: 98.00%
+  Total Weight: 86.00%
     - Final Project: 20%
     - Essay #2: 12%
     - Essay #3: 12%
@@ -4054,18 +4142,6 @@
     - In-Class Contribution 20: 1%
     - In-Class Contribution 21: 1%
     - In-Class Contribution 22: 1%
-    - Pre-Class Contribution 1: 1%
-    - Pre-Class Contribution 2: 1%
-    - Pre-Class Contribution 3: 1%
-    - Pre-Class Contribution 4: 1%
-    - Pre-Class Contribution 5: 1%
-    - Pre-Class Contribution 6: 1%
-    - Pre-Class Contribution 7: 1%
-    - Pre-Class Contribution 8: 1%
-    - Pre-Class Contribution 9: 1%
-    - Pre-Class Contribution 10: 1%
-    - Pre-Class Contribution 11: 1%
-    - Pre-Class Contribution 12: 1%
 
 [HLTH 355] Public Health Nutrition Section 001 (Winter 2025)
   Total Weight: 95.00%
