@@ -131,6 +131,10 @@ export default function Page() {
                 ))}
               </div>
             )}
+
+            <p className="ml-2 mt-4 text-sm text-gray-500 sm:text-base">
+              <span className="font-medium">Note:</span> Some courses will be unavailable due to their outlines not being available on outline.uwaterloo.ca.
+            </p>
           </div>
         </div>
       </main>
