@@ -53,7 +53,7 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
   const [dropSourceId, setDropSourceId] = useState<string | null>(null);
   const [droppedMap, setDroppedMap] = useState<Record<string, string>>({}); // SourceID -> TargetID
   const [focusedId, setFocusedId] = useState<string | null>(null);
-
+  
   // Remove Feature State
   const [removeMode, setRemoveMode] = useState(false);
   const [removedItems, setRemovedItems] = useState<Set<string>>(new Set()); // IDs of removed items
@@ -411,8 +411,8 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
   const handleDistributeEvenly = () => {
     if (!dropSourceId) return;
     setDroppedMap(prev => ({
-      ...prev,
-      [dropSourceId]: DISTRIBUTE_EVENLY_ID
+        ...prev,
+        [dropSourceId]: DISTRIBUTE_EVENLY_ID
     }));
     setDropMode('none');
     setDropSourceId(null);
@@ -1047,17 +1047,17 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
         {availableSections.length > 1 ? (
             <div className="mt-2 relative group inline-block max-w-full">
                 <ChevronDown className="absolute left-0 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors pointer-events-none" />
-                <select 
+                  <select 
                     className="text-xl text-muted-foreground bg-transparent border-b border-dashed border-gray-400 outline-none pb-1 pl-8 pr-8 appearance-none cursor-pointer hover:text-foreground transition-colors w-full truncate"
-                    value={course.id}
-                    onChange={(e) => handleSectionChange(e.target.value)}
-                >
-                    {availableSections.map(section => (
-                        <option key={section.id} value={section.id}>
-                            {section.name}
-                        </option>
-                    ))}
-                </select>
+                      value={course.id}
+                      onChange={(e) => handleSectionChange(e.target.value)}
+                  >
+                      {availableSections.map(section => (
+                          <option key={section.id} value={section.id}>
+                              {section.name}
+                          </option>
+                      ))}
+                  </select>
             </div>
         ) : (
             <h2 className="text-xl text-muted-foreground">{course.name}</h2>
@@ -1076,17 +1076,17 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                     <Calculator className="w-4 h-4 mr-2" /> Assessments
                   </h3>
                   {dropMode === 'selectTarget' && (
-                    <button 
-                      onClick={handleDistributeEvenly}
+                     <button 
+                         onClick={handleDistributeEvenly}
                       disabled={Array.from(removedItems).some(id => !id.startsWith('new-'))}
-                      className={`text-xs px-3 py-1.5 rounded-full transition-colors font-medium ${
+                         className={`text-xs px-3 py-1.5 rounded-full transition-colors font-medium ${
                         Array.from(removedItems).some(id => !id.startsWith('new-'))
-                          ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                          : 'bg-primary text-primary-foreground hover:bg-primary/90'
-                      }`}
-                    >
-                      Divide weight evenly
-                    </button>
+                             ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                             : 'bg-primary text-primary-foreground hover:bg-primary/90'
+                         }`}
+                     >
+                         Divide weight evenly
+                     </button>
                   )}
                   {removeMode && (
                     <span className="text-sm text-orange-600 font-medium">Click an assessment to remove it</span>
@@ -1182,7 +1182,7 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
 
                       const isDragging = draggedItem?.id === item.id && !draggedItem.groupId;
                       const isDragOver = dragOverItem?.id === item.id && !dragOverItem.groupId;
-
+                      
                       return (
                           <div key={item.id} className="bg-white">
                               {/* Insertion line indicator before */}
@@ -1266,8 +1266,8 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                           onDoubleClick={(e) => handleStartRename(e, item.id, true)}
                                       >
                                           {item.name.replace(/^[""'"]+|[""'"]+$/g, '').trim()}
-                                          {isDropped && <span className="ml-2 text-xs text-red-500 no-underline">(Dropped)</span>}
-                                      </div>
+                                      {isDropped && <span className="ml-2 text-xs text-red-500 no-underline">(Dropped)</span>}
+                                  </div>
                                   )}
                                   <div className="text-sm text-muted-foreground flex items-center gap-2">
                                       <span>{item.children.filter(c => !droppedMap[c.id] && !removedItems.has(c.id)).length} items</span>
@@ -1371,24 +1371,24 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                                   <div 
                                                       key={child.id} 
                                                       className={`${childRowClasses} ${isChildDragging ? 'opacity-50' : ''}`}
-                                                      draggable={dropMode === 'none' && !removeMode}
-                                                      onDragStart={(e) => handleDragStart(e, child, item.id)}
-                                                      onDragOver={(e) => handleDragOver(e, child, item.id)}
-                                                      onDragLeave={handleDragLeave}
-                                                      onDrop={(e) => handleDrop(e, child, item.id)}
-                                                      onDragEnd={handleDragEnd}
-                                                      onClick={(e) => {
-                                                          if (removeMode) {
-                                                              e.stopPropagation();
-                                                              handleRemoveModeClick(child as any);
-                                                              return;
-                                                          }
-                                                          if (dropMode !== 'none') {
-                                                              e.stopPropagation();
-                                                              handleItemClick(child as any);
-                                                          }
-                                                      }}
-                                                  >
+                                                  draggable={dropMode === 'none' && !removeMode}
+                                                  onDragStart={(e) => handleDragStart(e, child, item.id)}
+                                                  onDragOver={(e) => handleDragOver(e, child, item.id)}
+                                                  onDragLeave={handleDragLeave}
+                                                  onDrop={(e) => handleDrop(e, child, item.id)}
+                                                  onDragEnd={handleDragEnd}
+                                                  onClick={(e) => {
+                                                      if (removeMode) {
+                                                          e.stopPropagation();
+                                                          handleRemoveModeClick(child as any);
+                                                          return;
+                                                      }
+                                                      if (dropMode !== 'none') {
+                                                          e.stopPropagation();
+                                                          handleItemClick(child as any);
+                                                      }
+                                                  }}
+                                              >
                                                   {isChildTargetCandidate && (
                                                       <div className="absolute inset-0 flex items-center justify-center bg-green-50/90 opacity-0 hover:opacity-100 font-bold text-green-700 z-10 transition-opacity text-xs">
                                                           Transfer here
@@ -1427,9 +1427,9 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                                               className={`text-sm font-medium text-gray-700 ${isChildDropped ? 'line-through' : ''}`}
                                                               onDoubleClick={(e) => handleStartRename(e, child.id, false, item.id)}
                                                           >
-                                                              {child.name}
-                                                              {isChildDropped && <span className="ml-2 text-xs text-red-500 no-underline">(Dropped)</span>}
-                                                          </div>
+                                                          {child.name}
+                                                          {isChildDropped && <span className="ml-2 text-xs text-red-500 no-underline">(Dropped)</span>}
+                                                      </div>
                                                       )}
                                                       <div className="flex items-center text-xs text-muted-foreground mt-0.5">
                                                           <input
@@ -1563,11 +1563,11 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                             onDrop={(e) => handleDrop(e, assessment)}
                             onDragEnd={handleDragEnd}
                             onClick={() => {
-                                if (removeMode) {
-                                    handleRemoveModeClick(item);
-                                    return;
-                                }
-                                handleItemClick(item);
+                              if (removeMode) {
+                                handleRemoveModeClick(item);
+                                return;
+                              }
+                              handleItemClick(item);
                             }}
                           >
                           {isTargetCandidate && (
@@ -1609,8 +1609,8 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                     onDoubleClick={(e) => handleStartRename(e, assessment.id, false)}
                                 >
                                     {assessment.name.replace(/^[""'"]+|[""'"]+$/g, '').trim()}
-                                    {isDropped && <span className="ml-2 text-xs text-red-500 no-underline">(Dropped)</span>}
-                                </div>
+                                {isDropped && <span className="ml-2 text-xs text-red-500 no-underline">(Dropped)</span>}
+                            </div>
                             )}
                             <div className="flex items-center text-sm text-muted-foreground mt-1">
                               <input
@@ -1670,10 +1670,10 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                 })}
                 {/* Drop zone after the last top-level item - allows dropping groups/items at the bottom */}
                 {draggedItem && !draggedItem.groupId && (
-                    <div
+                  <div
                         className="h-1 relative -mt-1"
-                        onDragOver={(e) => {
-                            e.preventDefault();
+                    onDragOver={(e) => {
+                      e.preventDefault();
                             e.stopPropagation();
                             if (draggedItem && !draggedItem.groupId) {
                                 const visibleItems = groupAssessments(assessments).filter(item => !removedItems.has(item.id));
@@ -1687,10 +1687,10 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                         position: 'after' 
                                     });
                                 }
-                            }
-                        }}
-                        onDrop={(e) => {
-                            e.preventDefault();
+                      }
+                    }}
+                    onDrop={(e) => {
+                      e.preventDefault();
                             e.stopPropagation();
                             if (draggedItem && !draggedItem.groupId) {
                                 const visibleItems = groupAssessments(assessments).filter(item => !removedItems.has(item.id));
@@ -1698,7 +1698,7 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                 if (lastItem && draggedItem.id !== lastItem.id) {
                                     // Pass position directly to handleDrop
                                     handleDrop(e, lastItem, undefined, 'after');
-                                }
+                        }
                             }
                         }}
                         onDragLeave={(e) => {
@@ -1713,18 +1713,18 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                         return; // Keep the drag over state
                                     }
                                 }
-                                setDragOverItem(null);
+                      setDragOverItem(null);
                             }
-                        }}
-                    >
+                    }}
+                  >
                         {dragOverItem && !dragOverItem.groupId && dragOverItem.position === 'after' && (() => {
                             const visibleItems = groupAssessments(assessments).filter(item => !removedItems.has(item.id));
                             const lastItem = visibleItems[visibleItems.length - 1];
                             return lastItem && dragOverItem.id === lastItem.id;
                         })() && (
-                            <div className="h-0.5 bg-blue-500 ml-3 mr-6" />
-                        )}
-                    </div>
+                      <div className="h-0.5 bg-blue-500 ml-3 mr-6" />
+                    )}
+                  </div>
                 )}
               </div>
 
@@ -1809,8 +1809,8 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                 </div>
               </div>
             )}
-          </div>
         </div>
+      </div>
       </div>
     </div>
   );
