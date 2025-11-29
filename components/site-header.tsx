@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Search } from "lucide-react"
+import { Search, Calculator } from "lucide-react"
 import { useRouter, usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
 import { supabase } from "@/lib/supabase/client"
@@ -12,6 +12,13 @@ type CourseResult = {
   code: string
   name: string
   term: string
+}
+
+// Helper function to normalize search query by adding spaces before numbers
+function normalizeSearchQuery(query: string): string {
+  // Add space before numbers if there's no space already
+  // e.g., "math135" -> "math 135", "cs135" -> "cs 135"
+  return query.replace(/([a-zA-Z])(\d)/g, '$1 $2')
 }
 
 export function SiteHeader() {
@@ -32,10 +39,14 @@ export function SiteHeader() {
         return
       }
 
+      const trimmedQuery = query.trim()
+      const normalizedQuery = normalizeSearchQuery(trimmedQuery)
+      
+      // Search with both normalized (with space) and original (without space) to catch both patterns
       const { data } = await supabase
         .from("courses")
         .select("id, code, name, term")
-        .ilike("code", `%${query.trim()}%`)
+        .or(`code.ilike.%${normalizedQuery}%,code.ilike.%${trimmedQuery}%`)
         .order("term_date", { ascending: false })
         .limit(10)
 
@@ -52,7 +63,7 @@ export function SiteHeader() {
   }, [query])
 
   return (
-    <header className={`relative z-20 ${!isHomePage ? 'grid grid-cols-3' : 'flex'} items-center border-b border-gray-300 px-4 sm:px-8 py-2 bg-white`}>
+    <header className={`relative z-20 ${!isHomePage ? 'grid grid-cols-3' : 'flex justify-between'} items-center border-b border-gray-300 px-4 sm:px-8 py-2 bg-white`}>
       <div className="flex items-center gap-3 shrink-0">
         <Link href="/" className="flex items-center space-x-1 transition-opacity hover:opacity-90">
           <Image src="/goosegrade.png" alt="GooseGrade" width={48} height={48} priority className="w-10 h-10 sm:w-14 sm:h-14" />
@@ -106,7 +117,15 @@ export function SiteHeader() {
         </div>
       )}
 
-      {!isHomePage && <div className="hidden sm:block" />} {/* Spacer for visual balance */}
+      {/* Calculator Button - Right side */}
+      <div className="flex items-center justify-end">
+        <Link
+          href="/calculator"
+          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-yellow-400/70 text-gray-900 hover:bg-yellow-500/70 transition-colors font-medium text-sm sm:text-base shadow-sm"
+        >
+          <span className="hidden sm:inline">New Calculator</span>
+        </Link>
+      </div>
     </header>
   )
 }

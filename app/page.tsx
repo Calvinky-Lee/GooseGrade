@@ -13,6 +13,13 @@ type CourseResult = {
   term: string
 }
 
+// Helper function to normalize search query by adding spaces before numbers
+function normalizeSearchQuery(query: string): string {
+  // Add space before numbers if there's no space already
+  // e.g., "math135" -> "math 135", "cs135" -> "cs 135"
+  return query.replace(/([a-zA-Z])(\d)/g, '$1 $2')
+}
+
 export default function Page() {
   const [query, setQuery] = useState("")
   const [results, setResults] = useState<CourseResult[]>([])
@@ -28,10 +35,14 @@ export default function Page() {
         return
       }
 
+      const trimmedQuery = query.trim()
+      const normalizedQuery = normalizeSearchQuery(trimmedQuery)
+      
+      // Search with both normalized (with space) and original (without space) to catch both patterns
       const { data } = await supabase
         .from("courses")
         .select("id, code, name, term")
-        .ilike("code", `%${query.trim()}%`)
+        .or(`code.ilike.%${normalizedQuery}%,code.ilike.%${trimmedQuery}%`)
         .order("term_date", { ascending: false })
         .limit(10) // Increase limit to show multiple sections
 

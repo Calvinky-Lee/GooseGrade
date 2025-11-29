@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useEffect, use } from 'react';
+import { useState, useEffect, use, useRef } from 'react';
 import { supabase } from '@/lib/supabase/client';
-import { ChevronDown, ChevronRight, Calculator, GraduationCap, RotateCcw, GripVertical } from 'lucide-react';
+import { ChevronDown, ChevronRight, Calculator, GraduationCap, RotateCcw, Plus, Minus, GripVertical } from 'lucide-react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 interface Assessment {
@@ -53,6 +53,15 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
   const [dropSourceId, setDropSourceId] = useState<string | null>(null);
   const [droppedMap, setDroppedMap] = useState<Record<string, string>>({}); // SourceID -> TargetID
   const [focusedId, setFocusedId] = useState<string | null>(null);
+
+  // Remove Feature State
+  const [removeMode, setRemoveMode] = useState(false);
+  const [removedItems, setRemovedItems] = useState<Set<string>>(new Set()); // IDs of removed items
+
+  // Rename Feature State
+  const [editingNameId, setEditingNameId] = useState<{ id: string; isGroup: boolean; groupId?: string } | null>(null);
+  const [editingNameValue, setEditingNameValue] = useState<string>('');
+  const nameInputRef = useRef<HTMLInputElement>(null);
 
   // New state for grouping
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
@@ -107,19 +116,11 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
         if (items.length > 1) {
             items.forEach(i => processedIds.add(i.id));
             const totalWeight = items.reduce((sum, i) => sum + i.weight, 0);
-            
-            // Sort children by their order in the original array
-            const sortedChildren = items.sort((a, b) => {
-                const idxA = flatAssessments.findIndex(ass => ass.id === a.id);
-                const idxB = flatAssessments.findIndex(ass => ass.id === b.id);
-                return idxA - idxB;
-            });
-            
             result.push({
                 id: baseName, 
                 name: pluralize(baseName), 
                 isGroup: true,
-                children: sortedChildren,
+                children: items,
                 totalWeight: totalWeight
             });
         }
@@ -133,26 +134,16 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
         }
     });
 
-    // Preserve order from assessments array (don't sort by order_index)
-    // Sort by the index in the original flatAssessments array
+    // Sort by order_index
     return result.sort((a, b) => {
-        const getFirstIndex = (item: DisplayItem): number => {
-            if (item.isGroup) {
-                // Return the minimum index of any child in the original array
-                const indices = item.children.map(child => 
-                    flatAssessments.findIndex(ass => ass.id === child.id)
-                ).filter(idx => idx !== -1);
-                return indices.length > 0 ? Math.min(...indices) : Infinity;
-            } else {
-                return flatAssessments.findIndex(ass => ass.id === item.id);
-            }
-        };
-        return getFirstIndex(a) - getFirstIndex(b);
+        const indexA = a.isGroup ? (a.children[0] as any).order_index : (a as any).order_index;
+        const indexB = b.isGroup ? (b.children[0] as any).order_index : (b as any).order_index;
+        return indexA - indexB;
     });
   };
 
   // Compute Weight Adjustments from DroppedMap
-  const DISTRIBUTE_EVENLY_ID = 'DISTRIBUTE_EVENLY';
+  const DISTRIBUTE_EVENLY_ID = '__DISTRIBUTE_EVENLY__';
 
   const weightAdjustments = (() => {
       const adjustments: Record<string, number> = {};
@@ -248,8 +239,17 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
 
       processedAssessments = processedAssessments.filter(a => a.weight > 0);
 
-      // Default sort order (midterms and exams at bottom)
+      // Sort by order_index first (if available), then by name type as fallback
       processedAssessments.sort((a, b) => {
+          const orderA = a.order_index || 0;
+          const orderB = b.order_index || 0;
+          
+          // If both have order_index and they differ, use that
+          if (orderA !== orderB && orderA > 0 && orderB > 0) {
+              return orderA - orderB;
+          }
+          
+          // Otherwise fall back to name-based sorting
           const getScore = (name: string) => {
               const lower = name.toLowerCase();
               if (lower.includes('final') && (lower.includes('exam') || lower.includes('examination') || lower.includes('assessment'))) return 3;
@@ -270,13 +270,6 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
 
     fetchCourse();
   }, [code]);
-
-  // Sync reorderedItems with grouped assessments when assessments change (unless dragging)
-  useEffect(() => {
-    if (!draggedItem) {
-      setReorderedItems(null);
-    }
-  }, [assessments, draggedItem]);
 
   const handleSectionChange = async (sectionId: string) => {
       setLoading(true);
@@ -301,7 +294,17 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
 
       processedAssessments = processedAssessments.filter(a => a.weight > 0);
 
+      // Sort by order_index first (if available), then by name type as fallback
       processedAssessments.sort((a, b) => {
+          const orderA = a.order_index || 0;
+          const orderB = b.order_index || 0;
+          
+          // If both have order_index and they differ, use that
+          if (orderA !== orderB && orderA > 0 && orderB > 0) {
+              return orderA - orderB;
+          }
+          
+          // Otherwise fall back to name-based sorting
           const getScore = (name: string) => {
               const lower = name.toLowerCase();
               if (lower.includes('final') && (lower.includes('exam') || lower.includes('examination') || lower.includes('assessment'))) return 3;
@@ -408,8 +411,8 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
   const handleDistributeEvenly = () => {
     if (!dropSourceId) return;
     setDroppedMap(prev => ({
-        ...prev,
-        [dropSourceId]: DISTRIBUTE_EVENLY_ID
+      ...prev,
+      [dropSourceId]: DISTRIBUTE_EVENLY_ID
     }));
     setDropMode('none');
     setDropSourceId(null);
@@ -678,41 +681,210 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
     });
   };
 
+  // Rename Handlers
+  const handleStartRename = (e: React.MouseEvent, id: string, isGroup: boolean, groupId?: string) => {
+    e.stopPropagation();
+    if (dropMode !== 'none') return;
+    
+    const currentItems = groupAssessments(assessments);
+    let name = '';
+    
+    if (isGroup) {
+      const group = currentItems.find(item => item.isGroup && item.id === id);
+      if (group) name = group.name.replace(/^[""'"]+|[""'"]+$/g, '').trim();
+    } else {
+      const assessment = assessments.find(a => a.id === id);
+      if (assessment) name = assessment.name;
+    }
+    
+    setEditingNameId({ id, isGroup, groupId });
+    setEditingNameValue(name);
+    
+    // Focus the input after state update
+    setTimeout(() => {
+      nameInputRef.current?.focus();
+      nameInputRef.current?.select();
+    }, 0);
+  };
+
+  const handleSaveRename = async () => {
+    if (!editingNameId || !course) return;
+    
+    const newName = editingNameValue.trim();
+    if (!newName) {
+      // Cancel if empty
+      setEditingNameId(null);
+      setEditingNameValue('');
+      return;
+    }
+
+    if (editingNameId.isGroup) {
+      // For groups, we need to update all children with the same base name
+      // Find the group and update all children
+      const group = groupAssessments(assessments).find(item => item.isGroup && item.id === editingNameId.id);
+      if (group && group.isGroup) {
+        // Extract the base name pattern and update all children
+        const childrenToUpdate = group.children;
+        const updatePromises = childrenToUpdate.map(async (child) => {
+          // Try to preserve the number suffix if it exists (match number at the end, possibly with # or space)
+          const match = child.name.match(/(.*?)(?:\s*#?\s*)(\d+)$/);
+          if (match) {
+            const num = match[2];
+            // Remove quotes and get base name
+            let baseName = newName.replace(/^[""'"]+|[""'"]+$/g, '').trim();
+            // Remove plural 's' if present
+            if (baseName.toLowerCase().endsWith('s') && !baseName.toLowerCase().endsWith('ss')) {
+              baseName = baseName.slice(0, -1);
+            }
+            const updatedName = `${baseName} ${num}`;
+            await supabase
+              .from('assessments')
+              .update({ name: updatedName })
+              .eq('id', child.id);
+            
+            // Update local state
+            setAssessments(prev => prev.map(a => 
+              a.id === child.id ? { ...a, name: updatedName } : a
+            ));
+          } else {
+            // Try to match just a number at the end (fallback)
+            const simpleMatch = child.name.match(/(.*?)(\d+)$/);
+            if (simpleMatch) {
+              const num = simpleMatch[2];
+              let baseName = newName.replace(/^[""'"]+|[""'"]+$/g, '').trim();
+              if (baseName.toLowerCase().endsWith('s') && !baseName.toLowerCase().endsWith('ss')) {
+                baseName = baseName.slice(0, -1);
+              }
+              const updatedName = `${baseName} ${num}`;
+              await supabase
+                .from('assessments')
+                .update({ name: updatedName })
+                .eq('id', child.id);
+              
+              setAssessments(prev => prev.map(a => 
+                a.id === child.id ? { ...a, name: updatedName } : a
+              ));
+            } else {
+              // No number found, just use the new name
+              await supabase
+                .from('assessments')
+                .update({ name: newName })
+                .eq('id', child.id);
+              
+              setAssessments(prev => prev.map(a => 
+                a.id === child.id ? { ...a, name: newName } : a
+              ));
+            }
+          }
+        });
+        await Promise.all(updatePromises);
+      }
+    } else {
+      // For individual assessments, update directly
+      const { error } = await supabase
+        .from('assessments')
+        .update({ name: newName })
+        .eq('id', editingNameId.id);
+      
+      if (!error) {
+        setAssessments(prev => prev.map(a => 
+          a.id === editingNameId.id ? { ...a, name: newName } : a
+        ));
+      }
+    }
+    
+    setEditingNameId(null);
+    setEditingNameValue('');
+  };
+
+  const handleCancelRename = () => {
+    setEditingNameId(null);
+    setEditingNameValue('');
+  };
+
+  const handleRenameKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleSaveRename();
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      handleCancelRename();
+    }
+  };
+
+  // Add/Remove Assessment Handlers
+  const handleAddAssessment = () => {
+    if (!course) return;
+    
+    // Generate a temporary ID for local-only assessments
+    const newId = `new-${Date.now()}`;
+    const maxOrderIndex = assessments.length > 0 
+      ? Math.max(...assessments.map(a => a.order_index || 0))
+      : 0;
+    
+    const newAssessment: Assessment = {
+      id: newId,
+      name: 'New Assessment',
+      weight: 0,
+      weightInputValue: '0',
+      grade: undefined,
+      inputValue: '',
+      order_index: maxOrderIndex + 100
+    };
+
+    // Add to local state only (not saved to database)
+    setAssessments([...assessments, newAssessment]);
+  };
+
+  const handleRemoveAssessment = (itemId: string, isGroup: boolean) => {
+    const newRemoved = new Set(removedItems);
+    
+    if (isGroup) {
+      const displayItems = groupAssessments(assessments);
+      const group = displayItems.find(g => g.isGroup && g.id === itemId);
+      if (group && group.isGroup) {
+        newRemoved.add(itemId);
+        group.children.forEach(child => {
+          newRemoved.add(child.id);
+        });
+      }
+    } else {
+      newRemoved.add(itemId);
+    }
+    
+    setRemovedItems(newRemoved);
+    setRemoveMode(false);
+  };
+
+  const handleRemoveModeClick = (item: DisplayItem) => {
+    if (!removeMode) return;
+    handleRemoveAssessment(item.id, !!item.isGroup);
+  };
+
   // Drag and Drop Handlers
   const handleDragStart = (e: React.DragEvent, item: DisplayItem, groupId?: string) => {
-    if (dropMode !== 'none') return; // Disable drag during drop mode
+    if (dropMode !== 'none' || removeMode) return;
     const isGroup = !!item.isGroup;
     setDraggedItem({ id: item.id, isGroup, groupId });
     e.dataTransfer.effectAllowed = 'move';
-    e.dataTransfer.setData('text/plain', ''); // Required for Firefox
+    e.dataTransfer.setData('text/plain', '');
   };
 
   const handleDragOver = (e: React.DragEvent, item: DisplayItem, groupId?: string) => {
     e.preventDefault();
     e.dataTransfer.dropEffect = 'move';
-    if (dropMode !== 'none') return; // Disable drag during drop mode
-    
+    if (dropMode !== 'none' || removeMode) return;
     if (!draggedItem) return;
-    
-    // Prevent dropping on itself
     if (draggedItem.id === item.id && draggedItem.groupId === groupId) return;
-    
-    // If dragging a child item, only allow dropping within the same group
     if (draggedItem.groupId) {
       if (groupId !== draggedItem.groupId) return;
     }
-    
-    // If dragging a group or top-level item, prevent dropping into groups
     if (!draggedItem.isGroup && !draggedItem.groupId && item.isGroup) {
-      return; // Don't allow dropping top-level items into groups
+      return;
     }
-    
-    // Determine insertion position based on mouse Y position
     const rect = e.currentTarget.getBoundingClientRect();
     const midpoint = rect.top + rect.height / 2;
     const position = e.clientY < midpoint ? 'before' : 'after';
-    
-    // Only show drag over indicator, don't reorder until drop
     setDragOverItem({ id: item.id, isGroup: !!item.isGroup, groupId, position });
   };
 
@@ -720,60 +892,68 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
     setDragOverItem(null);
   };
 
-  const handleDrop = (e: React.DragEvent, targetItem: DisplayItem, targetGroupId?: string) => {
+  const handleDrop = (e: React.DragEvent, targetItem: DisplayItem, targetGroupId?: string, position?: 'before' | 'after') => {
     e.preventDefault();
-    
-    if (dropMode !== 'none') return; // Disable drag during drop mode
-    if (!draggedItem || !course || !dragOverItem) return;
+    // Capture position before clearing dragOverItem
+    const dropPosition = position || dragOverItem?.position || 'after';
+    setDragOverItem(null);
+    if (dropMode !== 'none' || removeMode) return;
+    if (!draggedItem) return;
+    if (draggedItem.id === targetItem.id && draggedItem.groupId === targetGroupId) {
+      setDraggedItem(null);
+      return;
+    }
+    if (draggedItem.groupId) {
+      if (targetGroupId !== draggedItem.groupId) {
+        setDraggedItem(null);
+        return;
+      }
+    }
+    if (!draggedItem.isGroup && !draggedItem.groupId && targetItem.isGroup) {
+      setDraggedItem(null);
+      return;
+    }
     
     const currentItems = groupAssessments(assessments);
     let itemsToReorder = [...currentItems];
+    let sourceIndex = -1;
+    let targetIndex = -1;
     
     if (draggedItem.groupId) {
-      // Reordering within a group
       const groupIndex = itemsToReorder.findIndex(g => g.isGroup && g.id === draggedItem.groupId);
       if (groupIndex === -1) {
         setDraggedItem(null);
-        setDragOverItem(null);
         return;
       }
-      
       const group = itemsToReorder[groupIndex];
       if (!group.isGroup) {
         setDraggedItem(null);
-        setDragOverItem(null);
         return;
       }
-      
-      const sourceIndex = group.children.findIndex(c => c.id === draggedItem.id);
-      const targetIndex = group.children.findIndex(c => c.id === targetItem.id);
-      
-      if (sourceIndex === -1 || targetIndex === -1 || sourceIndex === targetIndex) {
+      sourceIndex = group.children.findIndex(c => c.id === draggedItem.id);
+      targetIndex = group.children.findIndex(c => c.id === targetItem.id);
+      if (sourceIndex === -1 || targetIndex === -1) {
         setDraggedItem(null);
-        setDragOverItem(null);
         return;
       }
-      
       const newChildren = [...group.children];
       const [removed] = newChildren.splice(sourceIndex, 1);
-      const insertIndex = dragOverItem.position === 'before' ? targetIndex : targetIndex + 1;
+      const insertIndex = dropPosition === 'before' ? targetIndex : targetIndex + 1;
       newChildren.splice(insertIndex > sourceIndex ? insertIndex - 1 : insertIndex, 0, removed);
-      
       itemsToReorder[groupIndex] = {
         ...group,
         children: newChildren
       };
     } else {
-      // Reordering groups or top-level items
-      const sourceIndex = itemsToReorder.findIndex(i => {
+      // Top-level reordering (groups or single items)
+      sourceIndex = itemsToReorder.findIndex(i => {
         if (draggedItem.isGroup) {
           return i.isGroup && i.id === draggedItem.id;
         } else {
           return !i.isGroup && i.id === draggedItem.id;
         }
       });
-      
-      const targetIndex = itemsToReorder.findIndex(i => {
+      targetIndex = itemsToReorder.findIndex(i => {
         if (targetItem.isGroup) {
           return i.isGroup && i.id === targetItem.id;
         } else {
@@ -781,50 +961,78 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
         }
       });
       
-      if (sourceIndex === -1 || targetIndex === -1 || sourceIndex === targetIndex) {
+      if (sourceIndex === -1 || targetIndex === -1) {
+        console.log('Drag drop failed - indices not found', { sourceIndex, targetIndex, draggedItem, targetItem });
         setDraggedItem(null);
-        setDragOverItem(null);
+        return;
+      }
+      
+      // Handle the case where source and target are the same (shouldn't happen, but safety check)
+      if (sourceIndex === targetIndex) {
+        setDraggedItem(null);
         return;
       }
       
       const [removed] = itemsToReorder.splice(sourceIndex, 1);
-      const insertIndex = dragOverItem.position === 'before' ? targetIndex : targetIndex + 1;
-      itemsToReorder.splice(insertIndex > sourceIndex ? insertIndex - 1 : insertIndex, 0, removed);
+      const insertIndex = dropPosition === 'before' ? targetIndex : targetIndex + 1;
+      
+      // Adjust insert index: if we removed an item before the target position, we need to shift the insert index
+      let adjustedInsertIndex = insertIndex;
+      if (sourceIndex < insertIndex) {
+        adjustedInsertIndex = insertIndex - 1;
+      }
+      
+      // Ensure we don't go out of bounds (shouldn't happen, but safety check)
+      adjustedInsertIndex = Math.max(0, Math.min(adjustedInsertIndex, itemsToReorder.length));
+      
+      itemsToReorder.splice(adjustedInsertIndex, 0, removed);
     }
     
-    // Flatten the reordered items back into assessments array in the new order
+    // Build a map of all assessments for quick lookup
+    const assessmentMap = new Map(assessments.map(a => [a.id, a]));
+    
+    // Rebuild assessments array in the new order
     const reorderedAssessments: Assessment[] = [];
+    const processedIds = new Set<string>();
     
     itemsToReorder.forEach((item) => {
       if (item.isGroup) {
-        // Add all children from the group
         item.children.forEach((child) => {
-          const existingAssessment = assessments.find(a => a.id === child.id);
-          if (existingAssessment) {
-            reorderedAssessments.push(existingAssessment);
+          const assessment = assessmentMap.get(child.id);
+          if (assessment && !processedIds.has(child.id)) {
+            reorderedAssessments.push(assessment);
+            processedIds.add(child.id);
           }
         });
       } else {
-        // Add single item
-        const existingAssessment = assessments.find(a => a.id === item.id);
-        if (existingAssessment) {
-          reorderedAssessments.push(existingAssessment);
+        const assessment = assessmentMap.get(item.id);
+        if (assessment && !processedIds.has(item.id)) {
+          reorderedAssessments.push(assessment);
+          processedIds.add(item.id);
         }
       }
     });
     
-    // Update assessments state with new order (short-term only, not persisted)
-    setAssessments(reorderedAssessments);
+    // Add any assessments that weren't in the display items (shouldn't happen, but safety check)
+    assessments.forEach(assessment => {
+      if (!processedIds.has(assessment.id)) {
+        reorderedAssessments.push(assessment);
+      }
+    });
     
+    // Update order_index locally for each assessment to reflect the new order
+    // This ensures groupAssessments will sort them correctly
+    const reorderedWithNewIndices = reorderedAssessments.map((assessment, index) => ({
+      ...assessment,
+      order_index: index * 100
+    }));
+    
+    // Update local state only (no database updates - drag and drop is local-only)
+    setAssessments(reorderedWithNewIndices);
     setDraggedItem(null);
-    setDragOverItem(null);
   };
 
   const handleDragEnd = () => {
-    // Only clear if drag was cancelled (not dropped)
-    if (draggedItem) {
-      setReorderedItems(null);
-    }
     setDraggedItem(null);
     setDragOverItem(null);
   };
@@ -833,13 +1041,12 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
   if (!course) return <div className="p-10 text-center">Course not found. <a href="/" className="text-primary underline">Go Home</a></div>;
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-white font-sans text-black">
-      <div className="max-w-4xl mx-auto pb-20 pt-12 sm:pt-16 px-6">
+    <div className="max-w-4xl mx-auto pb-20 pt-12 sm:pt-16">
       <header className="mb-8">
         <h1 className="text-3xl font-bold">{course.code}</h1>
         {availableSections.length > 1 ? (
             <div className="mt-2 relative group inline-block max-w-full">
-                <ChevronRight className="absolute left-0 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors pointer-events-none" />
+                <ChevronDown className="absolute left-0 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground group-hover:text-foreground transition-colors pointer-events-none" />
                 <select 
                     className="text-xl text-muted-foreground bg-transparent border-b border-dashed border-gray-400 outline-none pb-1 pl-8 pr-8 appearance-none cursor-pointer hover:text-foreground transition-colors w-full truncate"
                     value={course.id}
@@ -863,22 +1070,62 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
       <div className="grid md:grid-cols-3 gap-8">
         <div className="md:col-span-2 space-y-6">
             <div className="bg-card border rounded-xl shadow-sm overflow-hidden">
-              <div className="bg-muted/30 px-6 py-4 border-b flex items-center gap-4">
-                <h3 className="font-semibold flex items-center">
-                  <Calculator className="w-4 h-4 mr-2" /> Assessments
-                </h3>
-                {dropMode === 'selectTarget' && (
-                   <button 
-                       onClick={handleDistributeEvenly}
-                       className="text-xs bg-primary text-primary-foreground px-3 py-1.5 rounded-full hover:bg-primary/90 transition-colors font-medium"
-                   >
-                       Divide weight evenly
-                   </button>
-                )}
+              <div className="bg-muted/30 px-6 py-4 border-b flex justify-between items-center gap-4">
+                <div className="flex items-center gap-4">
+                  <h3 className="font-semibold flex items-center">
+                    <Calculator className="w-4 h-4 mr-2" /> Assessments
+                  </h3>
+                  {dropMode === 'selectTarget' && (
+                    <button 
+                      onClick={handleDistributeEvenly}
+                      disabled={Array.from(removedItems).some(id => !id.startsWith('new-'))}
+                      className={`text-xs px-3 py-1.5 rounded-full transition-colors font-medium ${
+                        Array.from(removedItems).some(id => !id.startsWith('new-'))
+                          ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                          : 'bg-primary text-primary-foreground hover:bg-primary/90'
+                      }`}
+                    >
+                      Divide weight evenly
+                    </button>
+                  )}
+                  {removeMode && (
+                    <span className="text-sm text-orange-600 font-medium">Click an assessment to remove it</span>
+                  )}
+                </div>
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={handleAddAssessment}
+                    disabled={dropMode !== 'none' || removeMode}
+                    className="p-1.5 rounded-md hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                    title="Add Assessment"
+                  >
+                    <Plus className="w-5 h-5 text-gray-700" />
+                  </button>
+                  <button
+                    onClick={() => setRemoveMode(!removeMode)}
+                    disabled={dropMode !== 'none'}
+                    className={`p-1.5 rounded-md hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed transition-colors ${
+                      removeMode ? 'bg-red-100' : ''
+                    }`}
+                    title="Remove Assessment"
+                  >
+                    <Minus className="w-5 h-5 text-gray-700" />
+                  </button>
+                </div>
               </div>
 
               <div className="divide-y relative">
-                {(reorderedItems || groupAssessments(assessments)).map((item, itemIndex) => {
+                {groupAssessments(assessments)
+                  .filter(item => !removedItems.has(item.id))
+                  .length === 0 && (
+                  <div className="px-6 py-12 text-center text-muted-foreground">
+                    <p>No assessments yet. Click the + button to add one.</p>
+                  </div>
+                )}
+                
+                {groupAssessments(assessments)
+                  .filter(item => !removedItems.has(item.id))
+                  .map((item, itemIndex) => {
                   const isDropped = !!droppedMap[item.id];
                   const isSource = dropSourceId === item.id;
                   const isTargetCandidate = dropMode === 'selectTarget' && !isDropped && !isSource;
@@ -889,6 +1136,7 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                   
                   const rowClasses = `pl-3 pr-6 py-4 flex items-center gap-2 transition-all relative ${
                       isDropped ? 'opacity-50 bg-gray-50' :
+                      removeMode ? 'hover:bg-red-50 cursor-pointer hover:border-l-4 hover:border-red-500' :
                       isSource ? 'bg-red-50 border-l-4 border-red-500' :
                       isTargetCandidate ? 'hover:bg-green-50 cursor-pointer hover:border-l-4 hover:border-green-500' :
                       isSourceCandidate ? 'hover:bg-red-50 cursor-pointer hover:border-l-4 hover:border-red-500' :
@@ -934,22 +1182,27 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
 
                       const isDragging = draggedItem?.id === item.id && !draggedItem.groupId;
                       const isDragOver = dragOverItem?.id === item.id && !dragOverItem.groupId;
-                      
+
                       return (
                           <div key={item.id} className="bg-white">
-                              {/* Insertion line indicator */}
+                              {/* Insertion line indicator before */}
                               {isDragOver && dragOverItem?.position === 'before' && (
                                   <div className="h-0.5 bg-blue-500 ml-3 mr-6" />
                               )}
                               <div 
                                   className={`${rowClasses} ${isDragging ? 'opacity-50' : ''}`}
-                                  draggable={dropMode === 'none'}
+                                  draggable={dropMode === 'none' && !removeMode}
                                   onDragStart={(e) => handleDragStart(e, item)}
                                   onDragOver={(e) => handleDragOver(e, item)}
                                   onDragLeave={handleDragLeave}
                                   onDrop={(e) => handleDrop(e, item)}
                                   onDragEnd={handleDragEnd}
                                   onClick={(e) => {
+                                      if (removeMode) {
+                                          e.stopPropagation();
+                                          handleRemoveModeClick(item);
+                                          return;
+                                      }
                                       if (dropMode !== 'none') {
                                           e.stopPropagation();
                                           handleClick();
@@ -967,27 +1220,57 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                           Where should this weight go? Select another item.
                                       </div>
                                   )}
+                                  
+                                  {removeMode && (
+                                      <div className="absolute inset-0 flex items-center justify-center bg-red-50/90 opacity-0 hover:opacity-100 font-bold text-red-700 z-10 transition-opacity">
+                                          Click to remove
+                                      </div>
+                                  )}
 
-                                  <GripVertical className="w-4 h-4 text-gray-400 cursor-grab active:cursor-grabbing" />
+                                  <GripVertical 
+                                      className="w-4 h-4 text-gray-400 cursor-grab active:cursor-grabbing" 
+                                  />
                                   <button 
                                       onClick={(e) => {
                                           e.stopPropagation();
                                           toggleGroup(item.id);
                                       }}
+                                      onMouseDown={(e) => e.stopPropagation()}
                                       className="p-1 hover:bg-gray-100 rounded-md transition-colors disabled:opacity-50"
                                   >
                                       {isExpanded ? <ChevronDown className="w-4 h-4 text-gray-500" /> : <ChevronRight className="w-4 h-4 text-gray-500" />}
                                   </button>
                                   
-                              <div className="flex-1 cursor-pointer" onClick={(e) => {
-                                  if (dropMode === 'none') toggleGroup(item.id);
-                              }}>
-                                  <div className={`font-medium ${isDropped ? 'line-through' : ''}`}>
-                                      {item.name.replace(/^["“'”]+|["“'”]+$/g, '').trim()}
-                                      {isDropped && <span className="ml-2 text-xs text-red-500 no-underline">(Dropped)</span>}
-                                  </div>
+                              <div 
+                                  className="flex-1 cursor-pointer"
+                                  draggable={false}
+                                  onClick={(e) => {
+                                      if (dropMode === 'none' && editingNameId?.id !== item.id) toggleGroup(item.id);
+                                  }}
+                              >
+                                  {editingNameId?.id === item.id && editingNameId.isGroup ? (
+                                      <input
+                                          ref={nameInputRef}
+                                          type="text"
+                                          value={editingNameValue}
+                                          onChange={(e) => setEditingNameValue(e.target.value)}
+                                          onBlur={handleSaveRename}
+                                          onKeyDown={handleRenameKeyDown}
+                                          onClick={(e) => e.stopPropagation()}
+                                          onMouseDown={(e) => e.stopPropagation()}
+                                          className="font-medium border border-primary rounded px-1 py-0.5 w-full max-w-md focus:outline-none focus:ring-2 focus:ring-primary"
+                                      />
+                                  ) : (
+                                      <div 
+                                          className={`font-medium ${isDropped ? 'line-through' : ''}`}
+                                          onDoubleClick={(e) => handleStartRename(e, item.id, true)}
+                                      >
+                                          {item.name.replace(/^[""'"]+|[""'"]+$/g, '').trim()}
+                                          {isDropped && <span className="ml-2 text-xs text-red-500 no-underline">(Dropped)</span>}
+                                      </div>
+                                  )}
                                   <div className="text-sm text-muted-foreground flex items-center gap-2">
-                                      <span>{item.children.filter(c => !droppedMap[c.id]).length} items</span>
+                                      <span>{item.children.filter(c => !droppedMap[c.id] && !removedItems.has(c.id)).length} items</span>
                                       <span>•</span>
                                       <span>
                                           Total {Math.abs(displayedTotalWeight - Math.round(displayedTotalWeight)) < 0.01 ? Math.round(displayedTotalWeight) : Number(displayedTotalWeight).toFixed(5).replace(/\.?0+$/, '')}%&nbsp;
@@ -1026,8 +1309,35 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                   <div className="h-0.5 bg-blue-500 ml-3 mr-6" />
                               )}
                               {isExpanded && (
-                                  <div className="bg-gray-50/50 border-t border-gray-100 divide-y divide-gray-100/50">
-                                      {item.children.map((child) => {
+                                  <div 
+                                      className="bg-gray-50/50 border-t border-gray-100 divide-y divide-gray-100/50"
+                                      onDragOver={(e) => {
+                                          // Allow drag events to bubble up to parent group for reordering
+                                          // Only handle if dragging a child within this group
+                                          if (draggedItem?.groupId === item.id) {
+                                              return; // Let child handle it
+                                          }
+                                          // For top-level groups being dragged, allow drop on the group itself
+                                          if (draggedItem?.isGroup && !draggedItem.groupId) {
+                                              e.preventDefault();
+                                              e.stopPropagation();
+                                              handleDragOver(e, item);
+                                          }
+                                      }}
+                                      onDrop={(e) => {
+                                          // Only handle if dragging a child within this group
+                                          if (draggedItem?.groupId === item.id) {
+                                              return; // Let child handle it
+                                          }
+                                          // For top-level groups being dragged, allow drop on the group itself
+                                          if (draggedItem?.isGroup && !draggedItem.groupId) {
+                                              e.preventDefault();
+                                              e.stopPropagation();
+                                              handleDrop(e, item);
+                                          }
+                                      }}
+                                  >
+                                      {item.children.filter(child => !removedItems.has(child.id)).map((child) => {
                                           const isChildDropped = !!droppedMap[child.id];
                                           const isChildSource = dropSourceId === child.id;
                                           
@@ -1039,6 +1349,7 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                           
                                           const childRowClasses = `pl-14 pr-6 py-3 flex items-center gap-2 transition-all relative ${
                                               isChildDropped ? 'opacity-50 bg-gray-100' :
+                                              removeMode ? 'hover:bg-red-50 cursor-pointer hover:border-l-4 hover:border-red-500' :
                                               isChildSource ? 'bg-red-50 border-l-4 border-red-500' :
                                               isChildTargetCandidate ? 'hover:bg-green-50 cursor-pointer hover:border-l-4 hover:border-green-500' :
                                               isChildSourceCandidate ? 'hover:bg-red-50 cursor-pointer hover:border-l-4 hover:border-red-500' :
@@ -1060,19 +1371,24 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                                   <div 
                                                       key={child.id} 
                                                       className={`${childRowClasses} ${isChildDragging ? 'opacity-50' : ''}`}
-                                                  draggable={dropMode === 'none'}
-                                                  onDragStart={(e) => handleDragStart(e, child, item.id)}
-                                                  onDragOver={(e) => handleDragOver(e, child, item.id)}
-                                                  onDragLeave={handleDragLeave}
-                                                  onDrop={(e) => handleDrop(e, child, item.id)}
-                                                  onDragEnd={handleDragEnd}
-                                                  onClick={(e) => {
-                                                      if (dropMode !== 'none') {
-                                                          e.stopPropagation();
-                                                          handleItemClick(child as any);
-                                                      }
-                                                  }}
-                                              >
+                                                      draggable={dropMode === 'none' && !removeMode}
+                                                      onDragStart={(e) => handleDragStart(e, child, item.id)}
+                                                      onDragOver={(e) => handleDragOver(e, child, item.id)}
+                                                      onDragLeave={handleDragLeave}
+                                                      onDrop={(e) => handleDrop(e, child, item.id)}
+                                                      onDragEnd={handleDragEnd}
+                                                      onClick={(e) => {
+                                                          if (removeMode) {
+                                                              e.stopPropagation();
+                                                              handleRemoveModeClick(child as any);
+                                                              return;
+                                                          }
+                                                          if (dropMode !== 'none') {
+                                                              e.stopPropagation();
+                                                              handleItemClick(child as any);
+                                                          }
+                                                      }}
+                                                  >
                                                   {isChildTargetCandidate && (
                                                       <div className="absolute inset-0 flex items-center justify-center bg-green-50/90 opacity-0 hover:opacity-100 font-bold text-green-700 z-10 transition-opacity text-xs">
                                                           Transfer here
@@ -1084,13 +1400,37 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                                           Transfer where?
                                                       </div>
                                                   )}
-
-                                                  <GripVertical className="w-4 h-4 text-gray-400 cursor-grab active:cursor-grabbing" />
-                                                  <div className="flex-1">
-                                                      <div className={`text-sm font-medium text-gray-700 ${isChildDropped ? 'line-through' : ''}`}>
-                                                          {child.name}
-                                                          {isChildDropped && <span className="ml-2 text-xs text-red-500 no-underline">(Dropped)</span>}
+                                                  
+                                                  {removeMode && (
+                                                      <div className="absolute inset-0 flex items-center justify-center bg-red-50/90 opacity-0 hover:opacity-100 font-bold text-red-700 z-10 transition-opacity text-xs">
+                                                          Click to remove
                                                       </div>
+                                                  )}
+
+                                                  <GripVertical 
+                                                      className="w-4 h-4 text-gray-400 cursor-grab active:cursor-grabbing" 
+                                                  />
+                                                  <div className="flex-1">
+                                                      {editingNameId?.id === child.id && !editingNameId.isGroup && editingNameId.groupId === item.id ? (
+                                                          <input
+                                                              ref={nameInputRef}
+                                                              type="text"
+                                                              value={editingNameValue}
+                                                              onChange={(e) => setEditingNameValue(e.target.value)}
+                                                              onBlur={handleSaveRename}
+                                                              onKeyDown={handleRenameKeyDown}
+                                                              onClick={(e) => e.stopPropagation()}
+                                                              className="text-sm font-medium text-gray-700 border border-primary rounded px-1 py-0.5 w-full max-w-md focus:outline-none focus:ring-2 focus:ring-primary"
+                                                          />
+                                                      ) : (
+                                                          <div 
+                                                              className={`text-sm font-medium text-gray-700 ${isChildDropped ? 'line-through' : ''}`}
+                                                              onDoubleClick={(e) => handleStartRename(e, child.id, false, item.id)}
+                                                          >
+                                                              {child.name}
+                                                              {isChildDropped && <span className="ml-2 text-xs text-red-500 no-underline">(Dropped)</span>}
+                                                          </div>
+                                                      )}
                                                       <div className="flex items-center text-xs text-muted-foreground mt-0.5">
                                                           <input
                                                               type="number"
@@ -1142,6 +1482,59 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                           </div>
                                           );
                                       })}
+                                      {/* Drop zone after the last child - allows dropping items after the bottom child */}
+                                      {draggedItem && draggedItem.groupId === item.id && item.children.filter(c => !removedItems.has(c.id)).length > 0 && (
+                                          <div
+                                              className="h-1 relative -mt-1"
+                                              onDragOver={(e) => {
+                                                  e.preventDefault();
+                                                  e.stopPropagation();
+                                                  if (draggedItem && draggedItem.groupId === item.id) {
+                                                      const visibleChildren = item.children.filter(c => !removedItems.has(c.id));
+                                                      const lastChild = visibleChildren[visibleChildren.length - 1];
+                                                      if (lastChild && draggedItem.id !== lastChild.id) {
+                                                          // Force position to 'after' for the drop zone
+                                                          setDragOverItem({ id: lastChild.id, isGroup: false, groupId: item.id, position: 'after' });
+                                                      }
+                                                  }
+                                              }}
+                                              onDrop={(e) => {
+                                                  e.preventDefault();
+                                                  e.stopPropagation();
+                                                  if (draggedItem && draggedItem.groupId === item.id) {
+                                                      const visibleChildren = item.children.filter(c => !removedItems.has(c.id));
+                                                      const lastChild = visibleChildren[visibleChildren.length - 1];
+                                                      if (lastChild && draggedItem.id !== lastChild.id) {
+                                                          // Pass position directly to handleDrop
+                                                          handleDrop(e, lastChild, item.id, 'after');
+                                                      }
+                                                  }
+                                              }}
+                                              onDragLeave={(e) => {
+                                                  // Only clear if we're actually leaving the drop zone
+                                                  const relatedTarget = e.relatedTarget as HTMLElement;
+                                                  if (!e.currentTarget.contains(relatedTarget)) {
+                                                      // Don't clear if dragOverItem is set for a different position
+                                                      if (dragOverItem?.groupId === item.id && dragOverItem?.position === 'after') {
+                                                          const visibleChildren = item.children.filter(c => !removedItems.has(c.id));
+                                                          const lastChild = visibleChildren[visibleChildren.length - 1];
+                                                          if (lastChild && dragOverItem.id === lastChild.id) {
+                                                              return; // Keep the drag over state
+                                                          }
+                                                      }
+                                                      setDragOverItem(null);
+                                                  }
+                                              }}
+                                          >
+                                              {dragOverItem?.groupId === item.id && dragOverItem?.position === 'after' && (() => {
+                                                  const visibleChildren = item.children.filter(c => !removedItems.has(c.id));
+                                                  const lastChild = visibleChildren[visibleChildren.length - 1];
+                                                  return lastChild && dragOverItem.id === lastChild.id;
+                                              })() && (
+                                                  <div className="h-0.5 bg-blue-500 mx-6 ml-14" />
+                                              )}
+                                          </div>
+                                      )}
                                   </div>
                               )}
                           </div>
@@ -1163,13 +1556,19 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                           <div
                             key={assessment.id}
                             className={`${rowClasses} ${isDragging ? 'opacity-50' : ''}`}
-                            draggable={dropMode === 'none'}
+                            draggable={dropMode === 'none' && !removeMode}
                             onDragStart={(e) => handleDragStart(e, assessment)}
                             onDragOver={(e) => handleDragOver(e, assessment)}
                             onDragLeave={handleDragLeave}
                             onDrop={(e) => handleDrop(e, assessment)}
                             onDragEnd={handleDragEnd}
-                            onClick={() => handleItemClick(item)}
+                            onClick={() => {
+                                if (removeMode) {
+                                    handleRemoveModeClick(item);
+                                    return;
+                                }
+                                handleItemClick(item);
+                            }}
                           >
                           {isTargetCandidate && (
                               <div className="absolute inset-0 flex items-center justify-center bg-green-50/90 opacity-0 hover:opacity-100 font-bold text-green-700 z-10 transition-opacity rounded-lg">
@@ -1182,13 +1581,37 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                   Where should this weight go? Select another item.
                               </div>
                           )}
+                          
+                          {removeMode && (
+                              <div className="absolute inset-0 flex items-center justify-center bg-red-50/90 opacity-0 hover:opacity-100 font-bold text-red-700 z-10 transition-opacity rounded-lg">
+                                  Click to remove
+                              </div>
+                          )}
 
-                          <GripVertical className="w-4 h-4 text-gray-400 cursor-grab active:cursor-grabbing" />
+                          <GripVertical 
+                              className="w-4 h-4 text-gray-400 cursor-grab active:cursor-grabbing" 
+                          />
                           <div className="flex-1 ml-6">
-                            <div className={`font-medium ${isDropped ? 'line-through' : ''}`}>
-                                {assessment.name.replace(/^["“'”]+|["“'”]+$/g, '').trim()}
-                                {isDropped && <span className="ml-2 text-xs text-red-500 no-underline">(Dropped)</span>}
-                            </div>
+                            {editingNameId?.id === assessment.id && !editingNameId.isGroup && !editingNameId.groupId ? (
+                                <input
+                                    ref={nameInputRef}
+                                    type="text"
+                                    value={editingNameValue}
+                                    onChange={(e) => setEditingNameValue(e.target.value)}
+                                    onBlur={handleSaveRename}
+                                    onKeyDown={handleRenameKeyDown}
+                                    onClick={(e) => e.stopPropagation()}
+                                    className="font-medium border border-primary rounded px-1 py-0.5 w-full max-w-md focus:outline-none focus:ring-2 focus:ring-primary"
+                                />
+                            ) : (
+                                <div 
+                                    className={`font-medium ${isDropped ? 'line-through' : ''}`}
+                                    onDoubleClick={(e) => handleStartRename(e, assessment.id, false)}
+                                >
+                                    {assessment.name.replace(/^[""'"]+|[""'"]+$/g, '').trim()}
+                                    {isDropped && <span className="ml-2 text-xs text-red-500 no-underline">(Dropped)</span>}
+                                </div>
+                            )}
                             <div className="flex items-center text-sm text-muted-foreground mt-1">
                               <input
                                 type="number"
@@ -1245,81 +1668,63 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                       );
                   }
                 })}
-                
-                {/* Drop zone at the end for dragging below last element */}
+                {/* Drop zone after the last top-level item - allows dropping groups/items at the bottom */}
                 {draggedItem && !draggedItem.groupId && (
-                  <div
-                    className="border-t-0"
-                    style={{ 
-                      height: dragOverItem?.id === 'END_ZONE' ? '8px' : '0px',
-                      minHeight: '0px',
-                      overflow: 'hidden',
-                      margin: '0',
-                      padding: '0',
-                      lineHeight: '0'
-                    }}
-                    onDragOver={(e) => {
-                      e.preventDefault();
-                      e.dataTransfer.dropEffect = 'move';
-                      if (dragOverItem?.id !== 'END_ZONE') {
-                        setDragOverItem({ id: 'END_ZONE', isGroup: false, position: 'after' });
-                      }
-                    }}
-                    onDragLeave={() => {
-                      if (dragOverItem?.id === 'END_ZONE') {
-                        setDragOverItem(null);
-                      }
-                    }}
-                    onDrop={(e) => {
-                      e.preventDefault();
-                      if (!draggedItem || draggedItem.groupId) return;
-                      
-                      const currentItems = groupAssessments(assessments);
-                      const sourceIndex = currentItems.findIndex(i => {
-                        if (draggedItem.isGroup) {
-                          return i.isGroup && i.id === draggedItem.id;
-                        } else {
-                          return !i.isGroup && i.id === draggedItem.id;
-                        }
-                      });
-                      
-                      if (sourceIndex === -1) {
-                        setDraggedItem(null);
-                        setDragOverItem(null);
-                        return;
-                      }
-                      
-                      const itemsToReorder = [...currentItems];
-                      const [removed] = itemsToReorder.splice(sourceIndex, 1);
-                      itemsToReorder.push(removed);
-                      
-                      // Flatten back to assessments
-                      const reorderedAssessments: Assessment[] = [];
-                      itemsToReorder.forEach((item) => {
-                        if (item.isGroup) {
-                          item.children.forEach((child) => {
-                            const existingAssessment = assessments.find(a => a.id === child.id);
-                            if (existingAssessment) {
-                              reorderedAssessments.push(existingAssessment);
+                    <div
+                        className="h-1 relative -mt-1"
+                        onDragOver={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            if (draggedItem && !draggedItem.groupId) {
+                                const visibleItems = groupAssessments(assessments).filter(item => !removedItems.has(item.id));
+                                const lastItem = visibleItems[visibleItems.length - 1];
+                                if (lastItem && draggedItem.id !== lastItem.id) {
+                                    // Force position to 'after' for the drop zone
+                                    setDragOverItem({ 
+                                        id: lastItem.id, 
+                                        isGroup: !!lastItem.isGroup, 
+                                        groupId: undefined, 
+                                        position: 'after' 
+                                    });
+                                }
                             }
-                          });
-                        } else {
-                          const existingAssessment = assessments.find(a => a.id === item.id);
-                          if (existingAssessment) {
-                            reorderedAssessments.push(existingAssessment);
-                          }
-                        }
-                      });
-                      
-                      setAssessments(reorderedAssessments);
-                      setDraggedItem(null);
-                      setDragOverItem(null);
-                    }}
-                  >
-                    {dragOverItem?.id === 'END_ZONE' && (
-                      <div className="h-0.5 bg-blue-500 ml-3 mr-6" />
-                    )}
-                  </div>
+                        }}
+                        onDrop={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            if (draggedItem && !draggedItem.groupId) {
+                                const visibleItems = groupAssessments(assessments).filter(item => !removedItems.has(item.id));
+                                const lastItem = visibleItems[visibleItems.length - 1];
+                                if (lastItem && draggedItem.id !== lastItem.id) {
+                                    // Pass position directly to handleDrop
+                                    handleDrop(e, lastItem, undefined, 'after');
+                                }
+                            }
+                        }}
+                        onDragLeave={(e) => {
+                            // Only clear if we're actually leaving the drop zone
+                            const relatedTarget = e.relatedTarget as HTMLElement;
+                            if (!e.currentTarget.contains(relatedTarget)) {
+                                // Don't clear if dragOverItem is set for a different position
+                                if (dragOverItem && !dragOverItem.groupId && dragOverItem.position === 'after') {
+                                    const visibleItems = groupAssessments(assessments).filter(item => !removedItems.has(item.id));
+                                    const lastItem = visibleItems[visibleItems.length - 1];
+                                    if (lastItem && dragOverItem.id === lastItem.id) {
+                                        return; // Keep the drag over state
+                                    }
+                                }
+                                setDragOverItem(null);
+                            }
+                        }}
+                    >
+                        {dragOverItem && !dragOverItem.groupId && dragOverItem.position === 'after' && (() => {
+                            const visibleItems = groupAssessments(assessments).filter(item => !removedItems.has(item.id));
+                            const lastItem = visibleItems[visibleItems.length - 1];
+                            return lastItem && dragOverItem.id === lastItem.id;
+                        })() && (
+                            <div className="h-0.5 bg-blue-500 ml-3 mr-6" />
+                        )}
+                    </div>
                 )}
               </div>
 
@@ -1406,7 +1811,6 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
             )}
           </div>
         </div>
-      </div>
       </div>
     </div>
   );
