@@ -10,7 +10,8 @@
     "scrape": "tsx scripts/scrape-course.ts",
     "scrape-batch": "tsx scripts/scrape-batch.ts",
     "fetch-courses": "tsx scripts/fetch-course-list.ts",
-    "db:setup": "tsx scripts/setup-database.ts"
+    "db:setup": "tsx scripts/setup-database.ts",
+    "db:clean": "tsx scripts/clean-assessments.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

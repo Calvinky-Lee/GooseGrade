@@ -12,8 +12,8 @@ CREATE TABLE IF NOT EXISTS courses (
   outline_url TEXT,
   last_scraped TIMESTAMP DEFAULT NOW(),
   
-  -- Ensure unique combination of course code and term
-  CONSTRAINT unique_course_term UNIQUE (code, term)
+  -- Ensure unique combination of course code, term, and outline URL (for multiple sections)
+  CONSTRAINT unique_course_term_outline UNIQUE (code, term, outline_url)
 );
 
 -- Assessments table
@@ -22,8 +22,8 @@ CREATE TABLE IF NOT EXISTS assessments (
   course_id UUID REFERENCES courses(id) ON DELETE CASCADE,
   name TEXT NOT NULL,  -- e.g., "Quiz 1", "Midterm"
   category TEXT,  -- e.g., "Assignments", "Exams"
-  weight DECIMAL(5,2) NOT NULL,  -- Individual weight percentage (e.g., 5.00 for 5%)
-  total_weight DECIMAL(5,2) NOT NULL,  -- Total category weight (useful for reference)
+  weight DECIMAL(20,10) NOT NULL,  -- Individual weight percentage (e.g., 3.1818181818)
+  total_weight DECIMAL(20,10) NOT NULL,  -- Total category weight (useful for reference)
   assessment_type TEXT NOT NULL,  -- "Assignment", "Midterm", "Final", etc.
   order_index INTEGER NOT NULL,  -- For display ordering
   term TEXT NOT NULL, -- e.g., "Fall 2024" (Duplicated from courses as requested)

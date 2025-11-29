@@ -1,0 +1,5138 @@
+==================================================
+[AFM 102] Introduction to Managerial Accounting Section 081 (Fall 2025)
+Total Weight: 116.80%
+--------------------
+Assessment Series Breakdown:
+  - "Unit Test 1..4": Total 60.00% (15% each)
+  - "Weekly Assignment 1..10": Total 31.80% (3.18% each)
+All Assessments:
+  - Final Test: 25%
+  - Unit Test 1: 15%
+  - Unit Test 2: 15%
+  - Unit Test 3: 15%
+  - Unit Test 4: 15%
+  - Weekly Assignment 1: 3.18%
+  - Weekly Assignment 10: 3.18%
+  - Weekly Assignment 2: 3.18%
+  - Weekly Assignment 3: 3.18%
+  - Weekly Assignment 4: 3.18%
+  - Weekly Assignment 5: 3.18%
+  - Weekly Assignment 6: 3.18%
+  - Weekly Assignment 7: 3.18%
+  - Weekly Assignment 8: 3.18%
+  - Weekly Assignment 9: 3.18%
+
+
+==================================================
+[PHYS 391] PHYS 391
+          Winter 2025
+          
+            
+            Electronics
+            
+          
+          
+          
+            Section 001 (Winter 2025)
+Total Weight: 376.65%
+--------------------
+Potential Duplicates (Same Name):
+  - "Assignment 1" appears 4 times (Weights: 3.33%, 4%, 4%, 4%)
+  - "Assignment 2" appears 4 times (Weights: 4%, 4%, 4%, 3.33%)
+  - "Assignment 3" appears 4 times (Weights: 4%, 4%, 4%, 3.33%)
+  - "Assignment 4" appears 2 times (Weights: 3.33%, 4%)
+  - "Final undefined" appears 3 times (Weights: 80%, 50%, 70%)
+Assessment Series Breakdown:
+  - "Assignment 1..15": Total 56.65% (3.33% each)
+All Assessments:
+  - Assignment 1: 3.33%
+  - Assignment 1: 4%
+  - Assignment 1: 4%
+  - Assignment 1: 4%
+  - Assignment 2: 4%
+  - Assignment 2: 4%
+  - Assignment 2: 4%
+  - Assignment 2: 3.33%
+  - Assignment 3: 4%
+  - Assignment 3: 4%
+  - Assignment 3: 4%
+  - Assignment 3: 3.33%
+  - Assignment 4: 3.33%
+  - Assignment 4: 4%
+  - Assignment 5: 3.33%
+  - Final: 60%
+  - Final undefined: 80%
+  - Final undefined: 50%
+  - Final undefined: 70%
+  - Independent Project: 10%
+  - Independent Project undefined: 10%
+  - Midterm: 20%
+  - Midterm undefined: 20%
+
+
+==================================================
+[PHYS 391] PHYS 391L
+          Winter 2025
+          
+            
+            Electronics Laboratory
+            
+          
+          
+          
+            Section 001 (Winter 2025)
+Total Weight: 114.00%
+--------------------
+Assessment Series Breakdown:
+  - "Lab Report 1..5": Total 70.00% (14% each)
+All Assessments:
+  - Design Project: 14%
+  - Lab Exam: 30%
+  - Lab Report 1: 14%
+  - Lab Report 2: 14%
+  - Lab Report 3: 14%
+  - Lab Report 4: 14%
+  - Lab Report 5: 14%
+
+
+==================================================
+[PHYS 391L] PHYS 391L
+          Winter 2025
+          
+            
+            Electronics Laboratory
+            
+          
+          
+          
+            Section 001 (Winter 2025)
+Total Weight: 114.00%
+--------------------
+Assessment Series Breakdown:
+  - "Lab Report 1..5": Total 70.00% (14% each)
+All Assessments:
+  - Design Project: 14%
+  - Lab Exam: 30%
+  - Lab Report 1: 14%
+  - Lab Report 2: 14%
+  - Lab Report 3: 14%
+  - Lab Report 4: 14%
+  - Lab Report 5: 14%
+
+
+==================================================
+[PHYS 437B] PHYS 437A/PHYS 437B
+          Fall 2025
+          
+            
+            Research Project
+            
+          
+          
+          
+            Section 001 (Fall 2025)
+Total Weight: 150.00%
+--------------------
+All Assessments:
+  - Comprehension: 10%
+  - Effort: 10%
+  - Engagement: 10%
+  - Oral Presentation: 25%
+  - Progress throughout the term: 50%
+  - Term performance: 20%
+  - Written Report: 25%
+
+
+==================================================
+[PHYS 365] PHYS 365
+          Winter 2025
+          
+            
+            Mathematical Physics 2
+            
+          
+          
+          
+            Section 001 (Winter 2025)
+Total Weight: 265.00%
+--------------------
+Assessment Series Breakdown:
+  - "Assignments 1..15": Total 225.00% (15% each)
+All Assessments:
+  - Assignments 1: 15%
+  - Assignments 10: 15%
+  - Assignments 11: 15%
+  - Assignments 12: 15%
+  - Assignments 13: 15%
+  - Assignments 14: 15%
+  - Assignments 15: 15%
+  - Assignments 2: 15%
+  - Assignments 3: 15%
+  - Assignments 4: 15%
+  - Assignments 5: 15%
+  - Assignments 6: 15%
+  - Assignments 7: 15%
+  - Assignments 8: 15%
+  - Assignments 9: 15%
+  - Final Examination: 40%
+
+
+==================================================
+[PHYS 393] PHYS 393
+          Winter 2024
+          
+            
+            Physical Optics
+            
+          
+          
+          
+            Section 001 (Winter 2024)
+Total Weight: 190.90%
+--------------------
+Potential Duplicates (Same Name):
+  - "Assignment 1" appears 2 times (Weights: 3.18%, 6%)
+  - "Assignment 2" appears 2 times (Weights: 3.18%, 6%)
+  - "Assignment 3" appears 2 times (Weights: 3.18%, 6%)
+  - "Assignment 4" appears 2 times (Weights: 6%, 3.18%)
+  - "Assignment 5" appears 2 times (Weights: 6%, 3.18%)
+Assessment Series Breakdown:
+  - "Assignment 1..10": Total 45.90% (3.18% each)
+All Assessments:
+  - Assignment 1: 3.18%
+  - Assignment 1: 6%
+  - Assignment 2: 3.18%
+  - Assignment 2: 6%
+  - Assignment 3: 3.18%
+  - Assignment 3: 6%
+  - Assignment 4: 6%
+  - Assignment 4: 3.18%
+  - Assignment 5: 6%
+  - Assignment 5: 3.18%
+  - Final Exam: 50%
+  - Final Exam 2: 70%
+  - Midterm Exam: 25%
+
+
+==================================================
+[PHYS 437A] PHYS 437A/PHYS 437B
+          Fall 2025
+          
+            
+            Research Project
+            
+          
+          
+          
+            Section 001 (Fall 2025)
+Total Weight: 150.00%
+--------------------
+All Assessments:
+  - Comprehension: 10%
+  - Effort: 10%
+  - Engagement: 10%
+  - Oral Presentation: 25%
+  - Progress throughout the term: 50%
+  - Term performance: 20%
+  - Written Report: 25%
+
+
+==================================================
+[PLAN 341] GEOG 368/PLAN 341
+          Winter 2025
+          
+            
+            Ecology and Conservation for Planning
+            
+          
+          
+          
+            Section 001 (Winter 2025)
+Total Weight: 106.66%
+--------------------
+Assessment Series Breakdown:
+  - "In class exam 1..3": Total 30.00% (10% each)
+  - "Quiz 1..7": Total 7.00% (1% each)
+All Assessments:
+  - Ability to meet deadline 1: 10%
+  - Assignment 1: 3.33%
+  - Assignment 2: 3.33%
+  - Case study report: 20%
+  - Case study video: 13%
+  - In class activities (weekly): 10%
+  - In class exam 1: 10%
+  - In class exam 2: 10%
+  - In class exam 3: 10%
+  - Quiz 1: 1%
+  - Quiz 2: 1%
+  - Quiz 3: 1%
+  - Quiz 4: 1%
+  - Quiz 5: 1%
+  - Quiz 6: 1%
+  - Quiz 7: 1%
+  - Reflection paper 1: 5%
+  - Reflection paper 2: 5%
+
+
+==================================================
+[PLAN 403] PLAN 403
+          Winter 2025
+          
+            
+            Professional Practice, Public and Private Administration
+            
+          
+          
+          
+            Section 001 (Winter 2025)
+Total Weight: 167.50%
+--------------------
+All Assessments:
+  - Assignment 1: 25%
+  - Assignment 2 – Writing Planning Policy for Collaborative City-Building (Group): 45%
+  - In-Class Assignment – Planning for Decarbonization: 7.5%
+  - In-Class Assignment – Planning for Joy: 7.5%
+  - In-Class Assignment – Planning for Sustainable Mobility: 7.5%
+  - In-Class Assignment 1 – Planning for Joy: 7.5%
+  - In-Class Assignment 2 – Planning for Decarbonization: 7.5%
+  - In-Class Assignment 3 – Planning for Sustainable Mobility: 7.5%
+  - In-Class Engagement and Participation: 7.5%
+  - Planning for Decarbonization: 9%
+  - Planning for Design Excellence: 9%
+  - Planning for Joy: 9%
+  - Planning for Sustainable Mobility: 9%
+  - Planning for Urban Greenspace: 9%
+
+
+==================================================
+[PLAN 419] GEMCC 652/PLAN 419/PLAN 627
+          Winter 2025
+          
+            
+            Climate Change and Community Planning
+            
+          
+          
+          
+            Section 081 (Winter 2025)
+Total Weight: 197.50%
+--------------------
+All Assessments:
+  - 1. Discussion 1: 1.25%
+  - 2. Discussion 2: 1.25%
+  - 3. Introduce Yourself: 1.25%
+  - 4. Project Presentation Discussion Participation: 5%
+  - 5. Assignment 1: The Basics of Climate Change: 20%
+  - 6. Assignment 2: Plan Development and Implementation: 30%
+  - 7. Assignment 3: Proposal and References: 4%
+  - 8. Assignment 3: Final Team PowerPoint Presentation: 12%
+  - 9. Assignment 3: Final Team Project Report: 24%
+  - Assignment 1: The Basics of Climate Change: 20%
+  - Assignment 2: Plan Development and Implementation: 30%
+  - Assignment 3: Final Team PowerPoint Presentation: 12%
+  - Assignment 3: Final Team Project Report: 24%
+  - Assignment 3: Proposal and References: 4%
+  - Discussion 1: 1.25%
+  - Discussion 2: 1.25%
+  - Introduce Yourself: 1.25%
+  - Project Presentation Discussion Participation: 5%
+
+
+==================================================
+[PLAN 431] PLAN 431/PLAN 614
+          Winter 2025
+          
+            
+            Issues in Housing
+            
+          
+          
+          
+            Section 001 (Winter 2025)
+Total Weight: 195.00%
+--------------------
+Assessment Series Breakdown:
+  - "Grad Reading Response 1..8": Total 20.00% (2.5% each)
+  - "Reading Response 1..6": Total 15.00% (2.5% each)
+All Assessments:
+  - Assignment 1 Housing in the News: 15%
+  - Assignment 2 Housing in the City: 20%
+  - Grad Assignment 1 Housing in the News: 20%
+  - Grad Final Paper Proposal: 5%
+  - Grad In-Class Group Presentation: 10%
+  - Grad Participation: 15%
+  - Grad Reading Response 1: 2.5%
+  - Grad Reading Response 2: 2.5%
+  - Grad Reading Response 3: 2.5%
+  - Grad Reading Response 4: 2.5%
+  - Grad Reading Response 5: 2.5%
+  - Grad Reading Response 6: 2.5%
+  - Grad Reading Response 7: 2.5%
+  - Grad Reading Response 8: 2.5%
+  - Grad Research Paper: 30%
+  - Group Presentation: 10%
+  - Midterm Examination: 20%
+  - Participation: 15%
+  - Reading Response 1: 2.5%
+  - Reading Response 2: 2.5%
+  - Reading Response 3: 2.5%
+  - Reading Response 4: 2.5%
+  - Reading Response 5: 2.5%
+  - Reading Response 6: 2.5%
+
+
+==================================================
+[AFM 123] Accounting Information for Managers Section 001, 101 (Fall 2025)
+Total Weight: 138.84%
+--------------------
+Assessment Series Breakdown:
+  - "Team Project 1..10": Total 30.00% (3% each)
+  - "Team Project Contribution 1..15": Total 15.00% (1% each)
+  - "Weekly Lecture Mini Quiz 1..22": Total 48.84% (2.22% each)
+All Assessments:
+  - Final Exam: 30%
+  - Midterm Exam: 15%
+  - Team Project 1: 3%
+  - Team Project 10: 3%
+  - Team Project 2: 3%
+  - Team Project 3: 3%
+  - Team Project 4: 3%
+  - Team Project 5: 3%
+  - Team Project 6: 3%
+  - Team Project 7: 3%
+  - Team Project 8: 3%
+  - Team Project 9: 3%
+  - Team Project Contribution 10: 1%
+  - Team Project Contribution 11: 1%
+  - Team Project Contribution 12: 1%
+  - Team Project Contribution 13: 1%
+  - Team Project Contribution 14: 1%
+  - Team Project Contribution 15: 1%
+  - Team Project Contribution 16: 1%
+  - Team Project Contribution 17: 1%
+  - Team Project Contribution 3: 1%
+  - Team Project Contribution 4: 1%
+  - Team Project Contribution 5: 1%
+  - Team Project Contribution 6: 1%
+  - Team Project Contribution 7: 1%
+  - Team Project Contribution 8: 1%
+  - Team Project Contribution 9: 1%
+  - Weekly Lecture Mini Quiz 1: 2.22%
+  - Weekly Lecture Mini Quiz 10: 2.22%
+  - Weekly Lecture Mini Quiz 11: 2.22%
+  - Weekly Lecture Mini Quiz 12: 2.22%
+  - Weekly Lecture Mini Quiz 13: 2.22%
+  - Weekly Lecture Mini Quiz 14: 2.22%
+  - Weekly Lecture Mini Quiz 15: 2.22%
+  - Weekly Lecture Mini Quiz 16: 2.22%
+  - Weekly Lecture Mini Quiz 17: 2.22%
+  - Weekly Lecture Mini Quiz 18: 2.22%
+  - Weekly Lecture Mini Quiz 19: 2.22%
+  - Weekly Lecture Mini Quiz 2: 2.22%
+  - Weekly Lecture Mini Quiz 20: 2.22%
+  - Weekly Lecture Mini Quiz 21: 2.22%
+  - Weekly Lecture Mini Quiz 22: 2.22%
+  - Weekly Lecture Mini Quiz 3: 2.22%
+  - Weekly Lecture Mini Quiz 4: 2.22%
+  - Weekly Lecture Mini Quiz 5: 2.22%
+  - Weekly Lecture Mini Quiz 6: 2.22%
+  - Weekly Lecture Mini Quiz 7: 2.22%
+  - Weekly Lecture Mini Quiz 8: 2.22%
+  - Weekly Lecture Mini Quiz 9: 2.22%
+
+
+==================================================
+[AFM 333] /ARBUS 301  International Business Section 001-004 (Fall 2025)
+Total Weight: 117.20%
+--------------------
+Assessment Series Breakdown:
+  - "Group Current Events 1..3": Total 9.99% (3.33% each)
+  - "Learn Quiz 1..11": Total 12.21% (1.11% each)
+All Assessments:
+  - Group Country Presentation 1: 15%
+  - Group Country Presentation 2: 15%
+  - Group Current Events 1: 3.33%
+  - Group Current Events 2: 3.33%
+  - Group Current Events 3: 3.33%
+  - Individual Class Participation: 15%
+  - Learn Quiz 1: 1.11%
+  - Learn Quiz 10: 1.11%
+  - Learn Quiz 11: 1.11%
+  - Learn Quiz 2: 1.11%
+  - Learn Quiz 3: 1.11%
+  - Learn Quiz 4: 1.11%
+  - Learn Quiz 5: 1.11%
+  - Learn Quiz 6: 1.11%
+  - Learn Quiz 7: 1.11%
+  - Learn Quiz 8: 1.11%
+  - Learn Quiz 9: 1.11%
+  - Online Final Exam: 25%
+  - Online Midterm Exam: 20%
+  - Tophat Engagement: 5%
+
+
+==================================================
+[AFM 335] Business Law for Financial Managers Section 001-003 (Fall 2025)
+Total Weight: 130.00%
+--------------------
+Assessment Series Breakdown:
+  - "Discussion Board Participation 1..4": Total 10.00% (2.5% each)
+  - "Scenario Question Submission 1..4": Total 10.00% (2.5% each)
+All Assessments:
+  - Annual General Meeting Exercise: 2%
+  - Contract Drafting/Critiquing Exercise: 4%
+  - Discussion Board Participation 1: 2.5%
+  - Discussion Board Participation 2: 2.5%
+  - Discussion Board Participation 3: 2.5%
+  - Discussion Board Participation 4: 2.5%
+  - In-Class Engagement: 15%
+  - LEARN Discussion Board: 10%
+  - Learning Exercise 1: 10%
+  - Legal Risk Management Plan: 25%
+  - Midterm Test: 30%
+  - Scenario Question Response 1: 10%
+  - Scenario Question Submission 1: 2.5%
+  - Scenario Question Submission 2: 2.5%
+  - Scenario Question Submission 3: 2.5%
+  - Scenario Question Submission 4: 2.5%
+  - Tort Exercise: 4%
+
+
+==================================================
+[AFM 427] Intermediate Portfolio Management Section 001 (Spring 2025)
+Total Weight: 180.00%
+--------------------
+All Assessments:
+  - "Final Portfolio Project: 25%
+  - "Midterm: 25%
+  - "Participation: 15%
+  - "Roleplay Assignment: 15%
+  - Final Portfolio Project: 25%
+  - GICS Sector Presentation: 20%
+  - Midterm: 25%
+  - Participation: 15%
+  - Roleplay Assignment: 15%
+
+
+==================================================
+[PHYS 490] PHYS 490
+          Fall 2025
+          
+            
+            Special Topics in Physics: Biophysics of Life & Beyond
+            
+          
+          
+          
+            Section 001 (Fall 2025)
+Total Weight: 105.00%
+--------------------
+Assessment Series Breakdown:
+  - "Quiz 1..6": Total 30.00% (5% each)
+  - "Research Reflection 1..5": Total 25.00% (5% each)
+All Assessments:
+  - Grant Proposal Project: 50%
+  - Quiz 1: 5%
+  - Quiz 2: 5%
+  - Quiz 3: 5%
+  - Quiz 4: 5%
+  - Quiz 5: 5%
+  - Quiz 6: 5%
+  - Research Reflection 1: 5%
+  - Research Reflection 2: 5%
+  - Research Reflection 3: 5%
+  - Research Reflection 4: 5%
+  - Research Reflection 5: 5%
+
+
+==================================================
+[PMATH 330] PMATH 330
+          Fall 2025
+          
+            
+            Introduction to Mathematical Logic
+            
+          
+          
+          
+            Section 081 (Fall 2025)
+Total Weight: 101.04%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..13": Total 21.04% (1% each)
+All Assessments:
+  - Assignment 0: 1%
+  - Assignment 1: 1.67%
+  - Assignment 10: 1.67%
+  - Assignment 11: 1.67%
+  - Assignment 12: 1.67%
+  - Assignment 2: 1.67%
+  - Assignment 3: 1.67%
+  - Assignment 4: 1.67%
+  - Assignment 5: 1.67%
+  - Assignment 6: 1.67%
+  - Assignment 7: 1.67%
+  - Assignment 8: 1.67%
+  - Assignment 9: 1.67%
+  - Final Examination: 70%
+  - Midterm Examination: 10%
+
+
+==================================================
+[PMATH 332] AMATH 332/PMATH 332
+          Spring 2025
+          
+            
+            Applied Complex Analysis
+            
+          
+          
+          
+            Section 001, 101 (Spring 2025)
+Total Weight: 109.43%
+--------------------
+Potential Duplicates (Same Name):
+  - "Quiz 1" appears 2 times (Weights: 3.13%, 3.13%)
+Assessment Series Breakdown:
+  - "Quiz 1..11": Total 34.43% (3.13% each)
+All Assessments:
+  - Final Examination: 50%
+  - Midterm Examination: 25%
+  - Quiz 1: 3.13%
+  - Quiz 1: 3.13%
+  - Quiz 10: 3.13%
+  - Quiz 2: 3.13%
+  - Quiz 3: 3.13%
+  - Quiz 4: 3.13%
+  - Quiz 5: 3.13%
+  - Quiz 6: 3.13%
+  - Quiz 7: 3.13%
+  - Quiz 8: 3.13%
+  - Quiz 9: 3.13%
+
+
+==================================================
+[PMATH 348] PMATH 348
+          Spring 2025
+          
+            
+            Fields and Galois Theory
+            
+          
+          
+          
+            Section 001 (Spring 2025)
+Total Weight: 106.68%
+--------------------
+Assessment Series Breakdown:
+  - "Homework Assignment 1..5": Total 20.00% (4% each)
+  - "Quiz 1..4": Total 26.68% (6.67% each)
+All Assessments:
+  - Final Exam: 40%
+  - Homework Assignment 1: 4%
+  - Homework Assignment 2: 4%
+  - Homework Assignment 3: 4%
+  - Homework Assignment 4: 4%
+  - Homework Assignment 5: 4%
+  - Midterm: 20%
+  - Quiz 1: 6.67%
+  - Quiz 2: 6.67%
+  - Quiz 3: 6.67%
+  - Quiz 4: 6.67%
+
+
+==================================================
+[PMATH 352] PMATH 352
+          Spring 2025
+          
+            
+            Complex Analysis
+            
+          
+          
+          
+            Section 001 (Spring 2025)
+Total Weight: 111.25%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..11": Total 41.25% (3.75% each)
+All Assessments:
+  - Assignment 1: 3.75%
+  - Assignment 10: 3.75%
+  - Assignment 11: 3.75%
+  - Assignment 2: 3.75%
+  - Assignment 3: 3.75%
+  - Assignment 4: 3.75%
+  - Assignment 5: 3.75%
+  - Assignment 6: 3.75%
+  - Assignment 7: 3.75%
+  - Assignment 8: 3.75%
+  - Assignment 9: 3.75%
+  - Final: 40%
+  - Test 1: 15%
+  - Test 2: 15%
+
+
+==================================================
+[PSCI 150] PSCI 150
+          Winter 2025
+          
+            
+            Introduction to Global Politics
+            
+          
+          
+          
+            Section 001 (Winter 2025)
+Total Weight: 200.00%
+--------------------
+All Assessments:
+  - 1. **Presentation in Discussion Group**: 10%
+  - 1. Presentation in Discussion Group: 10%
+  - 10. **Quote-Comment-Question (QCQ) 9**: 1%
+  - 11. **Quote-Comment-Question (QCQ) 10**: 1%
+  - 12. **Lecture Brief**: 10%
+  - 13. **Discussion Group Participation**: 10%
+  - 14. **Midterm**: 30%
+  - 15. **Position Paper**: 30%
+  - 2. **Quote-Comment-Question (QCQ) 1**: 1%
+  - 2. Quote-Comment-Question (QCQ): 10%
+  - 3. **Quote-Comment-Question (QCQ) 2**: 1%
+  - 3. Lecture Brief: 10%
+  - 4. **Quote-Comment-Question (QCQ) 3**: 1%
+  - 4. Discussion Group Participation: 10%
+  - 5. **Quote-Comment-Question (QCQ) 4**: 1%
+  - 5. Midterm: 30%
+  - 6. **Quote-Comment-Question (QCQ) 5**: 1%
+  - 6. Position Paper: 30%
+  - 7. **Quote-Comment-Question (QCQ) 6**: 1%
+  - 8. **Quote-Comment-Question (QCQ) 7**: 1%
+  - 9. **Quote-Comment-Question (QCQ) 8**: 1%
+
+
+==================================================
+[PSYCH 211] PSYCH 211
+          Fall 2025
+          
+            
+            Developmental Psychology
+            
+          
+          
+          
+            Section 001 (Fall 2025)
+Total Weight: 101.04%
+--------------------
+Assessment Series Breakdown:
+  - "Chapter Review Quiz 1..12": Total 8.04% (0.67% each)
+All Assessments:
+  - Assignment 1: 10%
+  - Assignment 2: 10%
+  - Chapter Review Quiz 1: 0.67%
+  - Chapter Review Quiz 10: 0.67%
+  - Chapter Review Quiz 11: 0.67%
+  - Chapter Review Quiz 12: 0.67%
+  - Chapter Review Quiz 2: 0.67%
+  - Chapter Review Quiz 3: 0.67%
+  - Chapter Review Quiz 4: 0.67%
+  - Chapter Review Quiz 5: 0.67%
+  - Chapter Review Quiz 6: 0.67%
+  - Chapter Review Quiz 7: 0.67%
+  - Chapter Review Quiz 8: 0.67%
+  - Chapter Review Quiz 9: 0.67%
+  - Final Exam: 30%
+  - SONA participation (or alternative Review Article) (BONUS): 2%
+  - Syllabus Review Quiz (BONUS): 1%
+  - Test 1: 20%
+  - Test 2: 20%
+
+
+==================================================
+[PSYCH 253R] PSYCH 253R
+          Winter 2025
+          
+            
+            Social Psychology
+            
+          
+          
+          
+            Section 001, 002 (Winter 2025)
+Total Weight: 104.00%
+--------------------
+Assessment Series Breakdown:
+  - "Weekly Reflection 1..11": Total 22.00% (2% each)
+All Assessments:
+  - Article Critique: 10%
+  - Final Exam: 24%
+  - Midterm: 24%
+  - Presentation: 20%
+  - SONA Research Participation: 4%
+  - Weekly Reflection 1: 2%
+  - Weekly Reflection 10: 2%
+  - Weekly Reflection 11: 2%
+  - Weekly Reflection 2: 2%
+  - Weekly Reflection 3: 2%
+  - Weekly Reflection 4: 2%
+  - Weekly Reflection 5: 2%
+  - Weekly Reflection 6: 2%
+  - Weekly Reflection 7: 2%
+  - Weekly Reflection 8: 2%
+  - Weekly Reflection 9: 2%
+
+
+==================================================
+[PSYCH 291] PSYCH 291
+          Fall 2025
+          
+            
+            Basic Research Methods
+            
+          
+          
+          
+            Section 001 (Fall 2025)
+Total Weight: 103.00%
+--------------------
+All Assessments:
+  - Article Review Assignment: 15%
+  - Final Exam: 32%
+  - Midterm #1: 25%
+  - Midterm #2: 25%
+  - Research Experience Mark 1: 3%
+  - TCPS2 CORE Ethics Tutorial: 3%
+
+
+==================================================
+[PSYCH 312R] PSYCH 312R
+          Winter 2025
+          
+            
+            Learning Disabilities
+            
+          
+          
+          
+            Section 001 (Winter 2025)
+Total Weight: 116.25%
+--------------------
+Potential Duplicates (Same Name):
+  - "Quiz 1" appears 2 times (Weights: 13%, 3.25%)
+Assessment Series Breakdown:
+  - "Quiz 1..6": Total 29.25% (13% each)
+All Assessments:
+  - Class Participation Journal: 10%
+  - Final Exam: 25%
+  - Group Presentation: 25%
+  - Midterm Exam: 25%
+  - Quiz 1: 13%
+  - Quiz 1: 3.25%
+  - Quiz 2: 3.25%
+  - Quiz 3: 3.25%
+  - Quiz 4: 3.25%
+  - Quiz 5: 3.25%
+  - SONA: 2%
+
+
+==================================================
+[PSYCH 336] PSYCH 336
+          Fall 2025
+          
+            
+            Introduction to Clinical Psychology
+            
+          
+          
+          
+            Section 001 (Fall 2025)
+Total Weight: 103.00%
+--------------------
+Assessment Series Breakdown:
+  - "Test 1..3": Total 75.00% (25% each)
+All Assessments:
+  - Career Map Paper: 25%
+  - Sona Bonus Credit: 1%
+  - Sona Bonus Credit 2: 1%
+  - Sona Bonus Credit 3: 1%
+  - Test 1: 25%
+  - Test 2: 25%
+  - Test 3: 25%
+
+
+==================================================
+[PSYCH 390] PSYCH 390
+          Fall 2025
+          
+            
+            Natural Science Advanced Research Methods in Brain research using EEG/ERP
+            
+          
+          
+          
+            Section 001 (Fall 2025)
+Total Weight: 110.00%
+--------------------
+All Assessments:
+  - Lab assignment #1 (October 21): 10%
+  - Lab assignment #2 (November 11): 10%
+  - Lab assignment #3 (December 2): 10%
+  - Lab visit quiz (Group 1: September 23, Group 2: September 30): 5%
+  - Participation: 6%
+  - Poster presentation Session 1 (October 28): 10%
+  - Poster presentation Session 2 (November 18): 10%
+  - Poster presentation Session 3 (November 25): 10%
+  - Poster/article quiz #1 (October 28): 5%
+  - Poster/article quiz #2 (November 18): 5%
+  - Poster/article quiz #3 (November 25): 5%
+  - Research Experience: 4%
+  - Written assignment (December 5): 20%
+
+
+==================================================
+[PLAN 478] CIVE 440/CIVE 641/PLAN 478/PLAN 678
+          Winter 2025
+          
+            
+            Transit Planning and Operations
+            
+          
+          
+          
+            Section 001, 101 (Winter 2025)
+Total Weight: 115.00%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..8": Total 40.00% (5% each)
+All Assessments:
+  - Assignment 1: 5%
+  - Assignment 2: 5%
+  - Assignment 3: 5%
+  - Assignment 4: 5%
+  - Assignment 5: 5%
+  - Assignment 6: 5%
+  - Assignment 7: 5%
+  - Assignment 8: 5%
+  - Final Exam: 50%
+  - Midterm Exam: 25%
+
+
+==================================================
+[AMATH 382] /BIOL 382  Computational Modelling of Cellular Systems Section 001 (Winter 2024)
+Total Weight: 107.00%
+--------------------
+Assessment Series Breakdown:
+  - "Assignments 1..6": Total 24.00% (4% each)
+All Assessments:
+  - Assignments 1: 4%
+  - Assignments 2: 4%
+  - Assignments 3: 4%
+  - Assignments 4: 4%
+  - Assignments 5: 4%
+  - Assignments 6: 4%
+  - Midterm 1: 20%
+  - Midterm 2: 20%
+  - Peer review of presentation: 3%
+  - Term project (Presentation): 20%
+  - Term project (Report): 20%
+
+
+==================================================
+[AMATH 449] /CS 479/CS 679  Neural Networks Section 001, 002, 101 (Fall 2025)
+Total Weight: 102.86%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..4": Total 30.00% (7.5% each)
+All Assessments:
+  - Assignment 1: 7.5%
+  - Assignment 2: 7.5%
+  - Assignment 3: 7.5%
+  - Assignment 4: 7.5%
+  - Final Project: 40%
+  - In-person participation (quizzes): 1.43%
+  - In-person participation (vevox quizzes): 1.43%
+  - Midterm: 30%
+
+
+==================================================
+[AMATH 451] /AMATH 651  Introduction to Dynamical Systems Section 001, 101 (Winter 2025)
+Total Weight: 114.00%
+--------------------
+Assessment Series Breakdown:
+  - ""Assignment 1..4": Total 24.00% (6% each)
+All Assessments:
+  - "Assignment 1: 6%
+  - "Assignment 2: 6%
+  - "Assignment 3: 6%
+  - "Assignment 4: 6%
+  - "Final Exam: 50%
+  - "Midterm: 20%
+  - "Project: 20%
+
+
+==================================================
+[ANTH 100] Introduction to Anthropology Section 081 (Fall 2025)
+Total Weight: 114.52%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..3": Total 9.54% (3.18% each)
+  - "Quiz 1..11": Total 34.98% (3.18% each)
+All Assessments:
+  - Assignment 1: 3.18%
+  - Assignment 2: 3.18%
+  - Assignment 3: 3.18%
+  - Final Exam: 35%
+  - Midterm Exam: 35%
+  - Quiz 1: 3.18%
+  - Quiz 10: 3.18%
+  - Quiz 11: 3.18%
+  - Quiz 2: 3.18%
+  - Quiz 3: 3.18%
+  - Quiz 4: 3.18%
+  - Quiz 5: 3.18%
+  - Quiz 6: 3.18%
+  - Quiz 7: 3.18%
+  - Quiz 8: 3.18%
+  - Quiz 9: 3.18%
+
+
+==================================================
+[ARBUS 102] AFM 123/ARBUS 102/INDEV 202  Accounting Information for Managers Section 001-003 (Winter 2025)
+Total Weight: 143.00%
+--------------------
+Assessment Series Breakdown:
+  - "Individual Discussion Forum Post 1..4": Total 8.00% (2% each)
+  - "Team Project 1..7": Total 56.00% (8% each)
+  - "Term Test 1..4": Total 40.00% (10% each)
+  - "Weekly Lecture Mini Quiz 1..15": Total 33.00% (2.2% each)
+All Assessments:
+  - Individual Discussion Forum Post 1: 2%
+  - Individual Discussion Forum Post 2: 2%
+  - Individual Discussion Forum Post 3: 2%
+  - Individual Discussion Forum Post 4: 2%
+  - Team Project 1: 8%
+  - Team Project 2: 8%
+  - Team Project 3: 8%
+  - Team Project 4: 8%
+  - Team Project 5: 8%
+  - Team Project 6: 8%
+  - Team Project 7: 8%
+  - Team Project Contribution: 6%
+  - Term Test 1: 10%
+  - Term Test 2: 10%
+  - Term Test 3: 10%
+  - Term Test 4: 10%
+  - Weekly Lecture Mini Quiz 1: 2.2%
+  - Weekly Lecture Mini Quiz 10: 2.2%
+  - Weekly Lecture Mini Quiz 11: 2.2%
+  - Weekly Lecture Mini Quiz 12: 2.2%
+  - Weekly Lecture Mini Quiz 13: 2.2%
+  - Weekly Lecture Mini Quiz 14: 2.2%
+  - Weekly Lecture Mini Quiz 15: 2.2%
+  - Weekly Lecture Mini Quiz 2: 2.2%
+  - Weekly Lecture Mini Quiz 3: 2.2%
+  - Weekly Lecture Mini Quiz 4: 2.2%
+  - Weekly Lecture Mini Quiz 5: 2.2%
+  - Weekly Lecture Mini Quiz 6: 2.2%
+  - Weekly Lecture Mini Quiz 7: 2.2%
+  - Weekly Lecture Mini Quiz 8: 2.2%
+  - Weekly Lecture Mini Quiz 9: 2.2%
+
+
+==================================================
+[ARBUS 302] /MGMT 244  Principles of Marketing Section 002 (Fall 2025)
+Total Weight: 103.00%
+--------------------
+Assessment Series Breakdown:
+  - "Quiz 1..4": Total 24.00% (6% each)
+  - "Simulation Assignment 1..4": Total 20.00% (5% each)
+All Assessments:
+  - Class Participation: 14%
+  - Final Project Peer Evaluation 1: 15%
+  - Final Project Presentation: 15%
+  - Final Project Report: 15%
+  - Quiz 1: 6%
+  - Quiz 2: 6%
+  - Quiz 3: 6%
+  - Quiz 4: 6%
+  - Simulation Assignment 1: 5%
+  - Simulation Assignment 2: 5%
+  - Simulation Assignment 3: 5%
+  - Simulation Assignment 4: 5%
+
+
+==================================================
+[PLAN 483] PLAN 483/PLAN 602/ECDEV 612
+          Winter 2025
+          
+            
+            Land Development Planning
+            
+          
+          
+          
+            Section 001 (Winter 2025)
+Total Weight: 200.00%
+--------------------
+All Assessments:
+  - Due Diligence Report: 30%
+  - Due Diligence Report 2: 20%
+  - Final Development Recommendation Report: 50%
+  - Final Development Recommendation Report 2: 40%
+  - Participation: 10%
+  - Participation 2: 10%
+  - Site Selection Report: 10%
+  - Site Selection Report 2: 10%
+  - Term Paper: 20%
+
+
+==================================================
+[PLAN 485] PLAN 485
+          Winter 2022
+          
+            
+            PLANNING FOR INTERCULTURAL ENCOUNTER & INTEGRATION
+            
+          
+          
+          
+            Section 001 (Winter 2022)
+Total Weight: 121.95%
+--------------------
+Assessment Series Breakdown:
+  - "Reading Reflection 1..15": Total 46.95% (3.13% each)
+All Assessments:
+  - Final Paper: 60%
+  - Reading Reflection 1: 3.13%
+  - Reading Reflection 10: 3.13%
+  - Reading Reflection 11: 3.13%
+  - Reading Reflection 12: 3.13%
+  - Reading Reflection 13: 3.13%
+  - Reading Reflection 14: 3.13%
+  - Reading Reflection 15: 3.13%
+  - Reading Reflection 2: 3.13%
+  - Reading Reflection 3: 3.13%
+  - Reading Reflection 4: 3.13%
+  - Reading Reflection 5: 3.13%
+  - Reading Reflection 6: 3.13%
+  - Reading Reflection 7: 3.13%
+  - Reading Reflection 8: 3.13%
+  - Reading Reflection 9: 3.13%
+  - Research Paper Outline: 15%
+
+
+==================================================
+[PMATH 331] AMATH 331/PMATH 331
+          Fall 2025
+          
+            
+            Applied Real Analysis
+            
+          
+          
+          
+            Section 001 (Fall 2025)
+Total Weight: 300.00%
+--------------------
+Potential Duplicates (Same Name):
+  - "Assignment 1" appears 2 times (Weights: 6%, 6%)
+  - "Assignment 2" appears 2 times (Weights: 6%, 6%)
+  - "Assignment 3" appears 2 times (Weights: 6%, 6%)
+  - "Assignment 4" appears 2 times (Weights: 6%, 6%)
+  - "Assignment 5" appears 2 times (Weights: 6%, 6%)
+Assessment Series Breakdown:
+  - "Assignment 1..10": Total 60.00% (6% each)
+All Assessments:
+  - Assignment 1: 6%
+  - Assignment 1: 6%
+  - Assignment 2: 6%
+  - Assignment 2: 6%
+  - Assignment 3: 6%
+  - Assignment 3: 6%
+  - Assignment 4: 6%
+  - Assignment 4: 6%
+  - Assignment 5: 6%
+  - Assignment 5: 6%
+  - Final Exam: 75%
+  - Final Exam 2: 75%
+  - Midterm Test: 45%
+  - Midterm Test 2: 45%
+
+
+==================================================
+[PMATH 445] PMATH 445/PMATH 745
+          Winter 2025
+          
+            
+            Representations of Finite Groups
+            
+          
+          
+          
+            Section 001 (Winter 2025)
+Total Weight: 105.00%
+--------------------
+Assessment Series Breakdown:
+  - "Assignments 1..7": Total 35.00% (5% each)
+All Assessments:
+  - Assignments 1: 5%
+  - Assignments 2: 5%
+  - Assignments 3: 5%
+  - Assignments 4: 5%
+  - Assignments 5: 5%
+  - Assignments 6: 5%
+  - Assignments 7: 5%
+  - Final exam: 40%
+  - Test 1: 15%
+  - Test 2: 15%
+
+
+==================================================
+[ARBUS 400] Strategy and Program Integration Section 001, 101 (Fall 2025)
+Total Weight: 108.00%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..4": Total 10.00% (2.5% each)
+  - "Executive Briefing 1..6": Total 18.00% (3% each)
+  - "Individual Reflection 1..4": Total 10.00% (2.5% each)
+  - "Peer Evaluation 1..4": Total 10.00% (2.5% each)
+All Assessments:
+  - Assignment 1: 2.5%
+  - Assignment 2: 2.5%
+  - Assignment 3: 2.5%
+  - Assignment 4: 2.5%
+  - Business Plan: 10%
+  - Executive Briefing 1: 3%
+  - Executive Briefing 2: 3%
+  - Executive Briefing 3: 3%
+  - Executive Briefing 4: 3%
+  - Executive Briefing 5: 3%
+  - Executive Briefing 6: 3%
+  - Individual Reflection 1: 2.5%
+  - Individual Reflection 2: 2.5%
+  - Individual Reflection 3: 2.5%
+  - Individual Reflection 4: 2.5%
+  - Peer Evaluation 1: 2.5%
+  - Peer Evaluation 2: 2.5%
+  - Peer Evaluation 3: 2.5%
+  - Peer Evaluation 4: 2.5%
+  - Presentation: 20%
+  - Problem/Success Essay: 10%
+  - Simulation Performance: 20%
+
+
+==================================================
+[ARBUS 400] Strategy and Program Integration Section 002 (Fall 2025)
+Total Weight: 164.99%
+--------------------
+Assessment Series Breakdown:
+  - "Pairs Presentation 1..8": Total 10.00% (1.25% each)
+  - "Peer Evaluation 1..3": Total 9.99% (3.33% each)
+All Assessments:
+  - Activities and reflections (5 x 5%): 25%
+  - Pairs presentation 1: 10%
+  - Pairs Presentation 1: 1.25%
+  - Pairs Presentation 2: 1.25%
+  - Pairs Presentation 3: 1.25%
+  - Pairs Presentation 4: 1.25%
+  - Pairs Presentation 5: 1.25%
+  - Pairs Presentation 6: 1.25%
+  - Pairs Presentation 7: 1.25%
+  - Pairs Presentation 8: 1.25%
+  - Peer Evaluation 1: 3.33%
+  - Peer Evaluation 2: 3.33%
+  - Peer Evaluation 3: 3.33%
+  - Persuasive Essay: 15%
+  - Persuasive essay (Strategy & Experience): 15%
+  - Simulation Performance: 20%
+  - Simulation performance (team): 20%
+  - Simulation Presentation: 20%
+  - Simulation presentation (team): 20%
+
+
+==================================================
+[PSCI 260] PSCI 260/LS 206
+          Winter 2025
+          
+            
+            The Liberal Leadership Race (and what you need to know to follow it!)
+            
+          
+          
+          
+            Section 001, 101, 102 (Winter 2025)
+Total Weight: 460.00%
+--------------------
+Assessment Series Breakdown:
+  - "Perusall Reading 1..5": Total 50.00% (10% each)
+  - "Synthesis Paper 1..3": Total 75.00% (25% each)
+  - "Tutorial 1..5": Total 25.00% (5% each)
+All Assessments:
+  - Additional Assignment 1: 25%
+  - Additional Assignment 2: 25%
+  - Additional Assignment(s) related to Liberal leadership campaign (up to 2 assignments): 50%
+  - Applied Book Review (up to 2 reviews): 50%
+  - Applied Book Review 1: 25%
+  - Applied Book Review 2: 25%
+  - Perusall Participation (5 reading packages): 10%
+  - Perusall Reading 1: 10%
+  - Perusall Reading 2: 10%
+  - Perusall Reading 3: 10%
+  - Perusall Reading 4: 10%
+  - Perusall Reading 5: 10%
+  - Synthesis Paper 1: 25%
+  - Synthesis Paper 2: 25%
+  - Synthesis Paper 3: 25%
+  - Synthesis Papers (up to 3 papers): 75%
+  - Tutorial 1: 5%
+  - Tutorial 2: 5%
+  - Tutorial 3: 5%
+  - Tutorial 4: 5%
+  - Tutorial 5: 5%
+  - Tutorial Participation (5 tutorials): 25%
+
+
+==================================================
+[PSYCH 207] PSYCH 207
+          Fall 2025
+          
+            
+            Cognitive Processes
+            
+          
+          
+          
+            Section 081 (Fall 2025)
+Total Weight: 104.00%
+--------------------
+Assessment Series Breakdown:
+  - "Quiz 1..4": Total 60.00% (15% each)
+All Assessments:
+  - Bonus Research Participation: 4%
+  - Final Examination: 40%
+  - Quiz 1: 15%
+  - Quiz 2: 15%
+  - Quiz 3: 15%
+  - Quiz 4: 15%
+
+
+==================================================
+[PSYCH 253] PSYCH 253
+          Fall 2025
+          
+            
+            Social Psychology
+            
+          
+          
+          
+            Section 081 (Fall 2025)
+Total Weight: 145.93%
+--------------------
+Assessment Series Breakdown:
+  - "Quiz 1..10": Total 20.00% (2% each)
+All Assessments:
+  - End of Module Quizzes (10 x 2%): 20%
+  - Experiential Learning Bonus Credit: 4%
+  - Final Exam: 24%
+  - Final Project Submission: 13.46%
+  - Group Contract: 3.85%
+  - Peer and Self Evaluation: 3.85%
+  - Project Proposal: 3.85%
+  - Quiz 1: 2%
+  - Quiz 10: 2%
+  - Quiz 2: 2%
+  - Quiz 3: 2%
+  - Quiz 4: 2%
+  - Quiz 5: 2%
+  - Quiz 6: 2%
+  - Quiz 7: 2%
+  - Quiz 8: 2%
+  - Quiz 9: 2%
+  - Response to TA/Instructor Feedback on Proposal: 1.92%
+  - Social Psychology Intervention Group Assignment: 50%
+  - Welcome Survey: 1%
+
+
+==================================================
+[PSYCH 389] PSYCH 389
+          Fall 2025
+          
+            
+            Social Science Advanced Research Methods Topics
+            
+          
+          
+          
+            Section 002 (Fall 2025)
+Total Weight: 200.00%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..5": Total 90.00% (20% each)
+All Assessments:
+  - Assignment 1: 20%
+  - Assignment 1 - Test Construction: 20%
+  - Assignment 2: 20%
+  - Assignment 2 - Qualitative Methods: 20%
+  - Assignment 3: 20%
+  - Assignment 3 – Multiple Regression: 20%
+  - Assignment 4: 20%
+  - Assignment 4 - Path Analysis: 20%
+  - Assignment 5: 10%
+  - Assignment 5 – Longitudinal Methods: 10%
+  - Psychometric Analysis Test: 10%
+  - Psychometric Analysis Test 2: 10%
+
+
+==================================================
+[PSYCH 470] PSYCH 447/PSYCH 470
+          Fall 2025
+          
+            
+            Seminar in Cognitive Science
+            
+          
+          
+          
+            Section 001, 003 (Fall 2025)
+Total Weight: 104.40%
+--------------------
+Assessment Series Breakdown:
+  - "Presentation 1..9": Total 39.96% (4.44% each)
+All Assessments:
+  - Final Exam: 25%
+  - Final Project Presentation (Group): 5%
+  - Final Project Report (Group): 25%
+  - Presentation 1: 4.44%
+  - Presentation 2: 4.44%
+  - Presentation 3: 4.44%
+  - Presentation 4: 4.44%
+  - Presentation 5: 4.44%
+  - Presentation 6: 4.44%
+  - Presentation 7: 4.44%
+  - Presentation 8: 4.44%
+  - Presentation 9: 4.44%
+  - Presentations and Questions (Group): 4.44%
+  - Team Plan (Group): 2%
+  - Team Reflection (Individual): 3%
+
+
+==================================================
+[ARTS 160] Arts160 Inquiry & Knowledge Creation: Winning a Trade War Section 026 (Fall 2025)
+Total Weight: 177.50%
+--------------------
+All Assessments:
+  - "Trade Myths Report (formative): 7.5%
+  - "Trade Myths Report (summative): 7.5%
+  - 1. "Introduction post: 5%
+  - 10. "Individual Essay (final): 10%
+  - 10. "Informal Speaking: 0%
+  - 11. "Benchmark: 0%
+  - 11. "Final Reflective Assignment: 10%
+  - 12. "Final Reflective Assignment: 10%
+  - 12. "Participation: 10%
+  - 13. "Participation: 10%
+  - 2. "Video response: 5%
+  - 3. "Annotation Assignment: 5%
+  - 3. "Benchmark 1: 0%
+  - 4. "Annotation Assignment: 5%
+  - 4. "Team-based Writing: 10%
+  - 5. "Team-based Writing: 10%
+  - 5. "Trade Myths Report (formative): 7.5%
+  - 6. "Trade Myths Report: 7.5%
+  - 6. "Trade Myths Report (summative): 7.5%
+  - 7. "Data Assignment: 10%
+  - 8. "Midterm Skills Reflection: 10%
+  - 9. "Individual Essay: 20%
+  - 9. "Individual Essay (draft): 10%
+
+
+==================================================
+[ARTS 160] Inquiry and Knowledge Creation Section 008 (Fall 2025)
+Total Weight: 130.00%
+--------------------
+All Assessments:
+  - Annotated Bibliography: 5%
+  - Communication Survey Analysi 1: 20%
+  - Course Reflection: 5%
+  - Debate & Discourse: 5%
+  - Engagement: 10%
+  - Gen AI Cover Letter: 5%
+  - NVB Team Worksheet: 10%
+  - Peer Review of Research Paper: 10%
+  - Research Paper Draft: 0%
+  - Research Paper Oral Presentation: 5%
+  - Research Paper Pitch: 5%
+  - Revised Research Paper: 20%
+  - Team Communication Survey Analysis (including results report and in-class presentation): 20%
+  - Team Communication Worksheet: 10%
+
+
+==================================================
+[ARTS 160] Inquiry and Knowledge Creation Section 024 (Fall 2025)
+Total Weight: 157.00%
+--------------------
+All Assessments:
+  - Annotated bibliography: 12%
+  - End-of-term reflection journal: 5%
+  - Final draft peer review: 5%
+  - Final research paper: 50%
+  - Five-minute presentation 1: 15%
+  - Five-minute presentation 2: 15%
+  - Group application assignment: 15%
+  - Mid-term reflection journal: 2%
+  - One-page proposal: 15%
+  - Participation: 20%
+  - Two-minute presentation: 3%
+
+
+==================================================
+[ARTS 160] Inquiry and Knowledge Creation: Haunted Houses Section 015 (Fall 2025)
+Total Weight: 114.50%
+--------------------
+Assessment Series Breakdown:
+  - "Participation Component 1..5": Total 15.00% (3% each)
+All Assessments:
+  - Attendance: 2%
+  - Critical Analysis Essay Final Draft: 8%
+  - Critical Analysis Essay First Draft: 4%
+  - Critical Analysis Essay Revision 1: 2%
+  - Informal Collaborative Project: 10%
+  - Participation Component 1: 3%
+  - Participation Component 2: 3%
+  - Participation Component 3: 3%
+  - Participation Component 4: 3%
+  - Participation Component 5: 3%
+  - Peer Review Workshop #1: 8%
+  - Peer Review Workshop #2: 8%
+  - Research Essay Annotated Bibliography: 10%
+  - Research Essay Café Presentation: 10%
+  - Research Essay Final Draft: 17%
+  - Research Essay First Draft: 8.5%
+  - Research Essay Proposal: 5%
+  - Research Essay Revision 1: 2%
+  - Skills Reflection: 5%
+
+
+==================================================
+[ARTS 160] Inquiry and Knowledge Creation – Section Title: "What Makes Something Original?" Section 018, 025 (Fall 2025)
+Total Weight: 125.00%
+--------------------
+All Assessments:
+  - Adaptation Roundtable: 5%
+  - Classroom Participation: 10%
+  - Conference Presentation: 10%
+  - Data Analysis Workshop: 5%
+  - Discussion Leader: 10%
+  - Final Reflection: 5%
+  - Practice Writing Portfolio: 10%
+  - Practice Writing Portfolio (best 10 of 12): 10%
+  - Research Assignment (Part 1): Research Worksheet: 5%
+  - Research Assignment (Part 2): Source Evaluations: 10%
+  - Research Assignment Total (Parts 1 and 2): 15%
+  - Research Essay (Part 1): Bordwell Evaluation: 5%
+  - Research Essay (Part 2): Essay Proposal: 5%
+  - Research Essay (Part 3): Peer Review: 5%
+  - Research Essay (Part 4): Final Paper (Meta-Essay): 15%
+
+
+==================================================
+[ARTS 490] GENE 404/ENBUS 475/ENVS 474/SCI 300/MTHEL 498/ARTS 490  Interdisciplinary Design Project 2 Section 001, 002 (Winter 2025)
+Total Weight: 102.50%
+--------------------
+All Assessments:
+  - *Intellectual Property Lecture Reflection: 2.5%
+  - Abstracts & team photo: 5%
+  - End-of-Term Individual reflection & advice for younger cohort 1: 5%
+  - Final Report + Appendice 1: 40%
+  - Final self & team member evaluation: 5%
+  - Graduate Attribute Gap Analysi 1: 5%
+  - Intellectual Property Analysi 1: 5%
+  - Intellectual Property Lecture**: 0%
+  - Research Ethics Guest Lecture Reflection: 2.5%
+  - Research Plan: 5%
+  - Symposium Pitch Practice: 10%
+  - Symposium Poster Presentation: 15%
+  - Welcome, Course Overview and Research Ethics Guest Lecture*: 2.5%
+
+
+==================================================
+[AVIA 416] Aviation Sustainability Section 001 (Winter 2025)
+Total Weight: 149.00%
+--------------------
+All Assessments:
+  - Deliverable 1: Proposal: 9%
+  - Deliverable 2: Proposal Presentation: 5%
+  - Deliverable 3: Paper Presentation: 25%
+  - Deliverable 4: Paper Submission: 5%
+  - Deliverable 5: Peer evaluations: 5%
+  - Participation: 10%
+  - Personal Profile: 5%
+  - Reflection: 10%
+  - Research Project: 60%
+  - SDG Assignment: 15%
+
+
+==================================================
+[BET 100] Foundations of Entrepreneurial Practice Section 081, 082 (Fall 2025)
+Total Weight: 154.00%
+--------------------
+Assessment Series Breakdown:
+  - "Quiz 1..8": Total 60.00% (7.5% each)
+All Assessments:
+  - Assignment #1: Calibration Exercise: 2%
+  - Assignment #2: Current Article Review: 8%
+  - Assignment #3: Create a Customer Perception Map: 10%
+  - Assignment #4: Review an Entrepreneur Like Me Video: 10%
+  - Chapter Question 1: 10%
+  - Dragon's Den Assignment: 30%
+  - Quiz 1: 7.5%
+  - Quiz 2: 7.5%
+  - Quiz 3: 7.5%
+  - Quiz 4: 7.5%
+  - Quiz 5: 7.5%
+  - Quiz 6: 7.5%
+  - Quiz 7: 7.5%
+  - Quiz 8: 7.5%
+  - Term Test #1: 12%
+  - Term Test #2: 12%
+
+
+==================================================
+[PSYCH 461] PSYCH 461
+          Fall 2025
+          
+            
+            Case Studies in Neuropsychology
+            
+          
+          
+          
+            Section 001 (Fall 2025)
+Total Weight: 212.00%
+--------------------
+Assessment Series Breakdown:
+  - ""Case Study Written Summary 1..3": Total 12.00% (4% each)
+  - "Case Study Written Summary 1..3": Total 12.00% (4% each)
+All Assessments:
+  - "Case Study Written Summary 1: 4%
+  - "Case Study Written Summary 2: 4%
+  - "Case Study Written Summary 3: 4%
+  - 1. **Individual Neuroimaging Presentation: 11%
+  - 2. **Term Test: 35%
+  - 3. **Group Case Study Presentation: 22%
+  - 4. **Case Study Written Summaries: 12%
+  - 5. **In-class Debate participation: 5%
+  - 6. **Debate final paper: 15%
+  - Case Study Written Summary 1: 4%
+  - Case Study Written Summary 2: 4%
+  - Case Study Written Summary 3: 4%
+  - Debate final paper: 15%
+  - Group Case Study Presentation: 22%
+  - In-class Debate participation: 5%
+  - Individual Neuroimaging Presentation: 11%
+  - Term Test: 35%
+
+
+==================================================
+[BET 320] Entrepreneurial Strategy Section 001 (Fall 2025)
+Total Weight: 115.00%
+--------------------
+Assessment Series Breakdown:
+  - "Quiz 1..10": Total 40.00% (4% each)
+All Assessments:
+  - Class Participation: 10%
+  - Group Venture Pitch: 20%
+  - Podcast Analysi 1: 15%
+  - Quiz 1: 4%
+  - Quiz 10: 4%
+  - Quiz 2: 4%
+  - Quiz 3: 4%
+  - Quiz 4: 4%
+  - Quiz 5: 4%
+  - Quiz 6: 4%
+  - Quiz 7: 4%
+  - Quiz 8: 4%
+  - Quiz 9: 4%
+  - Value Proposition Canva 1: 20%
+  - Your Big Idea and Self-Critique: 10%
+
+
+==================================================
+[BET 460] Business Negotiations Section 001 (Fall 2025)
+Total Weight: 140.00%
+--------------------
+All Assessments:
+  - Group Project: Paper-Presentation: 40%
+  - Journal-Report Assignment 1 (Individual): 20%
+  - Journal-Report Assignment 2 (Individual): 20%
+  - Negotiation Planning and Role Preparation (Individual): 15%
+  - Paper: 25%
+  - Participation (Individual): 5%
+  - Presentation: 15%
+  - Syllabus Quiz for accessing course materials (Individual): 0%
+
+
+==================================================
+[BIOL 220] Introduction to Plant Structure and Function Section 101-105 (Winter 2025)
+Total Weight: 101.00%
+--------------------
+Assessment Series Breakdown:
+  - "Term Test 1..3": Total 75.00% (25% each)
+All Assessments:
+  - Bonus Quiz: 1%
+  - Lab Notebook 1: 12%
+  - Lab Presentation: 3%
+  - Lab Quiz 1: 6%
+  - Short Film: 4%
+  - Term Test 1: 25%
+  - Term Test 2: 25%
+  - Term Test 3: 25%
+
+
+==================================================
+[BIOL 240] Fundamentals of Microbiology Section 001, 002 (Fall 2025)
+Total Weight: 125.26%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..3": Total 9.54% (3.18% each)
+  - "Quiz 1..4": Total 12.72% (3.18% each)
+All Assessments:
+  - Assignment 1: 3.18%
+  - Assignment 2: 3.18%
+  - Assignment 3: 3.18%
+  - Clicker Participation: 5%
+  - Final Exam: 48%
+  - Midterm 1: 25%
+  - Midterm 2: 25%
+  - Quiz 1: 3.18%
+  - Quiz 2: 3.18%
+  - Quiz 3: 3.18%
+  - Quiz 4: 3.18%
+
+
+==================================================
+[BIOL 432] Molecular Biotechnology 2 Section 001 (Winter 2025)
+Total Weight: 101.00%
+--------------------
+All Assessments:
+  - "LA-1 Forming Groups: 1%
+  - "LA-2 Sign up for Benchling: 1%
+  - "LA-3 CRISPR PIC2 gRNA design: 6%
+  - "LA-4A CRISPR design topic approval: 1%
+  - "LA-4B CRISPR project gRNA: 6%
+  - "LA-4C CRISPR project ssDNA: 8%
+  - "LA-4D Detailed protocol for CRISPR project: 8%
+  - "LA-5 Prepare for Term Exam 1: 4%
+  - "LA-6 Novel CRISPR presentation: 10%
+  - "LA-7 Peer Review: 6%
+  - "Term Test 1: 25%
+  - "Term Test 2: 25%
+
+
+==================================================
+[REC 100] REC 100
+          Fall 2025
+          
+            
+            Introduction to the Study of Recreation and Leisure
+            
+          
+          
+          
+            Section 001 (Fall 2025)
+Total Weight: 107.50%
+--------------------
+All Assessments:
+  - 1. Weekly Reflection 1: 7.5%
+  - 10. Quiz 3: 5%
+  - 11. Quiz 4: 5%
+  - 12. Final Exam: 30%
+  - 13. Professionalism: 5%
+  - 2. Weekly Reflection 2: 7.5%
+  - 3. Weekly Reflection 3: 7.5%
+  - 4. Weekly Reflection 4: 7.5%
+  - 5. Weekly Reflection 5: 7.5%
+  - 6. Weekly Reflection 6: 7.5%
+  - 7. Weekly Reflection 7: 7.5%
+  - 8. Quiz 1: 5%
+  - 9. Quiz 2: 5%
+
+
+==================================================
+[REC 202] HIST 205/REC 202
+          Spring 2025
+          
+            
+            History of Western Sport
+            
+          
+          
+          
+            Section 081 (Spring 2025)
+Total Weight: 118.00%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..3": Total 18.00% (6% each)
+  - "Discussion 1..5": Total 50.00% (10% each)
+All Assessments:
+  - Analytical Essay: 30%
+  - Assignment 1: 6%
+  - Assignment 2: 6%
+  - Assignment 3: 6%
+  - Discussion 1: 10%
+  - Discussion 2: 10%
+  - Discussion 3: 10%
+  - Discussion 4: 10%
+  - Discussion 5: 10%
+  - Quiz 1: 10%
+  - Quiz 2: 10%
+
+
+==================================================
+[REC 319] REC 319
+          Winter 2025
+          
+            
+            Event Planning and Design
+            
+          
+          
+          
+            Section 001 (Winter 2025)
+Total Weight: 115.02%
+--------------------
+Assessment Series Breakdown:
+  - "Event Analysis 1..3": Total 45.00% (15% each)
+  - "Experiential Learning Case 1..6": Total 70.02% (11.67% each)
+All Assessments:
+  - Event Analysis 1: 15%
+  - Event Analysis 2: 15%
+  - Event Analysis 3: 15%
+  - Experiential Learning Case 1: 11.67%
+  - Experiential Learning Case 2: 11.67%
+  - Experiential Learning Case 3: 11.67%
+  - Experiential Learning Case 4: 11.67%
+  - Experiential Learning Case 5: 11.67%
+  - Experiential Learning Case 6: 11.67%
+
+
+==================================================
+[REC 362] HLTH 352/GERON 352/KIN 352/REC 362/SOC 352
+          Winter 2025
+          
+            
+            Sociology of Aging
+            
+          
+          
+          
+            Section 001 (Winter 2025)
+Total Weight: 120.00%
+--------------------
+Assessment Series Breakdown:
+  - "Class Engagement 1..9": Total 13.50% (1.5% each)
+All Assessments:
+  - Class Engagement: 1.5%
+  - Class Engagement 10: 1.5%
+  - Class Engagement 2: 1.5%
+  - Class Engagement 3: 1.5%
+  - Class Engagement 4: 1.5%
+  - Class Engagement 5: 1.5%
+  - Class Engagement 6: 1.5%
+  - Class Engagement 7: 1.5%
+  - Class Engagement 8: 1.5%
+  - Class Engagement 9: 1.5%
+  - Final Exam: 25%
+  - Interview Transcript: 7%
+  - Midterm Exam: 20%
+  - Peer Review Assessment 1: 5%
+  - Peer Review Assessment 2: 5%
+  - Research Paper: 20%
+  - Research Paperwork: 3%
+  - Revised Paper (Optional): 20%
+
+
+==================================================
+[REC 450] REC 450
+          Fall 2025
+          
+            
+            Internship for Therapeutic Recreation
+            
+          
+          
+          
+            Section 001 (Fall 2025)
+Total Weight: 115.00%
+--------------------
+Assessment Series Breakdown:
+  - "Discussion Post # 1..5": Total 5.00% (1% each)
+  - "Reflective journal post 1..5": Total 25.00% (5% each)
+All Assessments:
+  - Case study: 10%
+  - Discussion Post #1: 1%
+  - Discussion Post #2: 1%
+  - Discussion Post #3: 1%
+  - Discussion Post #4: 1%
+  - Discussion Post #5: 1%
+  - Final performance evaluation: 40%
+  - Final project: 15%
+  - Midterm performance evaluation: 20%
+  - Reflective journal post 1: 5%
+  - Reflective journal post 2: 5%
+  - Reflective journal post 3: 5%
+  - Reflective journal post 4: 5%
+  - Reflective journal post 5: 5%
+
+
+==================================================
+[BET 340] Essentials of Entrepreneurial Planning and Execution Section 001 (Fall 2025)
+Total Weight: 142.00%
+--------------------
+All Assessments:
+  - 1. Syllabus Quiz: 0%
+  - 10. Marketplace Simulation Tournament: 16%
+  - 11. Group Projects: Paper: 14%
+  - 12. Group Projects: Presentation: 8%
+  - 2. Assignment 1: Equity Distribution: 14%
+  - 3. Assignment 2: Business Negotiations: 14%
+  - 4. Assignment 3: Better Conversations: 14%
+  - 5. Assignment 4: Pitching: 14%
+  - 6. Assignment 5: Cash Flow: 14%
+  - 7. Assignment 6: IP - Patents: 14%
+  - 8. Assignment 7: Pivots: 14%
+  - 9. Factile Business Jeopardy Tournament: 6%
+
+
+==================================================
+[BET 580] Consulting Section 001 (Fall 2025)
+Total Weight: 185.00%
+--------------------
+All Assessments:
+  - Business Problem Analysi 1: 25%
+  - Business Problem Analysis Report: 25%
+  - Class Participation: 5%
+  - Client Deliverable: 20%
+  - Client Deliverable Document (PowerPoint): 20%
+  - Course Engagement: 20%
+  - Team Assessment: 5%
+  - Team Consulting Pitch: 15%
+  - Team Consulting Pitch Presentation: 15%
+  - Team Consulting Proposal: 15%
+  - Team Consulting Proposal Document: 15%
+  - Team Contribution Feedback: 5%
+
+
+==================================================
+[BIOL 220] Introduction to Plant Structure and Function Section 001 (Winter 2025)
+Total Weight: 101.00%
+--------------------
+Assessment Series Breakdown:
+  - "Term Test 1..3": Total 75.00% (25% each)
+All Assessments:
+  - Bonus Quiz 1: 1%
+  - Lab Notebook 1: 12%
+  - Lab Presentation: 3%
+  - Lab Quiz 1: 6%
+  - Short Film: 4%
+  - Term Test 1: 25%
+  - Term Test 2: 25%
+  - Term Test 3: 25%
+
+
+==================================================
+[BIOL 382] AMATH 382/BIOL 382  Computational Modelling of Cellular Systems Section 001 (Winter 2024)
+Total Weight: 120.00%
+--------------------
+All Assessments:
+  - Midterm 1: 20%
+  - Midterm 2: 20%
+  - Oral Presentation: 18%
+  - Project Outline: 2%
+  - Term project (completed in pairs; written report and oral presentation): 40%
+  - Written Report: 20%
+
+
+==================================================
+[BIOL 434] Human Molecular Genetics Section 001 (Fall 2024)
+Total Weight: 127.30%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..10": Total 33.30% (3.33% each)
+  - "Quiz 1..8": Total 14.00% (1.75% each)
+All Assessments:
+  - Assignment 1: 3.33%
+  - Assignment 10: 3.33%
+  - Assignment 2: 3.33%
+  - Assignment 3: 3.33%
+  - Assignment 4: 3.33%
+  - Assignment 5: 3.33%
+  - Assignment 6: 3.33%
+  - Assignment 7: 3.33%
+  - Assignment 8: 3.33%
+  - Assignment 9: 3.33%
+  - Final Exam: 30%
+  - Group Presentation: 20%
+  - Quiz 1: 1.75%
+  - Quiz 2: 1.75%
+  - Quiz 3: 1.75%
+  - Quiz 4: 1.75%
+  - Quiz 5: 1.75%
+  - Quiz 6: 1.75%
+  - Quiz 7: 1.75%
+  - Quiz 8: 1.75%
+  - Term Test 1: 15%
+  - Term Test 2: 15%
+
+
+==================================================
+[RCS 121] RCS 121
+          Winter 2026
+          
+            
+            Evil
+            
+          
+          
+          
+            Section 081 (Winter 2026)
+Total Weight: 300.00%
+--------------------
+Potential Duplicates (Same Name):
+  - ""Quiz 1" appears 2 times (Weights: 20%, 20%)
+  - ""Quiz 2" appears 2 times (Weights: 20%, 20%)
+  - ""Quiz 3" appears 2 times (Weights: 20%, 20%)
+  - ""Quiz 4" appears 2 times (Weights: 20%, 20%)
+Assessment Series Breakdown:
+  - ""Quiz 1..8": Total 160.00% (20% each)
+All Assessments:
+  - "Quiz 1: 20%
+  - "Quiz 1: 20%
+  - "Quiz 2: 20%
+  - "Quiz 2: 20%
+  - "Quiz 3: 20%
+  - "Quiz 3: 20%
+  - "Quiz 4: 20%
+  - "Quiz 4: 20%
+  - "Written Assignment: 20%
+  - "Written Assignment undefined: 20%
+  - Quiz 1: Modules 1-3: 20%
+  - Quiz 2: Modules 4-6: 20%
+  - Quiz 3: Modules 7-9: 20%
+  - Quiz 4: Modules 10-12: 20%
+  - Written Assignment: 20%
+
+
+==================================================
+[REC 203] REC 203/SOC 210
+          Winter 2025
+          
+            
+            Sociology of Sport
+            
+          
+          
+          
+            Section 001 (Winter 2025)
+Total Weight: 130.00%
+--------------------
+Assessment Series Breakdown:
+  - "Content Club Check-In 1..4": Total 40.00% (10% each)
+All Assessments:
+  - Content Club Check-In 1: 10%
+  - Content Club Check-In 2: 10%
+  - Content Club Check-In 3: 10%
+  - Content Club Check-In 4: 10%
+  - Content Club Peer Evaluation: 15%
+  - Content Club Reflection: 25%
+  - Issue Analysis Paper: 25%
+  - Video Q&A: 25%
+
+
+==================================================
+[REC 251] REC 251
+          Spring 2025
+          
+            
+            Therapeutic Recreation: Developmental and Emotional Disabilities
+            
+          
+          
+          
+            Section 081 (Spring 2025)
+Total Weight: 105.00%
+--------------------
+Assessment Series Breakdown:
+  - ""Quiz 1..4": Total 20.00% (5% each)
+  - ""TR Practice Task 1..6": Total 30.00% (5% each)
+All Assessments:
+  - "Client Interview Video Assignment: 25%
+  - "Quiz 1: 5%
+  - "Quiz 2: 5%
+  - "Quiz 3: 5%
+  - "Quiz 4: 5%
+  - "TR Practice Final Reflection: 30%
+  - "TR Practice Task 1: 5%
+  - "TR Practice Task 2: 5%
+  - "TR Practice Task 3: 5%
+  - "TR Practice Task 4: 5%
+  - "TR Practice Task 5: 5%
+  - "TR Practice Task 6: 5%
+
+
+==================================================
+[BME 393L] Digital Systems Laboratory Section 001-004 (Winter 2025)
+Total Weight: 110.00%
+--------------------
+Assessment Series Breakdown:
+  - "Laboratories 1..4": Total 60.00% (5% each)
+All Assessments:
+  - Final Project: 50%
+  - Laboratories 1: 5%
+  - Laboratories 2: 5%
+  - Laboratories 3: 25%
+  - Laboratories 4: 25%
+
+
+==================================================
+[REC 420] REC 420
+          Winter 2025
+          
+            
+            Advanced Program Evaluation in Leisure Services
+            
+          
+          
+          
+            Section 001 (Winter 2025)
+Total Weight: 110.00%
+--------------------
+Assessment Series Breakdown:
+  - "Case Study 1..8": Total 90.00% (11.25% each)
+All Assessments:
+  - Case Study 1: 11.25%
+  - Case Study 2: 11.25%
+  - Case Study 3: 11.25%
+  - Case Study 4: 11.25%
+  - Case Study 5: 11.25%
+  - Case Study 6: 11.25%
+  - Case Study 7: 11.25%
+  - Case Study 8: 11.25%
+  - Final Individual Assignment: 10%
+  - Intersectionality Learning Experience: 10%
+
+
+==================================================
+[SDS 331R] SDS 331R
+          Fall 2025
+          
+            
+            Social Inequality, Social Justice, and Social Action
+            
+          
+          
+          
+            Section 081 (Fall 2025)
+Total Weight: 221.44%
+--------------------
+Assessment Series Breakdown:
+  - ""Discussion and Collaborative Activity 1..8": Total 11.44% (1.43% each)
+  - ""Social Movement Assignment: Part 1..3": Total 45.00% (10% each)
+  - "Social Movement Assignment: Part 1..3": Total 45.00% (10% each)
+All Assessments:
+  - "Assignment 1: 25%
+  - "Assignment 2: 25%
+  - "Discussion and Collaborative Activity 1: 1.43%
+  - "Discussion and Collaborative Activity 2: 1.43%
+  - "Discussion and Collaborative Activity 3: 1.43%
+  - "Discussion and Collaborative Activity 4: 1.43%
+  - "Discussion and Collaborative Activity 5: 1.43%
+  - "Discussion and Collaborative Activity 6: 1.43%
+  - "Discussion and Collaborative Activity 7: 1.43%
+  - "Discussion and Collaborative Activity 8: 1.43%
+  - "Quiz 1: 5%
+  - "Social Movement Assignment: Part 1: 10%
+  - "Social Movement Assignment: Part 2: 10%
+  - "Social Movement Assignment: Part 3: 25%
+  - Assignment 1: Double Take 1: 25%
+  - Assignment 2: Double Take 2: 25%
+  - Discussion and Collaborative Activitie 1: 10%
+  - Quiz: 5%
+  - Social Movement Assignment: Part 1: 10%
+  - Social Movement Assignment: Part 2: 10%
+  - Social Movement Assignment: Part 3: 25%
+
+
+==================================================
+[BIOL 483] Animal Cell Biotechnology Section 001 (Winter 2025)
+Total Weight: 101.00%
+--------------------
+All Assessments:
+  - Animal Biotech Presentation: 15%
+  - Animal Biotech Topic Submission: 1%
+  - Attendance for Animal Biotech Presentation 1: 2%
+  - Culture Club Presentation: 15%
+  - Group Contract Submission: 1%
+  - Peer Evaluation: 5%
+  - Question Submission & Participation in Culture Club: 2%
+  - Term Exam 1: 30%
+  - Term Exam 2: 30%
+
+
+==================================================
+[BME 162] Human Factors in the Design of Biomedical and Health Systems Section 001, 101, 201 (Winter 2025)
+Total Weight: 103.00%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..6": Total 36.00% (6% each)
+  - "Test 1..3": Total 60.00% (20% each)
+All Assessments:
+  - Assignment 1: 6%
+  - Assignment 2: 6%
+  - Assignment 3: 6%
+  - Assignment 4: 6%
+  - Assignment 5: 6%
+  - Assignment 6: 6%
+  - Ethics Quiz: 5%
+  - Ethics: TCPS2 Core Certificate: 2%
+  - Test 1: 20%
+  - Test 2: 20%
+  - Test 3: 20%
+
+
+==================================================
+[CHE 101] Chemical Engineering Concepts 2 Section 001, 201 (Spring 2025)
+Total Weight: 118.52%
+--------------------
+Assessment Series Breakdown:
+  - "Concept Check 1..11": Total 20.02% (1.82% each)
+  - "Discussion 1..10": Total 2.50% (0.25% each)
+  - "Module Assignment 1..3": Total 15.00% (5% each)
+  - "Tutorial Problem 1..11": Total 11.00% (1% each)
+All Assessments:
+  - Concept Check 1: 1.82%
+  - Concept Check 10: 1.82%
+  - Concept Check 11: 1.82%
+  - Concept Check 2: 1.82%
+  - Concept Check 3: 1.82%
+  - Concept Check 4: 1.82%
+  - Concept Check 5: 1.82%
+  - Concept Check 6: 1.82%
+  - Concept Check 7: 1.82%
+  - Concept Check 8: 1.82%
+  - Concept Check 9: 1.82%
+  - Discussion 1: 0.25%
+  - Discussion 10: 0.25%
+  - Discussion 2: 0.25%
+  - Discussion 3: 0.25%
+  - Discussion 4: 0.25%
+  - Discussion 5: 0.25%
+  - Discussion 6: 0.25%
+  - Discussion 7: 0.25%
+  - Discussion 8: 0.25%
+  - Discussion 9: 0.25%
+  - Final Examination: 30%
+  - Laboratory: 20%
+  - Midterm Test: 20%
+  - Module Assignment 1: 5%
+  - Module Assignment 2: 5%
+  - Module Assignment 3: 5%
+  - Tutorial Problem 1: 1%
+  - Tutorial Problem 10: 1%
+  - Tutorial Problem 11: 1%
+  - Tutorial Problem 2: 1%
+  - Tutorial Problem 3: 1%
+  - Tutorial Problem 4: 1%
+  - Tutorial Problem 5: 1%
+  - Tutorial Problem 6: 1%
+  - Tutorial Problem 7: 1%
+  - Tutorial Problem 8: 1%
+  - Tutorial Problem 9: 1%
+
+
+==================================================
+[CHE 161] Engineering Biology Section 001, 101, 201 (Spring 2025)
+Total Weight: 140.00%
+--------------------
+Assessment Series Breakdown:
+  - "Tutorial 1..12": Total 60.00% (5% each)
+All Assessments:
+  - Final Exam: 50%
+  - Midterm Exam: 30%
+  - Tutorial 1: 5%
+  - Tutorial 10: 5%
+  - Tutorial 11: 5%
+  - Tutorial 12: 5%
+  - Tutorial 2: 5%
+  - Tutorial 3: 5%
+  - Tutorial 4: 5%
+  - Tutorial 5: 5%
+  - Tutorial 6: 5%
+  - Tutorial 7: 5%
+  - Tutorial 8: 5%
+  - Tutorial 9: 5%
+
+
+==================================================
+[CHE 181] Chemical Engineering Design Studio 2 Section 001, 101, 201 (Spring 2025)
+Total Weight: 152.00%
+--------------------
+Assessment Series Breakdown:
+  - ""Quiz 1..8": Total 72.00% (9% each)
+All Assessments:
+  - "CAD Task 1: 15%
+  - "CAD Task 2: 15%
+  - "Final Report: 30%
+  - "Quiz 1: 9%
+  - "Quiz 2: 9%
+  - "Quiz 3: 9%
+  - "Quiz 4: 9%
+  - "Quiz 5: 9%
+  - "Quiz 6: 9%
+  - "Quiz 7: 9%
+  - "Quiz 8: 9%
+  - "Symposium: 20%
+
+
+==================================================
+[SCI 238] SCI 238
+          Fall 2025
+          
+            
+            Introductory Astronomy
+            
+          
+          
+          
+            Section 081 (Fall 2025)
+Total Weight: 118.16%
+--------------------
+Assessment Series Breakdown:
+  - ""Assignment 1..12": Total 38.16% (3.18% each)
+All Assessments:
+  - "Assignment 1: 3.18%
+  - "Assignment 10: 3.18%
+  - "Assignment 11: 3.18%
+  - "Assignment 12: 3.18%
+  - "Assignment 2: 3.18%
+  - "Assignment 3: 3.18%
+  - "Assignment 4: 3.18%
+  - "Assignment 5: 3.18%
+  - "Assignment 6: 3.18%
+  - "Assignment 7: 3.18%
+  - "Assignment 8: 3.18%
+  - "Assignment 9: 3.18%
+  - "Final Exam: 40%
+  - "Midterm 1: 20%
+  - "Midterm 2: 20%
+
+
+==================================================
+[SDS 150R] SDS 150R
+          Fall 2025
+          
+            
+            Lifespan Processes
+            
+          
+          
+          
+            Section 081 (Fall 2025)
+Total Weight: 109.00%
+--------------------
+Assessment Series Breakdown:
+  - "Quiz 1..19": Total 38.00% (2% each)
+  - "Reflective Journal 1..4": Total 25.00% (6.25% each)
+All Assessments:
+  - Bonus Reflective Journal: 1%
+  - Discussion: 10%
+  - Group Portfolio Presentation Step 2: Research Agenda: 2%
+  - Group Portfolio Presentation Step 3: Portfolio: 18%
+  - Group Portfolio Presentation Step 4: Individual Reflection and Annotated Bibliography: 5%
+  - Peer Evaluation: 10%
+  - Quiz 1: 2%
+  - Quiz 10: 2%
+  - Quiz 11: 2%
+  - Quiz 12: 2%
+  - Quiz 13: 2%
+  - Quiz 14: 2%
+  - Quiz 15: 2%
+  - Quiz 16: 2%
+  - Quiz 17: 2%
+  - Quiz 18: 2%
+  - Quiz 19: 2%
+  - Quiz 2: 2%
+  - Quiz 3: 2%
+  - Quiz 4: 2%
+  - Quiz 5: 2%
+  - Quiz 6: 2%
+  - Quiz 7: 2%
+  - Quiz 8: 2%
+  - Quiz 9: 2%
+  - Reflective Journal 1: 6.25%
+  - Reflective Journal 2: 6.25%
+  - Reflective Journal 3: 6.25%
+  - Reflective Journal 4: 6.25%
+
+
+==================================================
+[SDS 250R] SDS 250R
+          Fall 2025
+          
+            
+            Social Statistics
+            
+          
+          
+          
+            Section 081 (Fall 2025)
+Total Weight: 102.00%
+--------------------
+Assessment Series Breakdown:
+  - "Module Review Exercise 1..11": Total 22.00% (2% each)
+  - "Quiz 1..10": Total 20.00% (2% each)
+All Assessments:
+  - Assignment 1: 5%
+  - Assignment 2: 5%
+  - Final Examination: 50%
+  - Module Review Exercise 1: 2%
+  - Module Review Exercise 10: 2%
+  - Module Review Exercise 11: 2%
+  - Module Review Exercise 2: 2%
+  - Module Review Exercise 3: 2%
+  - Module Review Exercise 4: 2%
+  - Module Review Exercise 5: 2%
+  - Module Review Exercise 6: 2%
+  - Module Review Exercise 7: 2%
+  - Module Review Exercise 8: 2%
+  - Module Review Exercise 9: 2%
+  - Quiz 1: 2%
+  - Quiz 10: 2%
+  - Quiz 2: 2%
+  - Quiz 3: 2%
+  - Quiz 4: 2%
+  - Quiz 5: 2%
+  - Quiz 6: 2%
+  - Quiz 7: 2%
+  - Quiz 8: 2%
+  - Quiz 9: 2%
+
+
+==================================================
+[SDS 251R] SDS 251R
+          Fall 2025
+          
+            
+            Social Research Methods
+            
+          
+          
+          
+            Section 001 (Fall 2025)
+Total Weight: 124.00%
+--------------------
+All Assessments:
+  - Assessment 2: Survey Research Tool: 20%
+  - Assignment 1: 25%
+  - Assignment 2: 20%
+  - Assignment 3: Photovoice Project: 20%
+  - Bonus: Assignment 1: Draft Literature Review (Individual or Group): 2%
+  - Bonus: TCPS 2: CORE Tutorial: 2%
+  - Class Participation: 10%
+  - Final Test: 25%
+
+
+==================================================
+[CHE 313] CHE 313_F25 Section 001, 101 (Fall 2025)
+Total Weight: 102.02%
+--------------------
+Assessment Series Breakdown:
+  - "Assignments 1..6": Total 10.02% (1.67% each)
+  - "Quiz 1..4": Total 10.00% (2.5% each)
+All Assessments:
+  - Assignments 1: 1.67%
+  - Assignments 2: 1.67%
+  - Assignments 3: 1.67%
+  - Assignments 4: 1.67%
+  - Assignments 5: 1.67%
+  - Assignments 6: 1.67%
+  - Final: 55%
+  - In-Class Presentation (Bonus Mark): 2%
+  - Midterm: 25%
+  - Quiz 1: 2.5%
+  - Quiz 2: 2.5%
+  - Quiz 3: 2.5%
+  - Quiz 4: 2.5%
+
+
+==================================================
+[CHE 390] Chemical Engineering Lab 3 Section 001, 002 (Spring 2025)
+Total Weight: 196.00%
+--------------------
+All Assessments:
+  - In-lab submission: 4%
+  - Lab attendance and performance: 4%
+  - Lab quiz: 10%
+  - Lab report: 82%
+  - Prelab project proposal: 11%
+  - Project consultation meeting: 5%
+  - Project lab presentation: 15%
+  - Project lab report: 65%
+
+
+==================================================
+[CHE 491] Chemical Engineering Lab 5 Section 001, 002 (Winter 2025)
+Total Weight: 589.00%
+--------------------
+All Assessments:
+  - Bonus mark for accessing/participating in the course survey at the end of term: 1%
+  - Lab attendance and performance: 5%
+  - Lab Attendance and Performance: 5%
+  - Lab report: 70%
+  - Lab Report: 70%
+  - Prelab project proposal: 15%
+  - Prelab Project Proposal: 15%
+  - Presentation of the first project lab: 12%
+  - Project consultation: 10%
+  - Project Consultation: 10%
+  - Project Lab 1: 44%
+  - Project Lab 1 Consultation: 10%
+  - Project Lab 1 Lab Attendance and Performance: 5%
+  - Project Lab 1 Lab Report: 70%
+  - Project Lab 1 Prelab Project Proposal: 15%
+  - Project Lab 2: 44%
+  - Project Lab 2 Consultation: 10%
+  - Project Lab 2 Lab Attendance and Performance: 5%
+  - Project Lab 2 Lab Report: 70%
+  - Project Lab 2 Prelab Project Proposal: 15%
+  - Project Lab Report 1: 88%
+
+
+==================================================
+[SDS 350R] SDS 350R
+          Fall 2025
+          
+            
+            Adult Life Crises and Events
+            
+          
+          
+          
+            Section 001 (Fall 2025)
+Total Weight: 141.64%
+--------------------
+Assessment Series Breakdown:
+  - ""Presentation 1..8": Total 66.64% (8.33% each)
+All Assessments:
+  - "Module: 5%
+  - "Nuggets of Wisdom: 5%
+  - "Pamphlet Day: 15%
+  - "Presentation 1: 8.33%
+  - "Presentation 2: 8.33%
+  - "Presentation 3: 8.33%
+  - "Presentation 4: 8.33%
+  - "Presentation 5: 8.33%
+  - "Presentation 6: 8.33%
+  - "Presentation 7: 8.33%
+  - "Presentation 8: 8.33%
+  - "Reflection: 10%
+  - "Test: 40%
+
+
+==================================================
+[SDS 405R] SDS 405R
+          Fall 2024
+          
+            
+            Cosmopolitanism and Social Development
+            
+          
+          
+          
+            Section 081 (Fall 2024)
+Total Weight: 103.75%
+--------------------
+Assessment Series Breakdown:
+  - "Discussion Session 1..9": Total 28.75% (2.5% each)
+All Assessments:
+  - Book Review: 40%
+  - Debate Paper: 25%
+  - Discussion Session 1: 2.5%
+  - Discussion Session 10: 3.75%
+  - Discussion Session 11: 3.75%
+  - Discussion Session 2: 2.5%
+  - Discussion Session 3: 2.5%
+  - Discussion Session 4: 2.5%
+  - Discussion Session 7: 3.75%
+  - Discussion Session 8: 3.75%
+  - Discussion Session 9: 3.75%
+  - Double Take: 5%
+  - First Take: 5%
+
+
+==================================================
+[SE 491] SE 491/CS 494
+          Winter 2025
+          
+            
+            Design Project 2
+            
+          
+          
+          
+            Section 001 (Winter 2025)
+Total Weight: 180.00%
+--------------------
+All Assessments:
+  - Abstract Materials for Symposium Day Booklet: 5%
+  - Design Doc undefined: 16%
+  - Final Report Material 1: 80%
+  - Requirements Spec: 16%
+  - Short Demo Video (~3 minutes): 5%
+  - Symposium Day Poster+Demo: 10%
+  - Technical Presentation Video (~20 minutes): 16%
+  - User Manual and Deployment Information: 16%
+  - Verification and Validation: 16%
+
+
+==================================================
+[SOCWK 300R] SOCWK 300R
+          Fall 2025
+          
+            
+            Canadian Social Welfare Policy
+            
+          
+          
+          
+            Section 081 (Fall 2025)
+Total Weight: 123.00%
+--------------------
+Assessment Series Breakdown:
+  - "Critical Reflection Journal 1..6": Total 60.00% (10% each)
+All Assessments:
+  - Critical Reflection Journal 1: 10%
+  - Critical Reflection Journal 2: 10%
+  - Critical Reflection Journal 3: 10%
+  - Critical Reflection Journal 4: 10%
+  - Critical Reflection Journal 5: 10%
+  - Critical Reflection Journal 6: 10%
+  - Engaging Each Other's Work: 10%
+  - Peer Engagement: 3%
+  - Short Essay: 20%
+  - Summative Project Proposal: 5%
+  - Summative Project: Completed Project: 25%
+
+
+==================================================
+[CHE 483] Group Design Project and Symposium Section 001, 002 (Winter 2025)
+Total Weight: 105.00%
+--------------------
+All Assessments:
+  - Brochure summary + group picture: 10%
+  - Final report: 35%
+  - Peer Review: 5%
+  - Personal reflection: 10%
+  - Progress meeting: 5%
+  - Symposium poster: 15%
+  - Time log 1: 5%
+  - Video presentation for non-technical audience: 10%
+  - Video presentation for technical audience: 10%
+
+
+==================================================
+[CHEM 125L] Chemical Reaction Laboratory 2 Section 001, 002 (Winter 2025)
+Total Weight: 130.00%
+--------------------
+Assessment Series Breakdown:
+  - ""Post-lab report 1..5": Total 30.00% (6% each)
+  - ""Pre-lab assignment 1..5": Total 20.00% (4% each)
+All Assessments:
+  - "Post-lab report 1: 6%
+  - "Post-lab report 2: 6%
+  - "Post-lab report 3: 6%
+  - "Post-lab report 4: 6%
+  - "Post-lab report 5: 6%
+  - "Practical lab exam: 15%
+  - "Pre-lab assignment 1: 4%
+  - "Pre-lab assignment 2: 4%
+  - "Pre-lab assignment 3: 4%
+  - "Pre-lab assignment 4: 4%
+  - "Pre-lab assignment 5: 4%
+  - "Written final exam: 25%
+  - Practical lab exam: 15%
+  - Written final exam: 25%
+
+
+==================================================
+[CHEM 212] Structure and Bonding Section 001 (Spring 2025)
+Total Weight: 113.25%
+--------------------
+Assessment Series Breakdown:
+  - ""Problem Set 1..5": Total 6.25% (1.25% each)
+  - ""Quiz 1..8": Total 32.00% (4% each)
+All Assessments:
+  - "Final Exam: 40%
+  - "Problem Set 1: 1.25%
+  - "Problem Set 2: 1.25%
+  - "Problem Set 3: 1.25%
+  - "Problem Set 4: 1.25%
+  - "Problem Set 5: 1.25%
+  - "Quiz 1: 4%
+  - "Quiz 2: 4%
+  - "Quiz 3: 4%
+  - "Quiz 4: 4%
+  - "Quiz 5: 4%
+  - "Quiz 6: 4%
+  - "Quiz 7: 4%
+  - "Quiz 8: 4%
+  - "Term Test 1: 17.5%
+  - "Term Test 2: 17.5%
+
+
+==================================================
+[CHEM 233] L  Fundamentals of Biochemistry Laboratory Section 001 (Spring 2025)
+Total Weight: 121.00%
+--------------------
+Assessment Series Breakdown:
+  - "Informal Lab Report 1..6": Total 48.00% (8% each)
+  - "Lab Performance 1..8": Total 24.00% (3% each)
+  - "Pre-Lab Assignment 1..8": Total 16.00% (2% each)
+  - "Pre-Lab Quiz 1..8": Total 8.00% (1% each)
+All Assessments:
+  - Final Test: 20%
+  - Informal Lab Report 1: 8%
+  - Informal Lab Report 2: 8%
+  - Informal Lab Report 3: 8%
+  - Informal Lab Report 4: 8%
+  - Informal Lab Report 5: 8%
+  - Informal Lab Report 6: 8%
+  - Lab Book: 5%
+  - Lab Performance 1: 3%
+  - Lab Performance 2: 3%
+  - Lab Performance 3: 3%
+  - Lab Performance 4: 3%
+  - Lab Performance 5: 3%
+  - Lab Performance 6: 3%
+  - Lab Performance 7: 3%
+  - Lab Performance 8: 3%
+  - Pre-Lab Assignment 1: 2%
+  - Pre-Lab Assignment 2: 2%
+  - Pre-Lab Assignment 3: 2%
+  - Pre-Lab Assignment 4: 2%
+  - Pre-Lab Assignment 5: 2%
+  - Pre-Lab Assignment 6: 2%
+  - Pre-Lab Assignment 7: 2%
+  - Pre-Lab Assignment 8: 2%
+  - Pre-Lab Quiz 1: 1%
+  - Pre-Lab Quiz 2: 1%
+  - Pre-Lab Quiz 3: 1%
+  - Pre-Lab Quiz 4: 1%
+  - Pre-Lab Quiz 5: 1%
+  - Pre-Lab Quiz 6: 1%
+  - Pre-Lab Quiz 7: 1%
+  - Pre-Lab Quiz 8: 1%
+
+
+==================================================
+[SOC 352] HLTH 352/GERON 352/KIN 352/REC 362/SOC 352
+          Winter 2025
+          
+            
+            Sociology of Aging
+            
+          
+          
+          
+            Section 001 (Winter 2025)
+Total Weight: 120.00%
+--------------------
+Assessment Series Breakdown:
+  - "Class Engagement 1..9": Total 13.50% (1.5% each)
+All Assessments:
+  - (Optional) Revised Paper: 20%
+  - Class Engagement: 1.5%
+  - Class Engagement 10: 1.5%
+  - Class Engagement 2: 1.5%
+  - Class Engagement 3: 1.5%
+  - Class Engagement 4: 1.5%
+  - Class Engagement 5: 1.5%
+  - Class Engagement 6: 1.5%
+  - Class Engagement 7: 1.5%
+  - Class Engagement 8: 1.5%
+  - Class Engagement 9: 1.5%
+  - Final Exam: 25%
+  - Interview Transcript: 7%
+  - Midterm Exam: 20%
+  - Peer Review Assessment 1: 5%
+  - Peer Review Assessment 2: 5%
+  - Research Paper: 20%
+  - Research Paperwork: 3%
+
+
+==================================================
+[SOC 423] LS 423/SOC 423
+          Fall 2025
+          
+            
+            Peers and Crime
+            
+          
+          
+          
+            Section 001 (Fall 2025)
+Total Weight: 206.00%
+--------------------
+Assessment Series Breakdown:
+  - "Discussion Contribution Week 1..6": Total 36.00% (6% each)
+All Assessments:
+  - Descriptive outline: 5%
+  - Descriptive outline undefined: 5%
+  - Discussion Contribution Week 1: 6%
+  - Discussion Contribution Week 2: 6%
+  - Discussion Contribution Week 3: 6%
+  - Discussion Contribution Week 4: 6%
+  - Discussion Contribution Week 5: 6%
+  - Discussion Contribution Week 6: 6%
+  - Final group paper: 30%
+  - Final group paper undefined: 30%
+  - Group work contract: 15%
+  - Peer evaluation: 15%
+  - Peer evaluations of group work contribution 1: 30%
+  - Weekly check-in: 5%
+  - Weekly check-in Week 7: 5%
+  - Weekly discussion contribution 1: 30%
+
+
+==================================================
+[SOCWK 120R] SOCWK 120R
+          Fall 2025
+          
+            
+            Introduction to Social Work
+            
+          
+          
+          
+            Section 081 (Fall 2025)
+Total Weight: 112.52%
+--------------------
+Assessment Series Breakdown:
+  - "Group Case Study 1..3": Total 30.00% (10% each)
+  - "Quiz 1..7": Total 20.02% (2.86% each)
+  - "Reflection Activity 1..15": Total 37.50% (2.5% each)
+All Assessments:
+  - Group Case Study 1: 10%
+  - Group Case Study 2: 10%
+  - Group Case Study 3: 10%
+  - Poster: 25%
+  - Quiz 1: 2.86%
+  - Quiz 2: 2.86%
+  - Quiz 3: 2.86%
+  - Quiz 4: 2.86%
+  - Quiz 5: 2.86%
+  - Quiz 6: 2.86%
+  - Quiz 7: 2.86%
+  - Reflection Activity 1: 2.5%
+  - Reflection Activity 10: 2.5%
+  - Reflection Activity 11: 2.5%
+  - Reflection Activity 12: 2.5%
+  - Reflection Activity 13: 2.5%
+  - Reflection Activity 14: 2.5%
+  - Reflection Activity 15: 2.5%
+  - Reflection Activity 2: 2.5%
+  - Reflection Activity 3: 2.5%
+  - Reflection Activity 4: 2.5%
+  - Reflection Activity 5: 2.5%
+  - Reflection Activity 6: 2.5%
+  - Reflection Activity 7: 2.5%
+  - Reflection Activity 8: 2.5%
+  - Reflection Activity 9: 2.5%
+
+
+==================================================
+[CHEM 265] L  Organic Chemistry Laboratory 1 Section 001, 002 (Spring 2025)
+Total Weight: 143.35%
+--------------------
+Assessment Series Breakdown:
+  - "Postlab Assignment 1..5": Total 58.35% (11.67% each)
+  - "Prelab Assignment 1..5": Total 50.00% (10% each)
+All Assessments:
+  - Experiment Plan of Action: 5%
+  - Lab Notebook: 5%
+  - Lab Performance: 10%
+  - Postlab Assignment 1: 11.67%
+  - Postlab Assignment 2: 11.67%
+  - Postlab Assignment 3: 11.67%
+  - Postlab Assignment 4: 11.67%
+  - Postlab Assignment 5: 11.67%
+  - Practical Lab Exam: 10%
+  - Prelab Assignment 1: 10%
+  - Prelab Assignment 2: 10%
+  - Prelab Assignment 3: 10%
+  - Prelab Assignment 4: 10%
+  - Prelab Assignment 5: 10%
+  - Preliminary Lab Quiz 1: 5%
+
+
+==================================================
+[SOCWK 301R] SOCWK 301R
+          Fall 2025
+          
+            
+            Understanding Diversity in Canada
+            
+          
+          
+          
+            Section 001 (Fall 2025)
+Total Weight: 113.35%
+--------------------
+Assessment Series Breakdown:
+  - "In-Class Group Case Study 1..3": Total 30.00% (10% each)
+  - "Reflection Activity 1..5": Total 33.35% (6.67% each)
+All Assessments:
+  - In-Class Group Case Study 1: 10%
+  - In-Class Group Case Study 2: 10%
+  - In-Class Group Case Study 3: 10%
+  - Non-Comfort Zone Experience Paper: 20%
+  - Reflection Activity 1: 6.67%
+  - Reflection Activity 2: 6.67%
+  - Reflection Activity 3: 6.67%
+  - Reflection Activity 4: 6.67%
+  - Reflection Activity 5: 6.67%
+  - Self-Awareness Paper: 30%
+
+
+==================================================
+[SPAN 101] SPAN 101
+          Fall 2025
+          
+            
+            Introduction to Spanish 1
+            
+          
+          
+          
+            Section 001, 101, 102 (Fall 2025)
+Total Weight: 103.81%
+--------------------
+Assessment Series Breakdown:
+  - "Online Homework 1..10": Total 18.80% (1.88% each)
+  - "Short Online Quiz 1..7": Total 10.01% (1.43% each)
+All Assessments:
+  - Composition: 8%
+  - Final Activity: 10%
+  - Final Exam: 25%
+  - LAB Attendance/Participation: 7.5%
+  - LAB Attendance/Participation 2: 7.5%
+  - LEC Attendance/Participation: 5%
+  - Midterm: 12%
+  - Online Homework 1: 1.88%
+  - Online Homework 10: 1.88%
+  - Online Homework 2: 1.88%
+  - Online Homework 3: 1.88%
+  - Online Homework 4: 1.88%
+  - Online Homework 5: 1.88%
+  - Online Homework 6: 1.88%
+  - Online Homework 7: 1.88%
+  - Online Homework 8: 1.88%
+  - Online Homework 9: 1.88%
+  - Short Online Quiz 1: 1.43%
+  - Short Online Quiz 2: 1.43%
+  - Short Online Quiz 3: 1.43%
+  - Short Online Quiz 4: 1.43%
+  - Short Online Quiz 5: 1.43%
+  - Short Online Quiz 6: 1.43%
+  - Short Online Quiz 7: 1.43%
+
+
+==================================================
+[SPAN 102] SPAN 102
+          Winter 2025
+          
+            
+            Introduction to Spanish 2
+            
+          
+          
+          
+            Section 081 (Winter 2025)
+Total Weight: 141.64%
+--------------------
+Assessment Series Breakdown:
+  - "Quiz 1..8": Total 66.64% (8.33% each)
+All Assessments:
+  - Final Examination - On-campu 1: 35%
+  - Online Homework (Viva Supersite - VHL Central): 20%
+  - Quiz 1: 8.33%
+  - Quiz 2: 8.33%
+  - Quiz 3: 8.33%
+  - Quiz 4: 8.33%
+  - Quiz 5: 8.33%
+  - Quiz 6: 8.33%
+  - Quiz 7: 8.33%
+  - Quiz 8: 8.33%
+  - Virtual Conversation Groups (Participation and Attendance - MS Teams)**: 20%
+
+
+==================================================
+[CHEM 265L] Organic Chemistry Laboratory 1 Section 001, 002 (Spring 2025)
+Total Weight: 155.00%
+--------------------
+Assessment Series Breakdown:
+  - "Postlab Assignment 1..10": Total 70.00% (7% each)
+  - "Prelab Assignment 1..5": Total 50.00% (10% each)
+All Assessments:
+  - Experiment Plan of Action 1: 5%
+  - Lab Notebook: 5%
+  - Lab Performance: 10%
+  - Postlab Assignment 1: 7%
+  - Postlab Assignment 10: 7%
+  - Postlab Assignment 2: 7%
+  - Postlab Assignment 3: 7%
+  - Postlab Assignment 4: 7%
+  - Postlab Assignment 5: 7%
+  - Postlab Assignment 6: 7%
+  - Postlab Assignment 7: 7%
+  - Postlab Assignment 8: 7%
+  - Postlab Assignment 9: 7%
+  - Practical Lab Exam: 10%
+  - Prelab Assignment 1: 10%
+  - Prelab Assignment 2: 10%
+  - Prelab Assignment 3: 10%
+  - Prelab Assignment 4: 10%
+  - Prelab Assignment 5: 10%
+  - Preliminary Lab Quiz 1: 5%
+
+
+==================================================
+[CHEM 267L] Organic Chemistry Laboratory Section 001-003 (Winter 2025)
+Total Weight: 102.00%
+--------------------
+Assessment Series Breakdown:
+  - "Experimental Outline 1..6": Total 18.00% (3% each)
+  - "Laboratory Performance for Experiment 1..6": Total 12.00% (2% each)
+  - "Laboratory Report for Experiment 1..4": Total 48.00% (12% each)
+All Assessments:
+  - Experimental Outline 1: 3%
+  - Experimental Outline 2: 3%
+  - Experimental Outline 3: 3%
+  - Experimental Outline 4: 3%
+  - Experimental Outline 5: 3%
+  - Experimental Outline 6: 3%
+  - Laboratory Performance: 12%
+  - Laboratory Performance for Experiment 1: 2%
+  - Laboratory Performance for Experiment 2: 2%
+  - Laboratory Performance for Experiment 3: 2%
+  - Laboratory Performance for Experiment 4: 2%
+  - Laboratory Performance for Experiment 5: 2%
+  - Laboratory Performance for Experiment 6: 2%
+  - Laboratory Report for Experiment 1: 12%
+  - Laboratory Report for Experiment 2: 12%
+  - Laboratory Report for Experiment 4: 12%
+  - Laboratory Report for Experiment 5: 12%
+  - Laboratory Worksheet for Experiment 3: 6%
+  - Laboratory Worksheet for Experiment 6: 6%
+
+
+==================================================
+[CHEM 363] Organic Process Chemistry Section 001 (Winter 2025)
+Total Weight: 165.00%
+--------------------
+Assessment Series Breakdown:
+  - ""Group Assignment 1..10": Total 30.00% (3% each)
+All Assessments:
+  - "Final Exam: 35%
+  - "Group Assignment 1: 3%
+  - "Group Assignment 10: 3%
+  - "Group Assignment 2: 3%
+  - "Group Assignment 3: 3%
+  - "Group Assignment 4: 3%
+  - "Group Assignment 5: 3%
+  - "Group Assignment 6: 3%
+  - "Group Assignment 7: 3%
+  - "Group Assignment 8: 3%
+  - "Group Assignment 9: 3%
+  - Final: 35%
+  - Group Peer Evaluation: 2.5%
+  - Group Term Paper: 20%
+  - Group Term Paper Peer student and marking: 2.5%
+  - In-class group assignment 1: 30%
+  - In-class participation, i-clicker question 1: 10%
+
+
+==================================================
+[CHINA 101R] First-Year Chinese 1 Section 001 (Fall 2025)
+Total Weight: 101.60%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..6": Total 18.00% (3% each)
+  - "Quiz 1..5": Total 53.60% (10.4% each)
+All Assessments:
+  - Assignment 1: 3%
+  - Assignment 2: 3%
+  - Assignment 3: 3%
+  - Assignment 4: 3%
+  - Assignment 5: 3%
+  - Assignment 6: 3%
+  - Attendance & Participation: 20%
+  - Oral Exam: 10%
+  - Quiz 1: 10.4%
+  - Quiz 2: 10.4%
+  - Quiz 3: 10.4%
+  - Quiz 4: 10.4%
+  - Quiz 5: 12%
+
+
+==================================================
+[CHINA 120R] Advanced First-Year Chinese Section 001 (Fall 2025)
+Total Weight: 120.00%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..3": Total 30.00% (10% each)
+  - "Quiz 1..14": Total 70.00% (5% each)
+All Assessments:
+  - Assignment 1: 10%
+  - Assignment 2: 10%
+  - Assignment 3: 10%
+  - Class Performance: 10%
+  - Oral Exam: 10%
+  - Quiz 1: 5%
+  - Quiz 10: 5%
+  - Quiz 11: 5%
+  - Quiz 12: 5%
+  - Quiz 13: 5%
+  - Quiz 14: 5%
+  - Quiz 2: 5%
+  - Quiz 3: 5%
+  - Quiz 4: 5%
+  - Quiz 5: 5%
+  - Quiz 6: 5%
+  - Quiz 7: 5%
+  - Quiz 8: 5%
+  - Quiz 9: 5%
+
+
+==================================================
+[CIVE 121] Computational Methods Section 001, 101 (Winter 2025)
+Total Weight: 105.00%
+--------------------
+Assessment Series Breakdown:
+  - "Quiz 1..4": Total 90.00% (15% each)
+All Assessments:
+  - Attendance: 15%
+  - Quiz 1: 15%
+  - Quiz 2: 20%
+  - Quiz 3: 25%
+  - Quiz 4: 30%
+
+
+==================================================
+[CIVE 123] Electrical Circuits and Instrumentation Section 001 (Winter 2025)
+Total Weight: 116.34%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..13": Total 41.34% (3.18% each)
+All Assessments:
+  - Assignment 1: 3.18%
+  - Assignment 10: 3.18%
+  - Assignment 11: 3.18%
+  - Assignment 12: 3.18%
+  - Assignment 13: 3.18%
+  - Assignment 2: 3.18%
+  - Assignment 3: 3.18%
+  - Assignment 4: 3.18%
+  - Assignment 5: 3.18%
+  - Assignment 6: 3.18%
+  - Assignment 7: 3.18%
+  - Assignment 8: 3.18%
+  - Assignment 9: 3.18%
+  - Course Project: 15%
+  - Final Exam: 35%
+  - Midterm: 25%
+
+
+==================================================
+[CLAS 252] /HIST 252  Roman History Section 001 (Winter 2023)
+Total Weight: 105.00%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..3": Total 30.00% (10% each)
+  - "Quiz 1..10": Total 75.00% (7.5% each)
+All Assessments:
+  - Assignment 1: 10%
+  - Assignment 2: 10%
+  - Assignment 3: 10%
+  - Quiz 1: 7.5%
+  - Quiz 10: 7.5%
+  - Quiz 2: 7.5%
+  - Quiz 3: 7.5%
+  - Quiz 4: 7.5%
+  - Quiz 5: 7.5%
+  - Quiz 6: 7.5%
+  - Quiz 7: 7.5%
+  - Quiz 8: 7.5%
+  - Quiz 9: 7.5%
+
+
+==================================================
+[STAT 230] STAT 230
+          Fall 2025
+          
+            
+            Probability
+            
+          
+          
+          
+            Section 001-004, 101-104, 201 (Fall 2025)
+Total Weight: 110.00%
+--------------------
+Assessment Series Breakdown:
+  - "Tutorial Quiz 1..5": Total 25.00% (5% each)
+All Assessments:
+  - Final Exam: 45%
+  - Midterm Test 1: 25%
+  - Midterm Test 2: 15%
+  - Tutorial Quiz 1: 5%
+  - Tutorial Quiz 2: 5%
+  - Tutorial Quiz 3: 5%
+  - Tutorial Quiz 4: 5%
+  - Tutorial Quiz 5: 5%
+
+
+==================================================
+[STAT 231] STAT 231
+          Fall 2025
+          
+            
+            Statistics
+            
+          
+          
+          
+            Section 001-004, 101-104, 201 (Fall 2025)
+Total Weight: 200.00%
+--------------------
+Potential Duplicates (Same Name):
+  - "Midterm 1" appears 2 times (Weights: 20%, 20%)
+  - "Midterm 2" appears 2 times (Weights: 20%, 20%)
+Assessment Series Breakdown:
+  - "Assignment 1..4": Total 0.00% (0% each)
+  - "Midterm 1..4": Total 80.00% (20% each)
+All Assessments:
+  - Assignment 1: 0%
+  - Assignment 2: 0%
+  - Assignment 3: 0%
+  - Assignment 4: 0%
+  - Final Exam: 60%
+  - Final Exam undefined: 60%
+  - Midterm 1: 20%
+  - Midterm 1: 20%
+  - Midterm 2: 20%
+  - Midterm 2: 20%
+
+
+==================================================
+[STAT 435] STAT 435/STAT 835
+          Winter 2025
+          
+            
+            Statistical Methods for Process Improvements
+            
+          
+          
+          
+            Section 001 (Winter 2025)
+Total Weight: 139.00%
+--------------------
+All Assessments:
+  - Class Discussion Lead: 2%
+  - Final Exam (STAT 435): 55%
+  - Final Exam (STAT 835): 50%
+  - Management Review Meeting Critique 1: 2%
+  - Management Review Meeting Critique 2: 2%
+  - Management Review Meeting Presentation 1: 3%
+  - Management Review Meeting Presentation 2: 3%
+  - Paper Review (only STAT 835): 5%
+  - Take Home Midterm: 15%
+  - Weekly Process Improvement Game Written Report 1: 2%
+
+
+==================================================
+[STAT 441] STAT 441/CM 763/STAT 841
+          Fall 2025
+          
+            
+            Statistical Learning - Classification
+            
+          
+          
+          
+            Section 001 (Fall 2025)
+Total Weight: 120.00%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..5": Total 50.00% (10% each)
+All Assessments:
+  - Assignment 1: 10%
+  - Assignment 2: 10%
+  - Assignment 3: 10%
+  - Assignment 4: 10%
+  - Assignment 5: 10%
+  - Final: 30%
+  - Project report: 40%
+
+
+==================================================
+[SWREN 470R] SWREN 470R
+          Spring 2025
+          
+            
+            Mental Health Landscapes, Concepts, and Practice Approaches
+            
+          
+          
+          
+            Section 001, 002 (Spring 2025)
+Total Weight: 430.00%
+--------------------
+Potential Duplicates (Same Name):
+  - ""Assignment 1, Part 1" appears 2 times (Weights: 20%, 20%)
+  - ""Assignment 1, Part 2" appears 2 times (Weights: 10%, 10%)
+  - ""Assignment 2, Part 1" appears 2 times (Weights: 20%, 20%)
+  - ""Assignment 2, Part 2" appears 2 times (Weights: 10%, 10%)
+  - ""Assignment 3, Part 1" appears 2 times (Weights: 5%, 5%)
+  - ""Assignment 3, Part 2" appears 2 times (Weights: 15%, 15%)
+Assessment Series Breakdown:
+  - ""Assignment 1, Part 1..4": Total 60.00% (20% each)
+  - ""Assignment 2, Part 1..4": Total 60.00% (20% each)
+  - ""Assignment 3, Part 1..4": Total 40.00% (5% each)
+All Assessments:
+  - "Assignment 1, Part 1: 20%
+  - "Assignment 1, Part 1: 20%
+  - "Assignment 1, Part 2: 10%
+  - "Assignment 1, Part 2: 10%
+  - "Assignment 2, Part 1: 20%
+  - "Assignment 2, Part 1: 20%
+  - "Assignment 2, Part 2: 10%
+  - "Assignment 2, Part 2: 10%
+  - "Assignment 3, Part 1: 5%
+  - "Assignment 3, Part 1: 5%
+  - "Assignment 3, Part 2: 15%
+  - "Assignment 3, Part 2: 15%
+  - 1. Assignment 1: 30%
+  - 2. Assignment 2: 30%
+  - 3. Assignment 3: 20%
+  - Assignment 1 (total): 30%
+  - Assignment 1: Decolonizing Mental Health and Substance Use Conceptualizations and Responses: 30%
+  - Assignment 2 (total): 30%
+  - Assignment 2: Critiquing AI Therapy Tools: 30%
+  - Assignment 3 (total): 20%
+  - Assignment 3: Mental Health and Substance Use Film Proposal and Presentation: 20%
+  - Group Contract: 5%
+  - Group Contract undefined: 5%
+  - In-Class Participation: 10%
+  - In-Class Participation undefined: 10%
+
+
+==================================================
+[CO 487] Applied Cryptography Section 001 (Winter 2026)
+Total Weight: 105.40%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..5": Total 20.00% (4% each)
+  - "Quiz 1..10": Total 15.40% (1.54% each)
+All Assessments:
+  - Assignment 1: 4%
+  - Assignment 2: 4%
+  - Assignment 3: 4%
+  - Assignment 4: 4%
+  - Assignment 5: 4%
+  - Final Exam: 50%
+  - Midterm: 20%
+  - Quiz 1: 1.54%
+  - Quiz 10: 1.54%
+  - Quiz 2: 1.54%
+  - Quiz 3: 1.54%
+  - Quiz 4: 1.54%
+  - Quiz 5: 1.54%
+  - Quiz 6: 1.54%
+  - Quiz 7: 1.54%
+  - Quiz 8: 1.54%
+  - Quiz 9: 1.54%
+
+
+==================================================
+[STAT 340] STAT 340
+          Spring 2025
+          
+            
+            Stochastic Simulation Methods
+            
+          
+          
+          
+            Section 101, 001 (Spring 2025)
+Total Weight: 102.00%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..3": Total 16.00% (6% each)
+  - "Midterm 1..3": Total 64.00% (25% each)
+  - "Quiz 1..3": Total 12.00% (4% each)
+All Assessments:
+  - Assignment 2: 6%
+  - Assignment 3: 6%
+  - Assignment 4: 4%
+  - Assignments 1: 6%
+  - iClicker (BONUS): 2%
+  - Midterm 1: 25%
+  - Midterm 2: 22%
+  - Midterm 3: 17%
+  - Online Diary Entry: 2%
+  - Quiz 1: 4%
+  - Quiz 2: 4%
+  - Quiz 3: 4%
+
+
+==================================================
+[STAT 371] STAT 371
+          Fall 2025
+          
+            
+            Applied Linear Models and Process Improvement for Business
+            
+          
+          
+          
+            Section 001, 101 (Fall 2025)
+Total Weight: 130.00%
+--------------------
+Potential Duplicates (Same Name):
+  - "Assignment 1" appears 2 times (Weights: 5%, 5%)
+Assessment Series Breakdown:
+  - "Assignment 1..4": Total 20.00% (5% each)
+All Assessments:
+  - Assignment 1: 5%
+  - Assignment 1: 5%
+  - Assignment 2: 5%
+  - Assignment 3: 5%
+  - Online Quiz 1: 10%
+  - Participation (Clicker): 15%
+  - Participation (Clickers): 15%
+  - Quiz 1: 10%
+  - Test 1 (60 mins): 20%
+  - Test 2 (60 mins): 20%
+  - Test 3 (60 mins): 20%
+
+
+==================================================
+[STAT 440] CM 761/STAT 440/STAT 840
+          Spring 2025
+          
+            
+            Computational Inference
+            
+          
+          
+          
+            Section 001 (Spring 2025)
+Total Weight: 230.00%
+--------------------
+Potential Duplicates (Same Name):
+  - "Assignments 1" appears 2 times (Weights: 6%, 10%)
+  - "Assignments 2" appears 2 times (Weights: 6%, 10%)
+  - "Assignments 3" appears 2 times (Weights: 6%, 10%)
+  - "Assignments 4" appears 2 times (Weights: 6%, 10%)
+  - "Assignments 5" appears 2 times (Weights: 6%, 10%)
+Assessment Series Breakdown:
+  - "Assignments 1..10": Total 80.00% (6% each)
+All Assessments:
+  - Assignments 1: 6%
+  - Assignments 1: 10%
+  - Assignments 2: 6%
+  - Assignments 2: 10%
+  - Assignments 3: 6%
+  - Assignments 3: 10%
+  - Assignments 4: 6%
+  - Assignments 4: 10%
+  - Assignments 5: 6%
+  - Assignments 5: 10%
+  - Final Exam: 60%
+  - Final Exam 2: 50%
+  - Midterm: 20%
+  - Midterm 2: 20%
+
+
+==================================================
+[COMM 432] Electronic Business Section 001 (Winter 2025)
+Total Weight: 122.54%
+--------------------
+Assessment Series Breakdown:
+  - "Fun Quiz 1..12": Total 5.04% (0.42% each)
+  - "Group Project Progress Report 1..4": Total 35.00% (8.75% each)
+All Assessments:
+  - Bonu 1: 5%
+  - Final Exam: 35%
+  - Fun Quiz 1: 0.42%
+  - Fun Quiz 10: 0.42%
+  - Fun Quiz 11: 0.42%
+  - Fun Quiz 12: 0.42%
+  - Fun Quiz 2: 0.42%
+  - Fun Quiz 3: 0.42%
+  - Fun Quiz 4: 0.42%
+  - Fun Quiz 5: 0.42%
+  - Fun Quiz 6: 0.42%
+  - Fun Quiz 7: 0.42%
+  - Fun Quiz 8: 0.42%
+  - Fun Quiz 9: 0.42%
+  - Group Project: 8.75%
+  - Group Project Presentation: 8.75%
+  - Group Project Progress Report 1: 8.75%
+  - Group Project Progress Report 2: 8.75%
+  - Group Project Progress Report 3: 8.75%
+  - Group Project Progress Report 4: 8.75%
+  - Individual Presentation: 5%
+  - Midterm Exam: 20%
+
+
+==================================================
+[COMMST 100] Interpersonal Communication Section 003 (Winter 2025)
+Total Weight: 225.00%
+--------------------
+All Assessments:
+  - Annotated Bibliography: 40%
+  - Dear Friend: 30%
+  - Dear Journal: 15%
+  - Lecture Note 1: 20%
+  - Meme 1: 20%
+  - Reading Note 1: 40%
+  - Relationship Analysis Paper: 20%
+  - Territorial Acknowledgment & Warmup: 40%
+
+
+==================================================
+[COMMST 191] Communication in the Engineering Profession (AE, CIVE, ENVE, GEOE) Section 005 (Fall 2025)
+Total Weight: 140.00%
+--------------------
+All Assessments:
+  - Final Reflection: 15%
+  - Participation: 20%
+  - Pitch Proposal Oral: 20%
+  - Pitch Proposal Written: 20%
+  - Progress Report Oral: 20%
+  - Progress Report Written: 20%
+  - Recommendation Report: 25%
+
+
+==================================================
+[STAT 442] STAT 442/STAT 842/CM 762
+          Fall 2025
+          
+            
+            Data Visualization
+            
+          
+          
+          
+            Section 001 (Fall 2025)
+Total Weight: 106.65%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..5": Total 16.65% (3.33% each)
+All Assessments:
+  - Assignment 1: 3.33%
+  - Assignment 2: 3.33%
+  - Assignment 3: 3.33%
+  - Assignment 4: 3.33%
+  - Assignment 5: 3.33%
+  - Data Collection: 5%
+  - Final Exam: 60%
+  - Midterm: 25%
+
+
+==================================================
+[STAT 454] STAT 854/STAT 454
+          Winter 2024
+          
+            
+            Sampling Theory and Practice
+            
+          
+          
+          
+            Section 001 (Winter 2024)
+Total Weight: 130.00%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..4": Total 30.00% (7.5% each)
+All Assessments:
+  - Assignment 1: 7.5%
+  - Assignment 2: 7.5%
+  - Assignment 3: 7.5%
+  - Assignment 4: 7.5%
+  - Final exam: 40%
+  - Final project: 30%
+  - Midterm exam: 30%
+
+
+==================================================
+[STV 208] STV 208
+          Winter 2025
+          
+            
+            Artificial Intelligence and Society: Impact, Ethics, and Equity
+            
+          
+          
+          
+            Section 001 (Winter 2025)
+Total Weight: 106.50%
+--------------------
+Assessment Series Breakdown:
+  - "In-class Engagement 1..12": Total 24.00% (2% each)
+  - "Quiz 1..11": Total 27.50% (2.5% each)
+All Assessments:
+  - Assignment 1: 25%
+  - Assignment 2: 30%
+  - In-class Engagement 1: 2%
+  - In-class Engagement 10: 2%
+  - In-class Engagement 11: 2%
+  - In-class Engagement 12: 2%
+  - In-class Engagement 2: 2%
+  - In-class Engagement 3: 2%
+  - In-class Engagement 4: 2%
+  - In-class Engagement 5: 2%
+  - In-class Engagement 6: 2%
+  - In-class Engagement 7: 2%
+  - In-class Engagement 8: 2%
+  - In-class Engagement 9: 2%
+  - Quiz 1: 2.5%
+  - Quiz 10: 2.5%
+  - Quiz 11: 2.5%
+  - Quiz 2: 2.5%
+  - Quiz 3: 2.5%
+  - Quiz 4: 2.5%
+  - Quiz 5: 2.5%
+  - Quiz 6: 2.5%
+  - Quiz 7: 2.5%
+  - Quiz 8: 2.5%
+  - Quiz 9: 2.5%
+
+
+==================================================
+[SYDE 112] SYDE 112
+          Spring 2025
+          
+            
+            Calculus 2
+            
+          
+          
+          
+            Section 001, 101 (Spring 2025)
+Total Weight: 205.00%
+--------------------
+Assessment Series Breakdown:
+  - ""Quiz 1..7": Total 35.00% (5% each)
+All Assessments:
+  - "Final Exam: 40%
+  - "Midterm: 30%
+  - "Quiz 1: 5%
+  - "Quiz 2: 5%
+  - "Quiz 3: 5%
+  - "Quiz 4: 5%
+  - "Quiz 5: 5%
+  - "Quiz 6: 5%
+  - "Quiz 7: 5%
+  - Final Exam: 40%
+  - Midterm: 30%
+  - Quizzes (best 6 of 7): 30%
+
+
+==================================================
+[WKRPT 300] WKRPT 200/WKRPT 300/WKRPT 400
+          Fall 2025
+          
+            
+            Work-term Report
+            
+          
+          
+          
+            Section 002 (Fall 2025)
+Total Weight: 160.00%
+--------------------
+All Assessments:
+  - Report Communication: 36%
+  - Report Technical Content: 24%
+  - Work Term Report: 100%
+
+
+==================================================
+[WKRPT 400] WKRPT 200/WKRPT 300/WKRPT 400
+          Fall 2025
+          
+            
+            Work-term Report
+            
+          
+          
+          
+            Section 002 (Fall 2025)
+Total Weight: 330.00%
+--------------------
+All Assessments:
+  - Communication: 60%
+  - Technical Content: 40%
+  - Technical Content (A): 35%
+  - Technical Content (A+): 40%
+  - Technical Content (B): 30%
+  - Technical Content (C): 25%
+  - Work Term Report: 100%
+
+
+==================================================
+[SYDE 211] SYDE 211
+          Fall 2025
+          
+            
+            Calculus 3
+            
+          
+          
+          
+            Section 001, 101 (Fall 2025)
+Total Weight: 105.00%
+--------------------
+Assessment Series Breakdown:
+  - "Quiz 1..5": Total 25.00% (5% each)
+All Assessments:
+  - Final Exam: 45%
+  - Midterm: 30%
+  - Quiz 1: 5%
+  - Quiz 2: 5%
+  - Quiz 3: 5%
+  - Quiz 4: 5%
+  - Quiz 5: 5%
+  - Quizzes (best 4 of 5): 5%
+
+
+==================================================
+[COMMST 100] Interpersonal Communication Section 001 (Winter 2025)
+Total Weight: 109.99%
+--------------------
+Assessment Series Breakdown:
+  - "Dear Friend 1..3": Total 9.99% (3.33% each)
+  - "Lecture Notes 1..4": Total 5.00% (1.25% each)
+  - "Memes 1..4": Total 5.00% (1.25% each)
+  - "Reading Notes 1..4": Total 10.00% (2.5% each)
+All Assessments:
+  - Annotated Bibliography: 40%
+  - Dear Friend 1: 3.33%
+  - Dear Friend 2: 3.33%
+  - Dear Friend 3: 3.33%
+  - Lecture Notes 1: 1.25%
+  - Lecture Notes 2: 1.25%
+  - Lecture Notes 3: 1.25%
+  - Lecture Notes 4: 1.25%
+  - Memes 1: 1.25%
+  - Memes 2: 1.25%
+  - Memes 3: 1.25%
+  - Memes 4: 1.25%
+  - Reading Notes 1: 2.5%
+  - Reading Notes 2: 2.5%
+  - Reading Notes 3: 2.5%
+  - Reading Notes 4: 2.5%
+  - Relationship Analysis Paper: 20%
+  - Territorial Acknowledgment & Warmup 1: 10%
+  - Territorial Acknowledgment & Warmup 2: 10%
+
+
+==================================================
+[COMMST 191] Communication in the Engineering Profession (AE, CIVE, ENVE, GEOE) Section 006 (Fall 2025)
+Total Weight: 120.00%
+--------------------
+All Assessments:
+  - Annotated Bibliography: 15%
+  - Attendance: 5%
+  - Participation: 15%
+  - Presentation: 25%
+  - Progress Report: 15%
+  - Proposal/Pitch: 15%
+  - Recommendation Report: 20%
+  - Reflection: 5%
+  - Slide 1: 5%
+
+
+==================================================
+[COMMST 223] Public Speaking Section 018 (Fall 2025)
+Total Weight: 187.50%
+--------------------
+Assessment Series Breakdown:
+  - "90-Second Short Speech Exercise 1..3": Total 15.00% (5% each)
+  - "Minor Assignment 1..10": Total 10.00% (1% each)
+  - "Quiz 1..9": Total 13.50% (1.5% each)
+  - "Short Speech Exercise 1..3": Total 15.00% (5% each)
+All Assessments:
+  - 90-Second Short Speech Exercise 1: 5%
+  - 90-Second Short Speech Exercise 2: 5%
+  - 90-Second Short Speech Exercise 3: 5%
+  - Group Speech: Persuading a Local Audience: 16%
+  - Informing about your language (Solo Speech): 16%
+  - Minor Assignment 1: 1%
+  - Minor Assignment 10: 1%
+  - Minor Assignment 2: 1%
+  - Minor Assignment 3: 1%
+  - Minor Assignment 4: 1%
+  - Minor Assignment 5: 1%
+  - Minor Assignment 6: 1%
+  - Minor Assignment 7: 1%
+  - Minor Assignment 8: 1%
+  - Minor Assignment 9: 1%
+  - Minor Assignments Total (24 percent): 24%
+  - Persuading a Digital Audience (Solo Speech): 17%
+  - Persuading a Local Audience (Group Speech): 16%
+  - Quiz 1: 1.5%
+  - Quiz 2: 1.5%
+  - Quiz 3: 1.5%
+  - Quiz 4: 1.5%
+  - Quiz 5: 1.5%
+  - Quiz 6: 1.5%
+  - Quiz 7: 1.5%
+  - Quiz 8: 1.5%
+  - Quiz 9: 1.5%
+  - Quizzes Total (12 percent; 8 quizzes): 12%
+  - Short Speech Exercise 1: 5%
+  - Short Speech Exercise 2: 5%
+  - Short Speech Exercise 3: 5%
+  - Solo Speech: Informing about your language: 16%
+  - Solo Speech: Persuading a Digital Audience: 17%
+
+
+==================================================
+[CS 100] Introduction to Computing Through Applications Section 001, 101-103, 201, 104 (Fall 2025)
+Total Weight: 101.00%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..5": Total 26.00% (1% each)
+All Assessments:
+  - Assignment 0: 1%
+  - Assignment 1: 6.25%
+  - Assignment 2: 6.25%
+  - Assignment 3: 6.25%
+  - Assignment 4: 6.25%
+  - Class and Lab Participation: 10%
+  - Final Exam: 40%
+  - Midterm Exam: 25%
+
+
+==================================================
+[CS 106] Introduction to Computer Programming 2 Section 001 (Winter 2025)
+Total Weight: 114.30%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..8": Total 32.00% (4% each)
+  - "Concept Check 1..4": Total 6.00% (1.5% each)
+  - "Module Quiz 1..10": Total 33.30% (3.33% each)
+All Assessments:
+  - Assignment 1: 4%
+  - Assignment 2: 4%
+  - Assignment 3: 4%
+  - Assignment 4: 4%
+  - Assignment 5: 4%
+  - Assignment 6: 4%
+  - Assignment 7: 4%
+  - Assignment 8: 4%
+  - Concept Check 1: 1.5%
+  - Concept Check 2: 1.5%
+  - Concept Check 3: 1.5%
+  - Concept Check 4: 1.5%
+  - Final Exam: 30%
+  - Final Project: 8%
+  - Module Quiz 1: 3.33%
+  - Module Quiz 10: 3.33%
+  - Module Quiz 2: 3.33%
+  - Module Quiz 3: 3.33%
+  - Module Quiz 4: 3.33%
+  - Module Quiz 5: 3.33%
+  - Module Quiz 6: 3.33%
+  - Module Quiz 7: 3.33%
+  - Module Quiz 8: 3.33%
+  - Module Quiz 9: 3.33%
+  - Participation: 5%
+
+
+==================================================
+[CS 146] Elementary Algorithm Design and Data Abstraction (Advanced Level) Section 201, 001, 002, 101, 102 (Winter 2025)
+Total Weight: 116.27%
+--------------------
+Assessment Series Breakdown:
+  - "Assignments 1..6": Total 40.02% (6.67% each)
+All Assessments:
+  - Assignments 1: 6.67%
+  - Assignments 2: 6.67%
+  - Assignments 3: 6.67%
+  - Assignments 4: 6.67%
+  - Assignments 5: 6.67%
+  - Assignments 6: 6.67%
+  - Final Exam: 50%
+  - Midterm Exam: 25%
+  - Quizzes 1: 1.25%
+
+
+==================================================
+[SYDE 548] SYDE 548
+          Winter 2025
+          
+            
+            User Centred Design Methods
+            
+          
+          
+          
+            Section 001, 101 (Winter 2025)
+Total Weight: 118.00%
+--------------------
+All Assessments:
+  - Quiz 1 on Applied Statistics for small N: 6%
+  - Quiz 2 on Applied Statistics for small N: 6%
+  - Quiz 3 on Applied Statistics for small N: 6%
+  - Quiz 4 on Applied Statistics for small N: 6%
+  - Quiz 5 on Applied Statistics for small N: 6%
+  - Quiz 6 on Applied Statistics for small N: 6%
+  - Quiz 7 on Applied Statistics for small N: 6%
+  - Quiz 8 on Applied Statistics for small N: 6%
+  - UCD Learning Community Activities (Part 1): 5%
+  - UCD Learning Community Activities (Part 2): 5%
+  - UCD Methods Quiz: 10%
+  - User Research Diagnostic Quiz: 5%
+  - User Research Portfolio - Method 1: 30%
+  - User Research Portfolio - Persona Development Proces 1: 15%
+
+
+==================================================
+[SYDE 584] SYDE 584
+          Winter 2025
+          
+            
+            Physiological Systems and Biomedical Design
+            
+          
+          
+          
+            Section 001, 101 (Winter 2025)
+Total Weight: 101.50%
+--------------------
+Assessment Series Breakdown:
+  - "Class Activity 1..11": Total 16.50% (1.5% each)
+  - "Online Quiz 1..6": Total 12.00% (2% each)
+All Assessments:
+  - Class Activity 1: 1.5%
+  - Class Activity 10: 1.5%
+  - Class Activity 11: 1.5%
+  - Class Activity 2: 1.5%
+  - Class Activity 3: 1.5%
+  - Class Activity 4: 1.5%
+  - Class Activity 5: 1.5%
+  - Class Activity 6: 1.5%
+  - Class Activity 7: 1.5%
+  - Class Activity 8: 1.5%
+  - Class Activity 9: 1.5%
+  - In-person final exam: 25%
+  - Online Quiz 1: 2%
+  - Online Quiz 2: 2%
+  - Online Quiz 3: 2%
+  - Online Quiz 4: 2%
+  - Online Quiz 5: 2%
+  - Online Quiz 6: 2%
+  - Reflection on lab activitie 1: 3%
+  - Research & Design Outline Proposal 1: 10%
+  - Research & Design Outline Proposal 2: 10%
+  - Test 1: 10%
+  - Test 2: 15%
+
+
+==================================================
+[WKRPT 200] WKRPT 200/WKRPT 300/WKRPT 400
+          Fall 2025
+          
+            
+            Work-term Report
+            
+          
+          
+          
+            Section 002 (Fall 2025)
+Total Weight: 200.00%
+--------------------
+All Assessments:
+  - "Communication: 60%
+  - "Technical Content: 40%
+  - "Work Term Report: 100%
+
+
+==================================================
+[CS 330] Management Information Systems Section 001, 002 (Fall 2025)
+Total Weight: 110.00%
+--------------------
+Assessment Series Breakdown:
+  - "Quiz 1..10": Total 30.00% (3% each)
+All Assessments:
+  - Final: 50%
+  - Midterm: 30%
+  - Quiz 1: 3%
+  - Quiz 10: 3%
+  - Quiz 2: 3%
+  - Quiz 3: 3%
+  - Quiz 4: 3%
+  - Quiz 5: 3%
+  - Quiz 6: 3%
+  - Quiz 7: 3%
+  - Quiz 8: 3%
+  - Quiz 9: 3%
+
+
+==================================================
+[CS 446] /ECE 452/CS 646  Software Design and Architectures Section 001, 002 (Spring 2025)
+Total Weight: 310.00%
+--------------------
+All Assessments:
+  - "Final Exam: 30%
+  - "Graduate Student Project (CS646 only): 25%
+  - "Participation (In-Class): 5%
+  - "Project: 45%
+  - 1. **Project**: 45%
+  - 2. **Team Assignment 1**: 10%
+  - 3. **Team Assignment 2**: 10%
+  - 4. **Participation (In-Class)**: 5%
+  - 5. **Final Exam**: 30%
+  - 6. **Graduate Student Project (CS646 only)**: 25%
+  - Final Exam: 30%
+  - Graduate Student Project (CS646 only): 0%
+  - Participation (In-Class): 5%
+  - Project: 45%
+
+
+==================================================
+[CS 456] /CS 656  Computer Networks Section 001, 002, 101 (Fall 2025)
+Total Weight: 110.00%
+--------------------
+Assessment Series Breakdown:
+  - ""Programming Assignment 1..3": Total 30.00% (10% each)
+All Assessments:
+  - "Final: 35%
+  - "Midterm: 25%
+  - "Programming Assignment 1: 10%
+  - "Programming Assignment 2: 10%
+  - "Programming Assignment 3: 10%
+  - "Research Project Final Report: 9%
+  - "Research Project Online Presentation: 3%
+  - "Research Project Progress Report: 3%
+  - "Research Project Proposal: 5%
+
+
+==================================================
+[CS 479] AMATH 449/CS 479/CS 679  Neural Networks Section 001, 002, 101 (Fall 2025)
+Total Weight: 187.50%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..5": Total 37.50% (7.5% each)
+All Assessments:
+  - Assignment 1: 7.5%
+  - Assignment 2: 7.5%
+  - Assignment 3: 7.5%
+  - Assignment 4: 7.5%
+  - Assignment 5: 7.5%
+  - Final Exam: 30%
+  - Final Project 3: 40%
+  - In-Person Participation (Quizzes): 10%
+  - In-Person Participation (Vevox Quizzes): 10%
+  - Midterm 3: 30%
+  - Midterm 4: 30%
+
+
+==================================================
+[CS 489] /CS 698  Software Delivery Section 001, 101, 201 (Spring 2025)
+Total Weight: 131.68%
+--------------------
+Assessment Series Breakdown:
+  - "Exercises 1..12": Total 43.68% (3.64% each)
+All Assessments:
+  - Exercises 1: 3.64%
+  - Exercises 10: 3.64%
+  - Exercises 11: 3.64%
+  - Exercises 12: 3.64%
+  - Exercises 2: 3.64%
+  - Exercises 3: 3.64%
+  - Exercises 4: 3.64%
+  - Exercises 5: 3.64%
+  - Exercises 6: 3.64%
+  - Exercises 7: 3.64%
+  - Exercises 8: 3.64%
+  - Exercises 9: 3.64%
+  - Final Exam 1: 60%
+  - Project 1: 28%
+
+
+==================================================
+[CS 246] Object-Oriented Software Development Section 001-004, 101-108, 201 (Fall 2025)
+Total Weight: 109.67%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..5": Total 49.67% (8% each)
+All Assessments:
+  - Assignment 1: 8%
+  - Assignment 2: 8%
+  - Assignment 3: 8%
+  - Assignment 4: 10.67%
+  - Assignment 5: 15%
+  - Final Exam: 40%
+  - Midterm: 20%
+
+
+==================================================
+[CS 251] Computer Organization and Design Section 201, 001, 002, 102, 101 (Fall 2025)
+Total Weight: 102.36%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..6": Total 24.36% (3.18% each)
+All Assessments:
+  - Assignment 1: 3.18%
+  - Assignment 2: 4.5%
+  - Assignment 3: 4.5%
+  - Assignment 4: 4.5%
+  - Assignment 5: 4.5%
+  - Assignment 6: 3.18%
+  - Clicker Mark 1: 5%
+  - Final Exam: 50%
+  - Midterm: 23%
+
+
+==================================================
+[CS 445] /CS 645/ECE 451  Software Requirements Specification and Analysis Section 001, 101 (Fall 2025)
+Total Weight: 105.00%
+--------------------
+Assessment Series Breakdown:
+  - "Deliverable 1..7": Total 50.00% (2% each)
+  - "Quiz 1..4": Total 40.00% (10% each)
+All Assessments:
+  - Bonus for top 5 active students on Piazza: 5%
+  - Deliverable 1: 2%
+  - Deliverable 2: 8%
+  - Deliverable 3: 8%
+  - Deliverable 4: 8%
+  - Deliverable 5: 8%
+  - Deliverable 6: 8%
+  - Deliverable 7: 8%
+  - Participation: 10%
+  - Quiz 1: 10%
+  - Quiz 2: 10%
+  - Quiz 3: 10%
+  - Quiz 4: 10%
+
+
+==================================================
+[CS 454] /CS 654  Distributed Systems Section 001, 002 (Fall 2025)
+Total Weight: 130.00%
+--------------------
+All Assessments:
+  - "Development Project Part I: 10%
+  - "Development Project Part II: 20%
+  - "Exam: 45%
+  - "Project Part I: 10%
+  - "Project Part II: 25%
+  - "Research Project: 20%
+
+
+==================================================
+[CS 480] /CS 680  Introduction to Machine Learning Section 001, 002, 101 (Fall 2025)
+Total Weight: 105.00%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..4": Total 25.00% (5% each)
+All Assessments:
+  - Assignment 1: 5%
+  - Assignment 2: 5%
+  - Assignment 3: 7.5%
+  - Assignment 4: 7.5%
+  - Final: 30%
+  - Midterm: 25%
+  - Project: 25%
+
+
+==================================================
+[CS 494] SE 491/CS 494  Design Project 2 Section 001 (Winter 2025)
+Total Weight: 180.00%
+--------------------
+All Assessments:
+  - Final Report Design Doc 1: 16%
+  - Final Report Material 1: 80%
+  - Final Report Requirements Spec: 16%
+  - Final Report Technical Presentation Video: 16%
+  - Final Report User Manual and Deployment Information: 16%
+  - Final Report Verification and Validation: 16%
+  - Short Demo Video: 5%
+  - Symposium Day Abstract Materials for Symposium Day Booklet: 5%
+  - Symposium Day Poster+Demo: 10%
+
+
+==================================================
+[DAC 204] Introduction to Game Design Section 001 (Fall 2022)
+Total Weight: 130.00%
+--------------------
+Assessment Series Breakdown:
+  - "Discussion 1..8": Total 30.00% (3.75% each)
+All Assessments:
+  - Checkpoint 1 presentation: 20%
+  - Checkpoint 2 presentation: 20%
+  - Discussion 1: 3.75%
+  - Discussion 2: 3.75%
+  - Discussion 3: 3.75%
+  - Discussion 4: 3.75%
+  - Discussion 5: 3.75%
+  - Discussion 6: 3.75%
+  - Discussion 7: 3.75%
+  - Discussion 8: 3.75%
+  - In-class discussions (pass/fail): 15%
+  - Online Quiz 1: 15%
+  - Term Project presentation and game prototype: 30%
+
+
+==================================================
+[EARTH 232] Introductory Petrography Section 001, 101, 102 (Spring 2025)
+Total Weight: 110.88%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..4": Total 18.00% (4.5% each)
+  - "iClicker Question 1..8": Total 12.00% (1.5% each)
+  - "Pre-Lab Quiz 1..8": Total 16.00% (2% each)
+  - "Weekly Assignment 1..8": Total 22.88% (2.86% each)
+All Assessments:
+  - Assignment 1: 4.5%
+  - Assignment 2: 4.5%
+  - Assignment 3: 4.5%
+  - Assignment 4: 4.5%
+  - Final Exam: 30%
+  - Final Lab Exam: 12%
+  - iClicker Question 1: 1.5%
+  - iClicker Question 2: 1.5%
+  - iClicker Question 3: 1.5%
+  - iClicker Question 4: 1.5%
+  - iClicker Question 5: 1.5%
+  - iClicker Question 6: 1.5%
+  - iClicker Question 7: 1.5%
+  - iClicker Question 8: 1.5%
+  - Pre-Lab Quiz 1: 2%
+  - Pre-Lab Quiz 2: 2%
+  - Pre-Lab Quiz 3: 2%
+  - Pre-Lab Quiz 4: 2%
+  - Pre-Lab Quiz 5: 2%
+  - Pre-Lab Quiz 6: 2%
+  - Pre-Lab Quiz 7: 2%
+  - Pre-Lab Quiz 8: 2%
+  - Weekly Assignment 1: 2.86%
+  - Weekly Assignment 2: 2.86%
+  - Weekly Assignment 3: 2.86%
+  - Weekly Assignment 4: 2.86%
+  - Weekly Assignment 5: 2.86%
+  - Weekly Assignment 6: 2.86%
+  - Weekly Assignment 7: 2.86%
+  - Weekly Assignment 8: 2.86%
+
+
+==================================================
+[ECE 250] Algorithms and Data Structures Section 001 (Fall 2025)
+Total Weight: 110.00%
+--------------------
+Assessment Series Breakdown:
+  - ""Lab Project P 1..5": Total 40.00% (4% each)
+All Assessments:
+  - "Final Exam: 50%
+  - "Lab Project P0: 4%
+  - "Lab Project P1: 6%
+  - "Lab Project P2: 8%
+  - "Lab Project P3: 10%
+  - "Lab Project P4: 12%
+  - "Midterm Exam: 20%
+
+
+==================================================
+[ECE 405C] /ECE 730  Programming of Quantum Computing Algorithms Section 001, 002 (Winter 2025)
+Total Weight: 176.00%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..12": Total 36.00% (3% each)
+All Assessments:
+  - Assignment 1: 3%
+  - Assignment 10: 3%
+  - Assignment 11: 3%
+  - Assignment 12: 3%
+  - Assignment 2: 3%
+  - Assignment 3: 3%
+  - Assignment 4: 3%
+  - Assignment 5: 3%
+  - Assignment 6: 3%
+  - Assignment 7: 3%
+  - Assignment 8: 3%
+  - Assignment 9: 3%
+  - Final Exam (ECE 405C): 50%
+  - Final Exam (ECE 730-T37): 40%
+  - Final Project (ECE 405C): 20%
+  - Final Project (ECE 730-T37): 30%
+
+
+==================================================
+[ECE 444] Integrated Analog Electronics Section 001 (Winter 2025)
+Total Weight: 150.00%
+--------------------
+All Assessments:
+  - Final Exam (Scheme 1): 50%
+  - Final Exam (Scheme 2): 65%
+  - Midterm Exam (Scheme 1): 25%
+  - Midterm Exam (Scheme 2): 10%
+
+
+==================================================
+[ECE 452] CS 446/ECE 452/CS 646  Software Design and Architectures Section 001, 002 (Spring 2025)
+Total Weight: 131.68%
+--------------------
+Assessment Series Breakdown:
+  - "Team Assignment 1..4": Total 26.68% (6.67% each)
+All Assessments:
+  - Final Exam: 30%
+  - Graduate Student Project (CS646 only): 25%
+  - Participation (In-Class): 5%
+  - Project: 45%
+  - Team Assignment 1: 6.67%
+  - Team Assignment 2: 6.67%
+  - Team Assignment 3: 6.67%
+  - Team Assignment 4: 6.67%
+
+
+==================================================
+[EARTH 456] Numerical Methods in Hydrogeology Section 001 (Winter 2025)
+Total Weight: 105.00%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..5": Total 50.00% (10% each)
+All Assessments:
+  - Assignment 1: 10%
+  - Assignment 2: 10%
+  - Assignment 3: 10%
+  - Assignment 4: 10%
+  - Assignment 5: 10%
+  - Contribution (Bonus): 5%
+  - Final Exam: 50%
+
+
+==================================================
+[ECE 106] Electricity and Magnetism Section 001, 002, 101-106, 201-206 (Spring 2025)
+Total Weight: 105.00%
+--------------------
+Assessment Series Breakdown:
+  - "Lab # 1..5": Total 11.00% (2% each)
+All Assessments:
+  - Capacitive Sensor Design Activity: 2%
+  - Final Exam: 50%
+  - Lab #1: 2%
+  - Lab #2: 2%
+  - Lab #3: 2%
+  - Lab #4: 2.5%
+  - Lab #5: 2.5%
+  - Lab 1: 15%
+  - Lab Test: 2%
+  - Midterm Exam: 25%
+
+
+==================================================
+[ECE 488] Multivariable Control Systems Section 001, 101 (Winter 2025)
+Total Weight: 100.98%
+--------------------
+Assessment Series Breakdown:
+  - "Project Exercise 1..6": Total 19.98% (3.33% each)
+All Assessments:
+  - Bonus mark: 1%
+  - Final exam: 50%
+  - Project Exercise 1: 3.33%
+  - Project Exercise 2: 3.33%
+  - Project Exercise 3: 3.33%
+  - Project Exercise 4: 3.33%
+  - Project Exercise 5: 3.33%
+  - Project Exercise 6: 3.33%
+  - Test 1: 10%
+  - Test 2: 20%
+
+
+==================================================
+[EMLS 101R] Oral Communications for Academic Purposes Section 001 (Fall 2025)
+Total Weight: 107.00%
+--------------------
+All Assessments:
+  - Assignment 1: Group Discussion: 21%
+  - Assignment 2: Informative Contrast Presentation: 22%
+  - Assignment 3: Product Review Presentation: 25%
+  - Bonus for Conversational Activitie 1: 4%
+  - Final Self-reflection (included with A3): 3%
+  - Mini-assignment 1: Non-verbal Communication: 3%
+  - Mini-assignment 2: Clubs & Societies Day: 4%
+  - Mini-assignment 3: Pausing and Focus Words: 5%
+  - Mini-assignment 4: Co-presenting: 10%
+  - Participation and Professionalism: 10%
+
+
+==================================================
+[EMLS 129R] Written Academic English Section 001 (Fall 2025)
+Total Weight: 149.00%
+--------------------
+Assessment Series Breakdown:
+  - "Homework Assignment 1..8": Total 40.00% (5% each)
+  - "My eLab (ERPI) Quiz 1..8": Total 10.00% (1.25% each)
+All Assessments:
+  - Assignment 1: 10%
+  - Assignment 2 (Draft 1): 14%
+  - Assignment 2 (Draft 2): 16%
+  - Assignment 3 (Draft 1): 18%
+  - Assignment 3 (Draft 2): 3%
+  - Assignment 4 (Draft 1): 25%
+  - Assignment 4 (Draft 2): 5%
+  - Assignment 4a: 8%
+  - Homework Assignment 1: 5%
+  - Homework Assignment 2: 5%
+  - Homework Assignment 3: 5%
+  - Homework Assignment 4: 5%
+  - Homework Assignment 5: 5%
+  - Homework Assignment 6: 5%
+  - Homework Assignment 7: 5%
+  - Homework Assignment 8: 5%
+  - My eLab (ERPI) Quiz 1: 1.25%
+  - My eLab (ERPI) Quiz 2: 1.25%
+  - My eLab (ERPI) Quiz 3: 1.25%
+  - My eLab (ERPI) Quiz 4: 1.25%
+  - My eLab (ERPI) Quiz 5: 1.25%
+  - My eLab (ERPI) Quiz 6: 1.25%
+  - My eLab (ERPI) Quiz 7: 1.25%
+  - My eLab (ERPI) Quiz 8: 1.25%
+
+
+==================================================
+[EMLS 101R] Oral Communications for Academic Purposes Section 002 (Fall 2025)
+Total Weight: 107.00%
+--------------------
+All Assessments:
+  - Assignment 1: Group Discussion: 21%
+  - Assignment 2: Informative Contrast Presentation: 22%
+  - Assignment 3: Product Review Presentation (with a partner): 25%
+  - Mini-assignment 1: Non-verbal Communication: 3%
+  - Mini-assignment 2: Clubs & Societies Day: 4%
+  - Mini-assignment 3: Pausing and Focus Words: 5%
+  - Mini-assignment 4: Co-presenting (with peer review): 10%
+  - Participation and Professionalism: 10%
+  - Self-reflection on teamwork for Assignment 1: 2%
+  - Self-reflection on the presentation 1: 3%
+  - Self-reflections on A2: 2%
+
+
+==================================================
+[ENBUS 302] Strategies for Environment and Business Section 001 (Winter 2025)
+Total Weight: 129.44%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..4": Total 4.00% (1% each)
+  - "Case Response 1..4": Total 20.00% (5% each)
+  - "Quiz 1..8": Total 25.44% (3.18% each)
+All Assessments:
+  - Assignment 1: 1%
+  - Assignment 2: 1%
+  - Assignment 3: 1%
+  - Assignment 4: 1%
+  - Case Response 1: 5%
+  - Case Response 2: 5%
+  - Case Response 3: 5%
+  - Case Response 4: 5%
+  - Final Exam: 35%
+  - Midterm: 15%
+  - Quiz 1: 3.18%
+  - Quiz 2: 3.18%
+  - Quiz 3: 3.18%
+  - Quiz 4: 3.18%
+  - Quiz 5: 3.18%
+  - Quiz 6: 3.18%
+  - Quiz 7: 3.18%
+  - Quiz 8: 3.18%
+  - Strategy Project Part 1: Firm Selection and Team Contract: 1%
+  - Strategy Project Part 2: Environmental Scan & Current Strategy Orientation: 15%
+  - Strategy Project Part 3: Environmental strategy pitch presentation: 12%
+  - Strategy Project Part 4: Peer Pitch Feedback (individual): 1%
+  - Strategy Project Part 5: Self- and group-evaluation (individual submission): 1%
+
+
+==================================================
+[ENBUS 405] Introduction to Life Cycle Assessment ENBUS 405/Susm 675 Section 001 (Winter 2025)
+Total Weight: 106.97%
+--------------------
+Assessment Series Breakdown:
+  - "In-Class Exercises (ICE) 1..7": Total 11.97% (1.71% each)
+All Assessments:
+  - Critical Review Assignment (for SUSM 675): 15%
+  - In-Class Exercises (ICE) 1: 1.71%
+  - In-Class Exercises (ICE) 2: 1.71%
+  - In-Class Exercises (ICE) 3: 1.71%
+  - In-Class Exercises (ICE) 4: 1.71%
+  - In-Class Exercises (ICE) 5: 1.71%
+  - In-Class Exercises (ICE) 6: 1.71%
+  - In-Class Exercises (ICE) 7: 1.71%
+  - LCA Project - Final Presentation: 10%
+  - LCA Project - Part 1: Goal, Scope and LCI Document: 10%
+  - LCA Project - Part 2: Final LCA Report: 25%
+  - LCA Project - Part 2: openLCA Model Structure: 10%
+  - LCA Project - Project Calculation 1: 5%
+  - Life Cycle Impact Analysis Exercise: 1%
+  - Participation in Project Presentation 1: 4%
+  - Test (In-class for ENBUS 405): 15%
+
+
+==================================================
+[ENGL 101B] Introduction to Rhetorical Studies Section 081 (Fall 2025)
+Total Weight: 123.56%
+--------------------
+Assessment Series Breakdown:
+  - "Weekly Reading Response 1..12": Total 43.56% (3.63% each)
+All Assessments:
+  - Essay 1: 25%
+  - Essay 2: 25%
+  - Final Exam: 30%
+  - Weekly Reading Response 1: 3.63%
+  - Weekly Reading Response 10: 3.63%
+  - Weekly Reading Response 11: 3.63%
+  - Weekly Reading Response 12: 3.63%
+  - Weekly Reading Response 2: 3.63%
+  - Weekly Reading Response 3: 3.63%
+  - Weekly Reading Response 4: 3.63%
+  - Weekly Reading Response 5: 3.63%
+  - Weekly Reading Response 6: 3.63%
+  - Weekly Reading Response 7: 3.63%
+  - Weekly Reading Response 8: 3.63%
+  - Weekly Reading Response 9: 3.63%
+
+
+==================================================
+[ENGL 204] Designing Digital Video Section 001 (Spring 2025)
+Total Weight: 183.01%
+--------------------
+Assessment Series Breakdown:
+  - "Project 1..3": Total 83.00% (24% each)
+All Assessments:
+  - Attendance: 12%
+  - Day 1 Zine: 5%
+  - Project 1: 24%
+  - Project 1 Part 1 Preproduction Boards: 8%
+  - Project 1 Part 2 Footage: 8%
+  - Project 1 Part 3 Final Edited Video: 8%
+  - Project 2: 24%
+  - Project 2 Mandatory Presentation: 8%
+  - Project 2 Part 1 Preproduction Boards: 8%
+  - Project 2 Part 2 Final Social Video Promos: 8%
+  - Project 3: 35%
+  - Project 3 Part 1 Project Proposal and Treatment: 11.67%
+  - Project 3 Part 2 Rough Edit: 11.67%
+  - Project 3 Part 3 Final Film: 11.67%
+
+
+==================================================
+[ENGL 315] Modern Canadian Literature Section 081 (Fall 2024)
+Total Weight: 126.36%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..3": Total 30.00% (10% each)
+All Assessments:
+  - Assignment 1: 10%
+  - Assignment 2: 10%
+  - Assignment 3: 10%
+  - Essay: 25%
+  - Final Exam: 40%
+  - Midterm: 25%
+  - Quick Quiz 1: 3.18%
+  - Quick Quiz 2: 3.18%
+
+
+==================================================
+[ENVS 131] Communications for Environmental Professions Section 001 (Fall 2025)
+Total Weight: 155.00%
+--------------------
+All Assessments:
+  - "Academic Integrity Quiz: 0%
+  - "Argumentative Essay: 10%
+  - "Clarify: Empathize and Define (Individual): 10%
+  - "Critical Discussion (Debate): 10%
+  - "Debate Participation: 5%
+  - "Debate/Critical Discussion Worksheet (Individual): 5%
+  - "Design Thinking Project: 30%
+  - "Draft: 5%
+  - "Email & Business Letter: 10%
+  - "Final Oral Exam: 15%
+  - "Group contract: 5%
+  - "Ideate (Group): 5%
+  - "In-Class Activities x10: 10%
+  - "Peer Review x2: 5%
+  - "Prototype and Storyboard (Group): 10%
+  - "Reflection on Group Work & Group Member Evaluation (Individual): 5%
+  - "Tutorial Participation: 10%
+  - "Zotero Assignment: 5%
+
+
+==================================================
+[ENVE 382] Hydrology and Open Channel Flow Section 001, 101, 201 (Fall 2025)
+Total Weight: 128.00%
+--------------------
+Assessment Series Breakdown:
+  - ""Bi-weekly Assignment 1..16": Total 48.00% (3% each)
+All Assessments:
+  - "Bi-weekly Assignment 1: 3%
+  - "Bi-weekly Assignment 10: 3%
+  - "Bi-weekly Assignment 11: 3%
+  - "Bi-weekly Assignment 12: 3%
+  - "Bi-weekly Assignment 13: 3%
+  - "Bi-weekly Assignment 14: 3%
+  - "Bi-weekly Assignment 15: 3%
+  - "Bi-weekly Assignment 16: 3%
+  - "Bi-weekly Assignment 2: 3%
+  - "Bi-weekly Assignment 3: 3%
+  - "Bi-weekly Assignment 4: 3%
+  - "Bi-weekly Assignment 5: 3%
+  - "Bi-weekly Assignment 6: 3%
+  - "Bi-weekly Assignment 7: 3%
+  - "Bi-weekly Assignment 8: 3%
+  - "Bi-weekly Assignment 9: 3%
+  - "Final Exam: 30%
+  - "Laboratory Assignment: 20%
+  - "Midterm: 30%
+
+
+==================================================
+[ENVS 200] Field Ecology Section 001 (Fall 2025)
+Total Weight: 101.17%
+--------------------
+Assessment Series Breakdown:
+  - "Lecture 1..10": Total 15.00% (1.5% each)
+  - "Reading 1..20": Total 13.60% (0.68% each)
+All Assessments:
+  - Final Exam: 21%
+  - Lab 1: 5.07%
+  - Lab 1 Activity: 3%
+  - Lab 1 Participation: 1.5%
+  - Lab 2 Activity: 3%
+  - Lab 2 Participation: 1.5%
+  - Lab 3 Activity: 3%
+  - Lab 3 Participation: 1.5%
+  - Lab 4 Activity: 3%
+  - Lab 4 Participation: 1.5%
+  - Lab 5 Activity: 3%
+  - Lab 5 Participation: 1.5%
+  - Lab 6 Activity: 3%
+  - Lab 6 Participation: 1.5%
+  - Lab 7 Activity: 3%
+  - Lab 7 Participation: 1.5%
+  - Lecture 1: 1.5%
+  - Lecture 10: 1.5%
+  - Lecture 2: 1.5%
+  - Lecture 3: 1.5%
+  - Lecture 4: 1.5%
+  - Lecture 5: 1.5%
+  - Lecture 6: 1.5%
+  - Lecture 7: 1.5%
+  - Lecture 8: 1.5%
+  - Lecture 9: 1.5%
+  - Midterm: 15%
+  - Reading 1: 0.68%
+  - Reading 10: 0.68%
+  - Reading 11: 0.68%
+  - Reading 12: 0.68%
+  - Reading 13: 0.68%
+  - Reading 14: 0.68%
+  - Reading 15: 0.68%
+  - Reading 16: 0.68%
+  - Reading 17: 0.68%
+  - Reading 18: 0.68%
+  - Reading 19: 0.68%
+  - Reading 2: 0.68%
+  - Reading 20: 0.68%
+  - Reading 3: 0.68%
+  - Reading 4: 0.68%
+  - Reading 5: 0.68%
+  - Reading 6: 0.68%
+  - Reading 7: 0.68%
+  - Reading 8: 0.68%
+  - Reading 9: 0.68%
+
+
+==================================================
+[ENVS 210] Future Studies Section 081 (Spring 2025)
+Total Weight: 139.98%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..3": Total 9.54% (3.18% each)
+  - "Quiz 1..8": Total 25.44% (3.18% each)
+All Assessments:
+  - Assignment 1: 3.18%
+  - Assignment 2: 3.18%
+  - Assignment 3: 3.18%
+  - Foresight Exercise: Causal Layered Analysi 1: 2.5%
+  - Foresight Exercise: Comparative Characteristic 1: 2.5%
+  - Foresight Exercise: Creating Strategic Response 1: 5%
+  - Foresight Exercise: Critical Uncertaintie 1: 5%
+  - Foresight Exercise: Futures Wheel: 5%
+  - Foresight Exercise: Optimizing Strategic Response 1: 5%
+  - Foresight Exercise: Scenario Outline 1: 2.5%
+  - Foresight Exercise: Strategic Objectives, Risks, and Opportunitie 1: 5%
+  - Foresight Exercise: Three Horizon 1: 5%
+  - Foresight Exercise: Timeline of Change: 5%
+  - Foresight Exercise: Wind-Tunnelling Strategic Response 1: 5%
+  - Group Contract: 2.5%
+  - Project 1: Horizon Scan: 10%
+  - Project 2: Scenarios: 15%
+  - Project 3: Strategic Responses: 10%
+  - Project 4: Summative Report: 20%
+  - Quiz 1: 3.18%
+  - Quiz 2: 3.18%
+  - Quiz 3: 3.18%
+  - Quiz 4: 3.18%
+  - Quiz 5: 3.18%
+  - Quiz 6: 3.18%
+  - Quiz 7: 3.18%
+  - Quiz 8: 3.18%
+
+
+==================================================
+[ENVS 278] Applied Statistics for Environmental Research Section 001 (Fall 2025)
+Total Weight: 109.00%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..3": Total 9.00% (3% each)
+  - "Homework 1..10": Total 30.00% (3% each)
+  - "In-Class Engagement 1..4": Total 4.00% (1% each)
+All Assessments:
+  - Assignment 1: 3%
+  - Assignment 2: 3%
+  - Assignment 3: 3%
+  - Final Exam: 30%
+  - Homework 1: 3%
+  - Homework 10: 3%
+  - Homework 2: 3%
+  - Homework 3: 3%
+  - Homework 4: 3%
+  - Homework 5: 3%
+  - Homework 6: 3%
+  - Homework 7: 3%
+  - Homework 8: 3%
+  - Homework 9: 3%
+  - In-Class Engagement 1: 1%
+  - In-Class Engagement 2: 1%
+  - In-Class Engagement 3: 1%
+  - In-Class Engagement 4: 1%
+  - Test 1: 18%
+  - Test 2: 18%
+
+
+==================================================
+[ERS 102] At Home in the Universe Section 001, 101-104 (Winter 2025)
+Total Weight: 172.00%
+--------------------
+Assessment Series Breakdown:
+  - ""Reading 1..10": Total 20.00% (2% each)
+  - ""Tutorial 1..10": Total 15.00% (1.5% each)
+All Assessments:
+  - "Field Trip 1: 2.5%
+  - "Field Trip 2: 2.5%
+  - "Final exam: 20%
+  - "Reading 1: 2%
+  - "Reading 10: 2%
+  - "Reading 2: 2%
+  - "Reading 3: 2%
+  - "Reading 4: 2%
+  - "Reading 5: 2%
+  - "Reading 6: 2%
+  - "Reading 7: 2%
+  - "Reading 8: 2%
+  - "Reading 9: 2%
+  - "Reflection notebook: 10%
+  - "Tutorial 1: 1.5%
+  - "Tutorial 10: 1.5%
+  - "Tutorial 2: 1.5%
+  - "Tutorial 3: 1.5%
+  - "Tutorial 4: 1.5%
+  - "Tutorial 5: 1.5%
+  - "Tutorial 6: 1.5%
+  - "Tutorial 7: 1.5%
+  - "Tutorial 8: 1.5%
+  - "Tutorial 9: 1.5%
+  - "Worldview reflection 1: 7.5%
+  - "Worldview reflection 2: 7.5%
+  - Attendance and participation: Lectures and Field Trip 1: 20%
+  - Attendance and participation: Tutorial 1: 15%
+  - Bonu 1: 2%
+  - Final exam: 20%
+  - Readings in Perusall: 20%
+  - Reflection notebook: 10%
+
+
+==================================================
+[FR 192A] French Language 1: Module 1 Section 081 (Fall 2025)
+Total Weight: 134.00%
+--------------------
+Assessment Series Breakdown:
+  - "Oral Assignment 1..5": Total 10.00% (2% each)
+  - "Synchronous Discussion 1..5": Total 10.00% (2% each)
+  - "Test 1..5": Total 20.00% (4% each)
+All Assessments:
+  - Final Exam: 40%
+  - Final Examination: 40%
+  - Oral Assignment 1: 2%
+  - Oral Assignment 2: 2%
+  - Oral Assignment 3: 2%
+  - Oral Assignment 4: 2%
+  - Oral Assignment 5: 2%
+  - Oral Assignments - Bongo: 2%
+  - Synchronous Discussion 1: 2%
+  - Synchronous Discussion 2: 2%
+  - Synchronous Discussion 3: 2%
+  - Synchronous Discussion 4: 2%
+  - Synchronous Discussion 5: 2%
+  - Synchronous Discussions - Bongo: 2%
+  - Test 1: 4%
+  - Test 2: 4%
+  - Test 3: 4%
+  - Test 4: 4%
+  - Test 5: 4%
+  - Written Assignment 1: 5%
+  - Written Assignment 2: 5%
+
+
+==================================================
+[GBDA 306] Ethics and Values in Design Section 003, 001, 002 (Winter 2025)
+Total Weight: 165.04%
+--------------------
+Assessment Series Breakdown:
+  - ""In-class activity 1..13": Total 20.02% (1.54% each)
+  - ""Perusall 1..13": Total 20.02% (1.54% each)
+All Assessments:
+  - "Assignment 1: Stakeholder Identification: 15%
+  - "Assignment 2: Value-Based Design Requirements: 15%
+  - "Assignment 4: Re-Design Final Version: 15%
+  - "In-class activity 1: 1.54%
+  - "In-class activity 10: 1.54%
+  - "In-class activity 11: 1.54%
+  - "In-class activity 12: 1.54%
+  - "In-class activity 13: 1.54%
+  - "In-class activity 2: 1.54%
+  - "In-class activity 3: 1.54%
+  - "In-class activity 4: 1.54%
+  - "In-class activity 5: 1.54%
+  - "In-class activity 6: 1.54%
+  - "In-class activity 7: 1.54%
+  - "In-class activity 8: 1.54%
+  - "In-class activity 9: 1.54%
+  - "Perusall 1: 1.54%
+  - "Perusall 10: 1.54%
+  - "Perusall 11: 1.54%
+  - "Perusall 12: 1.54%
+  - "Perusall 13: 1.54%
+  - "Perusall 2: 1.54%
+  - "Perusall 3: 1.54%
+  - "Perusall 4: 1.54%
+  - "Perusall 5: 1.54%
+  - "Perusall 6: 1.54%
+  - "Perusall 7: 1.54%
+  - "Perusall 8: 1.54%
+  - "Perusall 9: 1.54%
+  - Assignment 1: Stakeholder Identification: 15%
+  - Assignment 2: Value-Based Design Requirements: 15%
+  - Assignment 3: Re-Design Version 1: 15%
+  - Assignment 4: Re-Design Final Version: 15%
+  - Weekly in-class Activity: 20%
+
+
+==================================================
+[GEOG 307] Societal Adaptation to Climate Change Section 001 (Winter 2025)
+Total Weight: 171.00%
+--------------------
+Assessment Series Breakdown:
+  - "Reflection paper 1..8": Total 96.00% (12% each)
+All Assessments:
+  - Assignment 1: 10%
+  - Assignment 2: 20%
+  - Final exam: 25%
+  - Group presentation: 10%
+  - Reflection paper 1: 12%
+  - Reflection paper 2: 12%
+  - Reflection paper 3: 12%
+  - Reflection paper 4: 12%
+  - Reflection paper 5: 12%
+  - Reflection paper 6: 12%
+  - Reflection paper 7: 12%
+  - Reflection paper 8: 12%
+  - Tutorial attendance and participation: 10%
+
+
+==================================================
+[GEOG 225] Global Environment and Health Section 081 (Fall 2025)
+Total Weight: 101.00%
+--------------------
+Assessment Series Breakdown:
+  - "Weekly Discussion 1..10": Total 20.00% (2% each)
+All Assessments:
+  - Global Citizen Activity (Initial): 5%
+  - Global Citizen Activity (Revisit): 5%
+  - Media Assignment: 40%
+  - Module 5 Bonus Mark: 1%
+  - Photo Voice Essay (Final): 25%
+  - Photo Voice Essay (Trial): 5%
+  - Weekly Discussion 1: 2%
+  - Weekly Discussion 10: 2%
+  - Weekly Discussion 2: 2%
+  - Weekly Discussion 3: 2%
+  - Weekly Discussion 4: 2%
+  - Weekly Discussion 5: 2%
+  - Weekly Discussion 6: 2%
+  - Weekly Discussion 7: 2%
+  - Weekly Discussion 8: 2%
+  - Weekly Discussion 9: 2%
+
+
+==================================================
+[GEOG 306] Human Dimensions of Natural Hazards - GEOG 306 Section 001 (Winter 2025)
+Total Weight: 101.00%
+--------------------
+All Assessments:
+  - Comparative Analysis of Responses to Specific Disaster 1: 20%
+  - Disaster Risk Analysis Report: 20%
+  - Final Exam: 30%
+  - In-class Participation: 1%
+  - In-class Participation (Total 10 activities): 10%
+  - Vulnerability and Storytelling for Media: 20%
+
+
+==================================================
+[GER 202] Intermediate German 2 Section 081 (Winter 2026)
+Total Weight: 119.74%
+--------------------
+Assessment Series Breakdown:
+  - "Engagement & Interaction 1..3": Total 9.54% (3.18% each)
+  - "Peer Discussion 1..3": Total 9.54% (3.18% each)
+  - "Quiz 1..3": Total 13.50% (4.5% each)
+  - "Readings and Activities Week 1..12": Total 38.16% (3.18% each)
+  - "Test 1..3": Total 15.00% (5% each)
+All Assessments:
+  - Engagement & Interaction 1: 3.18%
+  - Engagement & Interaction 2: 3.18%
+  - Engagement & Interaction 3: 3.18%
+  - Peer Discussion 1: 3.18%
+  - Peer Discussion 2: 3.18%
+  - Peer Discussion 3: 3.18%
+  - Project A: 10%
+  - Project B: 10%
+  - Project C: 14%
+  - Quiz 1: 4.5%
+  - Quiz 2: 4.5%
+  - Quiz 3: 4.5%
+  - Readings and Activities Week 1: 3.18%
+  - Readings and Activities Week 10: 3.18%
+  - Readings and Activities Week 11: 3.18%
+  - Readings and Activities Week 12: 3.18%
+  - Readings and Activities Week 2: 3.18%
+  - Readings and Activities Week 3: 3.18%
+  - Readings and Activities Week 4: 3.18%
+  - Readings and Activities Week 5: 3.18%
+  - Readings and Activities Week 6: 3.18%
+  - Readings and Activities Week 7: 3.18%
+  - Readings and Activities Week 8: 3.18%
+  - Readings and Activities Week 9: 3.18%
+  - Test 1: 5%
+  - Test 2: 5%
+  - Test 3: 5%
+
+
+==================================================
+[GER 230] Vikings! Section 081 (Fall 2024)
+Total Weight: 135.04%
+--------------------
+All Assessments:
+  - Syllabus Quiz: 5%
+  - Week 12 Quiz: 10%
+  - Writing Assignment — Best of Discussions: Part 1 (Weeks 2 or 3): 5%
+  - Writing Assignment — Best of Discussions: Part 2 (Weeks 4, 5, 7, 8, and 9): 10%
+  - Writing Assignment — Close Reading and Writing Assignment: 10%
+  - Writing Assignment — Final Paper: 35%
+  - Writing Assignment — Final Paper (Part 1): 4.38%
+  - Writing Assignment — Final Paper (Part 2): 4.38%
+  - Writing Assignment — Final Paper (Part 3): 4.38%
+  - Writing Assignment — Final Paper (Part 4): 4.38%
+  - Writing Assignment — Final Paper (Part 5): 4.38%
+  - Writing Assignment — Final Paper (Part 6): 4.38%
+  - Writing Assignment — Final Paper (Part 7): 4.38%
+  - Writing Assignment — Final Paper (Part 8): 4.38%
+  - Writing Assignment — Museum Paper: 15%
+  - Writing Assignment — My Thoughts Paper: 10%
+
+
+==================================================
+[HEALTH 100] Foundations of a Healthy Lifestyle Section 081 (Winter 2025)
+Total Weight: 101.00%
+--------------------
+Assessment Series Breakdown:
+  - "Assignment 1..4": Total 60.00% (10% each)
+  - "Quiz 1..3": Total 40.00% (15% each)
+All Assessments:
+  - Assignment 1: 10%
+  - Assignment 2: 12.5%
+  - Assignment 3: 17.5%
+  - Assignment 4: 20%
+  - Bonus Quiz: 1%
+  - Quiz 1: 15%
+  - Quiz 2: 15%
+  - Quiz 3: 10%
+
+
+==================================================
+[HIST 252] CLAS 252/HIST 252  Roman History Section 001 (Winter 2023)
+Total Weight: 135.00%
+--------------------
+Assessment Series Breakdown:
+  - ""Multiple-Choice Test 1..10": Total 75.00% (7.5% each)
+  - ""Written Assignment 1..3": Total 60.00% (20% each)
+All Assessments:
+  - "Multiple-Choice Test 1: 7.5%
+  - "Multiple-Choice Test 10: 7.5%
+  - "Multiple-Choice Test 2: 7.5%
+  - "Multiple-Choice Test 3: 7.5%
+  - "Multiple-Choice Test 4: 7.5%
+  - "Multiple-Choice Test 5: 7.5%
+  - "Multiple-Choice Test 6: 7.5%
+  - "Multiple-Choice Test 7: 7.5%
+  - "Multiple-Choice Test 8: 7.5%
+  - "Multiple-Choice Test 9: 7.5%
+  - "Written Assignment 1: 20%
+  - "Written Assignment 2: 20%
+  - "Written Assignment 3: 20%
+
+
+==================================================
+[HLTH 480] Competencies in Health Section 002 (Fall 2025)
+Total Weight: 180.38%
+--------------------
+All Assessments:
+  - Career ePortfolio Project: 45%
+  - Demo Day Deliverable: 15%
+  - Engagement: 10%
+  - Group Charter: 2.38%
+  - Health Innovation Challenge: 35%
+  - Homepage of Career Portfolio: 4%
+  - LinkedIn Profile Link: 4%
+  - Other Competency/Skill Tab: 10%
+  - Outline of System Framing/Solution Idea 1: 8%
+  - Participation in Group Work and Collaboration: 5%
+  - PebblePad Structure for Career Portfolio: 2%
+  - PebblePad Workbook Reflection Portfolio: 10%
+  - Public Health Communication Competency Tab: 10%
+  - Reflection on Health Innovation Challenge: 15%
+  - System Framing: 5%
+
+
+==================================================
+[HIST 113] Canadian Business History: Innovators and Entrepreneurs Section 001 (Fall 2025)
+Total Weight: 115.00%
+--------------------
+Assessment Series Breakdown:
+  - ""Content Question 1..3": Total 15.00% (5% each)
+All Assessments:
+  - "Content Question 1: 5%
+  - "Content Question 2: 5%
+  - "Content Question 3: 5%
+  - Group Work - Content Question 1: 15%
+  - Group Work - Participation: 15%
+  - Major Topic Assignment: 30%
+  - Topic Analysis 1: 20%
+  - Topic Analysis 2: 20%
+
+
+==================================================
+[HIST 253] Canada: Cultures and Conflicts in the Colonial Era HIST 253 Section 001, 101, 103 (Winter 2023)
+Total Weight: 105.00%
+--------------------
+All Assessments:
+  - Annotated Bibliography: 10%
+  - BONUS: ORIGINS textbook chapter Quiz 1: 5%
+  - Final Draft Research Project: 30%
+  - First Draft Research Project: 20%
+  - Participation in In-Class Research Activity (4 sessions): 20%
+  - Tutorial Participation (for 4 required tutorials): 20%
+
+
+==================================================
+[HLTH 401] Global Health Section 001 (Fall 2024)
+Total Weight: 110.00%
+--------------------
+All Assessments:
+  - "Final Funding Proposal: 30%
+  - "Funding Proposal LOI: 20%
+  - Final Funding Proposal: 30%
+  - Funding Proposal Letter of Intent: 20%
+  - Quizzes 1-5: 10%
+
+
+==================================================
+[INTEG 121] Collaboration, Design Thinking, and Problem Solving Section 001, 101 (Winter 2025)
+Total Weight: 140.00%
+--------------------
+All Assessments:
+  - Course engagement: 15%
+  - ED Prior Art Observation/Critique (individual grade): 6.25%
+  - ED Project Dossier (group grade): 12.5%
+  - ED Retrospective and reflection (individual grade): 6.25%
+  - Individual e-Portfolio: 25%
+  - Project 1: Public Service Announcement (PSA): 15%
+  - Project 2: Environments Design (ED): 25%
+  - PSA Prior Art Observation/Critique (individual grade): 3.75%
+  - PSA Project Dossier (group grade): 7.5%
+  - PSA Reflection (individual grade): 3.75%
+  - Sketchbook and in-class observation 1: 20%
+
+
+==================================================
+[ITAL 102] Introduction to Italian Language 2 Section 001 (Winter 2026)
+Total Weight: 166.00%
+--------------------
+All Assessments:
+  - Class Attendance and Participation: 30%
+  - Compiti | Assignments (1): 5%
+  - Compiti | Assignments (2): 5%
+  - Compiti | Assignments (3): 5%
+  - Discutiamo! | Let's Discuss (1): 6%
+  - Discutiamo! | Let's Discuss (10): 6%
+  - Discutiamo! | Let's Discuss (11): 6%
+  - Discutiamo! | Let's Discuss (12): 6%
+  - Discutiamo! | Let's Discuss (2): 6%
+  - Discutiamo! | Let's Discuss (3): 6%
+  - Discutiamo! | Let's Discuss (4): 6%
+  - Discutiamo! | Let's Discuss (5): 6%
+  - Discutiamo! | Let's Discuss (6): 6%
+  - Discutiamo! | Let's Discuss (7): 6%
+  - Discutiamo! | Let's Discuss (8): 6%
+  - Discutiamo! | Let's Discuss (9): 6%
+  - Mini-Quiz Settimanali | Weekly Mini-quizzes (1): 2%
+  - Mini-Quiz Settimanali | Weekly Mini-quizzes (10): 2%
+  - Mini-Quiz Settimanali | Weekly Mini-quizzes (2): 2%
+  - Mini-Quiz Settimanali | Weekly Mini-quizzes (3): 2%
+  - Mini-Quiz Settimanali | Weekly Mini-quizzes (4): 2%
+  - Mini-Quiz Settimanali | Weekly Mini-quizzes (5): 2%
+  - Mini-Quiz Settimanali | Weekly Mini-quizzes (6): 2%
+  - Mini-Quiz Settimanali | Weekly Mini-quizzes (7): 2%
+  - Mini-Quiz Settimanali | Weekly Mini-quizzes (8): 2%
+  - Mini-Quiz Settimanali | Weekly Mini-quizzes (9): 2%
+  - Presentazione Orale | Oral Presentation: 4%
+  - Prove | Test (1): 4%
+  - Prove | Test (2): 4%
+  - Prove | Test (3): 4%
+  - Top Hat Online Exercise 1: 13%
+

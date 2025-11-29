@@ -7,6 +7,7 @@ import { useEffect, useState } from "react"
 import { supabase } from "@/lib/supabase/client"
 
 type CourseResult = {
+  id: string
   code: string
   name: string
   term: string
@@ -29,10 +30,10 @@ export default function Page() {
 
       const { data } = await supabase
         .from("courses")
-        .select("code, name, term")
+        .select("id, code, name, term")
         .ilike("code", `%${query.trim()}%`)
         .order("term_date", { ascending: false })
-        .limit(5)
+        .limit(10) // Increase limit to show multiple sections
 
       if (!controller.signal.aborted) {
         setResults(data ?? [])
@@ -101,11 +102,11 @@ export default function Page() {
               <div className="mt-3 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg">
                 {results.map((course) => (
                   <button
-                    key={course.code + course.term}
+                    key={course.id}
                     className="flex w-full items-center justify-between px-4 py-3 text-left hover:bg-gray-50"
                     onMouseDown={(event) => {
                       event.preventDefault()
-                      router.push(`/course/${course.code}`)
+                      router.push(`/course/${course.code}?section=${course.id}`)
                     }}
                   >
                     <div>
