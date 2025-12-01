@@ -66,6 +66,7 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
   // New state for grouping
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
   const [groupGrades, setGroupGrades] = useState<Record<string, string>>({}); // Key: Group Name, Value: Grade Input
+  const [groupWeightInputs, setGroupWeightInputs] = useState<Record<string, string>>({}); // Key: Group ID, Value: header weight input
 
   // State for displayed stats (calculated on button press)
   const [displayStats, setDisplayStats] = useState<{
@@ -641,7 +642,7 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
       setAssessments(prev => {
         const displayItems = groupAssessments(prev);
         const group = displayItems.find(
-          (item): item is GroupedAssessment => item.isGroup && item.id === groupId
+          (item): item is GroupedAssessment => item.isGroup === true && item.id === groupId
         );
         if (!group) return prev;
 
@@ -1345,19 +1346,29 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                               step="any"
                                               className="w-14 border-b border-border bg-transparent text-center text-xs outline-none focus:border-primary"
                                               value={
-                                                displayedTotalWeight === 0
-                                                  ? ""
+                                                groupWeightInputs[item.id] !== undefined
+                                                  ? groupWeightInputs[item.id]
                                                   : Math.abs(displayedTotalWeight - Math.round(displayedTotalWeight)) < 0.01
-                                                    ? Math.round(displayedTotalWeight)
-                                                    : Number(displayedTotalWeight).toFixed(5).replace(/\.?0+$/, '')
+                                                      ? Math.round(displayedTotalWeight)
+                                                      : Number(displayedTotalWeight).toFixed(5).replace(/\.?0+$/, '')
                                               }
                                               onChange={(e) => {
                                                 e.stopPropagation();
-                                                handleGroupWeightChange(item.id, e.target.value);
+                                                let v = e.target.value;
+                                                // Normalize so leading zeros don't stick (e.g. "08" -> "8")
+                                                v = v.replace(/^0+(?=\d)/, "");
+                                                setGroupWeightInputs(prev => ({
+                                                  ...prev,
+                                                  [item.id]: v,
+                                                }));
+                                                handleGroupWeightChange(item.id, v);
                                               }}
                                               onClick={(e) => e.stopPropagation()}
                                               onMouseDown={(e) => e.stopPropagation()}
-                                              onFocus={(e) => e.stopPropagation()}
+                                              onFocus={(e) => {
+                                                e.stopPropagation();
+                                                e.currentTarget.select();
+                                              }}
                                           />
                                           <span>% weight</span>
                                       </div>
