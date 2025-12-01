@@ -632,6 +632,71 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
       });
   };
 
+  // When a group header weight is changed, evenly redistribute that total weight
+  // across all active (non-dropped, non-removed) children in the group.
+  const handleGroupWeightChange = (groupId: string, val: string) => {
+    // If the user cleared the input, zero out all active children weights
+    // and clear their displayed weight input values.
+    if (val.trim() === "") {
+      setAssessments(prev => {
+        const displayItems = groupAssessments(prev);
+        const group = displayItems.find(
+          (item): item is GroupedAssessment => item.isGroup && item.id === groupId
+        );
+        if (!group) return prev;
+
+        const activeChildrenIds = group.children
+          .filter(child => !removedItems.has(child.id) && !droppedMap[child.id])
+          .map(child => child.id);
+
+        if (activeChildrenIds.length === 0) return prev;
+
+        return prev.map(a =>
+          activeChildrenIds.includes(a.id)
+            ? {
+                ...a,
+                weight: 0,
+                weightInputValue: "",
+              }
+            : a
+        );
+      });
+      return;
+    }
+
+    const num = parseFloat(val);
+    if (isNaN(num) || num < 0) return;
+
+    setAssessments(prev => {
+      const displayItems = groupAssessments(prev);
+      const group = displayItems.find(
+        (item): item is GroupedAssessment => item.isGroup && item.id === groupId
+      );
+      if (!group) return prev;
+
+      // Only adjust children that are still active in the UI
+      const activeChildrenIds = group.children
+        .filter(child => !removedItems.has(child.id) && !droppedMap[child.id])
+        .map(child => child.id);
+
+      if (activeChildrenIds.length === 0) return prev;
+
+      const perChild = num / activeChildrenIds.length;
+
+      return prev.map(a =>
+        activeChildrenIds.includes(a.id)
+          ? {
+              ...a,
+              weight: perChild,
+              weightInputValue: Number.isInteger(perChild)
+                ? perChild.toString()
+                : Number(perChild).toFixed(5).replace(/\.?0+$/, ''),
+            }
+          : a
+      );
+    });
+  };
+
   const handleWeightChange = (id: string, val: string) => {
     const num = parseFloat(val);
     const isValid = !isNaN(num) && num >= 0;
@@ -1078,11 +1143,11 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                   {dropMode === 'selectTarget' && (
                      <button 
                          onClick={handleDistributeEvenly}
-                      disabled={Array.from(removedItems).some(id => !id.startsWith('new-'))}
+                         disabled={Array.from(removedItems).some(id => !id.startsWith('new-'))}
                          className={`text-xs px-3 py-1.5 rounded-full transition-colors font-medium ${
-                        Array.from(removedItems).some(id => !id.startsWith('new-'))
+                           Array.from(removedItems).some(id => !id.startsWith('new-'))
                              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                             : 'bg-primary text-primary-foreground hover:bg-primary/90'
+                             : 'bg-green-500 text-white hover:bg-green-600'
                          }`}
                      >
                          Divide weight evenly
@@ -1269,13 +1334,33 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                       {isDropped && <span className="ml-2 text-xs text-red-500 no-underline">(Dropped)</span>}
                                   </div>
                                   )}
-                                  <div className="text-sm text-muted-foreground flex items-center gap-2">
+                                  <div className="mt-0.5 text-sm text-muted-foreground flex flex-wrap items-center gap-2">
                                       <span>{item.children.filter(c => !droppedMap[c.id] && !removedItems.has(c.id)).length} items</span>
                                       <span>•</span>
-                                      <span>
-                                          Total {Math.abs(displayedTotalWeight - Math.round(displayedTotalWeight)) < 0.01 ? Math.round(displayedTotalWeight) : Number(displayedTotalWeight).toFixed(5).replace(/\.?0+$/, '')}%&nbsp;
-                                          weight
-                                      </span>
+                                      <div className="flex items-center gap-1">
+                                          <span>Total</span>
+                                          <input
+                                              type="number"
+                                              min="0"
+                                              step="any"
+                                              className="w-14 border-b border-border bg-transparent text-center text-xs outline-none focus:border-primary"
+                                              value={
+                                                displayedTotalWeight === 0
+                                                  ? ""
+                                                  : Math.abs(displayedTotalWeight - Math.round(displayedTotalWeight)) < 0.01
+                                                    ? Math.round(displayedTotalWeight)
+                                                    : Number(displayedTotalWeight).toFixed(5).replace(/\.?0+$/, '')
+                                              }
+                                              onChange={(e) => {
+                                                e.stopPropagation();
+                                                handleGroupWeightChange(item.id, e.target.value);
+                                              }}
+                                              onClick={(e) => e.stopPropagation()}
+                                              onMouseDown={(e) => e.stopPropagation()}
+                                              onFocus={(e) => e.stopPropagation()}
+                                          />
+                                          <span>% weight</span>
+                                      </div>
                                   </div>
                               </div>
 

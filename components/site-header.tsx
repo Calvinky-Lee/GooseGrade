@@ -63,11 +63,19 @@ export function SiteHeader() {
   }, [query])
 
   return (
-    <header className={`relative z-20 ${!isHomePage ? 'grid grid-cols-3' : 'flex justify-between'} items-center border-b border-gray-300 px-4 sm:px-8 py-2 bg-white`}>
+    <header
+      className={
+        !isHomePage
+          ? "relative z-20 flex items-center justify-between border-b border-gray-300 px-4 sm:px-8 py-2 bg-white sm:grid sm:grid-cols-3"
+          : "relative z-20 flex items-center justify-between border-b border-gray-300 px-4 sm:px-8 py-2 bg-white"
+      }
+    >
       <div className="flex items-center gap-3 shrink-0">
         <Link href="/" className="flex items-center space-x-1 transition-opacity hover:opacity-90">
           <Image src="/goosegrade.png" alt="GooseGrade" width={48} height={48} priority className="w-10 h-10 sm:w-14 sm:h-14" />
-          <span className="text-xl sm:text-[1.5rem] font-semibold text-gray-900">GooseGrade</span>
+          <span className="text-xl sm:text-[1.5rem] font-semibold text-gray-900">
+            GooseGrade
+          </span>
         </Link>
       </div>
 
@@ -121,9 +129,9 @@ export function SiteHeader() {
       <div className="flex items-center justify-end">
         <Link
           href="/calculator"
-          className="flex items-center gap-2 px-4 py-2 rounded-lg bg-yellow-400/70 text-gray-900 hover:bg-yellow-500/70 transition-colors font-medium text-sm sm:text-base shadow-sm"
+          className="flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg bg-yellow-400/80 text-gray-900 hover:bg-yellow-500/90 transition-colors font-medium text-xs sm:text-sm shadow-sm"
         >
-          <span className="hidden sm:inline">New Calculator</span>
+          <span>New Calculator</span>
         </Link>
       </div>
     </header>

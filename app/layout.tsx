@@ -5,9 +5,9 @@ import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { SiteHeader } from "@/components/site-header"
 
-const _geist = Geist({ subsets: ["latin"] })
-const _geistMono = Geist_Mono({ subsets: ["latin"] })
-const _lora = Lora({ subsets: ["latin"] })
+const geist = Geist({ subsets: ["latin"] })
+const geistMono = Geist_Mono({ subsets: ["latin"] })
+const lora = Lora({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "GooseGrade - UWaterloo Grade Calculator",
@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-serif antialiased" style={{ fontFamily: "var(--font-lora)" }}>
+      <body className={`${lora.className} antialiased`}>
         <SiteHeader />
         <div>{children}</div>
         <Analytics />

@@ -80,11 +80,11 @@ export default function Page() {
 
       <main className="relative z-10 px-6 pb-24 pt-20 sm:px-12 sm:pt-28">
         <div className="max-w-[720px]">
-          <h1 className="font-light leading-none tracking-tight text-[6rem] sm:text-[8rem]">
-            <span className="block text-[6.75rem] font-semibold sm:text-[8.75rem]">
+          <h1 className="font-serif text-gray-900 leading-none tracking-tight">
+            <span className="block font-medium text-[clamp(5rem,19.5vw,9.5rem)]">
               Calculate
             </span>
-            <span className="ml-2 block text-[2.1rem] font-medium sm:text-[2.6rem]">
+            <span className="mt-2 block font-normal text-[clamp(1.85rem,4.5vw,2.7rem)]">
               Your UWaterloo Grade
             </span>
           </h1>

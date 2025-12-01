@@ -461,3 +461,7 @@ VCULT 319 - No outlines found
 VCULT 400 - No outlines found
 VCULT 401 - No outlines found
 WKRPT 100 - No outlines found
+
+
+npm run add-course "CS 135"
+
