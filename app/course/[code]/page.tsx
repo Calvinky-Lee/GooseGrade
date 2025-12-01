@@ -672,10 +672,6 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
       const group = displayItems.find(
         (item): item is GroupedAssessment => item.isGroup === true && item.id === groupId
       );
-      const displayItems = groupAssessments(prev);
-      const group = displayItems.find(
-        (item): item is GroupedAssessment => item.isGroup === true && item.id === groupId
-      );
       if (!group) return prev;
 
       // Only adjust children that are still active in the UI
