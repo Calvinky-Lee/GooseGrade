@@ -236,7 +236,7 @@ async function parseWithOpenAI(htmlText: string): Promise<ParsedAssessment[]> {
       });
     }
   }
-
+  
   // Filter out 0 weight items and Sort
   const filtered = rawAssessments.filter(a => a.totalWeight > 0);
   
@@ -295,35 +295,35 @@ export async function parseCourseOutline(courseCode: string): Promise<ParsedCour
   // 3. Loop through each outline for the latest term
   for (const outlineMatch of latestOutlines) {
       console.log(`🔗 Fetching Outline: ${outlineMatch.url}`);
-      
+  
       const outlineFullUrl = `https://outline.uwaterloo.ca${outlineMatch.url}`;
-      const { text: html } = await fetchUrl(outlineFullUrl);
-      
-      // Convert HTML to clean text for OpenAI
-      const $ = cheerio.load(html);
-      
-      // Remove scripts, styles to reduce noise
-      $('script, style, svg, nav, footer').remove();
-      const cleanText = $('body').text().replace(/\s+/g, ' ').trim();
-      
+  const { text: html } = await fetchUrl(outlineFullUrl);
+  
+  // Convert HTML to clean text for OpenAI
+  const $ = cheerio.load(html);
+  
+  // Remove scripts, styles to reduce noise
+  $('script, style, svg, nav, footer').remove();
+  const cleanText = $('body').text().replace(/\s+/g, ' ').trim();
+  
       console.log(`🤖 Sending ${cleanText.length} chars to OpenAI for ${outlineMatch.url}...`);
-      
-      const assessments = await parseWithOpenAI(cleanText);
-      
-      console.log(`📊 OpenAI found ${assessments.length} assessments`);
-      
+  
+  const assessments = await parseWithOpenAI(cleanText);
+  
+  console.log(`📊 OpenAI found ${assessments.length} assessments`);
+  
       // Attempt to extract section info if available in title, otherwise default
       // e.g. "MATH 137 - Calculus 1 (Section 001)"
       const title = outlineMatch.title || $('h1').first().text().trim() || courseCode;
-      
+  
       parsedCourses.push({
-        code: normalizeCourseCode(courseCode),
+    code: normalizeCourseCode(courseCode),
         name: title,
-        department: extractDepartment(courseCode),
-        term: termName,
-        termDate: getTermDate(termName),
-        assessments,
-        outlineUrl: outlineFullUrl
+    department: extractDepartment(courseCode),
+    term: termName,
+    termDate: getTermDate(termName),
+    assessments,
+    outlineUrl: outlineFullUrl
       });
   }
 

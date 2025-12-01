@@ -9,6 +9,7 @@
     "lint": "next lint",
     "scrape": "tsx scripts/scrape-course.ts",
     "scrape-batch": "tsx scripts/scrape-batch.ts",
+    "add-course": "tsx scripts/add-course.ts",
     "fetch-courses": "tsx scripts/fetch-course-list.ts",
     "db:setup": "tsx scripts/setup-database.ts",
     "db:clean": "tsx scripts/clean-assessments.ts"
