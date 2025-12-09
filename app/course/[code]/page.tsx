@@ -1369,6 +1369,10 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                                 e.stopPropagation();
                                                 e.currentTarget.select();
                                               }}
+                                              onWheel={(e) => {
+                                                e.preventDefault();
+                                                e.currentTarget.blur();
+                                              }}
                                           />
                                           <span>% weight</span>
                                       </div>
@@ -1388,6 +1392,10 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                                           ? "border-red-500 focus:ring-red-400 focus:border-red-400"
                                                           : "border-gray-300 focus:border-primary focus:ring-primary/40"
                                               }`}
+                                              onWheel={(e) => {
+                                                e.preventDefault();
+                                                e.currentTarget.blur();
+                                              }}
                                               min="0"
                                               max="100"
                                               value={groupGrades[item.id] || ''}
@@ -1544,6 +1552,10 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                                               onChange={(e) => handleWeightChange(child.id, e.target.value)}
                                                               min="0"
                                                               step="any"
+                                                              onWheel={(e) => {
+                                                                e.preventDefault();
+                                                                e.currentTarget.blur();
+                                                              }}
                                                           />
                                                           <span>%&nbsp;</span>
                                                       </div>
@@ -1563,6 +1575,10 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                                               max="100"
                                                               value={child.inputValue ?? ""}
                                                               onChange={(e) => handleGradeChange(child.id, e.target.value)}
+                                                              onWheel={(e) => {
+                                                                e.preventDefault();
+                                                                e.currentTarget.blur();
+                                                              }}
                                                           />
                                                       </div>
                                                   ) : (
@@ -1725,6 +1741,10 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                 onChange={(e) => handleWeightChange(assessment.id, e.target.value)}
                                 min="0"
                                 step="any"
+                                onWheel={(e) => {
+                                  e.preventDefault();
+                                  e.currentTarget.blur();
+                                }}
                               />
                               <span>%&nbsp;weight</span>
                             </div>
@@ -1745,6 +1765,10 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                   max="100"
                                   value={assessment.inputValue ?? ""}
                                   onChange={(e) => handleGradeChange(assessment.id, e.target.value)}
+                                  onWheel={(e) => {
+                                    e.preventDefault();
+                                    e.currentTarget.blur();
+                                  }}
                                 />
                                 {isInvalid && (
                                   <p className="mt-1 text-xs text-red-600">Enter a value between 0 and 100.</p>
@@ -1888,6 +1912,10 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                 onChange={(e) => setTargetGrade(e.target.value ? parseFloat(e.target.value) : '')}
                 min="0"
                 max="100"
+                onWheel={(e) => {
+                  e.preventDefault();
+                  e.currentTarget.blur();
+                }}
               />
               <span className="text-sm font-medium">%</span>
             </div>
