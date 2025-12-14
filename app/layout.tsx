@@ -4,6 +4,7 @@ import { Geist, Geist_Mono, Lora } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { SiteHeader } from "@/components/site-header"
+import { SiteFooter } from "@/components/site-footer"
 
 const geist = Geist({ subsets: ["latin"] })
 const geistMono = Geist_Mono({ subsets: ["latin"] })
@@ -26,9 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${lora.className} antialiased`}>
+      <body className={`${lora.className} antialiased flex flex-col h-screen`}>
         <SiteHeader />
-        <div>{children}</div>
+        <div className="flex-1 overflow-y-auto">{children}</div>
+        <SiteFooter />
         <Analytics />
       </body>
     </html>
