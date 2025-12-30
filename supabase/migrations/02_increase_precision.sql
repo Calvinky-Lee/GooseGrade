@@ -1,3 +1,6 @@
+-- Copyright (c) 2025 GooseGrade
+-- All rights reserved.
+
 
 -- Migration to increase decimal precision for weights
 -- Supports high precision like 3.1818181818...

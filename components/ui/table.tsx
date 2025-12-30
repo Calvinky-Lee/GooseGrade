@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2025 GooseGrade
+ * All rights reserved.
+ */
+
 import * as React from 'react'
 
 import { cn } from '@/lib/utils'

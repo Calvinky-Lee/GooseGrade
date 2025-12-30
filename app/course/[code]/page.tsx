@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2025 GooseGrade
+ * All rights reserved.
+ */
+
 'use client';
 
 import { useState, useEffect, use, useRef } from 'react';
@@ -66,7 +71,6 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
   // New state for grouping
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
   const [groupGrades, setGroupGrades] = useState<Record<string, string>>({}); // Key: Group Name, Value: Grade Input
-  const [groupWeightInputs, setGroupWeightInputs] = useState<Record<string, string>>({}); // Key: Group ID, Value: header weight input
 
   // State for displayed stats (calculated on button press)
   const [displayStats, setDisplayStats] = useState<{
@@ -633,71 +637,6 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
       });
   };
 
-  // When a group header weight is changed, evenly redistribute that total weight
-  // across all active (non-dropped, non-removed) children in the group.
-  const handleGroupWeightChange = (groupId: string, val: string) => {
-    // If the user cleared the input, zero out all active children weights
-    // and clear their displayed weight input values.
-    if (val.trim() === "") {
-      setAssessments(prev => {
-        const displayItems = groupAssessments(prev);
-        const group = displayItems.find(
-          (item): item is GroupedAssessment => item.isGroup === true && item.id === groupId
-        );
-        if (!group) return prev;
-
-        const activeChildrenIds = group.children
-          .filter(child => !removedItems.has(child.id) && !droppedMap[child.id])
-          .map(child => child.id);
-
-        if (activeChildrenIds.length === 0) return prev;
-
-        return prev.map(a =>
-          activeChildrenIds.includes(a.id)
-            ? {
-                ...a,
-                weight: 0,
-                weightInputValue: "",
-              }
-            : a
-        );
-      });
-      return;
-    }
-
-    const num = parseFloat(val);
-    if (isNaN(num) || num < 0) return;
-
-    setAssessments(prev => {
-      const displayItems = groupAssessments(prev);
-      const group = displayItems.find(
-        (item): item is GroupedAssessment => item.isGroup === true && item.id === groupId
-      );
-      if (!group) return prev;
-
-      // Only adjust children that are still active in the UI
-      const activeChildrenIds = group.children
-        .filter(child => !removedItems.has(child.id) && !droppedMap[child.id])
-        .map(child => child.id);
-
-      if (activeChildrenIds.length === 0) return prev;
-
-      const perChild = num / activeChildrenIds.length;
-
-      return prev.map(a =>
-        activeChildrenIds.includes(a.id)
-          ? {
-              ...a,
-              weight: perChild,
-              weightInputValue: Number.isInteger(perChild)
-                ? perChild.toString()
-                : Number(perChild).toFixed(5).replace(/\.?0+$/, ''),
-            }
-          : a
-      );
-    });
-  };
-
   const handleWeightChange = (id: string, val: string) => {
     const num = parseFloat(val);
     const isValid = !isNaN(num) && num >= 0;
@@ -1144,11 +1083,11 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                   {dropMode === 'selectTarget' && (
                      <button 
                          onClick={handleDistributeEvenly}
-                         disabled={Array.from(removedItems).some(id => !id.startsWith('new-'))}
+                      disabled={Array.from(removedItems).some(id => !id.startsWith('new-'))}
                          className={`text-xs px-3 py-1.5 rounded-full transition-colors font-medium ${
-                           Array.from(removedItems).some(id => !id.startsWith('new-'))
+                        Array.from(removedItems).some(id => !id.startsWith('new-'))
                              ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                             : 'bg-green-500 text-white hover:bg-green-600'
+                             : 'bg-primary text-primary-foreground hover:bg-primary/90'
                          }`}
                      >
                          Divide weight evenly
@@ -1335,47 +1274,13 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                       {isDropped && <span className="ml-2 text-xs text-red-500 no-underline">(Dropped)</span>}
                                   </div>
                                   )}
-                                  <div className="mt-0.5 text-sm text-muted-foreground flex flex-wrap items-center gap-2">
+                                  <div className="text-sm text-muted-foreground flex items-center gap-2">
                                       <span>{item.children.filter(c => !droppedMap[c.id] && !removedItems.has(c.id)).length} items</span>
                                       <span>•</span>
-                                      <div className="flex items-center gap-1">
-                                          <span>Total</span>
-                                          <input
-                                              type="number"
-                                              min="0"
-                                              step="any"
-                                              className="w-14 border-b border-border bg-transparent text-center text-xs outline-none focus:border-primary"
-                                              value={
-                                                groupWeightInputs[item.id] !== undefined
-                                                  ? groupWeightInputs[item.id]
-                                                  : Math.abs(displayedTotalWeight - Math.round(displayedTotalWeight)) < 0.01
-                                                      ? Math.round(displayedTotalWeight)
-                                                      : Number(displayedTotalWeight).toFixed(5).replace(/\.?0+$/, '')
-                                              }
-                                              onChange={(e) => {
-                                                e.stopPropagation();
-                                                let v = e.target.value;
-                                                // Normalize so leading zeros don't stick (e.g. "08" -> "8")
-                                                v = v.replace(/^0+(?=\d)/, "");
-                                                setGroupWeightInputs(prev => ({
-                                                  ...prev,
-                                                  [item.id]: v,
-                                                }));
-                                                handleGroupWeightChange(item.id, v);
-                                              }}
-                                              onClick={(e) => e.stopPropagation()}
-                                              onMouseDown={(e) => e.stopPropagation()}
-                                              onFocus={(e) => {
-                                                e.stopPropagation();
-                                                e.currentTarget.select();
-                                              }}
-                                              onWheel={(e) => {
-                                                e.preventDefault();
-                                                e.currentTarget.blur();
-                                              }}
-                                          />
-                                          <span>% weight</span>
-                                      </div>
+                                      <span>
+                                          Total {Math.abs(displayedTotalWeight - Math.round(displayedTotalWeight)) < 0.01 ? Math.round(displayedTotalWeight) : Number(displayedTotalWeight).toFixed(5).replace(/\.?0+$/, '')}%&nbsp;
+                                          weight
+                                      </span>
                                   </div>
                               </div>
 
@@ -1392,10 +1297,6 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                                           ? "border-red-500 focus:ring-red-400 focus:border-red-400"
                                                           : "border-gray-300 focus:border-primary focus:ring-primary/40"
                                               }`}
-                                              onWheel={(e) => {
-                                                e.preventDefault();
-                                                e.currentTarget.blur();
-                                              }}
                                               min="0"
                                               max="100"
                                               value={groupGrades[item.id] || ''}
@@ -1552,10 +1453,6 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                                               onChange={(e) => handleWeightChange(child.id, e.target.value)}
                                                               min="0"
                                                               step="any"
-                                                              onWheel={(e) => {
-                                                                e.preventDefault();
-                                                                e.currentTarget.blur();
-                                                              }}
                                                           />
                                                           <span>%&nbsp;</span>
                                                       </div>
@@ -1575,10 +1472,6 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                                               max="100"
                                                               value={child.inputValue ?? ""}
                                                               onChange={(e) => handleGradeChange(child.id, e.target.value)}
-                                                              onWheel={(e) => {
-                                                                e.preventDefault();
-                                                                e.currentTarget.blur();
-                                                              }}
                                                           />
                                                       </div>
                                                   ) : (
@@ -1741,10 +1634,6 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                 onChange={(e) => handleWeightChange(assessment.id, e.target.value)}
                                 min="0"
                                 step="any"
-                                onWheel={(e) => {
-                                  e.preventDefault();
-                                  e.currentTarget.blur();
-                                }}
                               />
                               <span>%&nbsp;weight</span>
                             </div>
@@ -1765,10 +1654,6 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                                   max="100"
                                   value={assessment.inputValue ?? ""}
                                   onChange={(e) => handleGradeChange(assessment.id, e.target.value)}
-                                  onWheel={(e) => {
-                                    e.preventDefault();
-                                    e.currentTarget.blur();
-                                  }}
                                 />
                                 {isInvalid && (
                                   <p className="mt-1 text-xs text-red-600">Enter a value between 0 and 100.</p>
@@ -1912,10 +1797,6 @@ export default function CoursePage({ params }: { params: Promise<{ code: string 
                 onChange={(e) => setTargetGrade(e.target.value ? parseFloat(e.target.value) : '')}
                 min="0"
                 max="100"
-                onWheel={(e) => {
-                  e.preventDefault();
-                  e.currentTarget.blur();
-                }}
               />
               <span className="text-sm font-medium">%</span>
             </div>

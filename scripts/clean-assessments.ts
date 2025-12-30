@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2025 GooseGrade
+ * All rights reserved.
+ */
+
 
 import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';

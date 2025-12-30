@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2025 GooseGrade
+ * All rights reserved.
+ */
+
 import { Loader2Icon } from 'lucide-react'
 
 import { cn } from '@/lib/utils'

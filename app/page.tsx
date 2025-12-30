@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2025 GooseGrade
+ * All rights reserved.
+ */
+
 "use client"
 
 import { Search } from "lucide-react"
@@ -59,7 +64,7 @@ export default function Page() {
   }, [query])
 
   return (
-    <div className="relative h-full overflow-hidden bg-white font-sans text-black">
+    <div className="relative min-h-screen overflow-hidden bg-white font-sans text-black">
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
         <div
           className="absolute left-[calc(50%+10px)] bottom-[-10px] h-[360px] w-[360px] rounded-full bg-gradient-to-br from-[#b76e79] via-[#a85c68] to-[#8f3f4c] blur-3xl opacity-55"
@@ -80,16 +85,16 @@ export default function Page() {
 
       <main className="relative z-10 px-6 pb-24 pt-20 sm:px-12 sm:pt-28">
         <div className="max-w-[720px]">
-          <h1 className="font-serif text-gray-900 leading-none tracking-tight flex flex-col items-start">
-            <span className="font-medium text-[clamp(5.5rem,21vw,10.5rem)]">
+          <h1 className="font-light leading-none tracking-tight text-[6rem] sm:text-[8rem]">
+            <span className="block text-[6.75rem] font-semibold sm:text-[8.75rem]">
               Calculate
             </span>
-            <span className="mt-2 font-normal text-[clamp(1.85rem,4.5vw,2.7rem)] ml-[0.9ch]">
+            <span className="ml-2 block text-[2.1rem] font-medium sm:text-[2.6rem]">
               Your UWaterloo Grade
             </span>
           </h1>
 
-          <p className="ml-[1.2ch] mt-6 max-w-2xl text-base font-medium text-gray-700 sm:text-[1.25rem]">
+          <p className="ml-2 mt-6 max-w-2xl text-base font-medium text-gray-700 sm:text-[1.25rem]">
             Enter Your Course Code To See Your
             <br />
             Assessment Weightings From Your Outline

@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2025 GooseGrade
+ * All rights reserved.
+ */
+
 import { scrapeAndStoreCourse } from './scrape-course'; // This works via TS/CommonJS interop
 import * as fs from 'fs';
 import * as path from 'path';

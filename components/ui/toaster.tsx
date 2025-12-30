@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2025 GooseGrade
+ * All rights reserved.
+ */
+
 'use client'
 
 import { useToast } from '@/hooks/use-toast'

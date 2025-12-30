@@ -1,3 +1,6 @@
+-- Copyright (c) 2025 GooseGrade
+-- All rights reserved.
+
 -- Migration to support multiple course sections per term
 -- Run this in your Supabase SQL Editor
 

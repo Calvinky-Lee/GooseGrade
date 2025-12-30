@@ -1,3 +1,8 @@
+/**
+ * Copyright (c) 2025 GooseGrade
+ * All rights reserved.
+ */
+
 'use client'
 
 import * as CollapsiblePrimitive from '@radix-ui/react-collapsible'
