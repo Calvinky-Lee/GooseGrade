@@ -1,9 +1,9 @@
+'use client'
+
 /**
  * Copyright (c) 2025 GooseGrade
  * All rights reserved.
  */
-
-'use client'
 
 import * as React from 'react'
 import * as AccordionPrimitive from '@radix-ui/react-accordion'

@@ -1,9 +1,9 @@
+'use client'
+
 /**
  * Copyright (c) 2025 GooseGrade
  * All rights reserved.
  */
-
-'use client'
 
 import Link from "next/link"
 import Image from "next/image"

@@ -1,9 +1,9 @@
+'use client';
+
 /**
  * Copyright (c) 2025 GooseGrade
  * All rights reserved.
  */
-
-'use client';
 
 import { useState } from 'react';
 import { ChevronDown, ChevronRight, Calculator, GraduationCap, RotateCcw, GripVertical, Plus, Minus } from 'lucide-react';

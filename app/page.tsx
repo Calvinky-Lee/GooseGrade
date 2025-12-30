@@ -1,9 +1,9 @@
+"use client"
+
 /**
  * Copyright (c) 2025 GooseGrade
  * All rights reserved.
  */
-
-"use client"
 
 import { Search } from "lucide-react"
 import { useRouter } from "next/navigation"
@@ -85,16 +85,16 @@ export default function Page() {
 
       <main className="relative z-10 px-6 pb-24 pt-20 sm:px-12 sm:pt-28">
         <div className="max-w-[720px]">
-          <h1 className="font-light leading-none tracking-tight text-[6rem] sm:text-[8rem]">
-            <span className="block text-[6.75rem] font-semibold sm:text-[8.75rem]">
+          <h1 className="font-serif text-gray-900 leading-none tracking-tight flex flex-col items-start">
+            <span className="font-medium text-[clamp(5.5rem,21vw,10.5rem)]">
               Calculate
             </span>
-            <span className="ml-2 block text-[2.1rem] font-medium sm:text-[2.6rem]">
+            <span className="mt-2 font-normal text-[clamp(1.85rem,4.5vw,2.7rem)] ml-[0.9ch]">
               Your UWaterloo Grade
             </span>
           </h1>
 
-          <p className="ml-2 mt-6 max-w-2xl text-base font-medium text-gray-700 sm:text-[1.25rem]">
+          <p className="ml-[1.2ch] mt-6 max-w-2xl text-base font-medium text-gray-700 sm:text-[1.25rem]">
             Enter Your Course Code To See Your
             <br />
             Assessment Weightings From Your Outline

@@ -1,9 +1,9 @@
+'use client';
+
 /**
  * Copyright (c) 2025 GooseGrade
  * All rights reserved.
  */
-
-'use client';
 
 import { useState, useEffect, use, useRef } from 'react';
 import { supabase } from '@/lib/supabase/client';
