@@ -1,24 +1,29 @@
-Missing Outlines Log - 2025-11-28T22:49:27.366Z
+Missing Outlines Log - 2026-01-18T00:43:36.208Z
 
 ACTSC 362 - No outlines found
-ACTSC 423 - No outlines found
-ACTSC 447 - No outlines found
 AE 298 - No outlines found
 AE 399 - No outlines found
 AE 499 - No outlines found
+AFM 347 - No outlines found for Winter 2026
+AMATH 331 - No outlines found for Winter 2026
+AMATH 350 - No outlines found for Winter 2026
 AMATH 445 - No outlines found
+AMATH 451 - No outlines found for Winter 2026
+ANTH 201 - No outlines found for Winter 2026
+ANTH 202 - No outlines found for Winter 2026
+ANTH 204 - No outlines found for Winter 2026
 ANTH 251 - No outlines found
 ANTH 303 - No outlines found
-ANTH 321 - No outlines found
 ANTH 347 - No outlines found
 ANTH 365 - No outlines found
 ANTH 389 - No outlines found
 ANTH 430 - No outlines found
 ANTH 447 - No outlines found
-ANTH 455 - No outlines found
 ANTH 499A - No outlines found
 ANTH 499B - No outlines found
-ARTS 290 - No outlines found
+ARBUS 200 - No outlines found for Winter 2026
+ARCH 113 - No outlines found for Winter 2026
+ARCH 342 - No outlines found for Winter 2026
 AVIA 121 - No outlines found
 AVIA 141 - No outlines found
 AVIA 203 - No outlines found
@@ -28,17 +33,21 @@ AVIA 244 - No outlines found
 AVIA 306 - No outlines found
 AVIA 307 - No outlines found
 AVIA 408 - No outlines found
-BET 201 - No outlines found
-BIOL 352 - No outlines found
-BIOL 477L - No outlines found
+BET 300 - No outlines found for Winter 2026
+BET 450 - No outlines found for Winter 2026
+BIOL 365 - No outlines found for Winter 2026
+BIOL 371 - No outlines found for Winter 2026
+BIOL 431 - No outlines found for Winter 2026
+BIOL 442 - No outlines found for Winter 2026
+BIOL 475 - No outlines found for Winter 2026
 BLKST 101 - No outlines found
 BLKST 244 - No outlines found
 BLKST 308 - No outlines found
 BLKST 399 - No outlines found
 BME 102 - No outlines found
-BME 553 - No outlines found
-BME 564 - No outlines found
-BME 599 - No outlines found
+BME 301 - No outlines found for Winter 2026
+BME 399 - No outlines found for Winter 2026
+BME 402 - No outlines found for Winter 2026
 BUS 111W - No outlines found
 BUS 121W - No outlines found
 BUS 223W - No outlines found
@@ -106,6 +115,7 @@ BUS 490W - No outlines found
 BUS 491W - No outlines found
 BUS 493XW - No outlines found
 CC 325W - No outlines found
+CDNST 201 - No outlines found for Winter 2026
 CHE 201 - No outlines found
 CHE 298 - No outlines found
 CHE 301 - No outlines found
@@ -113,22 +123,30 @@ CHE 302 - No outlines found
 CHE 398 - No outlines found
 CHE 399 - No outlines found
 CHE 402 - No outlines found
-CHE 500 - No outlines found
+CHE 572 - No outlines found for Winter 2026
+CHEM 383 - No outlines found for Winter 2026
+CIVE 153 - No outlines found for Winter 2026
 CIVE 199 - No outlines found
 CIVE 398 - No outlines found
 CIVE 499 - No outlines found
+CLAS 105 - No outlines found for Winter 2026
 CLAS 123 - No outlines found
 CLAS 201 - No outlines found
+CLAS 221 - No outlines found for Winter 2026
+CLAS 231 - No outlines found for Winter 2026
+CLAS 252 - No outlines found for Winter 2026
 CLAS 260 - No outlines found
-CLAS 321 - No outlines found
+CLAS 261 - No outlines found for Winter 2026
 CLAS 384 - No outlines found
 CLAS 461 - No outlines found
-CO 430 - No outlines found
-CO 434 - No outlines found
+CLAS 486 - No outlines found for Winter 2026
+CO 227 - No outlines found for Winter 2026
+CO 434 - ERROR: Failed to fetch: Internal Server Error (500)
 COMMST 101 - No outlines found
 COMMST 102 - No outlines found
 COMMST 149 - No outlines found
-COMMST 193 - No outlines found
+COMMST 191 - No outlines found for Winter 2026
+COMMST 192 - No outlines found for Winter 2026
 COMMST 204 - No outlines found
 COMMST 225 - No outlines found
 COMMST 227 - No outlines found
@@ -138,16 +156,28 @@ COMMST 308 - No outlines found
 COMMST 399 - No outlines found
 COMMST 420 - No outlines found
 COMMST 434 - No outlines found
-COMMST 491 - No outlines found
-CS 383 - No outlines found
 DAC 201 - No outlines found
+DAC 202 - No outlines found for Winter 2026
+DAC 204 - No outlines found for Winter 2026
 DAC 209 - No outlines found
+DAC 302 - No outlines found for Winter 2026
+DAC 305 - No outlines found for Winter 2026
 DAC 308 - No outlines found
 DAC 400 - No outlines found
+EARTH 322 - No outlines found for Winter 2026
+EARTH 435 - No outlines found for Winter 2026
+EASIA 302R - No outlines found for Winter 2026
 ECE 102 - No outlines found
+ECE 106 - No outlines found for Winter 2026
 ECE 201 - No outlines found
+ECE 240 - No outlines found for Winter 2026
 ECE 301 - No outlines found
 ECE 402 - No outlines found
+ECE 405D - No outlines found for Winter 2026
+ECE 417 - No outlines found for Winter 2026
+ECE 457A - No outlines found for Winter 2026
+ECE 464 - No outlines found for Winter 2026
+ECE 498A - No outlines found for Winter 2026
 ECON 207W - No outlines found
 ECON 223W - No outlines found
 ECON 229W - No outlines found
@@ -163,110 +193,144 @@ ECON 290W - No outlines found
 ECON 295W - No outlines found
 ECON 310IW - No outlines found
 ECON 390W - No outlines found
-ECON 441 - No outlines found
-ENBUS 104 - No outlines found
-ENBUS 409B - No outlines found
-ENGL 100A - No outlines found
+ECON 472 - No outlines found for Winter 2026
+ECON 484 - No outlines found for Winter 2026
 ENGL 100C - No outlines found
-ENGL 108F - No outlines found
+ENGL 104 - No outlines found for Winter 2026
+ENGL 108G - No outlines found for Winter 2026
+ENGL 108P - No outlines found for Winter 2026
 ENGL 108X - No outlines found
+ENGL 192 - No outlines found for Winter 2026
 ENGL 200B - No outlines found
-ENGL 201 - No outlines found
 ENGL 203 - No outlines found
+ENGL 204 - No outlines found for Winter 2026
 ENGL 208E - No outlines found
 ENGL 210E - No outlines found
 ENGL 213 - No outlines found
 ENGL 232 - No outlines found
 ENGL 243 - No outlines found
+ENGL 275 - No outlines found for Winter 2026
+ENGL 292 - No outlines found for Winter 2026
+ENGL 295 - No outlines found for Winter 2026
 ENGL 305B - No outlines found
+ENGL 309G - No outlines found for Winter 2026
 ENGL 320 - No outlines found
 ENGL 328 - No outlines found
 ENGL 347 - No outlines found
 ENGL 373 - No outlines found
-ENGL 383 - No outlines found
 ENGL 403 - No outlines found
 ENGL 408A - No outlines found
 ENGL 408C - No outlines found
 ENGL 410 - No outlines found
+ENGL 432 - No outlines found for Winter 2026
 ENGL 461 - No outlines found
 ENGL 485 - No outlines found
 ENGL 486 - No outlines found
+ENGL 494 - No outlines found for Winter 2026
 ENVE 298 - No outlines found
 ENVE 399 - No outlines found
 ENVE 499 - No outlines found
-ENVE 585 - No outlines found
-ENVS 403B - No outlines found
+ENVE 573 - No outlines found for Winter 2026
 ENVS 405 - No outlines found
 ERS 294 - No outlines found
-ERS 328 - No outlines found
+ERS 375 - No outlines found for Winter 2026
+ERS 403A - No outlines found for Winter 2026
+FINE 150 - No outlines found for Winter 2026
+FINE 204 - No outlines found for Winter 2026
 FINE 220 - No outlines found
-FINE 383 - No outlines found
-FR 220 - No outlines found
-FR 367 - No outlines found
-FR 400 - No outlines found
+FINE 243 - No outlines found for Winter 2026
+FINE 247 - No outlines found for Winter 2026
+FINE 327 - No outlines found for Winter 2026
+FINE 343 - No outlines found for Winter 2026
+FINE 473 - No outlines found for Winter 2026
+GBDA 205 - No outlines found for Winter 2026
+GBDA 211 - No outlines found for Winter 2026
+GBDA 212 - No outlines found for Winter 2026
 GBDA 304 - No outlines found
 GENE 120 - No outlines found
+GENE 199 - No outlines found for Winter 2026
 GENE 315 - No outlines found
 GENE 396 - No outlines found
 GENE 501 - No outlines found
 GENE 502 - No outlines found
+GENE 503 - No outlines found for Winter 2026
 GEOE 298 - No outlines found
 GEOE 399 - No outlines found
 GEOE 499 - No outlines found
-GEOG 374 - No outlines found
-GER 262 - No outlines found
+GEOG 323 - No outlines found for Winter 2026
+GEOG 416 - No outlines found for Winter 2026
+GEOG 457 - No outlines found for Winter 2026
+GERON 245 - No outlines found for Winter 2026
+GERON 355 - No outlines found for Winter 2026
+GERON 400 - No outlines found for Winter 2026
 GESC 231W - No outlines found
 GRK 102 - No outlines found
 GRK 202 - No outlines found
 GRK 332 - No outlines found
+GRK 490 - No outlines found for Winter 2026
+GSJ 102 - No outlines found for Winter 2026
 GSJ 208E - No outlines found
 GSJ 260 - No outlines found
-GSJ 304 - No outlines found
+GSJ 309 - No outlines found for Winter 2026
 GSJ 347 - No outlines found
-GSJ 401 - No outlines found
 GSJ 410 - No outlines found
 HEALTH 395 - No outlines found
+HHUM 101 - No outlines found for Winter 2026
+HHUM 288 - No outlines found for Winter 2026
 HIST 105 - No outlines found
+HIST 205 - No outlines found for Winter 2026
 HIST 226 - No outlines found
-HIST 238 - No outlines found
+HIST 232 - No outlines found for Winter 2026
+HIST 252 - No outlines found for Winter 2026
+HIST 253 - No outlines found for Winter 2026
 HIST 254 - No outlines found
+HIST 258 - No outlines found for Winter 2026
 HIST 268 - No outlines found
+HIST 309 - No outlines found for Winter 2026
 HIST 313 - No outlines found
 HIST 314 - No outlines found
 HIST 318 - No outlines found
 HIST 342 - No outlines found
 HIST 347 - No outlines found
 HIST 450 - No outlines found
-HLTH 104 - No outlines found
-HLTH 335 - No outlines found
-HLTH 344 - No outlines found
-HLTH 358 - No outlines found
-HLTH 458 - No outlines found
-HLTH 471 - No outlines found
+HLTH 260 - No outlines found for Winter 2026
+HLTH 355 - No outlines found for Winter 2026
+HLTH 392 - No outlines found for Winter 2026
+HLTH 445 - No outlines found for Winter 2026
 HRM 303 - No outlines found
 HRTS 101 - No outlines found
 HRTS 203 - No outlines found
 HRTS 204 - No outlines found
+HRTS 302 - No outlines found for Winter 2026
 HRTS 490 - No outlines found
 INDENT 310 - No outlines found
 INDENT 320 - No outlines found
 INDENT 325 - No outlines found
 INDG 201 - No outlines found
+INDG 301 - No outlines found for Winter 2026
 INDG 318 - No outlines found
 INNOV 201 - No outlines found
 INNOV 302 - No outlines found
 INNOV 411 - No outlines found
 INTEG 10 - No outlines found
 ITAL 202 - No outlines found
-ITALST 112 - No outlines found
 KIN 391 - No outlines found
 KIN 431 - No outlines found
 KIN 432 - No outlines found
 KIN 433 - No outlines found
+LAT 202 - No outlines found for Winter 2026
+LS 202 - No outlines found for Winter 2026
+LS 206 - No outlines found for Winter 2026
 LS 213 - No outlines found
+LS 221 - No outlines found for Winter 2026
 LS 223 - No outlines found
+LS 280 - No outlines found for Winter 2026
 LS 292 - No outlines found
+LS 305 - No outlines found for Winter 2026
+LS 319 - No outlines found for Winter 2026
+LS 322 - No outlines found for Winter 2026
 LS 326 - No outlines found
+LS 328 - No outlines found for Winter 2026
 LS 344 - No outlines found
 LS 352 - No outlines found
 LS 363 - No outlines found
@@ -275,8 +339,6 @@ LS 401 - No outlines found
 LS 402 - No outlines found
 LS 410 - No outlines found
 LS 426 - No outlines found
-LS 434 - No outlines found
-LS 435 - No outlines found
 LS 462 - No outlines found
 LS 496 - No outlines found
 LS 498 - No outlines found
@@ -284,17 +346,21 @@ ME 100B - No outlines found
 ME 200A - No outlines found
 ME 300A - No outlines found
 ME 300B - No outlines found
+ME 303 - No outlines found for Winter 2026
 ME 400B - No outlines found
-MEDVL 230 - No outlines found
+ME 526 - No outlines found for Winter 2026
+MEDVL 105 - No outlines found for Winter 2026
 MSE 100B - No outlines found
 MSE 300A - No outlines found
+MSE 342 - No outlines found for Winter 2026
 MSE 400B - No outlines found
+MSE 435 - No outlines found for Winter 2026
+MSE 555 - No outlines found for Winter 2026
 MTE 100B - No outlines found
 MTE 200A - No outlines found
 MTE 300A - No outlines found
 MTE 300B - No outlines found
 MTE 400B - No outlines found
-MTHEL 298 - No outlines found
 MUSIC 116 - No outlines found
 MUSIC 117 - No outlines found
 MUSIC 140 - No outlines found
@@ -309,12 +375,10 @@ MUSIC 260 - No outlines found
 MUSIC 275 - No outlines found
 MUSIC 316 - No outlines found
 MUSIC 317 - No outlines found
-MUSIC 322 - No outlines found
 MUSIC 326 - No outlines found
 MUSIC 327 - No outlines found
 MUSIC 355 - No outlines found
 MUSIC 362 - No outlines found
-MUSIC 371 - No outlines found
 MUSIC 380 - No outlines found
 MUSIC 381 - No outlines found
 MUSIC 392 - No outlines found
@@ -324,28 +388,37 @@ MUSIC 426 - No outlines found
 MUSIC 427 - No outlines found
 MUSIC 428 - No outlines found
 MUSIC 492 - No outlines found
+NE 409 - No outlines found for Winter 2026
+NE 476 - No outlines found for Winter 2026
+PACS 203 - No outlines found for Winter 2026
 PACS 290 - No outlines found
+PACS 301 - No outlines found for Winter 2026
 PACS 310 - No outlines found
+PACS 323 - No outlines found for Winter 2026
 PACS 329 - No outlines found
+PACS 331 - No outlines found for Winter 2026
 PACS 336 - No outlines found
 PACS 390 - No outlines found
 PACS 391 - No outlines found
 PACS 398 - No outlines found
 PACS 402 - No outlines found
-PHIL 206 - No outlines found
+PD 6 - No outlines found for Winter 2026
+PHARM 374 - No outlines found for Winter 2026
+PHIL 101 - No outlines found for Winter 2026
+PHIL 121 - No outlines found for Winter 2026
 PHIL 260 - No outlines found
+PHIL 283 - No outlines found for Winter 2026
 PHIL 285J - No outlines found
-PHIL 302 - No outlines found
 PHIL 328 - No outlines found
 PHIL 403 - No outlines found
-PHIL 471 - No outlines found
+PHYS 10 - No outlines found for Winter 2026
+PHYS 233 - No outlines found for Winter 2026
 PHYS 260B - No outlines found
-PHYS 395 - No outlines found
-PLAN 240 - No outlines found
+PLAN 485 - No outlines found for Winter 2026
 PLAN 490 - No outlines found
+PMATH 331 - No outlines found for Winter 2026
 PMATH 343 - No outlines found
-PMATH 434 - No outlines found
-PMATH 454 - No outlines found
+PMATH 445 - No outlines found for Winter 2026
 PSCI 226 - No outlines found
 PSCI 255 - No outlines found
 PSCI 282 - No outlines found
@@ -354,7 +427,9 @@ PSCI 334 - No outlines found
 PSCI 359 - No outlines found
 PSCI 363 - No outlines found
 PSCI 370 - No outlines found
+PSCI 385 - No outlines found for Winter 2026
 PSCI 389 - No outlines found
+PSCI 391 - No outlines found for Winter 2026
 PSCI 400 - No outlines found
 PSCI 424 - No outlines found
 PSCI 462 - No outlines found
@@ -364,17 +439,18 @@ PSYCH 213R - No outlines found
 PSYCH 231 - No outlines found
 PSYCH 232 - No outlines found
 PSYCH 238 - No outlines found
-PSYCH 257 - No outlines found
+PSYCH 261 - No outlines found for Winter 2026
 PSYCH 264 - No outlines found
-PSYCH 306 - No outlines found
-PSYCH 315 - No outlines found
+PSYCH 292 - No outlines found for Winter 2026
+PSYCH 314 - No outlines found for Winter 2026
 PSYCH 335 - No outlines found
+PSYCH 336 - No outlines found for Winter 2026
 PSYCH 337 - No outlines found
-PSYCH 342 - No outlines found
-PSYCH 357 - No outlines found
+PSYCH 340 - No outlines found for Winter 2026
+PSYCH 363 - No outlines found for Winter 2026
 PSYCH 420 - No outlines found
+PSYCH 444R - No outlines found for Winter 2026
 PSYCH 458 - No outlines found
-PSYCH 462 - No outlines found
 PSYCH 464 - No outlines found
 PSYCH 480 - No outlines found
 PSYCH 481 - No outlines found
@@ -388,65 +464,60 @@ PSYCH 493 - No outlines found
 PSYCH 499A - No outlines found
 PSYCH 499B - No outlines found
 PSYCH 499C - No outlines found
-RCS 100 - No outlines found
 RCS 102 - No outlines found
 RCS 224 - No outlines found
-RCS 235 - No outlines found
-RCS 253 - No outlines found
 RCS 285 - No outlines found
 RCS 288 - No outlines found
 RCS 318 - No outlines found
 RCS 335 - No outlines found
-REC 206 - No outlines found
+REC 202 - No outlines found for Winter 2026
+REC 215 - No outlines found for Winter 2026
 REC 312 - No outlines found
 REC 318 - No outlines found
+REC 383 - No outlines found for Winter 2026
+REC 455 - No outlines found for Winter 2026
 REC 456 - No outlines found
 REC 471A - No outlines found
 REC 471B - No outlines found
 REC 475 - No outlines found
-REES 262 - No outlines found
 RSCH 100 - No outlines found
+SCBUS 225 - No outlines found for Winter 2026
+SCI 211 - No outlines found for Winter 2026
 SCI 266 - No outlines found
 SCI 396 - No outlines found
-SDS 215R - No outlines found
 SDS 354R - No outlines found
-SDS 435R - No outlines found
-SDS 441R - No outlines found
-SE 102 - No outlines found
 SE 301 - No outlines found
 SE 402 - No outlines found
 SFM 328 - No outlines found
 SFM 329 - No outlines found
-SI 121R - No outlines found
+SI 312 - No outlines found for Winter 2026
 SOC 213 - No outlines found
+SOC 221 - No outlines found for Winter 2026
+SOC 223 - No outlines found for Winter 2026
+SOC 280 - No outlines found for Winter 2026
 SOC 302 - No outlines found
+SOC 305 - No outlines found for Winter 2026
+SOC 322 - No outlines found for Winter 2026
 SOC 326 - No outlines found
-SOC 330 - No outlines found
 SOC 334 - No outlines found
 SOC 426 - No outlines found
 SOC 431 - No outlines found
-SOC 434 - No outlines found
 SOC 497 - No outlines found
 SOC 498 - No outlines found
 SOC 499A - No outlines found
 SOC 499B - No outlines found
-SPAN 150 - No outlines found
 SRF 101 - No outlines found
-SRF 112 - No outlines found
-SRF 204 - No outlines found
-SRF 207 - No outlines found
 SRF 216 - No outlines found
-SRF 230 - No outlines found
 SRF 309 - No outlines found
-SRF 310 - No outlines found
 SRF 400 - No outlines found
 SRF 491 - No outlines found
-STAT 438 - No outlines found
-SYDE 536 - No outlines found
-SYDE 537 - No outlines found
+SYDE 201 - No outlines found for Winter 2026
+SYDE 302 - No outlines found for Winter 2026
+SYDE 312 - No outlines found for Winter 2026
+SYDE 402 - No outlines found for Winter 2026
 SYDE 554 - No outlines found
+AFM 132 - No outlines found for Winter 2026
 THPERF 100 - No outlines found
-THPERF 102 - No outlines found
 THPERF 149 - No outlines found
 THPERF 222 - No outlines found
 THPERF 244 - No outlines found
@@ -456,12 +527,10 @@ THPERF 307 - No outlines found
 THPERF 407 - No outlines found
 UNDC 100W - No outlines found
 UNIV 101 - No outlines found
+VCULT 101 - No outlines found for Winter 2026
 VCULT 200 - No outlines found
-VCULT 319 - No outlines found
 VCULT 400 - No outlines found
 VCULT 401 - No outlines found
 WKRPT 100 - No outlines found
-
-
-npm run add-course "CS 135"
-
+WKRPT 300 - No outlines found for Winter 2026
+WKRPT 400 - No outlines found for Winter 2026

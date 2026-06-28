@@ -284,16 +284,19 @@ export async function parseCourseOutline(courseCode: string): Promise<ParsedCour
   
   const results = json.results as ApiSearchResult[];
   
-  // 1. Find the latest term ID
-  // Sort descending by term ID
-  results.sort((a, b) => b.term - a.term);
-  const latestTermId = results[0].term;
+  // 1. Target Winter 2026 (term ID 1261: year 26, month 1 = Winter)
+  const winter2026TermId = 1261;
   
-  // 2. Filter for ALL outlines from that latest term
-  const latestOutlines = results.filter(r => r.term === latestTermId);
-  const termName = decodeTerm(latestTermId);
+  // 2. Filter for ALL outlines from Winter 2026
+  const latestOutlines = results.filter(r => r.term === winter2026TermId);
+  const termName = decodeTerm(winter2026TermId);
   
-  console.log(`📅 Latest Term Found: ${termName} (ID: ${latestTermId}) - Found ${latestOutlines.length} outlines`);
+  if (latestOutlines.length === 0) {
+    console.warn(`⚠️  No outlines found for Winter 2026 (term ID: ${winter2026TermId})`);
+    throw new Error(`No outlines found for Winter 2026`);
+  }
+  
+  console.log(`📅 Winter 2026 Term Found: ${termName} (ID: ${winter2026TermId}) - Found ${latestOutlines.length} outlines`);
   
   const parsedCourses: ParsedCourse[] = [];
 
