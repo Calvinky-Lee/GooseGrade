@@ -1,0 +1,221 @@
+<title>GooseGrade — My Term dashboard (mockup)</title>
+<meta name="description" content="Mockup of the GooseGrade v2 'My Term' dashboard — modern, warm brand color, cohesive type & spacing: credit-weighted term average, what-do-I-need, minimal course cards.">
+<style>
+  :root{
+    --ground:#FBFAF7; --panel:#ffffff; --ink:#18181B; --muted:#6F6E69; --faint:#A3A29B;
+    --line:#ECEAE3; --line-strong:#E0DDD3;
+    /* brand warmth */
+    --amber:#F5A623; --orange:#FF9D47; --gold:#F9C74F;
+    --warm-wash:#FFFEFB; --warm-line:#EFEBE0; --warm-hover:#ECDDB6;
+    --track:#EFEDE6;
+    /* status */
+    --good:#1E9E6A; --good-bg:#E7F5EE;
+    --risk:#D4503F; --risk-bg:#FBEAE6;
+    --font:-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --s1:6px; --s2:10px; --s3:16px; --s4:22px; --s5:34px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--font);
+    line-height:1.5;-webkit-font-smoothing:antialiased;letter-spacing:-.011em}
+  .wrap{max-width:900px;margin:0 auto;padding:22px 22px 72px}
+  .n{font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+  .u{color:var(--muted);font-weight:650;letter-spacing:0}   /* % glyph: tight + part of the number */
+
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:var(--s3);margin-bottom:var(--s4)}
+  .brand{display:flex;align-items:center;gap:9px}
+  .goose{width:26px;height:26px;border-radius:8px;flex:none;
+    background:radial-gradient(120% 120% at 30% 20%,var(--gold),var(--amber) 60%,#E8852B)}
+  .brand b{font-weight:650;font-size:1.05rem;letter-spacing:-.02em}
+  .termsel{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line-strong);
+    background:var(--panel);border-radius:10px;padding:7px 12px;font-weight:600;font-size:.85rem;cursor:pointer}
+  .termsel svg{width:13px;height:13px;color:var(--muted)}
+
+  /* Hero — one warm panel groups the whole summary so nothing floats apart */
+  .hero{position:relative;isolation:isolate;overflow:hidden;
+    display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:var(--s4);
+    background:linear-gradient(170deg,var(--warm-wash),#FFFFFF 55%);
+    border:1px solid var(--warm-line);border-radius:18px;padding:22px 24px}
+  /* very, very slight illumination — pushed off-corner so only a faint tail enters */
+  .hero::before{content:"";position:absolute;z-index:-1;width:440px;height:440px;right:-150px;top:-230px;
+    background:radial-gradient(circle,rgba(245,166,35,.16),transparent 72%);filter:blur(46px);
+    opacity:.6;pointer-events:none}
+  .eyebrow{font-size:.71rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:650}
+  .heronum .val{font-weight:680;font-size:3.9rem;line-height:1;letter-spacing:-.045em;margin-top:var(--s1)}
+  .heronum .val .u{font-size:.4em;color:var(--amber)}     /* the % carries the brand tint */
+  .heronum .note{font-size:.88rem;color:var(--muted);margin-top:var(--s2)}
+  .heronum .note b{color:var(--ink);font-weight:650}
+  .ministats{display:flex;gap:var(--s5)}
+  .mini .v{font-weight:660;font-size:1.45rem;margin-top:4px;letter-spacing:-.035em}
+  .mini .v .u{font-size:.6em}
+  .mini .s{font-size:.78rem;color:var(--muted);margin-top:2px}
+  .up{color:var(--good);font-weight:650}
+
+  .need{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s2) 12px;margin:var(--s4) 2px 0;
+    font-size:.92rem;color:var(--muted)}
+  .need .field{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--warm-hover);
+    background:var(--warm-wash);border-radius:9px;padding:5px 10px;font-weight:650;color:var(--ink)}
+  .need .field:focus-within{border-color:var(--amber)}
+  .need .field input{width:30px;border:0;background:transparent;font:inherit;font-weight:650;
+    text-align:right;outline:none;color:var(--ink)}
+  .need b{color:var(--ink);font-weight:650}
+
+  .seclabel{display:flex;align-items:baseline;justify-content:space-between;margin:var(--s5) 2px var(--s3)}
+  .seclabel h2{font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+    font-weight:700;margin:0}
+  .seclabel span{font-size:.78rem;color:var(--faint)}
+
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;
+    display:flex;flex-direction:column;gap:var(--s3);cursor:pointer;
+    transition:border-color .14s,box-shadow .14s,transform .14s}
+  .card:hover{border-color:var(--warm-hover);box-shadow:0 10px 26px -18px rgba(217,150,40,.5);
+    transform:translateY(-1px)}
+  .ctop{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+  .code{font-weight:650;font-size:1rem;letter-spacing:-.015em}
+  .name{font-size:.82rem;color:var(--muted);margin-top:2px;line-height:1.35;
+    display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+  .grade{font-weight:670;font-size:2.05rem;line-height:1;letter-spacing:-.045em;white-space:nowrap}
+  .grade .u{font-size:.46em}
+
+  /* progress bars carry the brand yellow */
+  .bar{height:7px;border-radius:999px;background:var(--track);overflow:hidden}
+  .bar > i{display:block;height:100%;border-radius:999px;
+    background:linear-gradient(90deg,var(--gold),#FBA94C)}
+
+  .cbottom{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .chip{display:inline-flex;align-items:center;gap:6px;font-size:.76rem;font-weight:600;
+    padding:3px 9px;border-radius:999px}
+  .chip .d{width:6px;height:6px;border-radius:50%}
+  .chip.good{color:var(--good);background:var(--good-bg)} .chip.good .d{background:var(--good)}
+  .chip.risk{color:var(--risk);background:var(--risk-bg)} .chip.risk .d{background:var(--risk)}
+  .chip.muted{color:var(--muted);background:#F3F1EA}
+  .cap{font-size:.76rem;color:var(--faint);text-align:right}
+
+  .excluded{opacity:.66}
+  .add{align-items:center;justify-content:center;text-align:center;border-style:dashed;
+    color:var(--muted);gap:var(--s1);min-height:128px}
+  .add .plus{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--warm-hover);
+    display:grid;place-items:center;font-size:1.1rem;color:var(--amber)}
+  .add b{font-weight:600;font-size:.9rem;color:var(--ink)}
+  .add .s{font-size:.76rem;color:var(--faint)}
+
+  .foot{margin-top:var(--s5);font-size:.76rem;color:var(--faint);text-align:center}
+
+  @media(max-width:680px){
+    .grid{grid-template-columns:1fr}
+    .hero{align-items:flex-start}
+    .heronum .val{font-size:3.3rem}
+    .ministats{gap:var(--s4)}
+  }
+</style>
+
+<div class="wrap">
+  <header class="topbar">
+    <div class="brand"><span class="goose" aria-hidden="true"></span><b>GooseGrade</b></div>
+    <button class="termsel">Spring&nbsp;2026
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
+  </header>
+
+  <section class="hero">
+    <div class="heronum">
+      <div class="eyebrow">Term average</div>
+      <div class="val n">79.9<span class="u">%</span></div>
+      <div class="note">Projected <b class="n">81.2%</b> at your current pace · credit-weighted over 4 courses</div>
+    </div>
+    <div class="ministats">
+      <div class="mini">
+        <div class="eyebrow">Cumulative</div>
+        <div class="v n">77.4<span class="u">%</span></div>
+        <div class="s"><span class="up n">▲&nbsp;1.3</span> vs last term</div>
+      </div>
+      <div class="mini">
+        <div class="eyebrow">Credits</div>
+        <div class="v n">2.0</div>
+        <div class="s">PD&nbsp;11 excluded</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="need">
+    <span>Aim for</span>
+    <span class="field"><input value="82" aria-label="target term average" /><span class="u">%</span></span>
+    <span>this term → average <b class="n">84.6%</b> on what's left. Still reachable.</span>
+  </div>
+
+  <div class="seclabel">
+    <h2>Courses</h2>
+    <span>tap a course to enter grades</span>
+  </div>
+
+  <div class="grid">
+
+    <article class="card">
+      <div class="ctop">
+        <div><div class="code">CS 240</div><div class="name">Data Structures &amp; Data Management</div></div>
+        <div class="grade n">78.4<span class="u">%</span></div>
+      </div>
+      <div class="bar"><i style="width:62%"></i></div>
+      <div class="cbottom">
+        <span class="chip good"><span class="d"></span>On track</span>
+        <span class="cap n">62% graded · need 82% for 80</span>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="ctop">
+        <div><div class="code">MATH 239</div><div class="name">Introduction to Combinatorics</div></div>
+        <div class="grade n">84.1<span class="u">%</span></div>
+      </div>
+      <div class="bar"><i style="width:55%"></i></div>
+      <div class="cbottom">
+        <span class="chip good"><span class="d"></span>On track</span>
+        <span class="cap n">55% graded · need 86% for 85</span>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="ctop">
+        <div><div class="code">STAT 230</div><div class="name">Probability</div></div>
+        <div class="grade n">69.2<span class="u">%</span></div>
+      </div>
+      <div class="bar"><i style="width:48%"></i></div>
+      <div class="cbottom">
+        <span class="chip risk"><span class="d"></span>At risk</span>
+        <span class="cap">final must reach 50% to pass</span>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="ctop">
+        <div><div class="code">CS 241</div><div class="name">Foundations of Sequential Programs</div></div>
+        <div class="grade n">88.0<span class="u">%</span></div>
+      </div>
+      <div class="bar"><i style="width:70%"></i></div>
+      <div class="cbottom">
+        <span class="chip good"><span class="d"></span>Ahead of target</span>
+        <span class="cap n">70% graded · target 85</span>
+      </div>
+    </article>
+
+    <article class="card excluded">
+      <div class="ctop">
+        <div><div class="code">PD 11</div><div class="name">Processes for Project Management</div></div>
+        <div class="grade" style="color:var(--faint);font-size:1.5rem">CR</div>
+      </div>
+      <div class="cbottom">
+        <span class="chip muted">Credit / no-credit</span>
+        <span class="cap">not in average</span>
+      </div>
+    </article>
+
+    <article class="card add">
+      <div class="plus">+</div>
+      <b>Add a course</b>
+      <div class="s">search or pick from your CS&nbsp;2B term</div>
+    </article>
+
+  </div>
+
+  <p class="foot">Illustrative mockup · range, rules and the full breakdown live on each course's page.</p>
+</div>

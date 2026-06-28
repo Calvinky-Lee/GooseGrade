@@ -1,0 +1,217 @@
+<title>GooseGrade v2 — System Architecture</title>
+<meta name="description" content="GooseGrade v2 cloud topology: Vercel + Supabase app, AWS Docker/Kubernetes scraper & QA slice, and the contract-first parallel-session workflow.">
+<style>
+  :root{
+    --ground:#FCFCFB; --panel:#ffffff; --ink:#1B1A17; --muted:#6b6a64; --faint:#9a988f;
+    --line:#e8e6df; --line-strong:#dad7cd;
+    --slate:#d6dbe5; --slate-deep:#9fa8bb; --slate-ink:#3c4658;
+    --amber:#f9c74f; --orange:#ff9d47; --rose:#b76e79;
+    --vercel:#1B1A17; --supabase:#2f7a55; --supabase-bg:#e7f1eb;
+    --aws:#b8791f; --aws-bg:#f7eedd;
+    /* modern display = the sans stack (no academic serif), per design direction */
+    --serif:-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --sans:-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--sans);line-height:1.5;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:960px;margin:0 auto;padding:0 24px 64px}
+
+  /* Header with restrained glow (this is not a calculation screen) */
+  .hero{position:relative;overflow:hidden;padding:54px 30px 40px;margin-bottom:8px;
+    border-bottom:1px solid var(--line)}
+  .hero .orbs{position:absolute;inset:0;pointer-events:none;z-index:0}
+  .hero .orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5}
+  .o1{width:260px;height:260px;right:6%;top:-90px;
+    background:radial-gradient(circle,var(--amber),var(--orange))}
+  .o2{width:220px;height:220px;right:24%;top:-40px;
+    background:radial-gradient(circle,var(--orange),var(--rose))}
+  .hero-in{position:relative;z-index:1}
+  .kicker{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--aws);
+    font-weight:700}
+  h1{font-family:var(--serif);font-weight:680;font-size:2.4rem;letter-spacing:-.03em;margin:.3rem 0 .4rem;
+    text-wrap:balance}
+  .lede{max-width:60ch;color:var(--muted);font-size:1.02rem;margin:0}
+
+  .wrap > section{margin-top:30px}
+  h2{font-family:var(--serif);font-weight:600;font-size:1.18rem;margin:0 0 14px;
+    display:flex;align-items:baseline;gap:10px}
+  h2 .n{font-family:var(--mono);font-size:.8rem;color:var(--faint);font-weight:700}
+
+  /* Layer stack */
+  .stack{display:flex;flex-direction:column;gap:0}
+  .layer{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .lhead{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+  .tag{font-size:.66rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+    padding:3px 8px;border-radius:6px;color:#fff}
+  .tag.vercel{background:var(--vercel)} .tag.supabase{background:var(--supabase)}
+  .tag.aws{background:var(--aws)} .tag.client{background:var(--slate-ink)}
+  .lhead b{font-family:var(--serif);font-size:1.02rem;font-weight:600}
+  .lhead .meta{margin-left:auto;font-size:.76rem;color:var(--faint);font-family:var(--mono)}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+  .chip{font-size:.76rem;color:var(--slate-ink);background:var(--slate);border-radius:8px;
+    padding:4px 9px;font-weight:600}
+  .chip.q{font-family:var(--mono);font-size:.72rem;background:#f1efe9;color:var(--muted)}
+  .layer p{margin:6px 0 0;font-size:.86rem;color:var(--muted)}
+
+  .flow{display:flex;justify-content:center;align-items:center;gap:10px;color:var(--faint);
+    font-size:.72rem;font-family:var(--mono);padding:7px 0}
+  .flow svg{width:16px;height:16px}
+  .arrowcol{display:flex;flex-direction:column;align-items:center;color:var(--slate-deep)}
+
+  .aws-band{border:1px dashed var(--aws);background:var(--aws-bg)}
+  .aws-band .note{font-size:.78rem;color:var(--aws);font-weight:600;margin-top:8px}
+
+  /* Contract / parallel sessions */
+  .contract{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .col{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .col h3{font-family:var(--serif);font-weight:600;font-size:1rem;margin:0 0 4px}
+  .col .owner{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+  .be{color:var(--supabase)} .fe{color:var(--rose)}
+  .col ul{margin:10px 0 0;padding-left:18px;font-size:.85rem;color:var(--muted)}
+  .col li{margin:4px 0}
+  .col code{font-family:var(--mono);font-size:.8rem;background:#f1efe9;padding:1px 5px;border-radius:5px;
+    color:var(--slate-ink)}
+  .bridge{grid-column:1/-1;background:var(--slate);border-radius:12px;padding:12px 16px;
+    display:flex;align-items:center;gap:12px;font-size:.84rem;color:var(--slate-ink)}
+  .bridge b{font-family:var(--serif)}
+  .bridge .key{font-family:var(--mono);font-size:.76rem;background:#fff;border-radius:6px;
+    padding:3px 7px;font-weight:600;white-space:nowrap}
+
+  .legend{display:flex;flex-wrap:wrap;gap:16px;font-size:.78rem;color:var(--muted);
+    border-top:1px solid var(--line);padding-top:16px;margin-top:30px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .sw{width:11px;height:11px;border-radius:3px}
+
+  @media(max-width:680px){ .contract{grid-template-columns:1fr} h1{font-size:1.9rem} }
+</style>
+
+<div class="hero">
+  <div class="orbs"><div class="orb o1"></div><div class="orb o2"></div></div>
+  <div class="hero-in">
+    <div class="kicker">GooseGrade v2 · System Architecture</div>
+    <h1>Managed app, one deliberate slice of AWS</h1>
+    <p class="lede">The product runs on Vercel + Supabase — accounts, per-user data, and row-level
+    security come essentially free. Only the scraper and the multi-agent QA runner reach for Docker
+    and Kubernetes, the parts that are genuinely batch and parallel. Nothing user-facing depends on
+    the cluster.</p>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <section>
+    <h2><span class="n">01</span> Request path</h2>
+    <div class="stack">
+
+      <div class="layer">
+        <div class="lhead"><span class="tag client">Client</span><b>Browser — the student</b>
+          <span class="meta">Next.js 16 · React 19</span></div>
+        <div class="chips">
+          <span class="chip">React UI</span>
+          <span class="chip">lib/engine — pure grade engine</span>
+          <span class="chip">lib/api — typed data access</span>
+        </div>
+        <p>The grade engine runs client-side, so entering a mark recomputes standing instantly — no
+        server round-trip on the grade-back loop.</p>
+      </div>
+
+      <div class="arrowcol" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </div>
+
+      <div class="layer">
+        <div class="lhead"><span class="tag vercel">Vercel</span><b>Next.js app</b>
+          <span class="meta">serverless · preview deploys</span></div>
+        <div class="chips">
+          <span class="chip">Server Components</span>
+          <span class="chip">Route Handlers</span>
+          <span class="chip">Vercel Analytics</span>
+        </div>
+        <p>Hosts the UI and the thin data-access layer. No standing backend service to run.</p>
+      </div>
+
+      <div class="arrowcol" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </div>
+
+      <div class="layer">
+        <div class="lhead"><span class="tag supabase">Supabase</span><b>Auth · Postgres · Storage</b>
+          <span class="meta">RLS = auth.uid() = user_id</span></div>
+        <div class="chips">
+          <span class="chip">Catalog tables (read-only)</span>
+          <span class="chip">User tables (RLS-protected)</span>
+          <span class="chip">Storage — source outlines</span>
+        </div>
+        <div class="chips">
+          <span class="chip q">fork_catalog_course()</span>
+          <span class="chip q">get_distribution()</span>
+          <span class="chip q">rollover_term()</span>
+          <span class="chip q">delete_account()</span>
+        </div>
+        <p>The database — not application code — guarantees one student can never read another's
+        grades. Server logic lives in RPCs / Edge Functions; there is no 24/7 API service.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">02</span> The AWS slice — Docker + Kubernetes</h2>
+    <div class="layer aws-band">
+      <div class="lhead"><span class="tag aws">AWS</span><b>Scraper &amp; multi-agent QA</b>
+        <span class="meta">kind / minikube local · short-lived EKS demo</span></div>
+      <div class="chips">
+        <span class="chip">Scraper Job — outline.uwaterloo.ca</span>
+        <span class="chip">Claude extraction → GradingRule[]</span>
+        <span class="chip">QA Job — validate every course</span>
+        <span class="chip">Source outlines → Storage</span>
+      </div>
+      <p>K8s indexed Jobs shard ~1,600 courses across pods — genuine horizontal scaling, not theatre.
+      The QA swarm runs the pure engine over every course and flags any rule that could turn a
+      passing grade into a fail.</p>
+      <div class="note">Runs ephemerally — ~$0 standing cost. Writes the catalog with the Supabase
+      service role; the app keeps working even if the cluster is down.</div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">03</span> Contract-first parallel sessions</h2>
+    <div class="contract">
+      <div class="col">
+        <div class="owner be">Backend session owns</div>
+        <h3>Data, engine, pipeline</h3>
+        <ul>
+          <li><code>supabase/</code> — schema, RLS, RPCs, migrations</li>
+          <li><code>lib/api/</code> — live data-access implementation</li>
+          <li><code>lib/engine/</code> — the shared pure grade engine</li>
+          <li>scraper + QA (Docker / K8s)</li>
+        </ul>
+      </div>
+      <div class="col">
+        <div class="owner fe">Frontend session owns</div>
+        <h3>UI &amp; design system</h3>
+        <ul>
+          <li><code>app/</code> · <code>components/</code></li>
+          <li>screens built against the typed <code>lib/api</code></li>
+          <li>runs on <code>API_MODE=mock</code> until backend lands</li>
+          <li>design system — glow stays landing-only</li>
+        </ul>
+      </div>
+      <div class="bridge">
+        <b>The contract</b>
+        <span class="key">02 data-model</span>
+        <span class="key">03 domain-types</span>
+        <span class="key">04 api-contract</span>
+        <span>Freeze these three and the two sessions never collide — each builds independently and meets at the live data-access layer.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="legend">
+    <span><span class="sw" style="background:var(--vercel)"></span>Vercel — hosting</span>
+    <span><span class="sw" style="background:var(--supabase)"></span>Supabase — auth · data · storage</span>
+    <span><span class="sw" style="background:var(--aws)"></span>AWS — Docker / K8s slice</span>
+    <span><span class="sw" style="background:var(--slate-ink)"></span>Client — browser + engine</span>
+  </div>
+</div>
