@@ -12,6 +12,17 @@
 
 import type { Assessment, Course, CourseResult } from '@/lib/types';
 
+import {
+  applyBestNofM,
+  applyCap,
+  applyMaxOf,
+  applyRedistribute,
+  bonusPoints,
+  evaluatePassGates,
+  partitionRules,
+  type RuleContext,
+} from './rules';
+
 /** Weights are stored to 10 decimal places; shared weights like 35/11 never sum exactly. */
 const WEIGHT_EPSILON = 1e-6;
 
@@ -133,6 +144,25 @@ export function computeCourse(course: Course): CourseResult {
     );
   }
 
+  // ---- Rules, in the deterministic order from specs/03 §2 -------------------------------
+  // excused removal (done in buildWorkingSet) → redistribute → bestNofM/dropLowest → maxOf
+  // → weighted sum → bonus → cap → passGate
+  const ctx: RuleContext = { items, applied: [], warnings };
+  const rules = partitionRules(course);
+
+  for (const r of rules.redistribute) applyRedistribute(ctx, r);
+  for (const r of rules.grouping) applyBestNofM(ctx, r);
+
+  // maxOf compares whole outcomes, so it needs to be able to score a candidate weighting.
+  // Scoring on graded work only keeps the comparison meaningful mid-term.
+  const scoreGraded = (candidate: WorkingItem[]): number | null => {
+    const t = sumTotals(candidate);
+    return t.completedWeight > WEIGHT_EPSILON ? (t.earnedWeight / t.completedWeight) * 100 : null;
+  };
+  for (const r of rules.maxOf) applyMaxOf(ctx, r, scoreGraded);
+
+  const bonus = bonusPoints(ctx, rules.bonus);
+
   const totals = sumTotals(items);
 
   const hasExcused = items.some((i) => i.droppedBy === 'excused');
@@ -140,26 +170,35 @@ export function computeCourse(course: Course): CourseResult {
     warnings.push('Every assessment is excused — there is no grade to compute.');
   }
 
-  // Scale to the active weight so an excused item genuinely leaves the denominator rather
-  // than silently capping the achievable maximum below 100.
-  const scale = totals.activeWeight > WEIGHT_EPSILON ? 100 / totals.activeWeight : 0;
+  const hasActive = totals.activeWeight > WEIGHT_EPSILON;
 
-  const currentGrade =
+  const rawCurrent =
     totals.completedWeight > WEIGHT_EPSILON
-      ? (totals.earnedWeight / totals.completedWeight) * 100
+      ? pct(totals.earnedWeight, totals.completedWeight)
       : null;
 
-  const projectedGrade =
-    currentGrade == null
+  const rawProjected =
+    rawCurrent == null
       ? null
-      : (totals.earnedWeight + (totals.remainingWeight * currentGrade) / 100) * scale;
+      : pct(totals.earnedWeight + (totals.remainingWeight * rawCurrent) / 100, totals.activeWeight);
 
   // floor/ceiling are never null: before anything is graded, 0–100 is still real information.
-  const floor = totals.activeWeight > WEIGHT_EPSILON ? totals.earnedWeight * scale : 0;
-  const ceiling =
-    totals.activeWeight > WEIGHT_EPSILON
-      ? (totals.earnedWeight + totals.remainingWeight) * scale
-      : 100;
+  const rawFloor = hasActive ? pct(totals.earnedWeight, totals.activeWeight) : 0;
+  const rawCeiling = hasActive
+    ? pct(totals.earnedWeight + totals.remainingWeight, totals.activeWeight)
+    : 100;
+
+  // Bonus adds on top of everything; cap clamps the result. Both apply to the range too, so
+  // the invariant currentGrade <= ceiling survives a bonus.
+  const currentGrade = applyCap(ctx, rules.cap, addBonus(rawCurrent, bonus));
+  const projectedGrade = applyCap(ctx, rules.cap, addBonus(rawProjected, bonus));
+  const floor = applyCap(ctx, rules.cap, rawFloor + bonus) ?? rawFloor;
+  const ceiling = applyCap(ctx, rules.cap, rawCeiling + bonus) ?? rawCeiling;
+
+  // Runs last, and deliberately does not feed back into the number above: a pass gate sets a
+  // separate flag so the UI shows the average and the gate together, and a genuinely passing
+  // grade can never be displayed as a fail.
+  const passGateStatus = evaluatePassGates(ctx, rules.passGate);
 
   return {
     currentGrade,
@@ -168,13 +207,31 @@ export function computeCourse(course: Course): CourseResult {
     remainingWeight: round(totals.remainingWeight, 10),
     floor,
     ceiling,
-    passGateStatus: 'n/a',
-    appliedRules: [],
-    warnings,
+    passGateStatus,
+    appliedRules: ctx.applied,
+    warnings: ctx.warnings,
   };
+}
+
+function addBonus(grade: number | null, bonus: number): number | null {
+  return grade == null ? null : grade + bonus;
 }
 
 export function round(n: number, places: number): number {
   const f = 10 ** places;
   return Math.round(n * f) / f;
+}
+
+/**
+ * Every grade figure the engine returns goes through this one expression.
+ *
+ * That is not stylistic. `(earned / completed) * 100` and `earned * (100 / active)` are
+ * mathematically identical when completed === active, but NOT bitwise identical in floating
+ * point — which was enough to make `currentGrade <= ceiling` fail for a fully-graded course
+ * with a dropped quiz. The QA runner asserts that invariant over every catalog course, so an
+ * ordering artifact here would surface as ~1,600 spurious safety violations. Keeping one
+ * expression makes the invariant hold structurally instead of within an epsilon.
+ */
+function pct(numerator: number, denominator: number): number {
+  return (numerator / denominator) * 100;
 }
