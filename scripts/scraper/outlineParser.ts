@@ -5,7 +5,7 @@
 
 import * as cheerio from 'cheerio';
 import fetch from 'node-fetch';
-import OpenAI from 'openai';
+import Anthropic from '@anthropic-ai/sdk';
 
 export interface ParsedAssessment {
   name: string;
@@ -101,13 +101,20 @@ async function fetchUrl(url: string, headers: Record<string, string> = {}): Prom
   return { text: await response.text(), url: response.url };
 }
 
-// OpenAI Logic
-async function parseWithOpenAI(htmlText: string): Promise<ParsedAssessment[]> {
-  if (!process.env.OPENAI_API_KEY) {
-    throw new Error("Missing OPENAI_API_KEY in .env.local");
+// Claude extraction.
+//
+// NOTE (2026-08-17): this is a like-for-like SDK swap of the v1 OpenAI call — same careful
+// prompt, same plain-text-lines output, same regex parsing downstream. It is deliberately NOT
+// yet the v2 extractor described in specs/07-scraper-v2.md, which returns a structured
+// `GradingScheme` (assessments + GradingRule[] + confidence) via output_config.format. That
+// rewrite must wait for lib/engine to pin what a GradingRule *means* — extracting rules
+// against unpinned semantics means re-scraping. See design doc §6.
+async function parseWithClaude(htmlText: string): Promise<ParsedAssessment[]> {
+  if (!process.env.ANTHROPIC_API_KEY) {
+    throw new Error("Missing ANTHROPIC_API_KEY in .env.local");
   }
 
-  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
   const prompt = `
     You are a math-aware data extraction assistant.
@@ -161,16 +168,27 @@ async function parseWithOpenAI(htmlText: string): Promise<ParsedAssessment[]> {
     ----------------
   `;
 
-  const completion = await openai.chat.completions.create({
-    messages: [{ role: "system", content: "You are a data extraction assistant." }, { role: "user", content: prompt }],
-    model: "gpt-4o-mini", // Cost effective
+  const message = await anthropic.messages.create({
+    model: "claude-opus-5",
+    max_tokens: 16000,
+    // Must be explicit: on Opus 4.8 omitting this meant no thinking, on Opus 5 adaptive is
+    // the default. Naming it makes the request behave identically on both.
+    thinking: { type: "adaptive" },
+    system: "You are a data extraction assistant.",
+    messages: [{ role: "user", content: prompt }],
   });
 
-  const responseText = completion.choices[0].message.content || "";
-  console.log("🤖 OpenAI Response Preview:\n", responseText.substring(0, 500));
+  // content is a discriminated union — a thinking block precedes the text block, so filter
+  // by type rather than indexing content[0].
+  const responseText = message.content
+    .filter((block): block is Anthropic.TextBlock => block.type === "text")
+    .map((block) => block.text)
+    .join("\n");
+
+  console.log("🤖 Claude Response Preview:\n", responseText.substring(0, 500));
 
   // Parse the plain text response back into objects
-  const lines = responseText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+  const lines = responseText.split('\n').map((l: string) => l.trim()).filter((l: string) => l.length > 0);
   const assessments: ParsedAssessment[] = [];
   const rawAssessments: ParsedAssessment[] = [];
   
@@ -184,7 +202,7 @@ async function parseWithOpenAI(htmlText: string): Promise<ParsedAssessment[]> {
     
     if (match) {
       let name = match[1].trim();
-      // CLEANUP: Remove leading bullets, quotes, or hyphens if OpenAI gets messy
+      // CLEANUP: Remove leading bullets, quotes, or hyphens if the model gets messy
       // e.g. "- Quiz 1" -> "Quiz 1", " "Quiz 1"" -> "Quiz 1"
       name = name.replace(/^[\s*•"“'”-]+/, '').replace(/["“'”]\s*$/, '');
       
@@ -314,11 +332,11 @@ export async function parseCourseOutline(courseCode: string): Promise<ParsedCour
   $('script, style, svg, nav, footer').remove();
   const cleanText = $('body').text().replace(/\s+/g, ' ').trim();
   
-      console.log(`🤖 Sending ${cleanText.length} chars to OpenAI for ${outlineMatch.url}...`);
+      console.log(`🤖 Sending ${cleanText.length} chars to Claude for ${outlineMatch.url}...`);
   
-  const assessments = await parseWithOpenAI(cleanText);
+  const assessments = await parseWithClaude(cleanText);
   
-  console.log(`📊 OpenAI found ${assessments.length} assessments`);
+  console.log(`📊 Claude found ${assessments.length} assessments`);
   
       // Attempt to extract section info if available in title, otherwise default
       // e.g. "MATH 137 - Calculus 1 (Section 001)"

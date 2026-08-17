@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "scrape": "tsx scripts/scrape-course.ts",
     "scrape-batch": "tsx scripts/scrape-batch.ts",
     "add-course": "tsx scripts/add-course.ts",
@@ -15,6 +18,7 @@
     "db:clean": "tsx scripts/clean-assessments.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.117.1",
     "@hookform/resolvers": "^3.10.0",
     "@radix-ui/react-accordion": "1.2.2",
     "@radix-ui/react-alert-dialog": "1.1.4",
@@ -57,7 +61,6 @@
     "next": "^16.0.5",
     "next-themes": "^0.4.6",
     "node-fetch": "^3.3.2",
-    "openai": "^6.9.1",
     "react": "^19.2.0",
     "react-day-picker": "9.8.0",
     "react-dom": "^19.2.0",
@@ -78,6 +81,7 @@
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
     "tsx": "^4.7.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vitest": "^3.2.7"
   }
 }
