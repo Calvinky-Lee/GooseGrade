@@ -19,13 +19,23 @@
    └───────────────────────────────▲───────────────────────────────────────┘
                                     │ writes catalog (service role)
    ┌────────────────────────────────┴──────────────────────────────────────┐
-   │                        AWS (the learning slice)                         │
-   │   Scraper jobs (Docker)  →  outline.uwaterloo.ca  →  Claude extraction  │
-   │   Multi-agent QA runner (Docker) on Kubernetes (kind locally / short    │
-   │   EKS demo)  →  validates every course's rules  →  flags low-confidence │
-   │   Source outlines stored to Supabase Storage / S3                       │
+   │                    GCP (the batch / learning slice)                     │
+   │   ONE image (ghcr.io/…/goosegrade-jobs), THREE subcommands:             │
+   │     scrape  →  outline.uwaterloo.ca  →  Claude extraction  →  catalog   │
+   │     diff    →  re-scrape vs source_hash  →  scheme_diffs                │
+   │     qa      →  LLM adversarial cross-check  →  qa_findings              │
+   │   Runs on: kind (dev, $0) · Cloud Run Jobs (prod, <$1/term) ·            │
+   │            GKE Autopilot (short demo, then deleted)                     │
+   │   Source outlines stored to Supabase Storage                            │
    └─────────────────────────────────────────────────────────────────────────┘
+
+   Deterministic engine QA is NOT here — it runs in GitHub Actions on every PR (see §Testing).
 ```
+
+**Amendment (2026-08-17):** the containerized slice moved from AWS/EKS to
+**kind → Cloud Run Jobs → GKE Autopilot**. Rationale, cost figures, and the
+`JOB_COMPLETION_INDEX` ↔ `CLOUD_RUN_TASK_INDEX` equivalence are in
+`docs/superpowers/specs/2026-08-17-v2-implementation-design.md` §1 D3 and §2.
 
 ## Why this shape (the cloud teaching)
 
@@ -74,11 +84,15 @@
 
 ## Testing strategy (layered)
 
-1. **Engine unit tests** (Vitest/Jest) — every rule type + the safety invariants (`03 §5`). Gate CI.
-2. **API integration** — `lib/api` against a seeded Supabase test project.
-3. **Per-course QA runner** (`07`) — generates fixtures for **every catalog course**, asserts the
-   safety contract, flags violations to `scheme_confidence='review'`. This is the multi-agent,
-   containerized step.
+1. **Engine unit tests** (Vitest) — every rule type + the safety invariants (`03 §5`). Gate CI.
+2. **Deterministic per-course QA** — the *same* shared invariants module from (1), run over
+   **every catalog course** in **GitHub Actions**, blocking PRs. Pure synchronous engine ×
+   1,600 courses takes seconds; a correctness gate that requires launching a cluster is not a
+   gate. (Amendment 2026-08-17 — this was previously bundled into the containerized step.)
+3. **API integration** — `lib/api` against a seeded Supabase test project.
+4. **LLM adversarial QA** (`07 §7`) — reads the stored outline against the parsed scheme
+   looking for disagreement; generates adversarial fixtures. Cost- and latency-bound, so this
+   is the containerized, sharded step. Runs only on `unconfirmed` or diff-changed courses.
 4. **E2E smoke** (Playwright, a few flows) — sign in, add course, enter grade, see average.
 
 ## Performance & accessibility

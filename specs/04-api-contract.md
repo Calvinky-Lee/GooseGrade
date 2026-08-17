@@ -68,8 +68,18 @@ searchCatalog(query: string, limit?: number): Promise<CatalogCourseSummary[]>;
 // All sections of a code in the latest (or given) term — for the section picker.
 getCatalogCourse(code: string, term?: string): Promise<CatalogCourseDetail[]>;
 
-// Term/level auto-suggest: typical course set for a program + level.
-suggestCourses(program: string, level: string): Promise<CatalogCourseSummary[]>;
+// Primary intake (amendment A2b). Takes whatever the student pasted from Quest and returns
+// candidates matched against the catalog. Pure read — writes nothing. The caller renders a
+// review step, then calls addCourseFromCatalog / addCustomCourse per confirmed row.
+//
+// Implementation must NOT parse Quest's layout: harvest course-code-shaped tokens
+// (/\b([A-Z]{2,6})\s?(\d{3}[A-Z]?)\b/g), normalize, and validate each against
+// catalog_courses. The catalog is the validator; unrecognized tokens are dropped.
+matchPastedSchedule(pastedText: string, term?: string): Promise<ScheduleMatch>;
+
+// DEFERRED to post-v1 (amendment A4): no sequence data source exists in `02`, and the paste
+// flow above removes the need. Do not implement in Phase 1.
+// suggestCourses(program: string, level: string): Promise<CatalogCourseSummary[]>;
 
 // The downloadable source outline (signed URL to Storage) + provenance.
 getOutlineSource(catalogCourseId: string): Promise<{ url: string; scrapedAt: string } | null>;
@@ -84,6 +94,16 @@ export interface CatalogCourseDetail extends CatalogCourseSummary {
   gradeBasis: GradeBasis; gradingRules: GradingRule[]; assessments: Assessment[];
   outlineUrl: string | null;
 }
+
+export interface ScheduleMatch {
+  term: string;                        // resolved term the matches belong to
+  termInferredFrom: 'pasted_text' | 'current_date' | 'caller';
+  matched: Array<{
+    code: string;                      // normalized, e.g. "CS 240"
+    sections: CatalogCourseSummary[];  // >1 ⇒ UI shows an inline section picker
+  }>;
+  unmatched: string[];                 // code-shaped but absent from the catalog → offer custom
+}
 ```
 
 ---
@@ -91,7 +111,10 @@ export interface CatalogCourseDetail extends CatalogCourseSummary {
 ## 3. Terms & dashboard
 
 ```ts
-listTerms(): Promise<Term[]>;                                  // newest first
+// Amendment A1: `populate` is explicit because computeCumulative(terms) needs every term's
+// courses. Default false returns Term objects with `courses: []` (cheap, for a term picker);
+// true returns them fully populated (for the lifetime record and the cumulative average).
+listTerms(opts?: { populate?: boolean }): Promise<Term[]>;      // newest first
 getCurrentTerm(): Promise<Term | null>;                       // the dashboard payload
 createTerm(label: string, termDate: string): Promise<Term>;
 setCurrentTerm(termId: string): Promise<void>;
@@ -155,7 +178,17 @@ export interface NewAssessmentInput {
 ```ts
 // Opt-in contribution (give-to-get). Gated on profile.settings.contributeDistributions.
 // Upserts into shared_grades for the caller. No-op + throws if user hasn't opted in.
-contributeGrades(courseId: string): Promise<{ contributed: number }>; // pushes the course's graded marks
+//
+// Amendment A5: contributions are keyed on (catalog_course_id, slug), NOT on
+// catalog_assessment_id. Keying on the assessment id meant a student who renamed an item —
+// or whose fork drifted from the catalog — silently contributed nothing, while still being
+// shown other people's distributions. `skipped` reports what could not be mapped:
+//   - is_custom items are never contributed (no catalog counterpart exists)
+//   - a slug absent from the source catalog course is skipped, not guessed
+contributeGrades(courseId: string): Promise<{
+  contributed: number;
+  skipped: Array<{ slug: string; reason: 'custom' | 'slug_not_in_catalog' | 'not_graded' }>;
+}>;
 
 // Read aggregates ONLY. Returns { available:false } if below MIN_SAMPLE (default 5).
 getCourseDistribution(catalogCourseId: string, term: string): Promise<DistributionResult>;
@@ -210,9 +243,9 @@ submitFeedback(input: {
 |---|---|
 | Landing / search | `searchCatalog` |
 | Sign up / in | `signUp`, `signIn`, `sendPasswordReset` |
-| Onboarding | `updateProfile`, `suggestCourses`, `createTerm` |
+| Onboarding | `createTerm` → `matchPastedSchedule` → `addCourseFromCatalog`/`addCustomCourse`, `updateProfile` |
 | **My Term dashboard** | `getCurrentTerm` → `computeTermAverage`, `requiredAcrossCourses` |
-| Add course | `searchCatalog`/`suggestCourses` → `addCourseFromCatalog` / `addCustomCourse` |
+| Add course | `matchPastedSchedule` (primary) / `searchCatalog` (always-visible fallback) → `addCourseFromCatalog` / `addCustomCourse` |
 | **Course detail** (grade-back loop) | `getCourse` → `computeCourse`, `setGrade`, assessment CRUD, `updateCourse`, `resetCourseToCatalog`, `getOutlineSource` |
 | Calculator (anon-friendly) | shared engine only; optionally `addCustomCourse` if signed in |
 | Distributions panel | `getCourseDistribution`, `getAssessmentDistribution`, `contributeGrades` |

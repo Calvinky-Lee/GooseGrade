@@ -43,7 +43,10 @@ Flip to `live` per function as the backend ships it.
 - [ ] **F1.1** Sign up / sign in / reset pages → `signUp`/`signIn`/`sendPasswordReset`. Inline UW
   -email error (`auth/invalid-email`).
 - [ ] **F1.2** Onboarding: capture program + level (`updateProfile`), create first term
-  (`createTerm`), then suggest courses (`suggestCourses`). ✓ new user reaches an empty dashboard.
+  (`createTerm`), then **paste-your-schedule intake** (`matchPastedSchedule` → review step →
+  `addCourseFromCatalog`/`addCustomCourse`). Search is visible on the same screen as a
+  fallback. ✓ new user reaches a populated dashboard in < 2 min. (Amendment A2b; `suggestCourses`
+  is deferred post-v1.)
 
 ## Milestone F2 — My Term dashboard (the centerpiece)
 - [ ] **F2.1** `getCurrentTerm()` → render all courses as cards; per card show `computeCourse`
@@ -52,14 +55,22 @@ Flip to `live` per function as the backend ships it.
   Show which courses are excluded (CR/NCR).
 - [ ] **F2.3** Cross-course **"what do I need"**: input a target term average → `requiredAcrossCourses`
   → per-course required averages + feasibility (neutral wording, no coaching).
-- [ ] **F2.4** Add-course flow: search (`searchCatalog`) / suggest (`suggestCourses`) →
+- [ ] **F2.4** Add-course flow: paste (`matchPastedSchedule`) / search (`searchCatalog`) →
   `addCourseFromCatalog`; custom via `addCustomCourse`. Handle `course/already-added`. ✓ adding a
   course updates the dashboard + term average live.
 
 ## Milestone F3 — Course detail & the grade-back loop
-- [ ] **F3.1** Rebuild the course page on the new model. Port grouping/drag/drop/transfer/remove
-  from the legacy page **but using the shared engine + `lib/api`** (no duplicated calc logic, no
-  writes to the shared catalog).
+- [ ] **F3.1** Rebuild the course page on the new model. Port grouping/remove from the legacy
+  page **but using the shared engine + `lib/api`** (no duplicated calc logic, no writes to the
+  shared catalog).
+  - **Amendment A-D1: the weight-transfer gesture writes a rule, not a weight.** The legacy
+    mouse-only "drop mode" (`dropMode`/`droppedMap`/`weightAdjustments`) is replaced by a
+    **menu** on each assessment — "move weight" → pick a destination — which appends a
+    `RedistributeRule` with `source: 'user'` to `gradingRules` and sets `rules_overridden`.
+    It therefore appears in the rules panel (F3.3), in `appliedRules` / "show the math"
+    (F3.4), is individually toggleable, survives refresh and rollover, and is reversed by
+    "reset to official". A menu also satisfies F6.1's keyboard/touch requirement without a
+    separate DnD path — **do not port the drag-and-drop.**
 - [ ] **F3.2** Grade-back loop: `setGrade` on blur/enter → recompute via engine instantly (< 5s
   feel). Status control: graded / upcoming / **excused** / **missed**.
 - [ ] **F3.3** Rules UI: list applied rules with descriptions; **toggle any rule on/off** (updates
