@@ -201,6 +201,45 @@ describe('requiredAcrossCourses', () => {
     expect(r.message).toMatch(/not reachable|cannot/i);
   });
 
+  it('reports one headline figure for the average needed on all remaining work (A9)', () => {
+    // Two courses, each 0.5 credits, each 50% graded at 70, targeting an 80 term average.
+    // Floor is 35 per course => term floor 35; each has 50% remaining at 0.5 credits.
+    // Needed lift in credit-weighted points: (80 - 35) * 1.0 = 45, over capacity 0.5*50*2 = 50
+    // => 90% on everything left.
+    const a = makeCourse({
+      assessments: [graded('midterm', 50, 70), upcoming('final-exam', 50)],
+    });
+    const b = makeCourse({
+      assessments: [graded('midterm', 50, 70), upcoming('final-exam', 50)],
+    });
+
+    const r = requiredAcrossCourses([a, b], 80);
+
+    expect(r.requiredAverageOnRemaining).toBeCloseTo(90, 6);
+    // The headline must agree with the per-course breakdown, or the screen contradicts itself.
+    for (const p of r.perCourse) {
+      expect(p.requiredAverage).toBeCloseTo(90, 6);
+    }
+  });
+
+  it('has no headline figure when nothing is outstanding', () => {
+    const done = makeCourse({ assessments: [graded('final-exam', 100, 75)] });
+
+    expect(requiredAcrossCourses([done], 80).requiredAverageOnRemaining).toBeNull();
+  });
+
+  it('quotes the headline figure in its message, so the copy is self-contained', () => {
+    const a = makeCourse({
+      assessments: [graded('midterm', 50, 70), upcoming('final-exam', 50)],
+    });
+
+    // The old copy said "requires the per-course averages listed" while the dashboard listed
+    // nothing. A message must not reference something the caller may not render.
+    const r = requiredAcrossCourses([a], 80);
+    expect(r.message).toMatch(/90/);
+    expect(r.message).not.toMatch(/listed/);
+  });
+
   it('ignores CR/NCR courses, which are not in the average', () => {
     const numeric = makeCourse({
       assessments: [graded('midterm', 50, 70), upcoming('final-exam', 50)],

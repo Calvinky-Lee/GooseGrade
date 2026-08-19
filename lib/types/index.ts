@@ -225,6 +225,15 @@ export interface CumulativeAverage {
 
 export interface RequiredAcrossCourses {
   feasible: boolean;
+  /**
+   * The single headline figure for the dashboard: the credit-weighted average needed across
+   * ALL remaining work to hit the target term average. `null` when nothing is outstanding.
+   *
+   * Amendment A9 — the per-course breakdown alone cannot fill the mockup's "average 84.6% on
+   * what's left" line, and a message that references a list the screen does not render is
+   * worse than no message.
+   */
+  requiredAverageOnRemaining: number | null;
   perCourse: Array<{
     courseId: string;
     requiredAverage: number | null;

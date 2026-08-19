@@ -31,6 +31,11 @@ export function SiteHeader() {
   const pathname = usePathname()
   const isHomePage = pathname === "/"
 
+  // The v2 app screens (specs/06 F0.1) are sans-only and carry their own brand mark and term
+  // selector. Rendering this serif header there duplicates the brand and breaks the two-tier
+  // type system, so it stops at the app-shell boundary.
+  const isAppScreen = pathname?.startsWith("/dashboard") ?? false
+
   const [query, setQuery] = useState("")
   const [results, setResults] = useState<CourseResult[]>([])
   const [focused, setFocused] = useState(false)
@@ -66,6 +71,8 @@ export function SiteHeader() {
       clearTimeout(timeout)
     }
   }, [query])
+
+  if (isAppScreen) return null
 
   return (
     <header className={`relative z-20 ${!isHomePage ? 'grid grid-cols-3' : 'flex justify-between'} items-center border-b border-gray-300 px-4 sm:px-8 py-2 bg-white`}>

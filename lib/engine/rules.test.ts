@@ -1,7 +1,15 @@
 import { describe, expect, it, beforeEach } from 'vitest';
 
 import { computeCourse } from './computeCourse';
-import { graded, makeCourse, resetIds, rule, upcoming, withStatus } from './testing';
+import {
+  graded,
+  makeAssessment,
+  makeCourse,
+  resetIds,
+  rule,
+  upcoming,
+  withStatus,
+} from './testing';
 import type {
   BestNOfMRule,
   BonusRule,
@@ -34,7 +42,29 @@ describe('bestNofM', () => {
 
     // Quiz 3 (40) dropped: (5*100 + 5*100 + 85*80) / 95
     expect(r.currentGrade).toBeCloseTo(((5 + 5 + 68) / 95) * 100, 8);
-    expect(r.appliedRules.some((a) => /quiz-3/i.test(a.effect))).toBe(true);
+    expect(r.appliedRules.some((a) => a.type === 'bestNofM')).toBe(true);
+  });
+
+  it('names the dropped item by its display name, not its slug', () => {
+    // The fixture helper defaults name to slug, so this case sets them apart deliberately:
+    // the effect string is rendered in the rules panel and in "show the math", where
+    // "dropped quiz-3" would read as a leaked database key.
+    const course = makeCourse({
+      assessments: [
+        makeAssessment({ slug: 'quiz-1', name: 'Quiz 1', weight: 5, grade: 100, category: 'Quiz' }),
+        makeAssessment({ slug: 'quiz-2', name: 'Quiz 2', weight: 5, grade: 100, category: 'Quiz' }),
+        makeAssessment({ slug: 'quiz-3', name: 'Quiz 3', weight: 5, grade: 40, category: 'Quiz' }),
+        graded('final-exam', 85, 80),
+      ],
+      gradingRules: [
+        rule<BestNOfMRule>({ type: 'bestNofM', group: { category: 'Quiz' }, take: 2 }),
+      ],
+    });
+
+    const effect = computeCourse(course).appliedRules.find((a) => a.type === 'bestNofM')!.effect;
+
+    expect(effect).toContain('Quiz 3');
+    expect(effect).not.toContain('quiz-3');
   });
 
   it('drops nothing while fewer than `take` items are graded', () => {

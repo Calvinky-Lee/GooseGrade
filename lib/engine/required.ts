@@ -92,6 +92,7 @@ export function requiredAcrossCourses(
   if (totalCredits <= EPSILON) {
     return {
       feasible: false,
+      requiredAverageOnRemaining: null,
       perCourse: [],
       message: 'No numeric-basis courses in this term.',
     };
@@ -105,6 +106,7 @@ export function requiredAcrossCourses(
   if (bestPossible + EPSILON < targetTermAvg) {
     return {
       feasible: false,
+      requiredAverageOnRemaining: null,
       perCourse: rows.map((r) => ({
         courseId: r.course.id,
         requiredAverage: null,
@@ -148,14 +150,46 @@ export function requiredAcrossCourses(
 
   const allFeasible = perCourse.every((p) => p.feasible);
 
+  // The headline figure (amendment A9). Derived from the same shortfall and capacity as the
+  // per-course numbers, so the two can never disagree on screen.
+  const requiredAverageOnRemaining =
+    totalCapacity > EPSILON ? Math.max(0, (shortfallPoints / totalCapacity) * 100) : null;
+
   return {
     feasible: allFeasible,
+    requiredAverageOnRemaining,
     perCourse,
-    message: allFeasible
-      ? `Reaching ${fmt(targetTermAvg)}% requires the per-course averages listed.`
-      : `${fmt(targetTermAvg)}% requires over 100% in at least one course as distributed; ` +
-        `a different distribution may still reach it.`,
+    message: buildMessage(targetTermAvg, requiredAverageOnRemaining, allFeasible),
   };
+}
+
+/**
+ * Neutral, factual, and SELF-CONTAINED.
+ *
+ * The previous copy said "requires the per-course averages listed", which pointed at a list the
+ * dashboard does not render — a message must not depend on something the caller may not show.
+ */
+function buildMessage(
+  target: number,
+  requiredOnRemaining: number | null,
+  feasible: boolean,
+): string {
+  if (requiredOnRemaining == null) {
+    return `No remaining work this term — the average is settled.`;
+  }
+
+  if (requiredOnRemaining <= EPSILON) {
+    return `${fmt(target)}% is already secured regardless of remaining work.`;
+  }
+
+  if (!feasible) {
+    return (
+      `${fmt(target)}% would need ${fmt(requiredOnRemaining)}% on everything left, ` +
+      `which exceeds 100% in at least one course.`
+    );
+  }
+
+  return `average ${fmt(requiredOnRemaining)}% on what's left. Still reachable.`;
 }
 
 /** Term-average helper the dashboard uses alongside the above. */

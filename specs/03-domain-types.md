@@ -14,6 +14,8 @@ shared by every screen and by the multi-agent QA runner.
   not `0`.
 - **A3** `DisplayItem` is now defined (it was referenced by `groupAssessments` but never
   declared).
+- **A9** `requiredAcrossCourses` returns `requiredAverageOnRemaining` — the dashboard's
+  headline "average X% on what's left" figure, which the per-course breakdown could not supply.
 
 ---
 
@@ -257,6 +259,10 @@ export function requiredAcrossCourses(
   targetTermAvg: number,
 ): {
   feasible: boolean;
+  // Amendment A9: the single headline figure the dashboard shows — "average 84.6% on what's
+  // left". Credit-weighted across all remaining work; null when nothing is outstanding. The
+  // per-course breakdown alone cannot fill that line, and the mockup displays it.
+  requiredAverageOnRemaining: number | null;
   perCourse: Array<{ courseId: string; requiredAverage: number | null; feasible: boolean }>;
   message: string;
 };

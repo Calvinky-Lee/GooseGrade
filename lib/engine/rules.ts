@@ -135,8 +135,10 @@ export function applyBestNofM(ctx: RuleContext, r: BestNOfMRule | DropLowestRule
     ruleId: r.id,
     type: r.type,
     description: label(r),
+    // Display names, never slugs: this string is rendered in the rules panel and in
+    // "show the math", where "dropped quiz-5" reads as a leaked database key.
     effect: `Best ${take} of ${gradedItems.length} applied — dropped ${dropped
-      .map((i) => i.assessment.slug)
+      .map((i) => i.assessment.name)
       .join(', ')}`,
   });
 }
