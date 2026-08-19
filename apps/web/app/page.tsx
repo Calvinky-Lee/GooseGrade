@@ -9,21 +9,9 @@ import { Search } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 
-import { supabase } from "@/lib/supabase/client"
+import { api, type CatalogCourseSummary } from "@goosegrade/api"
 
-type CourseResult = {
-  id: string
-  code: string
-  name: string
-  term: string
-}
-
-// Helper function to normalize search query by adding spaces before numbers
-function normalizeSearchQuery(query: string): string {
-  // Add space before numbers if there's no space already
-  // e.g., "math135" -> "math 135", "cs135" -> "cs 135"
-  return query.replace(/([a-zA-Z])(\d)/g, '$1 $2')
-}
+type CourseResult = CatalogCourseSummary
 
 export default function Page() {
   const [query, setQuery] = useState("")
@@ -40,19 +28,13 @@ export default function Page() {
         return
       }
 
-      const trimmedQuery = query.trim()
-      const normalizedQuery = normalizeSearchQuery(trimmedQuery)
-      
-      // Search with both normalized (with space) and original (without space) to catch both patterns
-      const { data } = await supabase
-        .from("courses")
-        .select("id, code, name, term")
-        .or(`code.ilike.%${normalizedQuery}%,code.ilike.%${trimmedQuery}%`)
-        .order("term_date", { ascending: false })
-        .limit(10) // Increase limit to show multiple sections
+      // Goes through lib/api rather than querying Supabase directly, so this page keeps
+      // working when 03_v2_catalog.sql renames `courses` to `catalog_courses` — and so it
+      // runs on mock data with no backend at all. Normalisation now lives in the API layer.
+      const data = await api.searchCatalog(query.trim(), 10)
 
       if (!controller.signal.aborted) {
-        setResults(data ?? [])
+        setResults(data)
       }
     }
 

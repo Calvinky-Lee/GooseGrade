@@ -10,20 +10,13 @@ import Image from "next/image"
 import { Search, Calculator } from "lucide-react"
 import { useRouter, usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
-import { supabase } from "@/lib/supabase/client"
+import { api } from "@goosegrade/api"
 
 type CourseResult = {
   id: string
   code: string
   name: string
   term: string
-}
-
-// Helper function to normalize search query by adding spaces before numbers
-function normalizeSearchQuery(query: string): string {
-  // Add space before numbers if there's no space already
-  // e.g., "math135" -> "math 135", "cs135" -> "cs 135"
-  return query.replace(/([a-zA-Z])(\d)/g, '$1 $2')
 }
 
 export function SiteHeader() {
@@ -49,19 +42,12 @@ export function SiteHeader() {
         return
       }
 
-      const trimmedQuery = query.trim()
-      const normalizedQuery = normalizeSearchQuery(trimmedQuery)
-      
-      // Search with both normalized (with space) and original (without space) to catch both patterns
-      const { data } = await supabase
-        .from("courses")
-        .select("id, code, name, term")
-        .or(`code.ilike.%${normalizedQuery}%,code.ilike.%${trimmedQuery}%`)
-        .order("term_date", { ascending: false })
-        .limit(10)
+      // Via lib/api, so this survives the catalog table rename in 03_v2_catalog.sql and works
+      // in mock mode. Code normalisation lives in the API layer now.
+      const data = await api.searchCatalog(query.trim(), 10)
 
       if (!controller.signal.aborted) {
-        setResults(data ?? [])
+        setResults(data)
       }
     }
 

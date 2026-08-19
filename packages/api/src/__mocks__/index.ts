@@ -189,15 +189,29 @@ export const mockApi: GooseGradeApi = {
       (row) => row.code === wanted && (term == null || row.term === term),
     );
 
-    // The mock has no per-section assessment data, so it reuses the forked course's shape
-    // where one exists. Enough to drive the section picker and the confidence badge.
+    // The mock has no separate per-section catalog data, so it borrows the forked course's
+    // SHAPE — but a catalog course is a template and carries no marks. Stripping grade and
+    // status matters: without it the signed-out preview would display somebody else's marks
+    // to every visitor.
     const details: CatalogCourseDetail[] = rows.map((row) => {
-      const forked = CURRENT_TERM.courses.find((c) => c.catalogCourseId === row.id);
+      // Fall back to a sibling section of the same course. Only one section per code has forked
+      // fixture data, and without this fallback section 002's preview would render an empty
+      // scheme — which reads as "we have no weights for this course" rather than as a fixture
+      // limitation. Real sections of a course usually do share a scheme.
+      const forked =
+        CURRENT_TERM.courses.find((c) => c.catalogCourseId === row.id) ??
+        CURRENT_TERM.courses.find((c) => c.code === row.code);
       return {
         ...toSummary(row),
         gradeBasis: forked?.gradeBasis ?? 'numeric',
         gradingRules: forked?.gradingRules ?? [],
-        assessments: forked ? clone(forked.assessments) : [],
+        assessments: forked
+          ? clone(forked.assessments).map((a) => ({
+              ...a,
+              grade: null,
+              status: 'upcoming' as const,
+            }))
+          : [],
         outlineUrl: `https://outline.uwaterloo.ca/view/${row.id}`,
       };
     });

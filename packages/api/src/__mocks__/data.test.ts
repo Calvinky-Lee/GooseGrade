@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 
 import { computeCourse, computeCumulative, computeTermAverage } from '@goosegrade/engine';
 
+import { mockApi } from './index';
 import { CURRENT_TERM, PAST_TERM } from './data';
 
 /**
@@ -82,5 +83,31 @@ describe('fixture rules are exercised, not decorative', () => {
 
     expect(r.appliedRules.some((a) => a.type === 'maxOf')).toBe(false);
     expect(r.currentGrade).toBeCloseTo(88.0, 1);
+  });
+});
+
+
+describe('the catalog is a template, not somebody\'s marks', () => {
+  it('never returns grades from a catalog lookup', async () => {
+    // The signed-out course preview renders whatever getCatalogCourse returns. If a mark leaks
+    // through, every visitor sees a stranger's grades on a public page.
+    const sections = await mockApi.getCatalogCourse('CS 240');
+
+    expect(sections.length).toBeGreaterThan(0);
+    for (const section of sections) {
+      expect(section.assessments.length).toBeGreaterThan(0);
+      for (const a of section.assessments) {
+        expect(a.grade).toBeNull();
+        expect(a.status).toBe('upcoming');
+      }
+    }
+  });
+
+  it('carries the weights and rules that make the preview useful', async () => {
+    const [cs240] = await mockApi.getCatalogCourse('CS 240');
+
+    const total = cs240.assessments.reduce((sum, a) => sum + a.weight, 0);
+    expect(total).toBeCloseTo(100, 6);
+    expect(cs240.gradingRules.length).toBeGreaterThan(0);
   });
 });
