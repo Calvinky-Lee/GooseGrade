@@ -1,0 +1,9 @@
+# Non-secret configuration. The secret is created out-of-band — see k8s/README.md — so no
+# credential is ever committed.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: goosegrade-config
+data:
+  targetTerm: "Spring 2026"
+  supabaseUrl: "https://REPLACE-ME.supabase.co"

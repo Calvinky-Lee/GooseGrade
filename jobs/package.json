@@ -5,7 +5,8 @@
   "scripts": {
     "scrape": "tsx src/cli.ts scrape",
     "diff": "tsx src/cli.ts diff",
-    "qa": "tsx src/cli.ts qa"
+    "qa": "tsx src/cli.ts qa",
+    "qa:deterministic": "tsx src/qa-catalog.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.117.1",

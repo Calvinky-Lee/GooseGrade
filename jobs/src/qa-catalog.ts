@@ -13,25 +13,13 @@
  *   npm run qa:catalog -- --write # also persist findings and update scheme_confidence
  */
 
-import { createClient } from '@supabase/supabase-js';
-import * as dotenv from 'dotenv';
 
 import { checkInvariants, type Violation } from '@goosegrade/engine';
 import type { Assessment, Course, GradingRule } from '@goosegrade/types';
 
-dotenv.config({ path: '.env.local' });
+import { db } from './db';
 
 const WRITE = process.argv.includes('--write');
-
-const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-if (!url || !serviceKey) {
-  console.error('Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY.');
-  process.exit(1);
-}
-
-const db = createClient(url, serviceKey, { auth: { persistSession: false } });
 
 interface CatalogRow {
   id: string;
@@ -130,7 +118,7 @@ function toCourse(row: CatalogRow, assessments: AssessmentRow[]): Course {
 async function main() {
   const started = new Date().toISOString();
 
-  const { data: courses, error: coursesError } = await db
+  const { data: courses, error: coursesError } = await db()
     .from('catalog_courses')
     .select(
       'id, code, name, section, term, credit_weight, grade_basis, grading_rules, scheme_confidence',
@@ -142,7 +130,7 @@ async function main() {
     return;
   }
 
-  const { data: assessments, error: aError } = await db
+  const { data: assessments, error: aError } = await db()
     .from('catalog_assessments')
     .select('id, course_id, slug, name, category, assessment_type, weight, order_index');
 
@@ -157,7 +145,7 @@ async function main() {
 
   let runId: string | null = null;
   if (WRITE) {
-    const { data } = await db
+    const { data } = await db()
       .from('scrape_runs')
       .insert({ kind: 'qa', started_at: started })
       .select('id')
@@ -217,13 +205,13 @@ async function main() {
     if (findings.length > 0) {
       // Chunked: a systemic failure can produce tens of thousands of rows.
       for (let i = 0; i < findings.length; i += 500) {
-        const { error } = await db.from('qa_findings').insert(findings.slice(i, i + 500));
+        const { error } = await db().from('qa_findings').insert(findings.slice(i, i + 500));
         if (error) throw new Error(`Failed to write findings: ${error.message}`);
       }
     }
 
     if (flagged.size > 0) {
-      const { error } = await db
+      const { error } = await db()
         .from('catalog_courses')
         .update({ scheme_confidence: 'review' })
         .in('id', [...flagged]);
@@ -232,7 +220,7 @@ async function main() {
     }
 
     if (runId) {
-      await db
+      await db()
         .from('scrape_runs')
         .update({
           finished_at: new Date().toISOString(),

@@ -18,9 +18,11 @@
     "test:e2e": "playwright test",
     "scrape": "npm run scrape --workspace @goosegrade/jobs",
     "diff": "npm run diff --workspace @goosegrade/jobs",
-    "qa:catalog": "npm run qa --workspace @goosegrade/jobs"
+    "qa:catalog": "tsx jobs/src/qa-catalog.ts",
+    "qa:llm": "npm run qa --workspace @goosegrade/jobs"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "@types/node": "^20.10.0",
     "@types/react": "19.2.7",
     "@types/react-dom": "^19.0.0",

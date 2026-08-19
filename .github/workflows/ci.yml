@@ -40,7 +40,15 @@ jobs:
           NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder-anon-key
           NEXT_PUBLIC_API_MODE: mock
 
-  # Runs the SAME shared invariants module from lib/engine/invariants.ts over every real
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      # Runs against mock mode, so no database and no credentials — which is what makes the
+      # smokes safe to gate every PR, including from forks.
+      - name: E2E smokes
+        run: npm run test:e2e
+
+  # Runs the SAME shared invariants module from packages/engine/src/invariants.ts over every
   # catalog course, rather than over hand-written fixtures. Separate job because it needs
   # database credentials, so it cannot run on a fork PR.
   catalog-qa:
@@ -57,6 +65,8 @@ jobs:
 
       - run: npm ci
 
+      # The DETERMINISTIC tier only (design decision D4). The adversarial LLM tier is
+      # `npm run qa:llm` and runs in a container, because it costs a model call per course.
       - name: Assert the safety contract over all catalog courses
         run: npm run qa:catalog
         env:
