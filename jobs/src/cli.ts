@@ -12,6 +12,8 @@
  * a correctness gate that requires launching a cluster is not a gate.
  */
 
+import { runBatch } from './batch';
+import { runDiscover } from './discover';
 import { runLlmQa } from './qa-llm';
 import { runScrape } from './scrape';
 import { normalizeTermArg, termForDate } from './term';
@@ -24,11 +26,21 @@ interface Args {
   all: boolean;
   dryRun: boolean;
   cheapModel?: string;
+  model?: string;
+  subject?: string;
+  submitOnly: boolean;
+  resume?: string;
 }
 
 function parseArgs(argv: string[]): Args {
   const [command, ...rest] = argv;
-  const args: Args = { command: command ?? '', force: false, all: false, dryRun: false };
+  const args: Args = {
+    command: command ?? '',
+    force: false,
+    all: false,
+    dryRun: false,
+    submitOnly: false,
+  };
 
   for (let i = 0; i < rest.length; i += 1) {
     const arg = rest[i];
@@ -43,6 +55,18 @@ function parseArgs(argv: string[]): Args {
         break;
       case '--cheap-model':
         args.cheapModel = next();
+        break;
+      case '--model':
+        args.model = next();
+        break;
+      case '--subject':
+        args.subject = next();
+        break;
+      case '--resume':
+        args.resume = next();
+        break;
+      case '--submit-only':
+        args.submitOnly = true;
         break;
       case '--force':
         args.force = true;
@@ -62,6 +86,20 @@ function parseArgs(argv: string[]): Args {
 }
 
 const USAGE = `goosegrade jobs
+
+  discover --term <"Winter 2026"|1261> [--subject CS] [--limit N] [--dry-run]
+      Enumerate the courses UW offers this term and record one catalog row per section,
+      with its outline URL and no scheme yet. Run this FIRST for a new term — scrape only
+      re-reads rows that already exist.
+      Idempotent: safe to re-run, and it never touches a scheme scrape has extracted.
+
+  batch --term <term> [--model <id>] [--limit N] [--force] [--submit-only]
+        [--resume <batch_id>] [--dry-run]
+      The same extraction as scrape, through the Message Batches API: 50% cheaper, and the
+      model bill is ~150x the compute bill, so this is the cost lever that matters. Completes
+      within hours, which suits a job that runs three times a year.
+      --submit-only exits after submitting; --resume ingests a batch submitted earlier, so a
+      dead pod never orphans work we have already paid for.
 
   scrape --term <"Winter 2026"|1261> [--limit N] [--force] [--cheap-model <id>] [--dry-run]
       Fetch outlines, extract schemes with Claude, write the catalog.
@@ -86,6 +124,41 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
 
   switch (args.command) {
+    case 'discover': {
+      if (!args.term) {
+        throw new Error(
+          `--term is required. For the current term that would be "${termForDate(new Date())}".`,
+        );
+      }
+      await runDiscover({
+        term: args.term,
+        subject: args.subject,
+        limit: args.limit,
+        dryRun: args.dryRun,
+      });
+      break;
+    }
+
+    case 'batch': {
+      // --resume needs no term: the batch already exists and carries its own work.
+      if (!args.term && !args.resume) {
+        throw new Error(
+          `--term is required (or --resume <batch_id>). For the current term that would be ` +
+            `"${termForDate(new Date())}".`,
+        );
+      }
+      await runBatch({
+        term: args.term ?? '',
+        model: args.model,
+        limit: args.limit,
+        force: args.force,
+        submitOnly: args.submitOnly,
+        resume: args.resume,
+        dryRun: args.dryRun,
+      });
+      break;
+    }
+
     case 'scrape':
     case 'diff': {
       // The term is required rather than defaulted, so a run can never silently target the

@@ -6,7 +6,9 @@
     "scrape": "tsx src/cli.ts scrape",
     "diff": "tsx src/cli.ts diff",
     "qa": "tsx src/cli.ts qa",
-    "qa:deterministic": "tsx src/qa-catalog.ts"
+    "qa:deterministic": "tsx src/qa-catalog.ts",
+    "discover": "tsx src/cli.ts discover",
+    "batch": "tsx src/cli.ts batch"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.117.1",
