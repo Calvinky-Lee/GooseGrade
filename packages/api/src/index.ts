@@ -9,6 +9,7 @@
  */
 
 import { mockApi } from './__mocks__';
+import { liveApi } from './live';
 import type { GooseGradeApi } from './types';
 
 export type ApiMode = 'mock' | 'live';
@@ -17,24 +18,10 @@ export function getApiMode(): ApiMode {
   return process.env.NEXT_PUBLIC_API_MODE === 'live' ? 'live' : 'mock';
 }
 
-/**
- * The live implementation is added function-by-function as the backend session ships it
- * (specs/01 §"parallel-session integration plan", step 5). Until then `live` mode throws a
- * clear error naming the missing function rather than returning undefined and failing three
- * layers up in a component.
- */
-const liveApi: GooseGradeApi = new Proxy({} as GooseGradeApi, {
-  get(_target, prop) {
-    return () => {
-      throw new Error(
-        `lib/api.${String(prop)}() has no live implementation yet. ` +
-          `Set NEXT_PUBLIC_API_MODE=mock, or implement it in lib/api/live/.`,
-      );
-    };
-  },
-});
-
 export const api: GooseGradeApi = getApiMode() === 'live' ? liveApi : mockApi;
+
+/** Both implementations, for tests that need to exercise one specifically. */
+export { mockApi, liveApi };
 
 export { ApiError, API_ERROR_CODES, toApiError, type ApiErrorCode } from './errors';
 export { harvestCourseCodes, inferTerm, normalizeCode, termForDate } from './parseSchedule';

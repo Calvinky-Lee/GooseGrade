@@ -200,85 +200,86 @@ SET search_path = public
 AS $$
 DECLARE
   v_min_sample INTEGER;
-  v_count INTEGER;
-  v_mean NUMERIC;
-  v_median NUMERIC;
-  v_buckets JSONB;
-  v_my_grade NUMERIC;
-  v_my_percentile NUMERIC;
-  v_p05 NUMERIC;
-  v_p95 NUMERIC;
+  v_result JSONB;
 BEGIN
-  SELECT (value::text)::INTEGER INTO v_min_sample FROM app_config WHERE key = 'min_sample';
+  SELECT (value #>> '{}')::INTEGER INTO v_min_sample FROM app_config WHERE key = 'min_sample';
   v_min_sample := coalesce(v_min_sample, 5);
 
-  -- Trim outliers before aggregating, so one fabricated 150 cannot skew a small sample.
-  SELECT
-    percentile_cont(0.05) WITHIN GROUP (ORDER BY grade),
-    percentile_cont(0.95) WITHIN GROUP (ORDER BY grade)
-  INTO v_p05, v_p95
-  FROM shared_grades
-  WHERE catalog_course_id = p_catalog_course_id
-    AND term = p_term
-    AND slug IS NOT DISTINCT FROM p_slug;
+  -- Set-based rather than temp-table based: a TEMP TABLE inside a SECURITY DEFINER function
+  -- persists for the session, which under PgBouncer means one caller's rows can outlive their
+  -- request. CTEs cannot leak between calls.
+  WITH matching AS (
+    SELECT contributor_id, grade
+    FROM shared_grades
+    WHERE catalog_course_id = p_catalog_course_id
+      AND term = p_term
+      AND slug IS NOT DISTINCT FROM p_slug
+  ),
+  bounds AS (
+    -- Trim outliers so a single fabricated 150 cannot skew a small sample.
+    SELECT
+      percentile_cont(0.05) WITHIN GROUP (ORDER BY grade) AS lo,
+      percentile_cont(0.95) WITHIN GROUP (ORDER BY grade) AS hi
+    FROM matching
+  ),
+  trimmed AS (
+    SELECT m.contributor_id, m.grade
+    FROM matching m, bounds b
+    WHERE b.lo IS NULL OR m.grade BETWEEN b.lo AND b.hi
+  ),
+  stats AS (
+    SELECT
+      count(*)::INTEGER AS n,
+      round(avg(grade), 2) AS mean,
+      round(percentile_cont(0.5) WITHIN GROUP (ORDER BY grade)::NUMERIC, 2) AS median
+    FROM trimmed
+  ),
+  buckets AS (
+    SELECT jsonb_agg(
+             jsonb_build_object('rangeLow', lo, 'rangeHigh', lo + 10, 'count', c)
+             ORDER BY lo
+           ) AS js
+    FROM (
+      SELECT (floor(grade / 10) * 10)::INTEGER AS lo, count(*) AS c
+      FROM trimmed
+      GROUP BY 1
+    ) g
+  ),
+  mine AS (
+    -- The caller's own standing, computed in-database so their grade never leaves it.
+    SELECT
+      CASE WHEN mg.grade IS NULL THEN NULL
+           ELSE round(
+             (count(*) FILTER (WHERE t.grade <= mg.grade)::NUMERIC / count(*)) * 100, 1)
+      END AS pct
+    FROM trimmed t
+    LEFT JOIN (
+      SELECT grade FROM matching WHERE contributor_id = auth.uid() LIMIT 1
+    ) mg ON true
+    GROUP BY mg.grade
+  )
+  SELECT CASE
+           WHEN s.n < v_min_sample THEN
+             -- Below the hard privacy floor: return nothing at all. Not a rounded number, not
+             -- a bucket count — nothing that could identify an individual's mark.
+             jsonb_build_object('available', false, 'count', 0, 'term', p_term)
+           ELSE
+             jsonb_build_object(
+               'available', true,
+               'count', s.n,
+               'mean', s.mean,
+               'median', s.median,
+               'buckets', coalesce(b.js, '[]'::jsonb),
+               'myPercentile', (SELECT pct FROM mine LIMIT 1),
+               'term', p_term
+             )
+         END
+  INTO v_result
+  FROM stats s, buckets b;
 
-  CREATE TEMP TABLE IF NOT EXISTS _dist (grade NUMERIC) ON COMMIT DROP;
-  DELETE FROM _dist;
-
-  INSERT INTO _dist (grade)
-  SELECT grade FROM shared_grades
-  WHERE catalog_course_id = p_catalog_course_id
-    AND term = p_term
-    AND slug IS NOT DISTINCT FROM p_slug
-    AND (v_p05 IS NULL OR grade BETWEEN v_p05 AND v_p95);
-
-  SELECT count(*), avg(grade), percentile_cont(0.5) WITHIN GROUP (ORDER BY grade)
-  INTO v_count, v_mean, v_median
-  FROM _dist;
-
-  -- The hard privacy floor. Below it we return nothing at all — not a rounded number, not a
-  -- bucket count, nothing that could identify an individual's mark.
-  IF v_count IS NULL OR v_count < v_min_sample THEN
-    RETURN jsonb_build_object(
-      'available', false,
-      'count', 0,
-      'term', p_term
-    );
-  END IF;
-
-  SELECT jsonb_agg(
-           jsonb_build_object('rangeLow', lo, 'rangeHigh', lo + 10, 'count', c)
-           ORDER BY lo
-         )
-  INTO v_buckets
-  FROM (
-    SELECT (floor(grade / 10) * 10)::INTEGER AS lo, count(*) AS c
-    FROM _dist
-    GROUP BY 1
-  ) b;
-
-  -- The caller's own standing, computed here so their grade never leaves the database.
-  SELECT grade INTO v_my_grade
-  FROM shared_grades
-  WHERE catalog_course_id = p_catalog_course_id
-    AND term = p_term
-    AND slug IS NOT DISTINCT FROM p_slug
-    AND contributor_id = auth.uid();
-
-  IF v_my_grade IS NOT NULL THEN
-    SELECT round((count(*) FILTER (WHERE grade <= v_my_grade)::NUMERIC / count(*)) * 100, 1)
-    INTO v_my_percentile
-    FROM _dist;
-  END IF;
-
-  RETURN jsonb_build_object(
-    'available', true,
-    'count', v_count,
-    'mean', round(v_mean, 2),
-    'median', round(v_median, 2),
-    'buckets', coalesce(v_buckets, '[]'::jsonb),
-    'myPercentile', v_my_percentile,
-    'term', p_term
+  RETURN coalesce(
+    v_result,
+    jsonb_build_object('available', false, 'count', 0, 'term', p_term)
   );
 END;
 $$;
