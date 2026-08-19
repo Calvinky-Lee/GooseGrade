@@ -10,7 +10,7 @@
  * drift away from the design it is meant to represent.
  */
 
-import type { Assessment, Course, GradingRule, Term } from '@goosegrade/types';
+import type { Assessment, Course, Term } from '@goosegrade/types';
 
 let n = 0;
 const id = (prefix: string) => `${prefix}-${(n += 1)}`;

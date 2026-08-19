@@ -10,7 +10,6 @@
  */
 
 import { computeCourse } from '@goosegrade/engine';
-import type { Assessment, Course, Term } from '@goosegrade/types';
 
 import { ApiError, API_ERROR_CODES, toApiError } from '../errors';
 import { harvestCourseCodes, inferTerm, normalizeCode, termForDate } from '../parseSchedule';
@@ -23,7 +22,6 @@ import type {
   GooseGradeApi,
   NewAssessmentInput,
   NewCourseInput,
-  Profile,
   ScheduleMatch,
 } from '../types';
 import { getClient } from './client';

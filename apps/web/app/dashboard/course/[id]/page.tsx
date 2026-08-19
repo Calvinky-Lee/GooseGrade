@@ -36,6 +36,8 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
   const [target, setTarget] = useState<string>('');
   // Distributions are per-term (never mixed across terms), so the panel needs the label.
   const [termLabel, setTermLabel] = useState<string>('');
+  /** null = whole course; a slug = that assessment's distribution (F5.2). */
+  const [distributionSlug, setDistributionSlug] = useState<string | null>(null);
 
   useEffect(() => {
     api.getCurrentTerm().then((t) => setTermLabel(t?.termLabel ?? ''));
@@ -139,6 +141,40 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
 
   const removeRule = (ruleId: string) =>
     writeRules(course.gradingRules.filter((r) => r.id !== ruleId));
+
+  /**
+   * Reordering — F6.1. Buttons, not drag-and-drop: v1's DnD was mouse-only, and arrow buttons
+   * are keyboard- and touch-accessible by construction rather than needing a parallel
+   * accessible path bolted on.
+   */
+  const move = (assessment: Assessment, direction: -1 | 1) => {
+    const visible = course.assessments
+      .filter((a) => !a.isRemoved)
+      .sort((a, b) => a.orderIndex - b.orderIndex);
+
+    const from = visible.findIndex((a) => a.id === assessment.id);
+    const to = from + direction;
+    if (from === -1 || to < 0 || to >= visible.length) return;
+
+    const reordered = [...visible];
+    [reordered[from], reordered[to]] = [reordered[to], reordered[from]];
+
+    // orderIndex is rewritten for the whole visible list, so gaps left by removed items cannot
+    // make two rows collide on the same index.
+    const indexBySlug = new Map(reordered.map((a, i) => [a.id, i + 1]));
+    setCourse((prev) =>
+      prev
+        ? {
+            ...prev,
+            assessments: prev.assessments.map((a) =>
+              indexBySlug.has(a.id) ? { ...a, orderIndex: indexBySlug.get(a.id)! } : a,
+            ),
+          }
+        : prev,
+    );
+
+    void api.reorderAssessments(course.id, reordered.map((a) => a.id)).catch(() => {});
+  };
 
   const toggleRule = (ruleId: string) => {
     setCourse((prev) => {
@@ -261,6 +297,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
                   onGradeChange={onGradeChange}
                   onStatusChange={onStatusChange}
                   onAddRule={addRule}
+                  onMove={move}
                 />
               ))}
             </div>
@@ -272,6 +309,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
               onGradeChange={onGradeChange}
               onStatusChange={onStatusChange}
               onAddRule={addRule}
+              onMove={move}
             />
           ),
         )}
@@ -385,11 +423,36 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
         )}
       </div>
 
+      {/* Course-level, plus a per-assessment view. F5.2 asks for both; the API supported the
+          per-assessment lookup but nothing called it. The picker is limited to catalog-backed
+          items because a custom assessment has no shared counterpart to compare against. */}
       <Distribution
         catalogCourseId={course.catalogCourseId}
-        slug={null}
+        slug={distributionSlug}
         term={termLabel}
-        label={`${course.code} overall`}
+        label={
+          distributionSlug
+            ? (course.assessments.find((a) => a.slug === distributionSlug)?.name ?? '')
+            : `${course.code} overall`
+        }
+        picker={
+          <select
+            className="gg-select"
+            style={{ width: 200 }}
+            value={distributionSlug ?? ''}
+            onChange={(e) => setDistributionSlug(e.target.value || null)}
+            aria-label="distribution scope"
+          >
+            <option value="">Whole course</option>
+            {course.assessments
+              .filter((a) => !a.isRemoved && !a.isCustom)
+              .map((a) => (
+                <option key={a.slug} value={a.slug}>
+                  {a.name}
+                </option>
+              ))}
+          </select>
+        }
       />
 
       <FeedbackButton
@@ -407,6 +470,7 @@ function AssessmentRow({
   onGradeChange,
   onStatusChange,
   onAddRule,
+  onMove,
 }: {
   course: Course;
   assessment: Assessment;
@@ -414,13 +478,34 @@ function AssessmentRow({
   onGradeChange: (a: Assessment, raw: string) => void;
   onStatusChange: (a: Assessment, status: AssessmentStatus) => void;
   onAddRule: (rule: RedistributeRule) => void;
+  onMove: (a: Assessment, direction: -1 | 1) => void;
 }) {
   return (
     <div className="gg-row">
-      <div style={{ paddingLeft: indent ? 14 : 0 }}>
-        <div className="label">{assessment.name}</div>
-        <div className="sub">
-          <Num value={assessment.weight} decimals={2} /> of course
+      <div style={{ paddingLeft: indent ? 14 : 0, display: 'flex', gap: 8 }}>
+        <div className="gg-reorder">
+          <button
+            type="button"
+            onClick={() => onMove(assessment, -1)}
+            aria-label={`move ${assessment.name} up`}
+            title="Move up"
+          >
+            ↑
+          </button>
+          <button
+            type="button"
+            onClick={() => onMove(assessment, 1)}
+            aria-label={`move ${assessment.name} down`}
+            title="Move down"
+          >
+            ↓
+          </button>
+        </div>
+        <div>
+          <div className="label">{assessment.name}</div>
+          <div className="sub">
+            <Num value={assessment.weight} decimals={2} /> of course
+          </div>
         </div>
       </div>
 

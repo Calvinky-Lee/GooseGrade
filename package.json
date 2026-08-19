@@ -11,7 +11,7 @@
     "dev": "npm run dev --workspace @goosegrade/web",
     "build": "npm run build --workspace @goosegrade/web",
     "start": "npm run start --workspace @goosegrade/web",
-    "lint": "npm run lint --workspace @goosegrade/web",
+    "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
@@ -21,19 +21,25 @@
     "qa:catalog": "tsx jobs/src/qa-catalog.ts",
     "qa:llm": "npm run qa --workspace @goosegrade/jobs",
     "discover": "npm run discover --workspace @goosegrade/jobs",
-    "batch": "npm run batch --workspace @goosegrade/jobs"
+    "batch": "npm run batch --workspace @goosegrade/jobs",
+    "test:db": "vitest run --config vitest.db.config.ts",
+    "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@playwright/test": "^1.62.1",
     "@types/node": "^20.10.0",
     "@types/react": "19.2.7",
     "@types/react-dom": "^19.0.0",
     "autoprefixer": "^10.4.20",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.1",
     "playwright": "^1.62.1",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3",
+    "typescript-eslint": "^8.67.0",
     "vitest": "^3.2.7"
   }
 }

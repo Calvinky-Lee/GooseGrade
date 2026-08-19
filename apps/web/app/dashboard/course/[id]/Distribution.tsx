@@ -25,20 +25,24 @@ export function Distribution({
   slug,
   term,
   label,
+  picker,
 }: {
   catalogCourseId: string | null;
   slug: string | null;
   term: string;
   label: string;
+  /** Scope control rendered in the section header, so the panel owns no selection state. */
+  picker?: React.ReactNode;
 }) {
   const [state, setState] = useState<State>({ kind: 'loading' });
   const [optingIn, setOptingIn] = useState(false);
 
+  // Derived, not stored: a custom course can never have a distribution, and writing that into
+  // state from an effect causes a cascading render for a condition already known at render time.
+  const unsupported = catalogCourseId == null;
+
   useEffect(() => {
-    if (!catalogCourseId) {
-      setState({ kind: 'error', message: 'Custom courses have no class distribution.' });
-      return;
-    }
+    if (!catalogCourseId) return;
 
     let cancelled = false;
     const call = slug
@@ -86,15 +90,28 @@ export function Distribution({
     <>
       <div className="gg-seclabel">
         <h2>Class distribution</h2>
-        <span>{label}</span>
+        <span style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+          {label}
+          {picker}
+        </span>
       </div>
 
       <div className="gg-panel">
-        {state.kind === 'loading' && <div className="gg-hint" aria-busy="true">Loading…</div>}
+        {unsupported && (
+          <div className="gg-hint">
+            This is a custom course, so there is no class distribution to compare against.
+          </div>
+        )}
 
-        {state.kind === 'error' && <div className="gg-hint">{state.message}</div>}
+        {!unsupported && state.kind === 'loading' && (
+          <div className="gg-hint" aria-busy="true">Loading…</div>
+        )}
 
-        {state.kind === 'not_opted_in' && (
+        {!unsupported && state.kind === 'error' && (
+          <div className="gg-hint">{state.message}</div>
+        )}
+
+        {!unsupported && state.kind === 'not_opted_in' && (
           <>
             <b>Contribute to see distributions</b>
             <div className="gg-hint">
@@ -113,7 +130,7 @@ export function Distribution({
           </>
         )}
 
-        {state.kind === 'ready' && !state.data.available && (
+        {!unsupported && state.kind === 'ready' && !state.data.available && (
           <>
             <b>Not enough data yet</b>
             <div className="gg-hint">
@@ -124,7 +141,7 @@ export function Distribution({
           </>
         )}
 
-        {state.kind === 'ready' && state.data.available && (
+        {!unsupported && state.kind === 'ready' && state.data.available && (
           <>
             <div style={{ display: 'flex', gap: 'var(--s5)' }}>
               <div className="gg-mini">

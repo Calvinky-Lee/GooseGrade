@@ -45,10 +45,10 @@ export default function AddCoursePage() {
   }, []);
 
   useEffect(() => {
-    if (query.trim().length < 2) {
-      setResults([]);
-      return;
-    }
+    // No synchronous setState for the too-short case — that state is derived below, and setting
+    // it here triggers a cascading render on every keystroke under two characters.
+    if (query.trim().length < 2) return;
+
     let cancelled = false;
     const timer = setTimeout(() => {
       api.searchCatalog(query).then((r) => {
@@ -60,6 +60,9 @@ export default function AddCoursePage() {
       clearTimeout(timer);
     };
   }, [query]);
+
+  // Derived: a short query shows nothing, without a state write to say so.
+  const visibleResults = query.trim().length < 2 ? [] : results;
 
   const runMatch = async () => {
     const result = await api.matchPastedSchedule(pasted);
@@ -254,7 +257,7 @@ export default function AddCoursePage() {
           placeholder="e.g. cs240"
           aria-label="search the course catalog"
         />
-        {results.map((r) => (
+        {visibleResults.map((r) => (
           <div className="gg-row" key={r.id} style={{ gridTemplateColumns: '1fr 90px' }}>
             <div>
               <div className="label">

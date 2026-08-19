@@ -20,12 +20,16 @@ type ToasterToast = ToastProps & {
   action?: ToastActionElement
 }
 
-const actionTypes = {
-  ADD_TOAST: 'ADD_TOAST',
-  UPDATE_TOAST: 'UPDATE_TOAST',
-  DISMISS_TOAST: 'DISMISS_TOAST',
-  REMOVE_TOAST: 'REMOVE_TOAST',
-} as const
+/**
+ * A type, not a runtime object. The original was a `const` used only via `typeof`, which shipped
+ * a dead object to the browser and read as though something dispatched from it.
+ */
+type ActionTypes = {
+  ADD_TOAST: 'ADD_TOAST'
+  UPDATE_TOAST: 'UPDATE_TOAST'
+  DISMISS_TOAST: 'DISMISS_TOAST'
+  REMOVE_TOAST: 'REMOVE_TOAST'
+}
 
 let count = 0
 
@@ -34,7 +38,7 @@ function genId() {
   return count.toString()
 }
 
-type ActionType = typeof actionTypes
+type ActionType = ActionTypes
 
 type Action =
   | {

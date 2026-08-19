@@ -11,7 +11,7 @@ concurrency:
 
 jobs:
   verify:
-    name: typecheck · engine tests · build
+    name: typecheck · lint · tests · build · e2e
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -25,6 +25,12 @@ jobs:
 
       - name: Typecheck
         run: npm run typecheck
+
+      # B4.2 asks for lint in CI. `next lint` was removed in Next 16 and this repo had no ESLint
+      # config at all, so the lint step had never actually run. Flat config lives at the root and
+      # covers every workspace; the engine-purity rule is enforced here.
+      - name: Lint
+        run: npm run lint
 
       # The engine is the correctness gate. It is pure and synchronous, so this stays fast
       # enough to block every PR — which is the whole point of moving the deterministic QA

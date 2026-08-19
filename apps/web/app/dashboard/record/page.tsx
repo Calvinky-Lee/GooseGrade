@@ -12,7 +12,7 @@ import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 
 import { api } from '@goosegrade/api';
-import { computeCumulative, computeTermAverage } from '@goosegrade/engine';
+import { computeCumulative } from '@goosegrade/engine';
 import type { Term } from '@goosegrade/types';
 
 import { FeedbackButton, TopBar } from '../AppChrome';

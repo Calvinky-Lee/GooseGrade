@@ -60,7 +60,10 @@ export function MoveWeight({
 
   const add = (to: RedistributeRule['to'], description: string) => {
     onAddRule({
-      id: `usr-redist-${assessment.slug}-${Date.now()}`,
+      // Deterministic, not timestamped. `alreadyMoved` above already prevents a second
+      // redistribute rule for this slug, so uniqueness needs no clock — and calling Date.now()
+      // from a component body makes render impure for no benefit.
+      id: `usr-redist-${assessment.slug}`,
       type: 'redistribute',
       enabled: true,
       // Provenance is what lets the rules panel tag this `you` and lets reset-to-official

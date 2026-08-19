@@ -189,7 +189,6 @@ async function parseWithClaude(htmlText: string): Promise<ParsedAssessment[]> {
 
   // Parse the plain text response back into objects
   const lines = responseText.split('\n').map((l: string) => l.trim()).filter((l: string) => l.length > 0);
-  const assessments: ParsedAssessment[] = [];
   const rawAssessments: ParsedAssessment[] = [];
   
   // Helper to track name counts for deduplication

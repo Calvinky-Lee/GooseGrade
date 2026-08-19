@@ -18,7 +18,15 @@
   --panel: #ffffff;
   --ink: #18181b;
   --muted: #6f6e69;
-  --faint: #a3a29b;
+  /*
+   * #747169, not the mockup's #a3a29b.
+   *
+   * The mockup value is 2.56:1 against white — well under the 4.5:1 that F0.4 and F6.2 require,
+   * and --faint carries real content: the "62% graded · need 83% for 80" caption, every gg-hint,
+   * and the histogram axis labels. Measured by axe in e2e/a11y.spec.ts, which is why this was
+   * caught rather than assumed. 4.87:1 on panel, 4.67:1 on ground, 4.83:1 on warm-wash.
+   */
+  --faint: #747169;
   --line: #eceae3;
   --line-strong: #e0ddd3;
 
@@ -31,10 +39,16 @@
   --warm-hover: #ecddb6;
   --track: #efede6;
 
-  /* status is a SEPARATE hue from the brand, so at-risk never blurs into the amber bars */
-  --good: #1e9e6a;
+  /*
+   * Status is a SEPARATE hue from the brand, so at-risk never blurs into the amber bars.
+   *
+   * Darkened from the mockup's #1e9e6a / #d4503f, which sit at 3.04:1 and 3.59:1 against their
+   * own chip backgrounds — under AA. Same hues, enough contrast: 5.43:1 and 4.96:1. These also
+   * colour the "▲ 7.4 vs last term" delta, so the change carries there too.
+   */
+  --good: #127049;
   --good-bg: #e7f5ee;
-  --risk: #d4503f;
+  --risk: #b83828;
   --risk-bg: #fbeae6;
 
   /* one spacing scale, reused everywhere */
@@ -382,8 +396,18 @@
   color: var(--faint);
   text-align: right;
 }
+/*
+ * The CR/NCR card, visually recessed.
+ *
+ * This was `opacity: 0.66`, which dimmed every child and dropped its text under AA — axe flagged
+ * the course name, the "CR" figure and the chip. The dimming was also redundant: the card already
+ * says "Credit / no-credit" and "not in average" in words, twice.
+ *
+ * Recessing via background keeps the same "this one doesn't count" read at full text contrast.
+ */
 .gg-excluded {
-  opacity: 0.66;
+  background: var(--ground);
+  border-style: dashed;
 }
 
 .gg-add {
@@ -725,7 +749,8 @@
     --panel: #1e1e23;
     --ink: #f2f1ee;
     --muted: #a4a29b;
-    --faint: #74726c;
+    /* 5.40:1 on panel — #74726c was 3.45:1. Same reasoning as the light value above. */
+    --faint: #96938a;
     --line: #2b2b31;
     --line-strong: #3a3a42;
 
@@ -749,7 +774,8 @@
   --panel: #1e1e23;
   --ink: #f2f1ee;
   --muted: #a4a29b;
-  --faint: #74726c;
+  /* 5.40:1 on panel — #74726c was 3.45:1. Same reasoning as the light value above. */
+  --faint: #96938a;
   --line: #2b2b31;
   --line-strong: #3a3a42;
 
@@ -794,4 +820,34 @@
 }
 .gg-app[data-theme='dark'] .gg-btn {
   color: #23180a;
+}
+
+/* ---- reorder controls (F6.1) ---- */
+/* Buttons rather than drag-and-drop: v1's DnD was mouse-only, and these are keyboard- and
+   touch-reachable without a parallel accessible implementation. */
+.gg-reorder {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: none;
+}
+.gg-reorder button {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: 5px;
+  width: 20px;
+  height: 15px;
+  line-height: 1;
+  font-size: 0.6rem;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0;
+}
+.gg-reorder button:hover {
+  border-color: var(--amber);
+  color: var(--ink);
+}
+.gg-reorder button:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 1px;
 }

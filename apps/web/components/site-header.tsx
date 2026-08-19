@@ -7,7 +7,7 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { Search, Calculator } from "lucide-react"
+import { Search } from "lucide-react"
 import { useRouter, usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
 import { api } from "@goosegrade/api"
