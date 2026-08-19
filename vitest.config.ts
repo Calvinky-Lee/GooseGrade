@@ -1,15 +1,22 @@
 import { defineConfig } from 'vitest/config';
 import path from 'node:path';
 
+const r = (p: string) => path.resolve(__dirname, p);
+
 export default defineConfig({
   resolve: {
-    alias: { '@': path.resolve(__dirname, '.') },
+    alias: {
+      '@goosegrade/types': r('packages/types/src/index.ts'),
+      '@goosegrade/engine': r('packages/engine/src/index.ts'),
+      '@goosegrade/api': r('packages/api/src/index.ts'),
+      '@': r('apps/web'),
+    },
   },
   test: {
-    // The engine is pure — no DOM, no network, no Supabase. Keeping the default
-    // 'node' environment is deliberate: if a test needs jsdom, something has
-    // leaked into lib/engine that does not belong there.
+    // The engine is pure — no DOM, no network, no Supabase. Keeping the default 'node'
+    // environment is deliberate: if a test ever needs jsdom, something has leaked into
+    // packages/engine that does not belong there.
     environment: 'node',
-    include: ['lib/**/*.test.ts', 'scripts/**/*.test.ts'],
+    include: ['packages/**/*.test.ts', 'jobs/**/*.test.ts', 'apps/web/**/*.test.ts'],
   },
 });

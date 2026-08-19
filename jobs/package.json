@@ -1,0 +1,20 @@
+{
+  "name": "@goosegrade/jobs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "scrape": "tsx src/cli.ts scrape",
+    "diff": "tsx src/cli.ts diff",
+    "qa": "tsx src/cli.ts qa"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.117.1",
+    "@goosegrade/engine": "*",
+    "@goosegrade/types": "*",
+    "@supabase/supabase-js": "^2.39.0",
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.3.1",
+    "node-fetch": "^3.3.2",
+    "zod": "3.25.76"
+  }
+}

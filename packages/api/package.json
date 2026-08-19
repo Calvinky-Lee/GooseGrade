@@ -1,0 +1,13 @@
+{
+  "name": "@goosegrade/api",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "dependencies": {
+    "@goosegrade/engine": "*",
+    "@goosegrade/types": "*",
+    "@supabase/supabase-js": "^2.39.0",
+    "zod": "3.25.76"
+  }
+}
