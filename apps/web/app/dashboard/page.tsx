@@ -21,6 +21,7 @@ import {
 } from '@goosegrade/engine';
 import type { Course, Term } from '@goosegrade/types';
 
+import { FeedbackButton, TopBar } from './AppChrome';
 import { Num } from './Num';
 
 export default function DashboardPage() {
@@ -63,7 +64,7 @@ export default function DashboardPage() {
   if (loading) {
     return (
       <div className="gg-wrap">
-        <TopBar termLabel="…" />
+        <TopBar />
         <div className="gg-hero" style={{ minHeight: 148 }} aria-busy="true" />
       </div>
     );
@@ -72,10 +73,13 @@ export default function DashboardPage() {
   if (!term) {
     return (
       <div className="gg-wrap">
-        <TopBar termLabel="No term" />
+        <TopBar />
         <div className="gg-panel">
           <b>No current term yet.</b>
-          <p className="gg-hint">Create a term to start tracking courses.</p>
+          <p className="gg-hint">Create a term to start tracking your courses.</p>
+          <Link href="/dashboard/onboarding" className="gg-termsel" style={{ marginTop: 12, display: 'inline-block', textDecoration: 'none' }}>
+            Set up my term
+          </Link>
         </div>
       </div>
     );
@@ -87,7 +91,18 @@ export default function DashboardPage() {
 
   return (
     <div className="gg-wrap">
-      <TopBar termLabel={term.termLabel} />
+      <TopBar
+        right={
+          <>
+            <Link href="/dashboard/record" className="gg-termsel" style={{ textDecoration: 'none' }}>
+              My record
+            </Link>
+            <span className="gg-termsel" aria-label="current term">
+              {term.termLabel}
+            </span>
+          </>
+        }
+      />
 
       <section className="gg-hero">
         <div>
@@ -187,27 +202,12 @@ export default function DashboardPage() {
       </div>
 
       <p className="gg-foot">
-        Running on mock data (<code>NEXT_PUBLIC_API_MODE=mock</code>). Every figure is computed
-        live by <code>lib/engine</code>.
+        Every figure on this page is computed live by <code>@goosegrade/engine</code> — nothing
+        is stored, so nothing can be stale.
       </p>
-    </div>
-  );
-}
 
-function TopBar({ termLabel }: { termLabel: string }) {
-  return (
-    <header className="gg-topbar">
-      <Link href="/dashboard" className="gg-brand">
-        <span className="gg-goose" aria-hidden="true" />
-        <b>GooseGrade</b>
-      </Link>
-      <button className="gg-termsel" type="button">
-        {termLabel}
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" width="13" height="13">
-          <path d="M6 9l6 6 6-6" />
-        </svg>
-      </button>
-    </header>
+      <FeedbackButton />
+    </div>
   );
 }
 

@@ -9,26 +9,39 @@
  */
 
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import { use, useEffect, useMemo, useState } from 'react';
 
 import { api } from '@goosegrade/api';
 import { computeCourse, groupAssessments, requiredForCourse } from '@goosegrade/engine';
-import type { Assessment, AssessmentStatus, Course } from '@goosegrade/types';
+import type {
+  Assessment,
+  AssessmentStatus,
+  Course,
+  GradingRule,
+  RedistributeRule,
+} from '@goosegrade/types';
 
+import { FeedbackButton, TopBar } from '../../AppChrome';
 import { Num } from '../../Num';
+import { Distribution } from './Distribution';
+import { MoveWeight } from './MoveWeight';
 
 export default function CourseDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  const [courseId, setCourseId] = useState<string | null>(null);
+  // `params` is a promise in Next 15+. In a Client Component the documented way to read it is
+  // React's use() — resolving it in an effect would cost a render pass with a null id.
+  const { id: courseId } = use(params);
+
   const [course, setCourse] = useState<Course | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [target, setTarget] = useState<string>('');
+  // Distributions are per-term (never mixed across terms), so the panel needs the label.
+  const [termLabel, setTermLabel] = useState<string>('');
 
   useEffect(() => {
-    params.then((p) => setCourseId(p.id));
-  }, [params]);
+    api.getCurrentTerm().then((t) => setTermLabel(t?.termLabel ?? ''));
+  }, []);
 
   useEffect(() => {
-    if (!courseId) return;
     let cancelled = false;
 
     api
@@ -116,6 +129,17 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
     void api.updateAssessment(assessment.id, { status }).catch(() => {});
   };
 
+  /** Persist a whole new rule array and mark the fork as overridden. */
+  const writeRules = (gradingRules: GradingRule[]) => {
+    setCourse((prev) => (prev ? { ...prev, gradingRules, rulesOverridden: true } : prev));
+    void api.updateCourse(course.id, { gradingRules }).catch(() => {});
+  };
+
+  const addRule = (rule: RedistributeRule) => writeRules([...course.gradingRules, rule]);
+
+  const removeRule = (ruleId: string) =>
+    writeRules(course.gradingRules.filter((r) => r.id !== ruleId));
+
   const toggleRule = (ruleId: string) => {
     setCourse((prev) => {
       if (!prev) return prev;
@@ -132,7 +156,7 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
 
   return (
     <div className="gg-wrap">
-      <BackLink />
+      <TopBar right={<BackLink />} />
 
       <section className="gg-hero">
         <div>
@@ -231,19 +255,23 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
               {item.children.map((child) => (
                 <AssessmentRow
                   key={child.id}
+                  course={course}
                   assessment={child}
                   indent
                   onGradeChange={onGradeChange}
                   onStatusChange={onStatusChange}
+                  onAddRule={addRule}
                 />
               ))}
             </div>
           ) : (
             <AssessmentRow
               key={item.id}
+              course={course}
               assessment={item.assessment}
               onGradeChange={onGradeChange}
               onStatusChange={onStatusChange}
+              onAddRule={addRule}
             />
           ),
         )}
@@ -285,6 +313,21 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
             <span className={`gg-tag${rule.source === 'user' ? ' you' : ''}`}>
               {rule.source === 'user' ? 'you' : 'official'}
             </span>
+            {/* Only user-authored rules can be deleted. An official rule can be switched off
+                but not removed, since it is part of the course's real scheme. */}
+            {rule.source === 'user' && (
+              <button
+                type="button"
+                className="gg-link"
+                style={{ background: 'none', border: 0, cursor: 'pointer', padding: 0 }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  removeRule(rule.id);
+                }}
+              >
+                undo
+              </button>
+            )}
           </label>
         ))}
 
@@ -342,23 +385,35 @@ export default function CourseDetailPage({ params }: { params: Promise<{ id: str
         )}
       </div>
 
-      <p className="gg-foot">
-        Mock data · marks persist in memory only, so a reload resets them.
-      </p>
+      <Distribution
+        catalogCourseId={course.catalogCourseId}
+        slug={null}
+        term={termLabel}
+        label={`${course.code} overall`}
+      />
+
+      <FeedbackButton
+        defaultCategory="course_data"
+        contextNote={`Course: ${course.code}${course.section ? ` (${course.section})` : ''}`}
+      />
     </div>
   );
 }
 
 function AssessmentRow({
+  course,
   assessment,
   indent = false,
   onGradeChange,
   onStatusChange,
+  onAddRule,
 }: {
+  course: Course;
   assessment: Assessment;
   indent?: boolean;
   onGradeChange: (a: Assessment, raw: string) => void;
   onStatusChange: (a: Assessment, status: AssessmentStatus) => void;
+  onAddRule: (rule: RedistributeRule) => void;
 }) {
   return (
     <div className="gg-row">
@@ -399,7 +454,14 @@ function AssessmentRow({
           decides whether a student is shown as passing or failing. */}
       <div className="gg-hint" style={{ margin: 0 }}>
         {assessment.status === 'excused' && 'weight leaves your denominator'}
-        {assessment.status === 'missed' && 'counts as a zero'}
+        {assessment.status === 'missed' && (
+          <>
+            counts as a zero
+            <div style={{ marginTop: 4 }}>
+              <MoveWeight course={course} assessment={assessment} onAddRule={onAddRule} />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
@@ -407,14 +469,8 @@ function AssessmentRow({
 
 function BackLink() {
   return (
-    <header className="gg-topbar">
-      <Link href="/dashboard" className="gg-brand">
-        <span className="gg-goose" aria-hidden="true" />
-        <b>GooseGrade</b>
-      </Link>
-      <Link href="/dashboard" className="gg-termsel" style={{ textDecoration: 'none' }}>
-        ← My Term
-      </Link>
-    </header>
+    <Link href="/dashboard" className="gg-termsel" style={{ textDecoration: 'none' }}>
+      ← My Term
+    </Link>
   );
 }
