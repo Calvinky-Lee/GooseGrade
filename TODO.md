@@ -9,23 +9,29 @@ set of things deliberately not built.
 
 ---
 
-## 0. Vercel preview is failing — needs a dashboard setting I cannot reach
+## 0. Vercel preview is failing — cause unconfirmed, read the dashboard log first
 
 **The one red check on PR #1.** GitHub Actions is fully green; Vercel's preview deployment is not.
 
-Cause: the workspace restructure moved the Next app from the repo root to `apps/web`, and
-Vercel's **Root Directory** is a project setting that lives in the dashboard — `vercel.json`
-cannot override it. I could not read the build logs either, because `vercel inspect` requires an
-interactive browser login.
+**The actual Vercel error is unconfirmed.** `vercel inspect --logs` requires an interactive
+browser login, and GitHub only surfaces "Deployment has failed" with no detail — so start by
+opening the deployment in the Vercel dashboard and reading the build log. Do that before acting
+on the hypothesis below.
 
-What I did verify locally, running exactly what Vercel runs:
+What *is* established:
 
-```
-npm install && npm run build   →  output at apps/web/.next  ✓  12 routes
-```
+- `npm install && npm run build` from the repo root produces `apps/web/.next` with all 12 routes,
+  which is exactly what Vercel runs. **The build command and output path are not the problem.**
+- The failure persists *after* `vercel.json` was added (deployment on `22d44cb`, two commits
+  later), so build configuration alone does not explain it.
 
-So the build command and output path are correct. Pick **one** of these — they are mutually
-exclusive:
+Most likely cause, by elimination rather than by evidence: the restructure moved the Next app
+from the repo root to `apps/web`, and Vercel's **Root Directory** is a dashboard setting that
+`vercel.json` cannot override. That fits the fact that adding `vercel.json` changed nothing —
+but it is inference, not a read error message.
+
+If the dashboard log says otherwise, ignore the rest of this section. If it agrees, pick **one**
+of these — they are mutually exclusive:
 
 **A. Set Root Directory to `apps/web`** *(recommended — Vercel's documented monorepo approach)*
 Project → Settings → Build & Deployment → Root Directory → `apps/web`, and tick
@@ -168,7 +174,8 @@ API · Quest *schedule* import as an integration (the paste flow covers this for
 
 ## Suggested order
 
-1. **§0 Vercel Root Directory** — one setting, and it is the only failing check on the PR.
+1. **§0 Vercel** — the only failing check on the PR. Read the build log in the dashboard first;
+   my diagnosis is inference, not a confirmed error.
 2. §1 dry-run verification — free, and the only thing that can surface a real defect.
 3. O4 and O5 — small code changes, and O4 is a visible wrong number.
 4. O1 — decides whether a launch screen is empty.
