@@ -1,0 +1,6 @@
+
+# workspace build output
+dist/
+apps/web/.next/
+playwright-report/
+test-results/

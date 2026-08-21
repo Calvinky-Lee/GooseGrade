@@ -1,0 +1,45 @@
+# Adversarial LLM QA — specs/07 §7 tier 2, design decision D4.
+#
+# NOTE: the DETERMINISTIC invariants (tier 1) are not here. They run in GitHub Actions over every
+# catalog course, because pure synchronous engine × 1,600 courses takes seconds and a correctness
+# gate that needs a cluster launched is not a gate. Only the model-bound tier is containerized.
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: goosegrade-qa
+  labels: { app: goosegrade, component: qa }
+spec:
+  completionMode: Indexed
+  completions: 8
+  parallelism: 8 # no third-party server to be polite to here, only our own API budget
+  backoffLimit: 2
+  ttlSecondsAfterFinished: 3600
+  template:
+    metadata:
+      labels: { app: goosegrade, component: qa }
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: jobs
+          image: ghcr.io/calvinky-lee/goosegrade-jobs:latest
+          args: ["qa"]
+          env:
+            - name: JOB_COMPLETIONS
+              value: "8"
+            - name: SUPABASE_URL
+              valueFrom:
+                configMapKeyRef: { name: goosegrade-config, key: supabaseUrl }
+            - name: SUPABASE_SERVICE_ROLE_KEY
+              valueFrom:
+                secretKeyRef: { name: goosegrade-secrets, key: supabaseServiceRoleKey }
+            - name: ANTHROPIC_API_KEY
+              valueFrom:
+                secretKeyRef: { name: goosegrade-secrets, key: anthropicApiKey }
+          resources:
+            requests: { cpu: "100m", memory: "256Mi" }
+            limits: { cpu: "500m", memory: "512Mi" }
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

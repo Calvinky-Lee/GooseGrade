@@ -1,0 +1,20 @@
+# Local parity for the jobs image — specs/07 §5.
+#
+# `supabase start` already runs Postgres in Docker, so Docker is a local prerequisite either
+# way; this adds nothing new to install.
+services:
+  jobs:
+    build:
+      context: .
+      dockerfile: jobs/Dockerfile
+    environment:
+      SUPABASE_URL: ${SUPABASE_URL:-http://host.docker.internal:54321}
+      SUPABASE_SERVICE_ROLE_KEY: ${SUPABASE_SERVICE_ROLE_KEY:?set SUPABASE_SERVICE_ROLE_KEY}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:?set ANTHROPIC_API_KEY}
+      WATERLOO_SESSION_COOKIE: ${WATERLOO_SESSION_COOKIE:-}
+      # Emulate one shard of a sharded run locally.
+      SHARD_INDEX: ${SHARD_INDEX:-0}
+      SHARD_COUNT: ${SHARD_COUNT:-1}
+    # Override at the command line, e.g.
+    #   docker compose run --rm jobs scrape --term "Spring 2026" --limit 5 --dry-run
+    command: ["help"]

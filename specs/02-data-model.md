@@ -181,6 +181,64 @@ Anti-abuse: contributions are bounded to plausible ranges; the aggregation RPC t
 
 ---
 
+## C2. Pipeline provenance (added 2026-08-17 — amendments A7, A8)
+
+`07` requires recording re-scrape diffs and QA outcomes but `02` defined nowhere to put
+them. Both are **service-role write, public read** — a student needs to see *why* their
+course is flagged, and to be told when a scheme changed under them.
+
+### `scrape_runs`
+One row per scraper or QA invocation. Cheap, queryable run history — this is the
+observability story, in place of a metrics stack.
+
+| column | type | notes |
+|---|---|---|
+| `id` | uuid PK | |
+| `kind` | text NOT NULL | `'scrape'` \| `'rescrape'` \| `'qa'` |
+| `term` | text | target term, null for QA over all terms |
+| `shard_index` / `shard_count` | integer | from `JOB_COMPLETION_INDEX` / `CLOUD_RUN_TASK_INDEX` |
+| `model` | text | e.g. `'claude-opus-5'`; null for deterministic QA |
+| `courses_seen` / `courses_written` / `courses_skipped` / `courses_failed` | integer NOT NULL DEFAULT 0 | `skipped` = unchanged `source_hash` |
+| `input_tokens` / `output_tokens` | bigint | for real per-term cost accounting |
+| `started_at` | timestamptz NOT NULL DEFAULT now() | |
+| `finished_at` | timestamptz | null while running |
+| `error` | text | set when the shard died |
+
+### `scheme_diffs`
+Backs the catalog-trust notification ("CS 240 final went 45% → 50%").
+
+| column | type | notes |
+|---|---|---|
+| `id` | uuid PK | |
+| `catalog_course_id` | uuid NOT NULL REFERENCES catalog_courses(id) ON DELETE CASCADE | |
+| `scrape_run_id` | uuid REFERENCES scrape_runs(id) ON DELETE SET NULL | |
+| `old_source_hash` / `new_source_hash` | text | |
+| `old_scheme` / `new_scheme` | jsonb NOT NULL | `{ assessments, rules }` snapshots |
+| `summary` | text NOT NULL | human line: `"Final Exam 45% → 50%"` |
+| `detected_at` | timestamptz NOT NULL DEFAULT now() | |
+| `acknowledged_at` | timestamptz | set once surfaced to affected users |
+
+Index: `(catalog_course_id, detected_at desc)`.
+
+### `qa_findings`
+A `scheme_confidence='review'` flag with no attached reason is unactionable. This is the
+reason.
+
+| column | type | notes |
+|---|---|---|
+| `id` | uuid PK | |
+| `catalog_course_id` | uuid NOT NULL REFERENCES catalog_courses(id) ON DELETE CASCADE | |
+| `scrape_run_id` | uuid REFERENCES scrape_runs(id) ON DELETE SET NULL | |
+| `tier` | text NOT NULL | `'deterministic'` \| `'llm'` (see `07 §7`) |
+| `severity` | text NOT NULL | `'info'` \| `'warn'` \| `'violation'` — only `violation` sets `review` |
+| `invariant` | text NOT NULL | stable key, e.g. `'ceiling_exceeds_max'`, `'rules_off_diverges'` |
+| `detail` | jsonb NOT NULL DEFAULT `'{}'` | fixture + actual/expected, for triage |
+| `created_at` | timestamptz NOT NULL DEFAULT now() | |
+
+Index: `(catalog_course_id, created_at desc)`, `(invariant)`.
+
+---
+
 ## D. Row-Level Security summary
 
 | table | SELECT | INSERT | UPDATE | DELETE |
@@ -193,6 +251,9 @@ Anti-abuse: contributions are bounded to plausible ranges; the aggregation RPC t
 | `user_assessments` | `user_id = auth.uid()` | same | same | same |
 | `shared_grades` | **none** (RPC only) | `contributor_id = auth.uid()` | same | same |
 | `feedback` | none | authed (or anon) | none | none |
+| `scrape_runs` | public (true) | service role only | service role only | service role only |
+| `scheme_diffs` | public (true) | service role only | service role only | service role only |
+| `qa_findings` | public (true) | service role only | service role only | service role only |
 
 Every user table policy is literally `auth.uid() = user_id`. The database — not application
 code — guarantees isolation.

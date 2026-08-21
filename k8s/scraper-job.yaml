@@ -1,0 +1,63 @@
+# Term scrape as an indexed Job — specs/07 §5.
+#
+# Jobs, never Deployments: this is batch work that runs to completion, and nothing user-facing
+# depends on it. If the cluster is down, the app is unaffected.
+#
+# What Kubernetes actually earns here (design §2) is not scale — 1,600 documents three times a
+# year is not a scale problem. It is three properties that would otherwise be hand-written:
+#   1. indexed sharding: each pod owns shard JOB_COMPLETION_INDEX, deterministically
+#   2. per-shard retry via backoffLimit, for the transient failures 1,600 fetches guarantee
+#   3. idempotent resume: source_hash means a re-run skips completed work
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: goosegrade-scrape
+  labels: { app: goosegrade, component: scraper }
+spec:
+  completionMode: Indexed
+  completions: 8
+  # 4, not 32. outline.uwaterloo.ca is a university server behind a session cookie; hammering
+  # it is both rude and a reliable way to get the cookie invalidated mid-run.
+  parallelism: 4
+  backoffLimit: 3
+  # Reap finished pods so a term's worth of runs does not accumulate.
+  ttlSecondsAfterFinished: 3600
+  template:
+    metadata:
+      labels: { app: goosegrade, component: scraper }
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: jobs
+          image: ghcr.io/calvinky-lee/goosegrade-jobs:latest
+          args: ["scrape", "--term", "$(TARGET_TERM)"]
+          env:
+            - name: TARGET_TERM
+              valueFrom:
+                configMapKeyRef: { name: goosegrade-config, key: targetTerm }
+            # Kubernetes injects JOB_COMPLETION_INDEX itself; COMPLETIONS is passed so the pod
+            # knows the denominator of its own shard.
+            - name: JOB_COMPLETIONS
+              value: "8"
+            - name: SUPABASE_URL
+              valueFrom:
+                configMapKeyRef: { name: goosegrade-config, key: supabaseUrl }
+            - name: SUPABASE_SERVICE_ROLE_KEY
+              valueFrom:
+                secretKeyRef: { name: goosegrade-secrets, key: supabaseServiceRoleKey }
+            - name: ANTHROPIC_API_KEY
+              valueFrom:
+                secretKeyRef: { name: goosegrade-secrets, key: anthropicApiKey }
+            - name: WATERLOO_SESSION_COOKIE
+              valueFrom:
+                secretKeyRef: { name: goosegrade-secrets, key: waterlooSessionCookie }
+          resources:
+            # Network- and API-bound, not CPU-bound: the pod spends its time waiting on
+            # outline.uwaterloo.ca and on Claude.
+            requests: { cpu: "100m", memory: "256Mi" }
+            limits: { cpu: "500m", memory: "512Mi" }
+          securityContext:
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities: { drop: ["ALL"] }

@@ -1,0 +1,853 @@
+/*
+ * Design tokens for app/data screens — specs/06 F0.1, F0.2.
+ *
+ * Lifted verbatim from specs/visuals/dashboard-mockup.html, which specs/06 names as the
+ * canonical look for data screens. Two rules from F0 that this file exists to enforce:
+ *
+ *   1. SANS ONLY on data screens. The root layout sets Lora serif for the landing brand
+ *      moment; .gg-app overrides it. One family for text AND numbers, so figures read as
+ *      integrated rather than as separate blocks.
+ *   2. NO GLOW here. The three illuminating orbs stay landing-only. The single faint warm
+ *      bloom on .gg-hero is the one allowed exception, and it is deliberately pushed
+ *      off-corner at low alpha so only a tail enters.
+ */
+
+.gg-app {
+  /* surfaces */
+  --ground: #fbfaf7;
+  --panel: #ffffff;
+  --ink: #18181b;
+  --muted: #6f6e69;
+  /*
+   * #747169, not the mockup's #a3a29b.
+   *
+   * The mockup value is 2.56:1 against white — well under the 4.5:1 that F0.4 and F6.2 require,
+   * and --faint carries real content: the "62% graded · need 83% for 80" caption, every gg-hint,
+   * and the histogram axis labels. Measured by axe in e2e/a11y.spec.ts, which is why this was
+   * caught rather than assumed. 4.87:1 on panel, 4.67:1 on ground, 4.83:1 on warm-wash.
+   */
+  --faint: #747169;
+  --line: #eceae3;
+  --line-strong: #e0ddd3;
+
+  /* brand warmth — present but calm */
+  --amber: #f5a623;
+  --orange: #ff9d47;
+  --gold: #f9c74f;
+  --warm-wash: #fffefb;
+  --warm-line: #efebe0;
+  --warm-hover: #ecddb6;
+  --track: #efede6;
+
+  /*
+   * Status is a SEPARATE hue from the brand, so at-risk never blurs into the amber bars.
+   *
+   * Darkened from the mockup's #1e9e6a / #d4503f, which sit at 3.04:1 and 3.59:1 against their
+   * own chip backgrounds — under AA. Same hues, enough contrast: 5.43:1 and 4.96:1. These also
+   * colour the "▲ 7.4 vs last term" delta, so the change carries there too.
+   */
+  --good: #127049;
+  --good-bg: #e7f5ee;
+  --risk: #b83828;
+  --risk-bg: #fbeae6;
+
+  /* one spacing scale, reused everywhere */
+  --s1: 6px;
+  --s2: 10px;
+  --s3: 16px;
+  --s4: 22px;
+  --s5: 34px;
+
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--ground);
+  color: var(--ink);
+  line-height: 1.5;
+  letter-spacing: -0.011em;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* Numbers: tabular so digits do not jitter as a grade updates, with tight negative tracking. */
+.gg-n {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+}
+
+/* The % glyph is part of the number, not a floating symbol: ~0.4-0.5x and pulled in tight. */
+.gg-u {
+  color: var(--muted);
+  font-weight: 650;
+  letter-spacing: 0;
+}
+
+.gg-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--s4) var(--s4) 72px;
+}
+
+/* ---- topbar ---- */
+.gg-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s3);
+  margin-bottom: var(--s4);
+}
+.gg-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  color: inherit;
+}
+.gg-goose {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  flex: none;
+  background: radial-gradient(120% 120% at 30% 20%, var(--gold), var(--amber) 60%, #e8852b);
+}
+.gg-brand b {
+  font-weight: 650;
+  font-size: 1.05rem;
+  letter-spacing: -0.02em;
+}
+.gg-termsel {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid var(--line-strong);
+  background: var(--panel);
+  border-radius: 10px;
+  padding: 7px 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
+}
+
+/* ---- hero: one warm panel groups the whole summary so nothing floats apart ---- */
+.gg-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--s4);
+  background: linear-gradient(170deg, var(--warm-wash), #ffffff 55%);
+  border: 1px solid var(--warm-line);
+  border-radius: 18px;
+  padding: var(--s4) 24px;
+}
+/* The one permitted illumination: low alpha, pushed off-corner, only a tail enters. */
+.gg-hero::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  width: 440px;
+  height: 440px;
+  right: -150px;
+  top: -230px;
+  background: radial-gradient(circle, rgba(245, 166, 35, 0.16), transparent 72%);
+  filter: blur(46px);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.gg-eyebrow {
+  font-size: 0.71rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 650;
+}
+.gg-heroval {
+  font-weight: 680;
+  font-size: 3.9rem;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  margin-top: var(--s1);
+}
+.gg-heroval .gg-u {
+  font-size: 0.4em;
+  color: var(--amber);
+}
+.gg-heronote {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin-top: var(--s2);
+}
+.gg-heronote b {
+  color: var(--ink);
+  font-weight: 650;
+}
+.gg-ministats {
+  display: flex;
+  gap: var(--s5);
+}
+.gg-mini .v {
+  font-weight: 660;
+  font-size: 1.45rem;
+  margin-top: 4px;
+  letter-spacing: -0.035em;
+}
+.gg-mini .v .gg-u {
+  font-size: 0.6em;
+}
+.gg-mini .s {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.gg-up {
+  color: var(--good);
+  font-weight: 650;
+}
+.gg-down {
+  color: var(--risk);
+  font-weight: 650;
+}
+
+/* ---- "what do I need" ---- */
+.gg-need {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s2) 12px;
+  margin: var(--s4) 2px 0;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+.gg-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--warm-hover);
+  background: var(--warm-wash);
+  border-radius: 9px;
+  padding: 5px 10px;
+  font-weight: 650;
+  color: var(--ink);
+}
+.gg-field:focus-within {
+  border-color: var(--amber);
+}
+.gg-field input {
+  width: 34px;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-weight: 650;
+  text-align: right;
+  outline: none;
+  color: var(--ink);
+}
+.gg-need b {
+  color: var(--ink);
+  font-weight: 650;
+}
+
+/* ---- section labels ---- */
+.gg-seclabel {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: var(--s5) 2px var(--s3);
+}
+.gg-seclabel h2 {
+  font-size: 0.74rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+  margin: 0;
+}
+.gg-seclabel span {
+  font-size: 0.78rem;
+  color: var(--faint);
+}
+
+/* ---- course cards ---- */
+.gg-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.gg-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  color: inherit;
+  transition: border-color 0.14s, box-shadow 0.14s, transform 0.14s;
+}
+.gg-card:hover {
+  border-color: var(--warm-hover);
+  box-shadow: 0 10px 26px -18px rgba(217, 150, 40, 0.5);
+  transform: translateY(-1px);
+}
+.gg-card:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+.gg-ctop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+.gg-code {
+  font-weight: 650;
+  font-size: 1rem;
+  letter-spacing: -0.015em;
+}
+.gg-name {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-top: 2px;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.gg-grade {
+  font-weight: 670;
+  font-size: 2.05rem;
+  line-height: 1;
+  letter-spacing: -0.045em;
+  white-space: nowrap;
+}
+.gg-grade .gg-u {
+  font-size: 0.46em;
+}
+/* No marks yet renders as an em dash, never 0.0% (amendment A2). */
+.gg-grade.gg-empty {
+  color: var(--faint);
+  font-size: 1.5rem;
+}
+
+/* progress bars carry the brand gradient — the signature warm touch */
+.gg-bar {
+  height: 7px;
+  border-radius: 999px;
+  background: var(--track);
+  overflow: hidden;
+}
+.gg-bar > i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--gold), #fba94c);
+  transition: width 0.25s ease;
+}
+
+.gg-cbottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.gg-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+.gg-chip .d {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+.gg-chip.good {
+  color: var(--good);
+  background: var(--good-bg);
+}
+.gg-chip.good .d {
+  background: var(--good);
+}
+.gg-chip.risk {
+  color: var(--risk);
+  background: var(--risk-bg);
+}
+.gg-chip.risk .d {
+  background: var(--risk);
+}
+.gg-chip.muted {
+  color: var(--muted);
+  background: #f3f1ea;
+}
+.gg-cap {
+  font-size: 0.76rem;
+  color: var(--faint);
+  text-align: right;
+}
+/*
+ * The CR/NCR card, visually recessed.
+ *
+ * This was `opacity: 0.66`, which dimmed every child and dropped its text under AA — axe flagged
+ * the course name, the "CR" figure and the chip. The dimming was also redundant: the card already
+ * says "Credit / no-credit" and "not in average" in words, twice.
+ *
+ * Recessing via background keeps the same "this one doesn't count" read at full text contrast.
+ */
+.gg-excluded {
+  background: var(--ground);
+  border-style: dashed;
+}
+
+.gg-add {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-style: dashed;
+  color: var(--muted);
+  gap: var(--s1);
+  min-height: 128px;
+}
+.gg-add .plus {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1.5px solid var(--warm-hover);
+  display: grid;
+  place-items: center;
+  font-size: 1.1rem;
+  color: var(--amber);
+}
+.gg-add b {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--ink);
+}
+.gg-add .s {
+  font-size: 0.76rem;
+  color: var(--faint);
+}
+
+.gg-foot {
+  margin-top: var(--s5);
+  font-size: 0.76rem;
+  color: var(--faint);
+  text-align: center;
+}
+
+/* ---- course detail ---- */
+.gg-panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px;
+}
+.gg-row {
+  display: grid;
+  grid-template-columns: 1fr 76px 116px 168px;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.gg-row:last-child {
+  border-bottom: 0;
+}
+.gg-row .label {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.gg-row .sub {
+  font-size: 0.75rem;
+  color: var(--faint);
+}
+.gg-input {
+  border: 1px solid var(--line-strong);
+  background: var(--panel);
+  border-radius: 8px;
+  padding: 6px 8px;
+  font: inherit;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  width: 100%;
+  color: inherit;
+}
+.gg-input:focus {
+  outline: none;
+  border-color: var(--amber);
+}
+.gg-select {
+  border: 1px solid var(--line-strong);
+  background: var(--panel);
+  border-radius: 8px;
+  padding: 6px 8px;
+  font: inherit;
+  font-size: 0.82rem;
+  width: 100%;
+  color: inherit;
+}
+.gg-select:focus {
+  outline: none;
+  border-color: var(--amber);
+}
+.gg-hint {
+  font-size: 0.75rem;
+  color: var(--faint);
+  margin-top: 3px;
+}
+.gg-warn {
+  font-size: 0.8rem;
+  color: var(--muted);
+  background: #faf8f2;
+  border: 1px solid var(--warm-line);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-top: var(--s3);
+}
+.gg-rule {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.86rem;
+}
+.gg-rule:last-child {
+  border-bottom: 0;
+}
+.gg-tag {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: #f3f1ea;
+  border-radius: 5px;
+  padding: 2px 6px;
+  white-space: nowrap;
+}
+.gg-tag.you {
+  color: #8a5a00;
+  background: var(--warm-hover);
+}
+.gg-link {
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 680px) {
+  .gg-grid {
+    grid-template-columns: 1fr;
+  }
+  .gg-hero {
+    align-items: flex-start;
+  }
+  .gg-heroval {
+    font-size: 3.3rem;
+  }
+  .gg-ministats {
+    gap: var(--s4);
+  }
+  .gg-row {
+    grid-template-columns: 1fr 64px 80px;
+  }
+  .gg-row .statuscell {
+    grid-column: 2 / -1;
+  }
+}
+
+/* ---- global feedback affordance (F5.3) ---- */
+.gg-fab {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 40;
+  border: 1px solid var(--line-strong);
+  background: var(--panel);
+  border-radius: 999px;
+  padding: 9px 16px;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 0 8px 22px -14px rgba(0, 0, 0, 0.25);
+}
+.gg-fab:hover {
+  border-color: var(--warm-hover);
+}
+.gg-fabpanel {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 40;
+  width: min(340px, calc(100vw - 36px));
+  background: var(--panel);
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 18px 40px -20px rgba(0, 0, 0, 0.3);
+}
+
+/* ---- forms / auth ---- */
+.gg-form {
+  max-width: 380px;
+  margin: 0 auto;
+}
+.gg-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 650;
+  color: var(--muted);
+  margin: 12px 0 4px;
+}
+.gg-textinput {
+  width: 100%;
+  border: 1px solid var(--line-strong);
+  background: var(--panel);
+  border-radius: 9px;
+  padding: 9px 10px;
+  font: inherit;
+  color: inherit;
+}
+.gg-textinput:focus {
+  outline: none;
+  border-color: var(--amber);
+}
+.gg-btn {
+  width: 100%;
+  margin-top: 14px;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font: inherit;
+  font-weight: 650;
+  color: #3a2600;
+  background: linear-gradient(90deg, var(--gold), #fba94c);
+  cursor: pointer;
+}
+.gg-btn:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.gg-err {
+  margin-top: 10px;
+  font-size: 0.82rem;
+  color: var(--risk);
+  background: var(--risk-bg);
+  border-radius: 9px;
+  padding: 9px 11px;
+}
+
+/* ---- record / term list ---- */
+.gg-termrow {
+  display: grid;
+  grid-template-columns: 1fr 110px 90px 90px;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+.gg-termrow:last-child {
+  border-bottom: 0;
+}
+
+/* ---- histogram (F5.2) ---- */
+.gg-hist {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  height: 96px;
+  margin-top: var(--s3);
+}
+.gg-hist > div {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 4px;
+}
+.gg-hist i {
+  display: block;
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(180deg, var(--gold), #fba94c);
+  min-height: 2px;
+}
+.gg-hist i.mine {
+  background: linear-gradient(180deg, var(--good), #14805580);
+}
+.gg-hist span {
+  font-size: 0.62rem;
+  color: var(--faint);
+}
+
+/* ---- move-weight menu (D1) ---- */
+.gg-movemenu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  background: var(--warm-wash);
+  border: 1px solid var(--warm-line);
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+.gg-moveopt {
+  border: 1px solid var(--line-strong);
+  background: var(--panel);
+  border-radius: 7px;
+  padding: 4px 8px;
+  font: inherit;
+  font-size: 0.76rem;
+  cursor: pointer;
+  color: inherit;
+  text-align: left;
+  width: 100%;
+}
+.gg-moveopt:hover {
+  border-color: var(--amber);
+}
+
+
+/* ---------------------------------------------------------------------------
+ * Dark mode — specs/06 F0.4.
+ *
+ * Only the TOKENS are redefined; no component rule is duplicated. Three states, because
+ * "system" stamps nothing on the root element:
+ *   .gg-app[data-theme="dark"]      explicit choice
+ *   prefers-color-scheme: dark      system default, guarded so an explicit light choice wins
+ *   .gg-app[data-theme="light"]     explicit light, overriding the system
+ *
+ * The warm brand hues are kept but desaturated: on a dark ground the full amber reads as
+ * alarm rather than warmth, and status green/red must stay distinguishable from it.
+ * ------------------------------------------------------------------------- */
+
+.gg-app[data-theme='dark'],
+.gg-app[data-theme='dark'] * {
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  .gg-app:not([data-theme='light']) {
+    --ground: #16161a;
+    --panel: #1e1e23;
+    --ink: #f2f1ee;
+    --muted: #a4a29b;
+    /* 5.40:1 on panel — #74726c was 3.45:1. Same reasoning as the light value above. */
+    --faint: #96938a;
+    --line: #2b2b31;
+    --line-strong: #3a3a42;
+
+    --amber: #e8a33d;
+    --orange: #e08a3c;
+    --gold: #dfb055;
+    --warm-wash: #22201c;
+    --warm-line: #332e26;
+    --warm-hover: #4a4032;
+    --track: #2a2a30;
+
+    --good: #43c48c;
+    --good-bg: #1632266b;
+    --risk: #e8776a;
+    --risk-bg: #3a1f1c6b;
+  }
+}
+
+.gg-app[data-theme='dark'] {
+  --ground: #16161a;
+  --panel: #1e1e23;
+  --ink: #f2f1ee;
+  --muted: #a4a29b;
+  /* 5.40:1 on panel — #74726c was 3.45:1. Same reasoning as the light value above. */
+  --faint: #96938a;
+  --line: #2b2b31;
+  --line-strong: #3a3a42;
+
+  --amber: #e8a33d;
+  --orange: #e08a3c;
+  --gold: #dfb055;
+  --warm-wash: #22201c;
+  --warm-line: #332e26;
+  --warm-hover: #4a4032;
+  --track: #2a2a30;
+
+  --good: #43c48c;
+  --good-bg: #16322666;
+  --risk: #e8776a;
+  --risk-bg: #3a1f1c66;
+}
+
+/* The hero gradient and its bloom both reference --panel/--warm-wash, so they follow the
+   tokens. The bloom is dropped further in dark: a glow on a dark ground reads much stronger
+   at the same alpha. */
+.gg-app[data-theme='dark'] .gg-hero,
+.gg-app:not([data-theme='light']) .gg-hero {
+  background: linear-gradient(170deg, var(--warm-wash), var(--panel) 55%);
+}
+.gg-app[data-theme='dark'] .gg-hero::before {
+  opacity: 0.32;
+}
+
+/* The bonus/target field and chips use fixed light tints in the light palette; give them
+   token-driven values so contrast survives. */
+.gg-app[data-theme='dark'] .gg-chip.muted,
+.gg-app[data-theme='dark'] .gg-tag {
+  background: #2b2b31;
+  color: var(--muted);
+}
+.gg-app[data-theme='dark'] .gg-tag.you {
+  background: #4a4032;
+  color: #f0d9a8;
+}
+.gg-app[data-theme='dark'] .gg-warn {
+  background: #22201c;
+}
+.gg-app[data-theme='dark'] .gg-btn {
+  color: #23180a;
+}
+
+/* ---- reorder controls (F6.1) ---- */
+/* Buttons rather than drag-and-drop: v1's DnD was mouse-only, and these are keyboard- and
+   touch-reachable without a parallel accessible implementation. */
+.gg-reorder {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: none;
+}
+.gg-reorder button {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: 5px;
+  width: 20px;
+  height: 15px;
+  line-height: 1;
+  font-size: 0.6rem;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 0;
+}
+.gg-reorder button:hover {
+  border-color: var(--amber);
+  color: var(--ink);
+}
+.gg-reorder button:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 1px;
+}

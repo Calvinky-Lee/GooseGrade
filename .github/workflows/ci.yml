@@ -1,0 +1,96 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: typecheck · lint · tests · build · e2e
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      # B4.2 asks for lint in CI. `next lint` was removed in Next 16 and this repo had no ESLint
+      # config at all, so the lint step had never actually run. Flat config lives at the root and
+      # covers every workspace; the engine-purity rule is enforced here.
+      - name: Lint
+        run: npm run lint
+
+      # The engine is the correctness gate. It is pure and synchronous, so this stays fast
+      # enough to block every PR — which is the whole point of moving the deterministic QA
+      # tier here rather than onto Kubernetes (design decision D4).
+      - name: Engine tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+        env:
+          # Build-time only; the anon key is public by design and RLS does the protecting.
+          NEXT_PUBLIC_SUPABASE_URL: https://placeholder.supabase.co
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: placeholder-anon-key
+          NEXT_PUBLIC_API_MODE: mock
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      # Runs against mock mode, so no database and no credentials — which is what makes the
+      # smokes safe to gate every PR, including from forks.
+      - name: E2E smokes
+        run: npm run test:e2e
+
+  # Runs the SAME shared invariants module from packages/engine/src/invariants.ts over every
+  # catalog course, rather than over hand-written fixtures. Separate job because it needs
+  # database credentials, so it cannot run on a fork PR.
+  #
+  # It SKIPS cleanly when the secrets are absent rather than failing. There is no Supabase
+  # project yet, so a hard failure here would paint every PR red for a reason that is not a code
+  # problem — and a permanently-red check is one people learn to ignore, which costs more than
+  # the check is worth. It turns into a real gate the moment the secrets exist.
+  catalog-qa:
+    name: deterministic QA over the live catalog
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' || github.event.pull_request.head.repo.full_name == github.repository
+    env:
+      # Lifted to job level so a step-level `if` can test it — the `secrets` context is not
+      # available in an `if` condition, but `env` is.
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Says out loud that it did nothing, so "green" is never mistaken for "verified".
+      - name: Report skip when no database is configured
+        if: env.SUPABASE_URL == '' || env.SUPABASE_SERVICE_ROLE_KEY == ''
+        run: |
+          echo "::notice title=Catalog QA skipped::SUPABASE_URL / SUPABASE_SERVICE_ROLE_KEY are           not set, so the safety contract was NOT checked against real catalog data. The engine           invariants still ran over fixtures in the unit suite. Set both secrets to turn this           into a real gate."
+
+      # The DETERMINISTIC tier only (design decision D4). The adversarial LLM tier is
+      # `npm run qa:llm` and runs in a container, because it costs a model call per course.
+      - name: Assert the safety contract over all catalog courses
+        if: env.SUPABASE_URL != '' && env.SUPABASE_SERVICE_ROLE_KEY != ''
+        run: npm run qa:catalog
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ env.SUPABASE_URL }}

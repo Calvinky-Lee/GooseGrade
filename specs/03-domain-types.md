@@ -7,6 +7,16 @@ shared by every screen and by the multi-agent QA runner.
 
 > Assign the engine to **one** session (recommend backend) to avoid double-implementation.
 
+**Amendments (2026-08-17)** — see `docs/superpowers/specs/2026-08-17-v2-implementation-design.md` §4.
+- **A1** `computeCumulative` added; `computeTermAverage` returns a named `TermAverage` with
+  per-course exclusion *reasons*.
+- **A2** `currentGrade` / `projectedGrade` are `number | null`; nothing graded yields `null`,
+  not `0`.
+- **A3** `DisplayItem` is now defined (it was referenced by `groupAssessments` but never
+  declared).
+- **A9** `requiredAcrossCourses` returns `requiredAverageOnRemaining` — the dashboard's
+  headline "average X% on what's left" figure, which the per-course breakdown could not supply.
+
 ---
 
 ## 1. Core types (mirror the DB)
@@ -55,6 +65,20 @@ export interface Term {
   isCurrent: boolean;
   courses: Course[];
 }
+
+// Grouping unit used by the UI. `groupAssessments` collapses Quiz 1/2/3 into one
+// "Quizzes" row; both the course page and the calculator render DisplayItem[], which is
+// what lets them share one implementation. (Amendment A3.)
+export type DisplayItem =
+  | { isGroup: false; assessment: Assessment }
+  | {
+      isGroup: true;
+      id: string;               // stable synthetic id, e.g. "group:Quiz"
+      name: string;             // "Quizzes"
+      category: AssessmentCategory | null;
+      weight: number;           // sum of non-removed children's weights
+      children: Assessment[];
+    };
 ```
 
 ---
@@ -151,8 +175,8 @@ weighted sum → `bonus` → `cap` → `passGate` check.
 
 ```ts
 export interface CourseResult {
-  currentGrade: number;          // earned / completedWeight  (avg on GRADED work only)
-  projectedGrade: number;        // earned + assumedRemaining; see assumption below
+  currentGrade: number | null;   // earned / completedWeight (GRADED work only); null if none
+  projectedGrade: number | null; // earned + assumedRemaining; null if nothing graded
   completedWeight: number;       // % of course already graded (denominator of currentGrade)
   remainingWeight: number;       // % still outstanding
   floor: number;                 // final grade if you score 0 on everything remaining
@@ -179,9 +203,15 @@ export interface RequiredResult {
 
 **Definitions (must be implemented exactly):**
 - `currentGrade` = `earnedWeight / completedWeight × 100`, where only `status === 'graded'`
-  items (and the resolved group/rule outcomes) contribute. If `completedWeight === 0` → `0`.
+  items (and the resolved group/rule outcomes) contribute. **If `completedWeight === 0` →
+  `null`**, which the UI renders as `—`. (Amendment A2: returning `0` here would show every
+  student `0.0%` in week one of term — a tool whose founding rule is "never display a
+  passing student as failing" must not open by displaying everyone a zero.)
 - `projectedGrade` = assumes remaining work scores the student's **current average**
-  (`currentGrade`). It is labeled as an assumption in the UI. (Neutral tool: no optimistic bias.)
+  (`currentGrade`). It is labeled as an assumption in the UI. (Neutral tool: no optimistic
+  bias.) `null` whenever `currentGrade` is `null` — there is no pace to project from.
+- `floor` and `ceiling` remain **non-null always**: before anything is graded the achievable
+  range is still `0`–`100`, which is real information. Only the *earned* figures go null.
 - `floor`/`ceiling` use 0% / 100% on all `upcoming` weight respectively — the **achievable
   range**. `excused` weight is excluded from all denominators; `missed` counts as 0 unless a
   `redistribute` rule moves its weight.
@@ -199,11 +229,28 @@ export function computeCourse(course: Course): CourseResult;
 export function requiredForCourse(course: Course, target: number): RequiredResult;
 
 // Credit-weighted term average over numeric-basis courses only (CR/NCR excluded).
-export function computeTermAverage(courses: Course[]): {
-  average: number;               // credit-weighted mean of each course's currentGrade
-  projectedAverage: number;      // using each course's projectedGrade
+export function computeTermAverage(courses: Course[]): TermAverage;
+
+export interface TermAverage {
+  average: number | null;        // credit-weighted mean of currentGrade; null if none included
+  projectedAverage: number | null;
   includedCredits: number;       // sum of creditWeight of included courses
-  excludedCourseIds: string[];   // CR/NCR or no-grade courses left out
+  excludedCourseIds: string[];   // CR/NCR or nothing-graded courses left out
+  // Amendment A1: the UI must be able to say *why* a course is excluded ("PD 11 excluded"
+  // vs "STAT 230 has no marks yet" are different messages).
+  exclusions: Array<{ courseId: string; reason: 'cr_ncr' | 'no_graded_work' }>;
+}
+
+// Credit-weighted average across every term's courses — what the dashboard's "Cumulative"
+// stat displays. (Amendment A1: this function was displayed in the mockup but never defined.)
+// Requires terms with `courses` populated; see 04 §3 on listTerms({ populate: true }).
+export function computeCumulative(terms: Term[]): {
+  average: number | null;
+  includedCredits: number;
+  // Difference vs the most recent *prior* term that had a computable average. null when
+  // there is no such term (first term) — the UI hides the delta rather than showing 0.
+  deltaVsPreviousTerm: number | null;
+  perTerm: Array<{ termId: string; termLabel: string; average: number | null; credits: number }>;
 };
 
 // "What term average do I need / what does each course need to reach `targetTermAvg`?"
@@ -212,6 +259,10 @@ export function requiredAcrossCourses(
   targetTermAvg: number,
 ): {
   feasible: boolean;
+  // Amendment A9: the single headline figure the dashboard shows — "average 84.6% on what's
+  // left". Credit-weighted across all remaining work; null when nothing is outstanding. The
+  // per-course breakdown alone cannot fill that line, and the mockup displays it.
+  requiredAverageOnRemaining: number | null;
   perCourse: Array<{ courseId: string; requiredAverage: number | null; feasible: boolean }>;
   message: string;
 };
