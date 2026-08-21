@@ -9,6 +9,38 @@ set of things deliberately not built.
 
 ---
 
+## 0. Vercel preview is failing — needs a dashboard setting I cannot reach
+
+**The one red check on PR #1.** GitHub Actions is fully green; Vercel's preview deployment is not.
+
+Cause: the workspace restructure moved the Next app from the repo root to `apps/web`, and
+Vercel's **Root Directory** is a project setting that lives in the dashboard — `vercel.json`
+cannot override it. I could not read the build logs either, because `vercel inspect` requires an
+interactive browser login.
+
+What I did verify locally, running exactly what Vercel runs:
+
+```
+npm install && npm run build   →  output at apps/web/.next  ✓  12 routes
+```
+
+So the build command and output path are correct. Pick **one** of these — they are mutually
+exclusive:
+
+**A. Set Root Directory to `apps/web`** *(recommended — Vercel's documented monorepo approach)*
+Project → Settings → Build & Deployment → Root Directory → `apps/web`, and tick
+"Include files outside the root directory" so the workspace packages resolve.
+**Then delete the root `vercel.json`** — with a Root Directory set, Vercel reads
+`apps/web/vercel.json` and the root one becomes dead config that will mislead the next person.
+
+**B. Leave Root Directory as the repo root** and keep the committed `vercel.json`, which already
+sets `buildCommand`, `outputDirectory: apps/web/.next` and `framework: nextjs`.
+
+Until one is applied, the preview URL on every PR will 404 or fail to build. Nothing else is
+affected — this is deployment configuration, not application code.
+
+---
+
 ## 1. Verify the live layer — the only item that can teach us something new
 
 Everything server-side is built, typechecked and lint-clean. **None of it has run against real
@@ -136,7 +168,8 @@ API · Quest *schedule* import as an integration (the paste flow covers this for
 
 ## Suggested order
 
-1. §1 dry-run verification — free, and the only thing that can surface a real defect.
-2. O4 and O5 — small code changes, and O4 is a visible wrong number.
-3. O1 — decides whether a launch screen is empty.
-4. O3 — only blocks deployment.
+1. **§0 Vercel Root Directory** — one setting, and it is the only failing check on the PR.
+2. §1 dry-run verification — free, and the only thing that can surface a real defect.
+3. O4 and O5 — small code changes, and O4 is a visible wrong number.
+4. O1 — decides whether a launch screen is empty.
+5. O3 — only blocks the first Cloud Run deploy.
