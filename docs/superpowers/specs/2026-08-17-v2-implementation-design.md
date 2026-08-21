@@ -320,9 +320,18 @@ more useful because it is queryable.
 
 ## 8. Open questions
 
+**Still open — both need your call, not more code.**
+
 - **O1** — Does the class-distribution feature ship in Phase 1 as specced, given it depends
   on a user base that does not exist yet? The min-sample floor of 5 means it shows "not
   enough data" for every course until adoption. Consider building the contribution path in
   Phase 1 and the read path later.
-- **O2** — G4: drop `suggestCourses` from Phase 1, or add a sequence table?
+- ~~**O2** — G4: drop `suggestCourses` from Phase 1, or add a sequence table?~~
+  **RESOLVED (amendment A4):** dropped from Phase 1. The paste-first intake decision (D2) removed
+  the need for it, and no sequence data source exists to back it. `04` carries it commented out
+  with the reason.
 - **O3** — Which GCP project and billing account? Needed before the first Cloud Run deploy.
+- **O4** *(new)* — The cumulative delta reads **▲ 7.4** where `dashboard-mockup.html` shows
+  **▲ 1.3**. `computeCumulative` compares the latest term average to the previous term average;
+  the mockup looks like it compares cumulative-to-cumulative. Whichever you meant, the engine
+  needs one line changed and a test updated.
