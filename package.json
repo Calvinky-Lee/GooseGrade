@@ -14,7 +14,7 @@
     "db:clean": "tsx scripts/clean-assessments.ts",
     "test": "node --import tsx --test tests/*.test.ts",
     "typecheck": "tsc --noEmit --incremental false",
-    "catalog:discover": "node --import tsx scripts/discover-winter.ts",
+    "catalog:discover": "node --import tsx scripts/discover-catalog.ts",
     "catalog:refresh": "node --import tsx scripts/refresh-catalog.ts"
   },
   "dependencies": {

@@ -86,3 +86,20 @@ export function outlineText(html: string, code: string, term: number) {
     throw Error("Fetched outline does not confirm course and term.");
   return { text, title: $("h1").first().text().trim() || code };
 }
+
+// The viewer supports subject/term queries; the public search API does not.
+export async function searchSubjectOutlines(subject: string, term: number, cookie: string, request: Request = fetch): Promise<Outline[]> {
+ const info=termInfo(term);
+ const suffix=`${term%10===1?'W':term%10===5?'S':'F'}${String(1900+Math.floor(term/10)).slice(-2)}`;
+ const response=await getSource(`https://outline.uwaterloo.ca/viewer/api/search/?q=${encodeURIComponent(`${subject} ${suffix}`)}`,cookie,request);
+ if(!response.headers.get('content-type')?.includes('json')) throw Error('Expected authenticated JSON search response.');
+ const rows=await response.json();
+ if(!Array.isArray(rows)) throw Error('Invalid viewer search response.');
+ return rows.filter(o=>Number(o.term)===info.id&&o.url).map(o=>{
+  const url=new URL(o.url,'https://outline.uwaterloo.ca').href;
+  if(new URL(url).origin!=='https://outline.uwaterloo.ca')throw Error('Unexpected outline host.');
+  const courses=[...String(o.courses).matchAll(/\b([A-Z]+)\s+(\d+[A-Z]*)\b/g)].map(m=>({subject:m[1],code:m[2],section:String(o.sections||'')}));
+  if(!courses.length)throw Error('Viewer outline is missing course identity.');
+  return {url,term:info.id,title:o.title,courses};
+ });
+}

@@ -1,4 +1,4 @@
-export const DEFAULT_TERM = 1271;
+export const DEFAULT_TERM = 1269;
 export function termInfo(id: number) {
   if (
     !Number.isInteger(id) ||

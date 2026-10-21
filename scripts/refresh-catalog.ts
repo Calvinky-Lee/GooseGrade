@@ -1,11 +1,13 @@
 import { config } from "dotenv";
 config({ path: ".env.local" });
 import fs from "node:fs";
+import { selectedTerm } from "./import/schedule";
+import { termInfo } from "../lib/catalog/terms";
 import path from "node:path";
 import { createHash } from "node:crypto";
 import { getSource, outlineText, Outline, pause } from "./import/source";
-import { extractTable, extractWithModel } from "./import/extract";
-import { validateScheme } from "./import/validation";
+import { extractTable, extractWithModel, gradingText } from "./import/extract";
+import { validateScheme, conditionalPattern } from "./import/validation";
 import {
   publishOfferingManifest,
   publishScheme,
@@ -19,12 +21,14 @@ async function main() {
   const maxCalls = maxArg ? Number(maxArg.split("=")[1]) : 5;
   if (!Number.isInteger(maxCalls) || maxCalls < 0 || maxCalls > 2000)
     throw Error("Invalid extraction call limit.");
-  const dir = ".import-cache/1271",
+  const term = selectedTerm(args);
+  const dir = `.import-cache/${term}`,
     offerFile = path.join(dir, "offerings.json"),
     discoveryFile = path.join(dir, "discovery.json");
   if (!fs.existsSync(offerFile) || !fs.existsSync(discoveryFile))
     throw Error("Run npm run catalog:discover first.");
   const offerings = JSON.parse(fs.readFileSync(offerFile, "utf8"));
+  if (!offerings.length || offerings.some((o:any)=>o.term_id !== term || o.term !== termInfo(term).label)) throw Error("Offering manifest term mismatch.");
   const discovery = JSON.parse(fs.readFileSync(discoveryFile, "utf8"));
   const outcomeFile = path.join(dir, "outcomes.json");
   const outcomes: Record<string, any> = fs.existsSync(outcomeFile)
@@ -37,7 +41,7 @@ async function main() {
       const r = await db
         .from("courses")
         .select("code")
-        .eq("term", "Winter 2027")
+        .eq("term", termInfo(term).label)
         .eq("validation_status", "ready")
         .order("id")
         .range(offset, offset + 999);
@@ -52,7 +56,10 @@ async function main() {
   console.log(
     `Maximum model calls: ${allowAI ? maxCalls : 0}. Source excerpts capped at 100,000 characters per call.`,
   );
-  for (const offering of offerings) {
+  let nextOffering = 0, completed = 0;
+  async function worker() {
+  while (nextOffering < offerings.length) {
+    const offering = offerings[nextOffering++];
     const found = discovery[offering.code];
     if (found?.status !== "complete") {
       finalOfferings.push({
@@ -66,12 +73,12 @@ async function main() {
     for (const outline of found.outlines as Outline[]) {
       const key = `${offering.code}|${outline.url}`;
       try {
-        const r = await getSource(
-          outline.url,
-          process.env.WATERLOO_SESSION_COOKIE || "",
-        );
-        const html = await r.text();
-        const source = outlineText(html, offering.code, 1271);
+        const sourcePath = path.join(dir, createHash("sha256").update(outline.url).digest("hex") + ".html");
+        const html = args.includes("--resume") && fs.existsSync(sourcePath)
+          ? fs.readFileSync(sourcePath,"utf8")
+          : await (await getSource(outline.url,process.env.WATERLOO_SESSION_COOKIE || "")).text();
+        fs.writeFileSync(sourcePath, html, {mode:0o600});
+        const source = outlineText(html, offering.code, term);
         const hash = createHash("sha256").update(source.text).digest("hex");
         const cachePath = path.join(dir, hash + ".json");
         fs.writeFileSync(path.join(dir, hash + ".txt"), source.text, {
@@ -81,17 +88,18 @@ async function main() {
         if (fs.existsSync(cachePath))
           extraction = JSON.parse(fs.readFileSync(cachePath, "utf8"));
         else {
-          extraction = extractTable(html);
-          if (!extraction && allowAI && modelCalls < maxCalls) {
+          extraction = extractTable(html, true);
+          if (!extraction && !conditionalPattern.test(source.text) && allowAI && modelCalls < maxCalls && gradingText(html)) {
             modelCalls++;
-            extraction = await extractWithModel(source.text);
+            extraction = await extractWithModel(gradingText(html));
           }
           if (extraction)
             fs.writeFileSync(cachePath, JSON.stringify(extraction, null, 2), {
               mode: 0o600,
             });
         }
-        const validated = validateScheme(extraction, source.text);
+        const validated = validateScheme(extraction, source.text, html);
+        if (!extraction && conditionalPattern.test(source.text)) validated.reasons = ["Conditional grading needs review."];
         outcomes[key] = {
           source_hash: hash,
           status: validated.status,
@@ -103,7 +111,7 @@ async function main() {
             await publishScheme(
               {
                 ...offering,
-                name: source.title,
+                name: outline.title?.trim() || offering.name,
                 outline_url: outline.url,
                 source_hash: hash,
                 review_reasons: validated.reasons,
@@ -126,15 +134,19 @@ async function main() {
       await pause(500);
     }
     if (existingReady.has(offering.code)) status = "ready";
+    completed++;
+    if(completed % 50 === 0) console.log(`Processed ${completed}/${offerings.length} offerings; ${Object.keys(outcomes).length} outline schemes`);
     finalOfferings.push({
       ...offering,
       outline_status: status,
       checked_at: found.checked_at,
     });
   }
+  }
+  await Promise.all([worker(),worker()]);
   if (apply) await publishOfferingManifest(finalOfferings);
   const report = {
-    term: 1271,
+    term,
     offeredCodes: offerings.length,
     discoveredSections: Object.values(discovery).reduce(
       (n: number, s: any) => n + (s.outlines?.length || 0),

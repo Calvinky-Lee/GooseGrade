@@ -2,7 +2,7 @@ import * as cheerio from "cheerio";
 import { z } from "zod";
 import { termInfo } from "../../lib/catalog/terms";
 export const conditionalPattern =
-  /\bpass\b|\bminimum\b|\bbest\b.{0,30}\bof\b|\bdrop(?:ped|ping)?\b.{0,30}\b(?:lowest|quiz|assignment)\b|\blowest\b.{0,30}\bdrop|\bbonus\b|\bhigher\s+of\b|\breplace(?:ment|s|d)?\b|\bre-?weight|\balternative\s+(?:grading|scheme)\b/i;
+  /\bcase\s+\d(?:\s|[-:])|\bif\b.{0,70}\b(?:grade|mark|average)\b.{0,30}(?:[<>≥≤]|higher|lower|at least|below|above)|\b(?:max|min)\s*\([^)]*(?:grade|mark|exam)|\bpass\b|\bminimum\b|\bbest\b.{0,30}\bof\b|\bdrop(?:ped|ping)?\b.{0,30}\b(?:lowest|quiz|assignment)\b|\blowest\b.{0,30}\bdrop|\bbonus\b|\bhigher\s+of\b|\breplace(?:ment|s|d)?\b|\bre-?weight|\balternative\s+(?:grading|scheme)\b/i;
 export const OFFERINGS_URL = "https://classes.uwaterloo.ca/uwpcshtm.html";
 export function parseOfferings(html: string, term: number) {
   const $ = cheerio.load(html);
@@ -102,6 +102,7 @@ function decimal(n: bigint) {
 export function validateScheme(
   input: unknown,
   source: string,
+  html?: string,
 ): {
   status: "ready" | "review";
   reasons: string[];
@@ -116,6 +117,7 @@ export function validateScheme(
     };
   const s = parsed.data,
     reasons: string[] = [];
+  if (html && hasMultipleSchemes(html)) reasons.push("Multiple grading tables need review.");
   const normalized = source.replace(/\s+/g, " ").trim();
   if (!s.complete) reasons.push("Source scheme is incomplete.");
   if (s.conditional || conditionalPattern.test(source))
@@ -133,7 +135,7 @@ export function validateScheme(
     const percentages = [
       ...a.evidence.matchAll(/(\d+(?:\.\d+)?)\s*(?:%|percent)/gi),
     ].map((m) => Number(m[1]));
-    if (!percentages.includes(a.weight))
+    if (!percentages.includes(a.weight) && !percentageColumnEvidence(html, a.name, a.weight, a.evidence))
       reasons.push(`Weight not explicit in evidence: ${a.name}`);
   }
   const total = s.assessments.reduce((sum, a) => sum + a.weight, 0);
@@ -252,4 +254,40 @@ export function validateScheme(
       source_evidence: a.evidence,
     })),
   };
+}
+
+// Numeric table cells are percentages only when the source explicitly labels that column.
+export function percentageColumnEvidence(html: string | undefined, name: string, weight: number, evidence: string) {
+ if(!html)return false;
+ const $=cheerio.load(html),normalize=(s:string)=>s.replace(/\s+/g,' ').trim();
+ for(const table of $('table').toArray()){
+  const headers=$(table).find('tr').first().children('th,td').map((_,e)=>$(e).text().trim()).get();
+  const column=headers.findIndex(h=>/weight/i.test(h)&&/%|percent/i.test(h));
+  if(column<1)continue;
+  for(const row of $(table).find('tr').toArray()){
+   const cells=$(row).children('td');
+   if(normalize($(cells[0]).text())!==normalize(name)||normalize($(row).text())!==normalize(evidence))continue;
+   const m=$(cells[column]).text().trim().match(/^(\d+(?:\.\d+)?)\s*(?:%|percent|points?)?$/i);
+   if(m&&Number(m[1])===weight)return true;
+  }
+ }
+ return false;
+}
+
+export function hasMultipleSchemes(html: string) {
+ const $=cheerio.load(html);let count=0;
+ for(const table of $('table').toArray()){
+  const headers=$(table).find('tr').first().children('th,td').map((_,e)=>$(e).text().trim()).get();
+  const column=headers.findIndex(h=>/weight/i.test(h));
+  let sum=0,items=0;
+  for(const row of $(table).find('tr').toArray()){
+   const cells=$(row).children('td');
+   if(cells.length<2||/total/i.test($(cells[0]).text()))continue;
+   const value=column>=1?$(cells[column]).text().trim():cells.length===2?$(cells[1]).text().trim():'';
+   const m=value.match(column>=1&&/%|percent/i.test(headers[column])?/^(\d+(?:\.\d+)?)\s*(?:%|percent|points?)?$/i:/^(\d+(?:\.\d+)?)\s*%$/);
+   if(m){sum+=Number(m[1]);items++;}
+  }
+  if(items&&Math.abs(sum-100)<=0.05)count++;
+ }
+ return count>1;
 }

@@ -6,17 +6,20 @@ import {
   validateScheme,
   conditionalPattern,
 } from "./validation";
-export function extractTable(html: string): Extraction | null {
+export function extractTable(html: string, includeReview = false): Extraction | null {
   const $ = cheerio.load(html);
+  $("script,style,nav,footer,svg").remove();
   const text = $("body").text().replace(/\s+/g, " ").trim();
   for (const table of $("table").toArray()) {
     const items: Extraction["assessments"] = [];
+    const headers = $(table).find("tr").first().children("th,td").map((_,e)=>$(e).text().trim()).get();
+    const weightIndex = headers.findIndex(h=>/weight/i.test(h));
     for (const row of $(table).find("tr").toArray()) {
       const cells = $(row).find("td");
       if (cells.length < 2) continue;
       const name = $(cells[0]).text().trim();
-      const rest = cells.slice(1).text().trim();
-      const m = rest.match(/^\s*(\d+(?:\.\d+)?)\s*%\s*$/);
+      const rest = weightIndex >= 1 ? $(cells[weightIndex]).text().trim() : cells.length === 2 ? $(cells[1]).text().trim() : "";
+      const m = rest.match(weightIndex >= 1 && /%|percent/i.test(headers[weightIndex]) ? /^\s*(\d+(?:\.\d+)?)\s*(?:%|percent|points?)?\s*$/i : /^\s*(\d+(?:\.\d+)?)\s*%\s*$/);
       if (!m || !name || /total/i.test(name)) continue;
       const evidence = $(row).text().replace(/\s+/g, " ").trim();
       const slug = name
@@ -40,7 +43,7 @@ export function extractTable(html: string): Extraction | null {
       notes: [],
       assessments: items,
     };
-    if (items.length && validateScheme(result, text).status === "ready")
+    if (items.length && (validateScheme(result, text, html).status === "ready" || (includeReview && Math.abs(items.reduce((n,a)=>n+a.weight,0)-100) <= 0.05)))
       return result;
   }
   return null;
@@ -68,4 +71,12 @@ export async function extractWithModel(text: string): Promise<Extraction> {
   );
   if (conditionalPattern.test(text)) value.conditional = true;
   return value;
+}
+
+export function gradingText(html: string) {
+ const $=cheerio.load(html);$('script,style,nav,footer,svg').remove();
+ const start=$('#assessments_amp_activities');
+ if(start.length)return start.nextUntil('#university_policy').text().replace(/\s+/g,' ').trim();
+ // Unknown layouts: send only explicit grading tables, never the entire document.
+ return $('table').toArray().filter(t=>/weight|assessment|grading/i.test($(t).find('th').text())).map(t=>$(t).text()).join(' ').replace(/\s+/g,' ').trim();
 }

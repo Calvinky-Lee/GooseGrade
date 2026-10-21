@@ -9,6 +9,7 @@ import { Geist, Geist_Mono, Lora } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
 import { SiteHeader } from "@/components/site-header"
+import { CourseHelp } from "@/components/course-help"
 
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body className="font-serif antialiased" style={{ fontFamily: "var(--font-lora)" }}>
         <SiteHeader />
         <div>{children}</div>
+        <CourseHelp />
         <Analytics />
       </body>
     </html>
