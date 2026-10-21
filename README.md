@@ -6,7 +6,7 @@ Anonymous, single-course grade calculator for UWaterloo. Next.js/React frontend 
 
 Use Node 20.9 or newer, install dependencies with `npm ci`, and provide `.env.local` with `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`. Import scripts additionally need `SUPABASE_SERVICE_ROLE_KEY` and `WATERLOO_SESSION_COOKIE`. Optional model extraction needs `OPENAI_API_KEY`.
 
-Never commit environment files or the `.import-cache` directory. Calculator edits exist only in page memory. Client roles cannot change shared course data.
+Never commit environment files or the `.import-cache` directory. Client roles cannot change shared course data.
 
 ```sh
 npm run dev
@@ -18,7 +18,7 @@ npm start
 
 ## Winter 2027 refresh
 
-The default term is Winter 2027 (`1271`). The offerings list supplies course codes/titles, not assessment weights. Historical terms remain separate.
+The import target is Winter 2027 (`1271`). The offerings list supplies course codes/titles, not assessment weights. Historical terms remain separate.
 
 Apply `supabase/migrations/03_winter_2027_catalog.sql` to an existing v1 database first. On a fresh database, use `supabase/schema.sql` followed by migration 03; do not also run migration 01, which repeats the base schema's unique constraint. `supabase/verify-catalog.sql` tests permissions, exact sums, stable IDs and rollback using fixtures inside a rolled-back transaction.
 
@@ -53,13 +53,13 @@ Legacy scrape/add/clean/normalize/clear writers are retired and exit with instru
 
 October 21, 2026: 1,658/1,658 Winter 2027 source codes were checked with the authenticated outline API. No matching Winter 2027 outlines were returned. All 1,658 offerings are in Supabase with pending weightings; no historical scheme was relabeled or used as a replacement. Historical counts remained 1,203 course sections and 12,061 assessments. Zero paid extraction calls were made.
 
-The UI distinguishes pending, review, delayed-check and ready states. Legacy schemes are explicitly unverified and link to their official sources. An older outline is not presented as current. New publication requires the matching term's outline.
+The frontend is unchanged from the original main branch. Pending offerings are stored in the backend catalog; the original interface continues reading existing course schemes. Winter 2027 assessment schemes will become available only after matching outlines are published and validated.
 
 ## Verification artifacts
 
-- `tests/`: grade semantics, redistribution, term parsing, source evidence, exact normalization, pagination and authentication handling.
+- `tests/`: term parsing, source evidence, exact normalization, pagination and authentication handling.
 - `supabase/verify-catalog.sql`: transactional database integration checks.
-- `docs/superpowers/specs/2026-10-20-winter-2027.md`: approved scope.
+- `docs/superpowers/specs/2026-10-20-winter-2027.md`: backend-only scope.
 - `docs/superpowers/plans/2026-10-20-winter-2027.md`: implementation ledger.
 
 The previous `specs/` v2 accounts/dashboard proposals are historical context and are not the implementation roadmap.

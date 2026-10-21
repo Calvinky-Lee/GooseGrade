@@ -1,39 +1,41 @@
-import { Analytics } from "@vercel/analytics/next";
-import type React from "react";
-import type { Metadata } from "next";
-import Link from "next/link";
-import "./globals.css";
-import { SiteHeader } from "@/components/site-header";
+/**
+ * Copyright (c) 2025 GooseGrade
+ * All rights reserved.
+ */
+
+import type React from "react"
+import type { Metadata } from "next"
+import { Geist, Geist_Mono, Lora } from "next/font/google"
+import { Analytics } from "@vercel/analytics/next"
+import "./globals.css"
+import { SiteHeader } from "@/components/site-header"
+
+const _geist = Geist({ subsets: ["latin"] })
+const _geistMono = Geist_Mono({ subsets: ["latin"] })
+const _lora = Lora({ subsets: ["latin"] })
+
 export const metadata: Metadata = {
-  title: "GooseGrade — A little clarity for your Waterloo grade",
-  description:
-    "Explore Winter 2027 UWaterloo courses and calculate your grade with source-backed assessment weightings. No account needed.",
-  icons: { icon: "/goosegrade.png" },
-};
+  title: "GooseGrade - UWaterloo Grade Calculator",
+  description: "Track your assignments and calculate your grades for University of Waterloo courses.",
+  icons: {
+    icon: [
+      { url: "/goosegrade.png", href: "/goosegrade.png" },
+    ],
+  },
+}
+
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: Readonly<{
+  children: React.ReactNode
+}>) {
   return (
     <html lang="en">
-      <body>
-        <a className="skip-link" href="#main-content">
-          Skip to content
-        </a>
+      <body className="font-serif antialiased" style={{ fontFamily: "var(--font-lora)" }}>
         <SiteHeader />
-        <div id="main-content">{children}</div>
-        <footer className="site-footer">
-          <Link href="/" className="footer-brand">
-            GooseGrade.
-          </Link>
-          <p>A little less grade anxiety. A little more clarity.</p>
-          <span>
-            Independent student project · Not affiliated with UWaterloo
-          </span>
-        </footer>
+        <div>{children}</div>
         <Analytics />
       </body>
     </html>
-  );
+  )
 }

@@ -1,58 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import {
-  calculateGrade,
-  redistribute,
-  moveAssessment,
-} from "../lib/grade/engine";
 import { termInfo } from "../lib/catalog/terms";
 import { parseOfferings, validateScheme } from "../scripts/import/validation";
-const item = (id: string, weight: number, grade: string = "") => ({
-  id,
-  name: id,
-  weight: String(weight),
-  grade,
-  group: "",
-});
-test("blank grades are ungraded; explicit zero counts", () => {
-  assert.equal(calculateGrade([item("a", 50), item("b", 50)]).current, null);
-  const r = calculateGrade([item("a", 50, "0"), item("b", 50)], 80);
-  assert.equal(r.current, 0);
-  assert.equal(r.completed, 50);
-  assert.equal(r.required, 160);
-});
-test("partial and completed target calculations", () => {
-  const r = calculateGrade([item("a", 25, "80"), item("b", 75)], 85);
-  assert.equal(r.current, 80);
-  assert.equal(r.required, 86.66666666666667);
-  assert.equal(calculateGrade([item("a", 100, "75")], 80).required, null);
-});
-test("invalid grades, weights and incomplete schemes do not yield misleading targets", () => {
-  assert.ok(calculateGrade([item("a", 100, "wat")]).error);
-  assert.ok(calculateGrade([item("a", -1, "50")]).error);
-  assert.equal(
-    calculateGrade([item("a", 20, "50"), item("b", 30)], 80).required,
-    null,
-  );
-  assert.equal(
-    calculateGrade([item("a", 0, "99"), item("b", 100)]).current,
-    null,
-  );
-});
-test("redistribution conserves weights and leaves input unchanged", () => {
-  const a = [item("a", 20), item("b", 30), item("c", 50)];
-  const r = redistribute(a, "a", "even");
-  assert.deepEqual(
-    r.map((x) => Number(x.weight)),
-    [40, 60],
-  );
-  assert.equal(a.length, 3);
-  assert.throws(() => redistribute([item("a", 100)], "a", "even"));
-  assert.deepEqual(
-    moveAssessment(a, "b", -1).map((x) => x.id),
-    ["b", "a", "c"],
-  );
-});
+
 test("term validation is explicit and chronological", () => {
   assert.deepEqual(termInfo(1271), {
     id: 1271,
