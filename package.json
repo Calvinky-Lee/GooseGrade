@@ -3,16 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev --webpack",
+    "build": "next build --webpack",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "npm run typecheck",
     "scrape": "tsx scripts/scrape-course.ts",
     "scrape-batch": "tsx scripts/scrape-batch.ts",
     "add-course": "tsx scripts/add-course.ts",
     "fetch-courses": "tsx scripts/fetch-course-list.ts",
-    "db:setup": "tsx scripts/setup-database.ts",
-    "db:clean": "tsx scripts/clean-assessments.ts"
+    "db:clean": "tsx scripts/clean-assessments.ts",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "typecheck": "tsc --noEmit --incremental false",
+    "catalog:discover": "node --import tsx scripts/discover-winter.ts",
+    "catalog:refresh": "node --import tsx scripts/refresh-catalog.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
