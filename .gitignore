@@ -1,4 +1,5 @@
 # Dependencies
+node_modules
 node_modules/
 .pnp
 .pnp.js
@@ -38,3 +39,7 @@ next-env.d.ts
 # Vercel
 .vercel
 
+
+# Private import source cache and execution manifests
+.import-cache/
+*.tsbuildinfo
