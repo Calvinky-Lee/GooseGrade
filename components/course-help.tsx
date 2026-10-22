@@ -1,9 +1,8 @@
 'use client'
 
 import {useState, type FormEvent} from 'react'
-import {HelpCircle, Loader2, CheckCircle2} from 'lucide-react'
-import {Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription} from '@/components/ui/dialog'
-import {DEFAULT_TERM, termInfo} from '@/lib/catalog/terms'
+import {HelpCircle, Loader2, CheckCircle2, X} from 'lucide-react'
+import * as Dialog from '@radix-ui/react-dialog'
 
 export function CourseHelp(){
  const [open,setOpen]=useState(false)
@@ -24,17 +23,18 @@ export function CourseHelp(){
   finally{setBusy(false)}
  }
  const inputClass='w-full rounded-lg border border-gray-300 bg-white px-3 py-2.5 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-500'
- return <Dialog open={open} onOpenChange={value=>{setOpen(value);if(value&&sent){setSent(false);setCode('');setOutlineUrl('');setNotes('');setError('')}}}>
-  <DialogTrigger asChild>
+ return <Dialog.Root modal={false} open={open} onOpenChange={value=>{setOpen(value);if(value&&sent){setSent(false);setCode('');setOutlineUrl('');setNotes('');setError('')}}}>
+  <Dialog.Trigger asChild>
    <button type="button" aria-label="Help: request a missing course" title="Request a missing course" className="fixed bottom-5 right-5 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-800 shadow-lg transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-500 focus-visible:ring-offset-2" style={{bottom:'max(1.25rem, env(safe-area-inset-bottom))'}}>
     <HelpCircle className="h-6 w-6" aria-hidden="true" />
    </button>
-  </DialogTrigger>
-  <DialogContent className="max-h-[85dvh] w-[calc(100%-2rem)] overflow-y-auto rounded-2xl bg-white p-6 text-gray-900 sm:max-w-md">
-   <DialogHeader>
-    <DialogTitle className="text-xl">Missing a course?</DialogTitle>
-    <DialogDescription className="pt-1 text-gray-600">Let us know which {termInfo(DEFAULT_TERM).label} course you’d like added to GooseGrade.</DialogDescription>
-   </DialogHeader>
+  </Dialog.Trigger>
+  <Dialog.Portal>
+  <Dialog.Content aria-describedby={undefined} className="fixed right-5 z-50 max-h-[calc(100dvh-7rem)] w-[calc(100vw-2.5rem)] overflow-y-auto rounded-2xl border border-gray-200 bg-white p-6 text-gray-900 shadow-2xl duration-200 data-[state=open]:animate-in data-[state=open]:slide-in-from-bottom-4 data-[state=closed]:animate-out data-[state=closed]:slide-out-to-bottom-4 motion-reduce:animate-none sm:w-96" style={{bottom:'calc(max(1.25rem, env(safe-area-inset-bottom)) + 3.75rem)'}}>
+   <Dialog.Title className="mb-5 pr-6 text-xl font-semibold">Missing a course?</Dialog.Title>
+   <Dialog.Close aria-label="Close missing-course form" className="absolute right-4 top-4 rounded p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-500">
+    <X className="h-4 w-4" aria-hidden="true" />
+   </Dialog.Close>
    {sent?<div className="space-y-4 py-3" role="status">
     <CheckCircle2 className="h-8 w-8 text-green-700" aria-hidden="true" />
     <p className="font-medium">Thanks — your course request is in the queue.</p>
@@ -47,6 +47,7 @@ export function CourseHelp(){
     {error&&<p role="alert" className="text-sm text-red-700">{error}</p>}
     <button type="submit" disabled={busy} className="flex w-full items-center justify-center gap-2 rounded-lg bg-gray-900 px-4 py-2.5 text-sm text-white hover:bg-gray-800 disabled:opacity-60">{busy&&<Loader2 className="h-4 w-4 animate-spin" aria-hidden="true"/>}{busy?'Sending…':'Request course'}</button>
    </form>}
-  </DialogContent>
- </Dialog>
+  </Dialog.Content>
+  </Dialog.Portal>
+ </Dialog.Root>
 }

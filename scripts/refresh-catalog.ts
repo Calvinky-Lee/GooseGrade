@@ -1,6 +1,7 @@
 import { config } from "dotenv";
 config({ path: ".env.local" });
 import fs from "node:fs";
+import { ZodError } from "zod";
 import { selectedTerm } from "./import/schedule";
 import { termInfo } from "../lib/catalog/terms";
 import path from "node:path";
@@ -72,6 +73,7 @@ async function main() {
     let status = "pending";
     for (const outline of found.outlines as Outline[]) {
       const key = `${offering.code}|${outline.url}`;
+      let sourceHash: string | undefined;
       try {
         const sourcePath = path.join(dir, createHash("sha256").update(outline.url).digest("hex") + ".html");
         const html = args.includes("--resume") && fs.existsSync(sourcePath)
@@ -80,6 +82,7 @@ async function main() {
         fs.writeFileSync(sourcePath, html, {mode:0o600});
         const source = outlineText(html, offering.code, term);
         const hash = createHash("sha256").update(source.text).digest("hex");
+        sourceHash = hash;
         const cachePath = path.join(dir, hash + ".json");
         fs.writeFileSync(path.join(dir, hash + ".txt"), source.text, {
           mode: 0o600,
@@ -124,9 +127,10 @@ async function main() {
         } else if (status !== "ready") status = "review";
       } catch (e) {
         const message = e instanceof Error ? e.message : String(e);
-        outcomes[key] = { status: "error", message };
+        const needsReview = e instanceof ZodError;
+        outcomes[key] = { status: needsReview ? "review" : "error", source_hash: sourceHash, message, ...(needsReview ? { reasons: ["Model output lacks a complete source-backed assessment scheme."] } : {}) };
         if (message.includes("Authentication")) throw e;
-        if (status !== "ready") status = "error";
+        if (status !== "ready") status = needsReview ? "review" : "error";
       }
       fs.writeFileSync(outcomeFile, JSON.stringify(outcomes, null, 2), {
         mode: 0o600,
